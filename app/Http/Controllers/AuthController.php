@@ -64,6 +64,8 @@ class AuthController extends Controller
         $user->user_type = $data["user_type"];
         $user->save();
 
+        
+
         $info = new Info;
         $info->user_id =$user->id;
         $info->name = $data["name"];
@@ -76,7 +78,6 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
-            $user,
         ], 201);
     }
 
