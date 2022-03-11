@@ -21,8 +21,8 @@ class CreatePharmaciesTable extends Migration
             $table->string('street')->nullable();
             $table->string('locality')->nullable();
             $table->string('district')->nullable();
-            $table->double('latitude ')->nullable();
-            $table->double('longitude ')->nullable();
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
             $table->binary('license')->nullable(); 
             $table->timestamps();
             $table->softDeletes();

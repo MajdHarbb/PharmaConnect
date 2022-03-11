@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Info;
+use App\Models\Pharmacie;
+
 use Validator;
 
 class AuthController extends Controller
@@ -63,8 +65,20 @@ class AuthController extends Controller
         $user->password = bcrypt($data["password"]);
         $user->user_type = $data["user_type"];
         $user->save();
-
         
+
+        if($type=="pharmacy"){
+            $pharmacy = new Pharmacie;
+            $pharmacy->pharmacy_id = $user->id;
+            $pharmacy->building = $data["building"];
+            $pharmacy->street = $data["street"];
+            $pharmacy->locality = $data["locality"];
+            $pharmacy->district = $data["district"];
+            $pharmacy->latitude  = $data["latitude"];
+            $pharmacy->longitude  = $data["longitude"];
+            $pharmacy->license = $data["license"];
+            $pharmacy->save();
+        }
 
         $info = new Info;
         $info->user_id =$user->id;
@@ -78,6 +92,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,
+            $type,
         ], 201);
     }
 
