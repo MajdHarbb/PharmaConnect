@@ -15,7 +15,17 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->foreign('pharmacy_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('building')->nullable();
+            $table->string('street')->nullable();
+            $table->string('locality')->nullable();
+            $table->string('district')->nullable();
+            $table->double('latitude ')->nullable();
+            $table->double('longitude ')->nullable();
+            $table->binary('license')->nullable(); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
