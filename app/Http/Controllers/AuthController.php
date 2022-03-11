@@ -54,14 +54,14 @@ class AuthController extends Controller
         //             $validator->validated(),
         //             ['password' => bcrypt($request->password)]
         //         ));
+        
 
         $data = $request->all();
+        $type=$request->user_type;
         $user = new User;
-        // $user->name = $data["name"];
         $user->email = $data["email"];
         $user->password = bcrypt($data["password"]);
-        // $user->phone = $data["phone"];
-        // $user->profile_pic = $data["profile_pic"];
+        $user->user_type = $data["user_type"];
         $user->save();
 
         $info = new Info;
@@ -75,7 +75,8 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'User successfully registered',
-            'user' => $user
+            'user' => $user,
+            $user,
         ], 201);
     }
 
