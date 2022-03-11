@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Info;
 use Validator;
 
 class AuthController extends Controller
@@ -43,6 +44,8 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'phone' => 'required|regex:/[0-9]{8}/',
+            'profile_pic'  => 'required|mimes:png,jpg,jpeg,gif|max:2048',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -54,11 +57,21 @@ class AuthController extends Controller
 
         $data = $request->all();
         $user = new User;
-        $user->name = $data["name"];
+        // $user->name = $data["name"];
         $user->email = $data["email"];
+        $user->password = bcrypt($data["password"]);
         // $user->phone = $data["phone"];
         // $user->profile_pic = $data["profile_pic"];
         $user->save();
+
+        $info = new Info;
+        $info->user_id =$user->id;
+        $info->name = $data["name"];
+        $info->email = $data["email"];
+        $info->phone = $data["phone"];
+        $info->profile_pic = $data["profile_pic"];
+        $info->save();
+
 
         return response()->json([
             'message' => 'User successfully registered',
