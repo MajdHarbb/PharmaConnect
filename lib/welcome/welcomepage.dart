@@ -101,7 +101,7 @@ class WelcomePagetwo extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const WelcomePagetwo()),
+              MaterialPageRoute(builder: (context) => const WelcomeSignIn()),
             );
             }, child:  const Text('Next    >'),),
             
