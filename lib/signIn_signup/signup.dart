@@ -8,7 +8,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome To PharmaConnect!'),
+        title: const Text('Sign Up'),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -31,19 +31,7 @@ class SignUp extends StatelessWidget {
           
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-            // const Text(
-            //   'Welcome To PharmaConnect!',
-            // ),
-            Image.asset('assets/images/signup.png'),
-
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignIn()),
-            );
-
-            }, child:  const Text('Sign In'),),
+            
             ElevatedButton(onPressed: (){
             //   Navigator.push(
             //   context,
