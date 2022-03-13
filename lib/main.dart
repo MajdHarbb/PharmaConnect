@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/welcomepage.dart';
+import 'package:pharmaconnectflutter/welcome/welcomepage.dart';
 
 
 void main() {

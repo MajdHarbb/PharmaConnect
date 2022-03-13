@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/welcome/welcome_signin.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -98,7 +99,10 @@ class WelcomePagetwo extends StatelessWidget {
               'Now you can find your medicine with few clicks, no need for driving across the country anymore!',
             ),
             ElevatedButton(onPressed: (){
-              
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const WelcomePagetwo()),
+            );
             }, child:  const Text('Next    >'),),
             
           ],
