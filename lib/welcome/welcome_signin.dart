@@ -32,7 +32,7 @@ class WelcomeSignIn extends StatelessWidget {
           children: <Widget>[
 
             const Text(
-              'Welcome To PharmaConnect!',
+              'Welcome To PharmaConnect! ahskkndasjld',
             ),
             Image.asset('assets/images/signup.png'),
 
@@ -42,7 +42,14 @@ class WelcomeSignIn extends StatelessWidget {
             //   MaterialPageRoute(builder: (context) => const WelcomePagetwo()),
             // );
 
-            }, child:  const Text('Next    >'),),
+            }, child:  const Text('Sign In'),),
+            ElevatedButton(onPressed: (){
+            //   Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const WelcomePagetwo()),
+            // );
+
+            }, child:  const Text('Sign Up'),),
             
           ],
         ),
