@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/signIn_signup/signin.dart';
 
-class WelcomeSignIn extends StatelessWidget {
-  const WelcomeSignIn({Key? key}) : super(key: key);
+class SignIn extends StatelessWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome To PharmaConnect!'),
+        title: const Text('Sign in'),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -32,18 +31,10 @@ class WelcomeSignIn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-            // const Text(
-            //   'Welcome To PharmaConnect!',
-            // ),
-            Image.asset('assets/images/signup.png'),
+            const Text(
+              'Sign In with Your Email',
+            ),
 
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignIn()),
-            );
-
-            }, child:  const Text('Sign In'),),
             ElevatedButton(onPressed: (){
             //   Navigator.push(
             //   context,
