@@ -1,51 +1,148 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart'as http;
+import 'package:pharmaconnectflutter/models/login_model.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({ Key? key }) : super(key: key);
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+// Future <Welcome> sumbitData(String email, String password) async{
+//   var response = await http.post(Uri.http('127.0.0.1:8000', 'api/auth/login'), body: {
+//     "email": email, "password": password
+//   });
+//   var data = response.body;
+//   print(data);
+//   if(response.statusCode==201){
+//     String responseString = response.body;
+//     welcomeFromJson(responseString);
+//   }
+// }
+
+class _SignInState extends State<SignIn> {
+  //late Welcome _welcome; 
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Sign in'),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        ),
+      body: Container(
+        padding: const EdgeInsets.all(20),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            const Text(
-              'Sign In with Your Email',
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(), hintText: 'Enter Email here'),
+                controller: emailController,
             ),
-
+            const SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(), hintText: 'Enter password here'),
+                controller: passController,
+            ),
             ElevatedButton(onPressed: (){
-            //   Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const WelcomePagetwo()),
-            // );
-
-            }, child:  const Text('Sign Up'),),
-            
+              print(emailController.text);
+              print(passController.text);
+            }, child: const Text('submit')),
           ],
         ),
       ),
     );
   }
 }
+
+// class SignIn extends StatelessWidget {
+//   const SignIn({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         title: const Text('Sign in'),
+//         ),
+//       body: Container(
+//         padding: const EdgeInsets.all(20),
+//         child: Column(
+//           children: const [
+//             TextField(
+//               decoration: InputDecoration(
+//                 border: OutlineInputBorder(), 
+//                 hintText: 'Enter Email'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// // Create a Form widget.
+// class MyCustomForm extends StatefulWidget {
+//   const MyCustomForm({Key? key}) : super(key: key);
+
+//   @override
+//   MyCustomFormState createState() {
+//     return MyCustomFormState();
+//   }
+// }
+
+// // Create a corresponding State class.
+// // This class holds data related to the form.
+// class MyCustomFormState extends State<MyCustomForm> {
+//   // Create a global key that uniquely identifies the Form widget
+//   // and allows validation of the form.
+//   //
+//   // Note: This is a GlobalKey<FormState>,
+//   // not a GlobalKey<MyCustomFormState>.
+//   final _formKey = GlobalKey<FormState>();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // Build a Form widget using the _formKey created above.
+//     return Form(
+//       key: _formKey,
+      
+//       child: Column(
+        
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           TextFormField(
+//             // The validator receives the text that the user has entered.
+//             validator: (value) {
+//               if (value == null || value.isEmpty) {
+//                 return 'Please enter some text';
+//               }
+//               return null;
+//             },
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.symmetric(vertical: 16.0),
+//             child: ElevatedButton(
+//               onPressed: () {
+//                 // Validate returns true if the form is valid, or false otherwise.
+//                 if (_formKey.currentState!.validate()) {
+//                   // If the form is valid, display a snackbar. In the real world,
+//                   // you'd often call a server or save the information in a database.
+//                   ScaffoldMessenger.of(context).showSnackBar(
+//                     const SnackBar(content: Text('Processing Data')),
+//                   );
+//                 }
+//               },
+//               child: const Text('Submit'),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

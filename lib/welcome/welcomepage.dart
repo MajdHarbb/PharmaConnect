@@ -85,7 +85,7 @@ class WelcomePagetwo extends StatelessWidget {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             // const Text(
             //   'You have pushed the button this many times:',
