@@ -9,18 +9,6 @@ class SignIn extends StatefulWidget {
   State<SignIn> createState() => _SignInState();
 }
 
-// Future <Welcome> sumbitData(String email, String password) async{
-//   var response = await http.post(Uri.http('127.0.0.1:8000', 'api/auth/login'), body: {
-//     "email": email, "password": password
-//   });
-//   var data = response.body;
-//   print(data);
-//   if(response.statusCode==201){
-//     String responseString = response.body;
-//     welcomeFromJson(responseString);
-//   }
-// }
-
 class _SignInState extends State<SignIn> {
   //late Welcome _welcome; 
   TextEditingController emailController = TextEditingController();

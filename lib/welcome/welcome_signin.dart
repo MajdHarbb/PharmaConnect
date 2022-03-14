@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/models/testmodel.dart';
 import 'package:pharmaconnectflutter/signIn_signup/signin.dart';
 import 'package:pharmaconnectflutter/signIn_signup/signup.dart';
 
@@ -48,7 +49,7 @@ class WelcomeSignIn extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignUp()),
+              MaterialPageRoute(builder: (context) => const SignUptest()),
             );
 
             }, child:  const Text('Sign Up'),),
