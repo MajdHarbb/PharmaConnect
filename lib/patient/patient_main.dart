@@ -24,7 +24,12 @@ class _PatientMainState extends State<PatientMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: screens[currentIndex],
+      body: 
+      IndexedStack(
+        index: currentIndex,
+        children: screens
+      ),
+      
       // body: Center(
       //   // Center is a layout widget. It takes a single child and positions it
       //   // in the middle of the parent.
