@@ -9,9 +9,10 @@ class PatientProfile extends StatefulWidget {
 class _PatientProfileState extends State<PatientProfile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:
-      const Text('hey'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('BottomNavigationBar Sample'),
+      ),
     );
   }
 }
