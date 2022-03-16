@@ -23,9 +23,7 @@ class _PatientMainState extends State<PatientMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome To PharmaConnect!'),
-      ),
+      
       body: screens[currentIndex],
       // body: Center(
       //   // Center is a layout widget. It takes a single child and positions it
