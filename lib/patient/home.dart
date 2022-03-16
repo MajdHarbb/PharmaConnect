@@ -61,7 +61,7 @@ class _PatientHomeState extends State<PatientHome> {
       ),
      bottomNavigationBar: BottomNavigationBar(
        currentIndex: currentIndex,
-       onTap: (index) => currentIndex = index,
+       onTap: (index) => setState(()=> currentIndex = index),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
