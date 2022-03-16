@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/patient/home.dart';
+import 'package:pharmaconnectflutter/patient/patient_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Album> createAlbum(String email, String password) async {
@@ -153,7 +154,7 @@ class _SignUptestState extends State<SignUptest> {
               
             Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const PatientHome()),
+            MaterialPageRoute(builder: (context) => const PatientMain()),
           );
               // Save an integer value to 'counter' key. 
               

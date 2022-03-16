@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class PatientHome extends StatefulWidget {
   const PatientHome({ Key? key }) : super(key: key);
@@ -11,6 +12,16 @@ class _PatientHomeState extends State<PatientHome> {
 
 
   int currentIndex = 0;
+
+  final screens = [
+    const PatientProfile(),
+    const PatientProfile(),
+    const PatientProfile(),
+    const PatientProfile(),
+
+    
+  ];
+
   String test = '';
   getStringValuesSF() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -59,34 +70,34 @@ class _PatientHomeState extends State<PatientHome> {
           ],
         ),
       ),
-     bottomNavigationBar: BottomNavigationBar(
-       type: BottomNavigationBarType.fixed,
-       currentIndex: currentIndex,
-       onTap: (index) => setState(()=> currentIndex = index),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.pink,
-          ),
-        ],
-        selectedItemColor: Colors.amber[800],
-      ),
+    //  bottomNavigationBar: BottomNavigationBar(
+    //    type: BottomNavigationBarType.fixed,
+    //    currentIndex: currentIndex,
+    //    onTap: (index) => setState(()=> currentIndex = index),
+    //     items: const <BottomNavigationBarItem>[
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.home),
+    //         label: 'Home',
+    //         backgroundColor: Colors.red,
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.business),
+    //         label: 'Business',
+    //         backgroundColor: Colors.green,
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.school),
+    //         label: 'School',
+    //         backgroundColor: Colors.purple,
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.settings),
+    //         label: 'Settings',
+    //         backgroundColor: Colors.pink,
+    //       ),
+    //     ],
+    //     selectedItemColor: Colors.amber[800],
+    //   ),
     );
   }
 }
