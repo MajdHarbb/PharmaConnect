@@ -1,136 +1,180 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
-import 'package:pharmaconnectflutter/models/login_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pharmaconnectflutter/patient/home.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({ Key? key }) : super(key: key);
+Future<Album> createAlbum(String email, String password) async {
+  final prefs = await SharedPreferences.getInstance();
+  final response = await http.post(
+    Uri.parse('http://10.0.2.2:8000/api/auth/login'),
+    body: <String, String>{
+      'email': email,
+      'password': password,
+    },
+  );
 
-  @override
-  State<SignIn> createState() => _SignInState();
+  if (response.statusCode == 200) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    print(response.body);
+    await prefs.setString('accesToken', response.body);
+    final String? action = prefs.getString('accesToken');
+    print('hiii $action');
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to create album.');
+  }
 }
 
-class _SignInState extends State<SignIn> {
-  //late Welcome _welcome; 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+class User {
+  User({
+    required this.id,
+    required this.email,
+    this.emailVerifiedAt,
+    required this.userType,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Sign in'),
-        ),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: 'Enter Email here'),
-                controller: emailController,
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: 'Enter password here'),
-                controller: passController,
-            ),
-            ElevatedButton(onPressed: (){
-              print(emailController.text);
-              print(passController.text);
-            }, child: const Text('submit')),
-          ],
-        ),
-      ),
+  int id;
+  String email;
+  dynamic emailVerifiedAt;
+  String userType;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        email: json["email"],
+        emailVerifiedAt: json["email_verified_at"],
+        userType: json["user_type"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "user_type": userType,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+      };
+}
+
+class Album {
+  final String accessToken;
+  final String tokenType;
+  final int expiresIn;
+  final User user;
+  const Album(
+      {required this.accessToken,
+      required this.expiresIn,
+      required this.tokenType,
+      required this.user});
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      accessToken: json["access_token"],
+      tokenType: json["token_type"],
+      expiresIn: json["expires_in"],
+      user: User.fromJson(json["user"]),
     );
   }
 }
 
-// class SignIn extends StatelessWidget {
-//   const SignIn({Key? key}) : super(key: key);
+void main() {
+  runApp(const SignIn());
+}
 
-//   @override
-//   Widget build(BuildContext context) {
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
-//     return Scaffold(
-//       appBar: AppBar(
-//         centerTitle: true,
-//         title: const Text('Sign in'),
-//         ),
-//       body: Container(
-//         padding: const EdgeInsets.all(20),
-//         child: Column(
-//           children: const [
-//             TextField(
-//               decoration: InputDecoration(
-//                 border: OutlineInputBorder(), 
-//                 hintText: 'Enter Email'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  _SignInState createState() {
+    return _SignInState();
+  }
+}
 
-// // Create a Form widget.
-// class MyCustomForm extends StatefulWidget {
-//   const MyCustomForm({Key? key}) : super(key: key);
+class _SignInState extends State<SignIn> {
+  final TextEditingController _controller = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  Future<Album>? _futureAlbum;
 
-//   @override
-//   MyCustomFormState createState() {
-//     return MyCustomFormState();
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Create Data Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Create Data Example'),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(8.0),
+            child:
+                (_futureAlbum == null) ? buildColumn() : buildFutureBuilder(),
+          ),
+        ),
+      ),
+    );
+  }
 
-// // Create a corresponding State class.
-// // This class holds data related to the form.
-// class MyCustomFormState extends State<MyCustomForm> {
-//   // Create a global key that uniquely identifies the Form widget
-//   // and allows validation of the form.
-//   //
-//   // Note: This is a GlobalKey<FormState>,
-//   // not a GlobalKey<MyCustomFormState>.
-//   final _formKey = GlobalKey<FormState>();
+  Column buildColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        TextField(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(), hintText: 'Enter Email here'),
+          controller: emailController,
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(), hintText: 'Enter password here'),
+          controller: passController,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _futureAlbum =
+                  createAlbum(emailController.text, passController.text);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     // Build a Form widget using the _formKey created above.
-//     return Form(
-//       key: _formKey,
-      
-//       child: Column(
-        
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           TextFormField(
-//             // The validator receives the text that the user has entered.
-//             validator: (value) {
-//               if (value == null || value.isEmpty) {
-//                 return 'Please enter some text';
-//               }
-//               return null;
-//             },
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.symmetric(vertical: 16.0),
-//             child: ElevatedButton(
-//               onPressed: () {
-//                 // Validate returns true if the form is valid, or false otherwise.
-//                 if (_formKey.currentState!.validate()) {
-//                   // If the form is valid, display a snackbar. In the real world,
-//                   // you'd often call a server or save the information in a database.
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     const SnackBar(content: Text('Processing Data')),
-//                   );
-//                 }
-//               },
-//               child: const Text('Submit'),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+              // Save an integer value to 'counter' key.
+            });
+          },
+          child: const Text('Create Data'),
+        ),
+      ],
+    );
+  }
+
+  FutureBuilder<Album> buildFutureBuilder() {
+    return FutureBuilder<Album>(
+      future: _futureAlbum,
+      builder: (context, data) {
+        if (data.hasData) {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const PatientHome()),
+          // );
+          return Text(data.data!.accessToken);
+        } else if (data.hasError) {
+          return Text('${data.error}');
+        }
+
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+}

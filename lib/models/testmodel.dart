@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pharmaconnectflutter/patient/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Album> createAlbum(String email, String password) async {
+  final prefs = await SharedPreferences.getInstance();
   final response = await http.post(
     Uri.parse('http://10.0.2.2:8000/api/auth/login'),
     body: <String, String>{
@@ -16,6 +19,10 @@ Future<Album> createAlbum(String email, String password) async {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     print(response.body);
+    await prefs.setString('accesToken', response.body);
+    final String? action = prefs.getString('accesToken');
+    print('hiii $action');
+    
     return Album.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
@@ -95,6 +102,7 @@ class SignUptest extends StatefulWidget {
 }
 
 class _SignUptestState extends State<SignUptest> {
+  
   final TextEditingController _controller = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -142,6 +150,14 @@ class _SignUptestState extends State<SignUptest> {
           onPressed: () {
             setState(() {
               _futureAlbum = createAlbum(emailController.text, passController.text);
+              
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PatientHome()),
+          );
+              // Save an integer value to 'counter' key. 
+              
+
             });
           },
           child: const Text('Create Data'),
