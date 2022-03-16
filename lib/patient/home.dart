@@ -60,6 +60,7 @@ class _PatientHomeState extends State<PatientHome> {
         ),
       ),
      bottomNavigationBar: BottomNavigationBar(
+       type: BottomNavigationBarType.fixed,
        currentIndex: currentIndex,
        onTap: (index) => setState(()=> currentIndex = index),
         items: const <BottomNavigationBarItem>[
