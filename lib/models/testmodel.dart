@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<Album> createAlbum(String email, String password) async {
   final prefs = await SharedPreferences.getInstance();
   final response = await http.post(
-    Uri.parse('http://10.0.2.2:8000/api/auth/login'),
+    Uri.parse('http://192.168.0.117:8000/api/auth/login'),
     body: <String, String>{
       'email': email,
       'password': password,
@@ -20,6 +20,7 @@ Future<Album> createAlbum(String email, String password) async {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     print(response.body);
+    
     await prefs.setString('accesToken', response.body);
     final String? action = prefs.getString('accesToken');
     print('hiii $action');

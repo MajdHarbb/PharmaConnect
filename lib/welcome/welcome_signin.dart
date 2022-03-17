@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/models/testmodel.dart';
 import 'package:pharmaconnectflutter/signIn_signup/signin.dart';
 import 'package:pharmaconnectflutter/signIn_signup/signup.dart';
+import 'package:pharmaconnectflutter/welcome/patient_or_pharmacy.dart';
 
 class WelcomeSignIn extends StatelessWidget {
   const WelcomeSignIn({Key? key}) : super(key: key);
@@ -39,13 +40,23 @@ class WelcomeSignIn extends StatelessWidget {
             // ),
             Image.asset('assets/images/signup.png'),
 
+            // ElevatedButton(onPressed: (){
+            //   Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const SignIn()),
+            // );
+
+            // }, child:  const Text('Sign In'),),
+
+
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignIn()),
+              MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
             );
 
             }, child:  const Text('Sign In'),),
+
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,

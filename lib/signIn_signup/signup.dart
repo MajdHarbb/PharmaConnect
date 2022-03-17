@@ -98,6 +98,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final TextEditingController _controller = TextEditingController();
+  
   Future<Album>? _futureAlbum;
 
   @override
@@ -136,6 +137,7 @@ class _SignUpState extends State<SignUp> {
           onPressed: () {
             setState(() {
               _futureAlbum = createAlbum('user@ojne.com','user123456');
+              
             });
           },
           child: const Text('Create Data'),

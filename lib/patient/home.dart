@@ -26,9 +26,11 @@ class _PatientHomeState extends State<PatientHome> {
   getStringValuesSF() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //Return String
+  await prefs.setString('test', 'response.body');
   String? stringValue = prefs.getString('accesToken');
   test = stringValue!;
-  print(test);
+  print(stringValue);
+  print('object');
   return stringValue;
 }
 
@@ -65,6 +67,7 @@ class _PatientHomeState extends State<PatientHome> {
             //   'Welcome To PharmaConnect!',
             // ),
             Text(test),
+            
             
             
           ],

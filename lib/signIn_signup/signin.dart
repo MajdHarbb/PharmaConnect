@@ -105,7 +105,7 @@ class _SignInState extends State<SignIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   Future<Album>? _futureAlbum;
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
