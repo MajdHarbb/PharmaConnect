@@ -2,23 +2,45 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+use App\Http\Controllers\UserController;
+
+
+Route::group(['middleware' => ['auth:api']], function () {
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
+        Route::get('/info', [UserController::class, 'info'])->name('user-info');  
+    });
+    
+    Route::group(['middleware' => ['role.pharmacy']], function () {
+        Route::group(['prefix' => 'pharmacy'], function () {
+            Route::get('/profile', [UserController::class, 'pharmacyprofile'])->name('pharmacy-profile');  
+        });
+    });
+
+    
+    
+    Route::group(['prefix' => 'patient'], function () {
+         
+    });
+    
+    Route::group(['prefix' => 'admin'], function () {
+         
+    });
+
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
+          
+    });
 });
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('/login', [AuthController::class, 'login'])->name('auth-login');
+    Route::post('/register', [AuthController::class, 'register'])->name('auth-register');
+    Route::get('/notfound', [AuthController::class, 'notFound'])->name('not-found');
+      
+});
+
+
+
