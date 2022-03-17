@@ -23,14 +23,29 @@ class _PatientHomeState extends State<PatientHome> {
   ];
 
   String test = '';
+  String user_id ="";
+  
   getStringValuesSF() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //Return String
-  await prefs.setString('test', 'response.body');
   String? stringValue = prefs.getString('accesToken');
+  
+  
   test = stringValue!;
+
+  const start = 'id":';
+  const end = ",";
+  final startIndex = test.indexOf(start);
+  final endIndex = test.indexOf(end, startIndex + start.length);
+
+  user_id = test.substring(startIndex + start.length, endIndex);
+
+  print("user id : $user_id");
+  await prefs.setString('user_id', user_id);
+  String? user_id_fromSP = prefs.getString('user_id');
+  print("from shared $user_id_fromSP");
+  //print(test.substring(startIndex + start.length, endIndex));
   print(stringValue);
-  print('object');
   return stringValue;
 }
 
@@ -66,7 +81,7 @@ class _PatientHomeState extends State<PatientHome> {
             // const Text(
             //   'Welcome To PharmaConnect!',
             // ),
-            Text(test),
+            Text(user_id),
             
             
             
