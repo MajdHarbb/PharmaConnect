@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../signIn_signup/patient_signup.dart';
+
 class PatientOrPharmacy extends StatelessWidget {
   const PatientOrPharmacy({ Key? key }) : super(key: key);
 
@@ -7,7 +9,7 @@ class PatientOrPharmacy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome To PharmaConnect!'),
+        title: const Text('Sign Up!'),
       ),
       body: Center(
 
@@ -22,7 +24,7 @@ class PatientOrPharmacy extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
+              MaterialPageRoute(builder: (context) => const PatientSignIn()),
             );
 
             }, child:  const Text('Sign Up As A Patient'),),
