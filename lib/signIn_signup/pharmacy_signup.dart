@@ -89,7 +89,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         //controller: nameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Enter your name',
+                          labelText: 'Buidling',
                         ),
                       ),
                     ),
@@ -102,7 +102,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         //controller: nameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Enter your name',
+                          labelText: 'Street',
                         ),
                       ),
                     ),
@@ -120,7 +120,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         //controller: nameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Enter your name',
+                          labelText: 'District',
                         ),
                       ),
                     ),
@@ -133,7 +133,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         //controller: nameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Enter your name',
+                          labelText: 'Locality',
                         ),
                       ),
                     ),
