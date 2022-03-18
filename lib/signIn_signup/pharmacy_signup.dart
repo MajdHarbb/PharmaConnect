@@ -8,6 +8,15 @@ class PharmacySignUp extends StatefulWidget {
 }
 
 class _PharmacySignUpState extends State<PharmacySignUp> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController passConfirmController = TextEditingController();
+  final TextEditingController buildingController = TextEditingController();
+  final TextEditingController streetController = TextEditingController();
+  final TextEditingController loalityController = TextEditingController();
+  final TextEditingController districtController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
