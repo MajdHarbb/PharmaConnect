@@ -154,7 +154,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       'password': passController.text,
                       'password_confirmation': passConfirmController.text,
                       'profile_pic': 'profile pic test',
-                      'user_type': 'patient',
+                      'user_type': 'pharmacy',
                     },
                   );
 
