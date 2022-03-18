@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/models/testmodel.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PatientSignIn extends StatefulWidget {
   const PatientSignIn({Key? key}) : super(key: key);
@@ -77,6 +81,35 @@ class _PatientSignInState extends State<PatientSignIn> {
                     labelText: 'Enter your password again',
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: ElevatedButton.icon(
+                        icon: const Icon(
+                          Icons.image_outlined,
+                          color: Colors.blue,
+                          size: 24.0,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(50, 40),
+                          primary: Colors.white,
+                        ),
+
+                        onPressed: () {},
+                        label: const Text(
+                          'Pick Image',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        //controller: streetController,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               ElevatedButton(
                 onPressed: () async {
