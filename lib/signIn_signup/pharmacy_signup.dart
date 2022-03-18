@@ -155,6 +155,13 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       'password_confirmation': passConfirmController.text,
                       'profile_pic': 'profile pic test',
                       'user_type': 'pharmacy',
+                      'building': buildingController.text,
+                      'street': streetController.text,
+                      'district': districtController.text,
+                      'locality': localityController.text,
+                      'longitude': '202.33',
+                      'latitude': '656.36',
+                      'license': 'license image',
                     },
                   );
 
