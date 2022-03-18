@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:pharmaconnectflutter/signIn_signup/pharmacy_signup.dart';
 import '../signIn_signup/patient_signup.dart';
 
 class PatientOrPharmacy extends StatelessWidget {
@@ -32,7 +32,7 @@ class PatientOrPharmacy extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
+              MaterialPageRoute(builder: (context) => const PharmacySignUp()),
             );
 
             }, child:  const Text('Sign Up As A Pharmacy'),),
