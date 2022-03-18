@@ -15,7 +15,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   final TextEditingController passConfirmController = TextEditingController();
   final TextEditingController buildingController = TextEditingController();
   final TextEditingController streetController = TextEditingController();
-  final TextEditingController loalityController = TextEditingController();
+  final TextEditingController localityController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: TextFormField(
-                  //controller: nameController,
+                  controller: nameController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your name',
@@ -41,7 +41,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: TextFormField(
-                  //controller: emailController,
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your email',
@@ -51,7 +51,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: TextFormField(
-                  //controller: phoneController,
+                  controller: phoneController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your phone number',
@@ -61,7 +61,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: TextFormField(
-                  //controller: passController,
+                  controller: passController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your password',
@@ -71,7 +71,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: TextFormField(
-                  //controller: passConfirmController,
+                  controller: passConfirmController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your password again',
@@ -86,7 +86,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
                       child: TextFormField(
-                        //controller: nameController,
+                        controller: buildingController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Buidling',
@@ -99,7 +99,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
                       child: TextFormField(
-                        //controller: nameController,
+                        controller: streetController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Street',
@@ -117,7 +117,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
                       child: TextFormField(
-                        //controller: nameController,
+                        controller: districtController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'District',
@@ -130,7 +130,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
                       child: TextFormField(
-                        //controller: nameController,
+                        controller: localityController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Locality',
