@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PharmacySignUp extends StatefulWidget {
-  const PharmacySignUp({ Key? key }) : super(key: key);
+  const PharmacySignUp({Key? key}) : super(key: key);
 
   @override
   State<PharmacySignUp> createState() => _PharmacySignUpState();
@@ -68,6 +68,68 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                     labelText: 'Enter your password again',
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: TextFormField(
+                        //controller: nameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: TextFormField(
+                        //controller: nameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: TextFormField(
+                        //controller: nameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: TextFormField(
+                        //controller: nameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               ElevatedButton(
                 onPressed: () async {
