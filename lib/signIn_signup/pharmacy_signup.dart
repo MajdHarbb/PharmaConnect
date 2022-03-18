@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:pharmaconnectflutter/models/testmodel.dart';
+
 
 class PharmacySignUp extends StatefulWidget {
   const PharmacySignUp({Key? key}) : super(key: key);
@@ -142,33 +145,33 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  // final response = await http.post(
-                  //   Uri.parse('http://192.168.0.117:8000/api/auth/register'),
-                  //   body: <String, String>{
-                  //     'name': nameController.text,
-                  //     'email': emailController.text,
-                  //     'phone': phoneController.text,
-                  //     'password': passController.text,
-                  //     'password_confirmation': passConfirmController.text,
-                  //     'profile_pic': 'profile pic test',
-                  //     'user_type': 'patient',
-                  //   },
-                  // );
+                  final response = await http.post(
+                    Uri.parse('http://192.168.0.117:8000/api/auth/register'),
+                    body: <String, String>{
+                      'name': nameController.text,
+                      'email': emailController.text,
+                      'phone': phoneController.text,
+                      'password': passController.text,
+                      'password_confirmation': passConfirmController.text,
+                      'profile_pic': 'profile pic test',
+                      'user_type': 'patient',
+                    },
+                  );
 
-                  // if (response.statusCode == 201) {
-                  //   // If the server did return a 201 CREATED response,
-                  //   // then parse the JSON.
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const SignUptest()),
-                  //   );
-                  //   print(response.body);
-                  // } else {
-                  //   // If the server did not return a 201 CREATED response,
-                  //   // then throw an exception.
-                  //   print(response.body);
-                  // }
+                  if (response.statusCode == 201) {
+                    // If the server did return a 201 CREATED response,
+                    // then parse the JSON.
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUptest()),
+                    );
+                    print(response.body);
+                  } else {
+                    // If the server did not return a 201 CREATED response,
+                    // then throw an exception.
+                    print(response.body);
+                  }
                 },
                 child: const Text('Sign Up'),
               ),
