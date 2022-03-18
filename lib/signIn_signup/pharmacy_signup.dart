@@ -161,7 +161,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       'locality': localityController.text,
                       'longitude': '202.33',
                       'latitude': '656.36',
-                      'license': 'license image',
+                      'license': 'license image test',
                     },
                   );
 
