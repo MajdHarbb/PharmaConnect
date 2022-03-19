@@ -109,7 +109,11 @@ class _PatientSignInState extends State<PatientSignIn> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
-                      child: image != null ? Image.file(image!): const FlutterLogo(size: 50),
+                      child: image != null ? ClipOval(
+                        child: Image.file(image!,
+                        height:50 , width: 50,),
+                      )
+                      : const FlutterLogo(size: 50),
                     ),
                   ),
 
