@@ -20,11 +20,11 @@ Future<Album> createAlbum(String email, String password) async {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     print(response.body);
-    
+
     await prefs.setString('accesToken', response.body);
     final String? action = prefs.getString('accesToken');
     print('hiii $action');
-    
+
     return Album.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
@@ -104,7 +104,6 @@ class SignUptest extends StatefulWidget {
 }
 
 class _SignUptestState extends State<SignUptest> {
-  
   final TextEditingController _controller = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -150,17 +149,16 @@ class _SignUptestState extends State<SignUptest> {
         ),
         ElevatedButton(
           onPressed: () async {
-          //   setState(() {
-          //     _futureAlbum = createAlbum(emailController.text, passController.text);
-              
-          //   Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const PatientMain()),
-          // );
-          //     // Save an integer value to 'counter' key. 
-              
+            //   setState(() {
+            //     _futureAlbum = createAlbum(emailController.text, passController.text);
 
-          //   });
+            //   Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const PatientMain()),
+            // );
+            //     // Save an integer value to 'counter' key.
+
+            //   });
             final prefs = await SharedPreferences.getInstance();
             final response = await http.post(
               Uri.parse('http://192.168.0.117:8000/api/auth/login'),
@@ -175,21 +173,44 @@ class _SignUptestState extends State<SignUptest> {
               // then parse the JSON.
               var response_jsondata = json.decode(response.body);
               print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
-              print(response_jsondata["user"]);
+              print(response_jsondata["user"]["id"]);
+              //var user_json_id = json.decode(response_jsondata);
+              final String userJsonId =
+                  (response_jsondata["user"]["id"]).toString();
+              final String user_type =
+                  (response_jsondata["user"]["user_type"]).toString();
+              print(
+                  "user iddddddddddddddddddddd ===================>>>>>>>>>>");
+              print(userJsonId);
+              print(user_type);
               print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
               print(response.body);
-              
-              await prefs.setString('accesToken', response.body);
+
+              await prefs.setString(
+                  'accesToken', response_jsondata["access_token"]);
+              await prefs.setString('id', userJsonId);
+              await prefs.setString('user_type', user_type);
               final String? action = prefs.getString('accesToken');
+              final String? action2 = prefs.getString('id');
+              final String? action3 = prefs.getString('user_type');
               print('hiii $action');
-              
+              print('iddddddddddddd from storage $action2');
+              print("user type $action3");
+              if (user_type == "patient") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PatientMain()),
+                );
+              } else {
+                print("pharmacy user type page");
+              }
+
               //return Album.fromJson(jsonDecode(response.body));
             } else {
               // If the server did not return a 201 CREATED response,
               // then throw an exception.
               throw Exception('Failed to create album.');
             }
-
           },
           child: const Text('Create Data'),
         ),
@@ -202,7 +223,6 @@ class _SignUptestState extends State<SignUptest> {
       future: _futureAlbum,
       builder: (context, data) {
         if (data.hasData) {
-          
           return Text(data.data!.accessToken);
         } else if (data.hasError) {
           return Text('${data.error}');
