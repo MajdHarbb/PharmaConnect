@@ -149,18 +149,47 @@ class _SignUptestState extends State<SignUptest> {
           controller: passController,
         ),
         ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _futureAlbum = createAlbum(emailController.text, passController.text);
+          onPressed: () async {
+          //   setState(() {
+          //     _futureAlbum = createAlbum(emailController.text, passController.text);
               
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const PatientMain()),
-          );
-              // Save an integer value to 'counter' key. 
+          //   Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const PatientMain()),
+          // );
+          //     // Save an integer value to 'counter' key. 
               
 
-            });
+          //   });
+            final prefs = await SharedPreferences.getInstance();
+            final response = await http.post(
+              Uri.parse('http://192.168.0.117:8000/api/auth/login'),
+              body: <String, String>{
+                'email': emailController.text,
+                'password': passController.text,
+              },
+            );
+
+            if (response.statusCode == 200) {
+              // If the server did return a 201 CREATED response,
+              // then parse the JSON.
+              var response_jsondata = json.decode(response.body);
+              print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+              print(response_jsondata["user"]);
+              print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+              print(response.body);
+              
+              await prefs.setString('accesToken', response.body);
+              final String? action = prefs.getString('accesToken');
+              print('hiii $action');
+              
+              //return Album.fromJson(jsonDecode(response.body));
+            } else {
+              // If the server did not return a 201 CREATED response,
+              // then throw an exception.
+              throw Exception('Failed to create album.');
+            }
+
           },
           child: const Text('Create Data'),
         ),
@@ -173,6 +202,7 @@ class _SignUptestState extends State<SignUptest> {
       future: _futureAlbum,
       builder: (context, data) {
         if (data.hasData) {
+          
           return Text(data.data!.accessToken);
         } else if (data.hasError) {
           return Text('${data.error}');
