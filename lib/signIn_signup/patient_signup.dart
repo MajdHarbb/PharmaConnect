@@ -102,8 +102,17 @@ class _PatientSignInState extends State<PatientSignIn> {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+
+                   Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: image != null ? Image.file(image!): const FlutterLogo(size: 50),
+                    ),
+                  ),
+
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -128,6 +137,8 @@ class _PatientSignInState extends State<PatientSignIn> {
                       ),
                     ),
                   ),
+
+                  
                 ],
               ),
               ElevatedButton(
