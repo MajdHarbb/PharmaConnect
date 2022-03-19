@@ -15,12 +15,31 @@ class PatientSignIn extends StatefulWidget {
 }
 
 class _PatientSignInState extends State<PatientSignIn> {
+
+  File? image;
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
 
+
+  Future pickImage() async{
+    try {
+      final image =await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(image == null) return;
+      
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+        print('fetched!');
+      });
+    } on Exception catch (e) {
+      print('Failed to capture image: $e');
+    }
+    
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +119,7 @@ class _PatientSignInState extends State<PatientSignIn> {
                           primary: Colors.white,
                         ),
 
-                        onPressed: () {},
+                        onPressed: () {pickImage();},
                         label: const Text(
                           'Pick Image',
                           style: TextStyle(color: Colors.black),
