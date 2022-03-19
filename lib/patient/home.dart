@@ -24,29 +24,35 @@ class _PatientHomeState extends State<PatientHome> {
 
   String test = '';
   String user_id ="";
+  String user_type = "";
   
   getStringValuesSF() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //Return String
   String? stringValue = prefs.getString('accesToken');
+  user_id = prefs.getString('id')!;
+  user_type = prefs.getString('user_type')!;
+  print(user_id);
+  print(user_type);
+  // String? stringValue = prefs.getString('accesToken');
   
   
-  test = stringValue!;
+  // test = stringValue!;
 
-  const start = 'id":';
-  const end = ",";
-  final startIndex = test.indexOf(start);
-  final endIndex = test.indexOf(end, startIndex + start.length);
+  // const start = 'id":';
+  // const end = ",";
+  // final startIndex = test.indexOf(start);
+  // final endIndex = test.indexOf(end, startIndex + start.length);
 
-  user_id = test.substring(startIndex + start.length, endIndex);
+  // user_id = test.substring(startIndex + start.length, endIndex);
 
-  print("user id : $user_id");
-  await prefs.setString('user_id', user_id);
-  String? user_id_fromSP = prefs.getString('user_id');
-  print("from shared $user_id_fromSP");
-  //print(test.substring(startIndex + start.length, endIndex));
-  print(stringValue);
-  return stringValue;
+  // print("user id : $user_id");
+  // await prefs.setString('user_id', user_id);
+  // String? user_id_fromSP = prefs.getString('user_id');
+  // print("from shared $user_id_fromSP");
+  // //print(test.substring(startIndex + start.length, endIndex));
+  // print(stringValue);
+  //return stringValue;
 }
 
   @override
@@ -82,6 +88,7 @@ class _PatientHomeState extends State<PatientHome> {
             //   'Welcome To PharmaConnect!',
             // ),
             Text(user_id),
+            Text(user_type),
             
             
             
