@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/patient/browse.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
+import 'package:pharmaconnectflutter/pharmacy/home.dart';
+import 'package:pharmaconnectflutter/pharmacy/profile.dart';
 
-class PatientMain extends StatefulWidget {
-  const PatientMain({ Key? key }) : super(key: key);
+class PharmacyMain extends StatefulWidget {
+  const PharmacyMain({ Key? key }) : super(key: key);
 
   @override
-  State<PatientMain> createState() => _PatientMainState();
+  State<PharmacyMain> createState() => _PharmacyMainState();
 }
 
-class _PatientMainState extends State<PatientMain> {
+class _PharmacyMainState extends State<PharmacyMain> {
   int currentIndex = 0;
 
-  final screens = [
-    const PatientHome(),
-    const PatientProfile(),
-    const PatientProfile(),
-    const Browse(),
+  final pharmacyScreens = [
+    const PharmacyHome(),
+    const PharmacyProfile(),
+    const PharmacyProfile(),
+    const PharmacyProfile(),
 
     
   ];
@@ -28,7 +29,7 @@ class _PatientMainState extends State<PatientMain> {
       body: 
       IndexedStack(
         index: currentIndex,
-        children: screens
+        children: pharmacyScreens
       ),
       
       // body: Center(

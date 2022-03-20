@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/patient_main.dart';
+import 'package:pharmaconnectflutter/pharmacy/pharmacy_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Album> createAlbum(String email, String password) async {
@@ -202,7 +203,10 @@ class _SignUptestState extends State<SignUptest> {
                   MaterialPageRoute(builder: (context) => const PatientMain()),
                 );
               } else {
-                print("pharmacy user type page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PharmacyMain()),
+                );
               }
 
               //return Album.fromJson(jsonDecode(response.body));
