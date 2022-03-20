@@ -20,7 +20,7 @@ class _PatientMainState extends State<PatientMain> {
     const PatientPharmacies(),
     const PatientSearch(),
     const Browse(),
-    const PatientHome(),
+    const PatientProfile(),
 
     
   ];
