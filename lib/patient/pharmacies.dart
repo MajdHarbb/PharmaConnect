@@ -63,36 +63,45 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Pharmacy Name", style:
-                              TextStyle(fontWeight: FontWeight.w600)
-                              ,),
+                              const Text(
+                                "Pharmacy Name",
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
                               Row(
-                                children:  [
-                                  Text("1 hour ago", 
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 12.0,
-                                    ),),
+                                children: [
+                                  Text(
+                                    "1 hour ago",
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
                                   Icon(
                                     Icons.public,
                                     color: Colors.grey[600],
                                     size: 12.0,
                                   )
-
                                 ],
-                                
                               ),
                             ],
                           ),
                         ),
                         IconButton(
-                                  icon: const Icon(Icons.more_horiz),
-                                  onPressed: () {print('more');} ,
-                                )
+                          icon: const Icon(Icons.more_horiz),
+                          onPressed: () {
+                            print('more');
+                          },
+                        )
                       ],
                     ),
                     const SizedBox(height: 4.0),
                     const Text("Post Caption"),
+                    Image.asset(
+                      'assets/images/test.jpg',
+                      width: 600.0,
+                      height: 240.0,
+                      fit: BoxFit.cover,
+                    ),
                   ],
                   // color: Colors.blue[100 * (index % 9 + 1)],
                   // height: 80,
@@ -101,7 +110,6 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                   //   "Item $index",
                   //   style: const TextStyle(fontSize: 30),
                   // ),
-                  
                 ),
               );
             },
