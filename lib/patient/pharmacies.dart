@@ -96,12 +96,77 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                     ),
                     const SizedBox(height: 4.0),
                     const Text("Post Caption"),
-                    Image.asset(
-                      'assets/images/test.jpg',
-                      width: 600.0,
-                      height: 240.0,
-                      fit: BoxFit.cover,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Image.asset(
+                        'assets/images/aspirin.jpg',
+                        width: 600.0,
+                        height: 240.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.remove_red_eye_outlined,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            print("test");
+                          },
+                          label: const Text(
+                            'View',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.phone,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            print("test");
+                          },
+                          label: const Text(
+                            'Call',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.share,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            print("test");
+                          },
+                          label: const Text(
+                            'Share',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                      ],
+                    )
                   ],
                   // color: Colors.blue[100 * (index % 9 + 1)],
                   // height: 80,
