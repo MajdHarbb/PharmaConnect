@@ -91,6 +91,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                                 )
                       ],
                     ),
+                    const SizedBox(height: 4.0),
+                    const Text("Post Caption"),
                   ],
                   // color: Colors.blue[100 * (index % 9 + 1)],
                   // height: 80,
@@ -99,6 +101,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                   //   "Item $index",
                   //   style: const TextStyle(fontSize: 30),
                   // ),
+                  
                 ),
               );
             },
