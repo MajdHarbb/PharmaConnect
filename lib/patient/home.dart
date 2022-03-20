@@ -136,7 +136,17 @@ class _PatientHomeState extends State<PatientHome> {
                         IconButton(onPressed:() {}, icon: const Icon(Icons.image_outlined)),
                       ]),
                   const Divider(height: 10.0, thickness: 0.1),
-                  
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton.icon(onPressed: () {print("post");}, 
+                        icon: const Icon(
+                          Icons.post_add,
+                          color: Colors.red,
+                        ),
+                        label: Text('text')
+                        )
+                      ]),
                 ],
               ),
             ),
