@@ -59,12 +59,34 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           //backgroundImage: NetworkImage("assets\images\test.jpg"),
                         ),
                         const SizedBox(width: 8.0),
-                        Column(
-                          children: const [
-                            Text("Pharmacy Name"),
-                            
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Pharmacy Name"),
+                              Row(
+                                children:  [
+                                  Text("1 hour ago", 
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 12.0,
+                                    ),),
+                                  Icon(
+                                    Icons.public,
+                                    color: Colors.grey[600],
+                                    size: 12.0,
+                                  )
+
+                                ],
+                                
+                              ),
+                            ],
+                          ),
                         ),
+                        IconButton(
+                                  icon: const Icon(Icons.more_horiz),
+                                  onPressed: () {print('more');} ,
+                                )
                       ],
                     ),
                   ],
