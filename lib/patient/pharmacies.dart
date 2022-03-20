@@ -63,7 +63,9 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Pharmacy Name"),
+                              const Text("Pharmacy Name", style:
+                              TextStyle(fontWeight: FontWeight.w600)
+                              ,),
                               Row(
                                 children:  [
                                   Text("1 hour ago", 
