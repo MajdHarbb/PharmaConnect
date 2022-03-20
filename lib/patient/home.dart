@@ -115,7 +115,7 @@ class _PatientHomeState extends State<PatientHome> {
             Text(user_type),
             Container(
               padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
-              color: Colors.orange,
+              color: Colors.white,
               child: Column(
                 children: [
                   Row(
@@ -140,11 +140,12 @@ class _PatientHomeState extends State<PatientHome> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton.icon(onPressed: () {print("post");}, 
+                        label: const Text('Post'),
                         icon: const Icon(
-                          Icons.post_add,
+                          Icons.send,
                           color: Colors.red,
                         ),
-                        label: Text('text')
+                        
                         )
                       ]),
                 ],

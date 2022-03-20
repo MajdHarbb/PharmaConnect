@@ -18,6 +18,7 @@ class _PatientMainState extends State<PatientMain> {
     const PatientProfile(),
     const PatientProfile(),
     const Browse(),
+    const PatientProfile(),
 
     
   ];
@@ -73,22 +74,27 @@ class _PatientMainState extends State<PatientMain> {
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.storefront),
+            label: 'Pharmacy',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.search),
+            label: 'Search',
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+            backgroundColor: Colors.pink,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
             backgroundColor: Colors.pink,
           ),
         ],
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
       ),
     );
   }
