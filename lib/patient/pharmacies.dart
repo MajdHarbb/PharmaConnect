@@ -10,8 +10,27 @@ class PatientPharmacies extends StatefulWidget {
 class _PatientPharmaciesState extends State<PatientPharmacies> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('pharmacies list'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Phamacies'),
+      ),
+      body: Center(
+        
+        child: Column(
+          
+          
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+
+            Text(
+              'Welcome To PharmaConnect!',
+            ),
+            
+            
+          ],
+        ),
+      ),
+     
     );
   }
 }

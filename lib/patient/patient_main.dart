@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/patient/browse.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
+import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
+import 'package:pharmaconnectflutter/patient/search.dart';
 
 class PatientMain extends StatefulWidget {
   const PatientMain({ Key? key }) : super(key: key);
@@ -15,10 +17,10 @@ class _PatientMainState extends State<PatientMain> {
 
   final screens = [
     const PatientHome(),
-    const PatientProfile(),
-    const PatientProfile(),
+    const PatientPharmacies(),
+    const PatientSearch(),
     const Browse(),
-    const PatientProfile(),
+    const PatientHome(),
 
     
   ];

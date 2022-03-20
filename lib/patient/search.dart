@@ -10,8 +10,27 @@ class PatientSearch extends StatefulWidget {
 class _PatientSearchState extends State<PatientSearch> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('search'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Search'),
+      ),
+      body: Center(
+        
+        child: Column(
+          
+          
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+
+            Text(
+              'Welcome To PharmaConnect!',
+            ),
+            
+            
+          ],
+        ),
+      ),
+     
     );
   }
 }

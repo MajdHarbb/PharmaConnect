@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class PatientProfile extends StatefulWidget {
   const PatientProfile({ Key? key }) : super(key: key);
 
@@ -11,8 +12,25 @@ class _PatientProfileState extends State<PatientProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar test'),
+        title: const Text('Profile'),
       ),
+      body: Center(
+        
+        child: Column(
+          
+          
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+
+            Text(
+              'Welcome To PharmaConnect!',
+            ),
+            
+            
+          ],
+        ),
+      ),
+     
     );
   }
 }
