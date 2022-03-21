@@ -15,7 +15,10 @@ class CreatePostfindsTable extends Migration
     {
         Schema::create('postfinds', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('poster_id');
+            $table->unsignedBigInteger('pharmacy_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
