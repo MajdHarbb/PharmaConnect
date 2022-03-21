@@ -10,6 +10,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
         Route::get('/info', [UserController::class, 'info'])->name('user-info');  
+        Route::post('/addPost', [UserController::class, 'addPost'])->name('addPost');  
     });
     
     Route::group(['middleware' => ['role.pharmacy']], function () {
