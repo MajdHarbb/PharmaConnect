@@ -3,6 +3,10 @@ import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart' as p;
+import 'package:image_picker/image_picker.dart';
 
 class PatientHome extends StatefulWidget {
   const PatientHome({Key? key}) : super(key: key);
@@ -12,6 +16,69 @@ class PatientHome extends StatefulWidget {
 }
 
 class _PatientHomeState extends State<PatientHome> {
+  File? image;
+  late String base64_img;
+  String imagePath = '';
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController passConfirmController = TextEditingController();
+  String test = '';
+  String user_id = "";
+  String user_type = "";
+  String access_Token = "";
+  String extension= "";
+
+  Future<void> AddPost() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
+      headers : { 'Authorization': 'Bearer $access_Token',},
+      body: {
+        'user_id': user_id,
+        'post_text': "emailController.text",
+        'post_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done");
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
+    }
+  }
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      imagePath = image.path;
+      print("---------------------->>>>>>>>-------------------");
+      print(image.path);
+      print("------------------------>>>>>>>>>>>>>>>>>");
+      base64_img = base64Encode(await image.readAsBytes());
+      String imageName = image.path.split("/").last;
+      extension = p.extension(imageName).substring(1);
+      print("extension : $extension");
+      print('image name $imageName');
+      print("baseeeeee $base64_img");
+      setState(() {
+        this.image = imageTemporary;
+        print("picked $imageTemporary");
+      });
+    } on Exception catch (e) {
+      print('Failed to capture image: $e');
+    }
+  }
+
   List _loadedPhotos = [];
 
   // The function that fetches data from the API
@@ -20,10 +87,10 @@ class _PatientHomeState extends State<PatientHome> {
 
     final response = await http.get(Uri.parse(API_URL));
     final data = json.decode(response.body);
-
-    setState(() {
-      _loadedPhotos = data;
-    });
+    print("==============> albums");
+    // setState(() {
+    //   _loadedPhotos = data;
+    // });
   }
 
   int currentIndex = 0;
@@ -35,9 +102,7 @@ class _PatientHomeState extends State<PatientHome> {
     const PatientProfile(),
   ];
 
-  String test = '';
-  String user_id = "";
-  String user_type = "";
+  
 
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -47,6 +112,7 @@ class _PatientHomeState extends State<PatientHome> {
     setState(() {
       user_id = prefs.getString('id')!;
       user_type = prefs.getString('user_type')!;
+      access_Token = prefs.getString('accesToken')!;
     });
 
     print(user_id);
@@ -113,6 +179,7 @@ class _PatientHomeState extends State<PatientHome> {
             // ),
             Text(user_id),
             Text(user_type),
+            Text(access_Token),
             Container(
               padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
               color: Colors.white,
@@ -133,20 +200,48 @@ class _PatientHomeState extends State<PatientHome> {
                                 hintText: "What's on your mind?"),
                           ),
                         ),
-                        IconButton(onPressed:() {}, icon: const Icon(Icons.image_outlined)),
                       ]),
                   const Divider(height: 10.0, thickness: 0.1),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton.icon(onPressed: () {print("post");}, 
-                        label: const Text('Post'),
-                        icon: const Icon(
-                          Icons.send,
-                          color: Colors.red,
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 8),
+                            child: image != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      image!,
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                  )
+                                : const FlutterLogo(size: 50),
+                          ),
                         ),
-                        
-                        )
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 8),
+                            child: TextButton.icon(
+                              onPressed: pickImage,
+                              label: const Text('Add Image'),
+                              icon: const Icon(
+                                Icons.photo,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ),
+                        ),
+                        TextButton.icon(
+                          onPressed: AddPost,
+                          label: const Text('Post'),
+                          icon: const Icon(
+                            Icons.send,
+                            color: Colors.red,
+                          ),
+                        ),
                       ]),
                 ],
               ),
