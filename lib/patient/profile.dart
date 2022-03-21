@@ -205,7 +205,7 @@ class _PatientProfileState extends State<PatientProfile> {
               child: Row(
                 children: [
                   Icon(
-                    Icons.logout_outlined,
+                    Icons.message_outlined,
                     color: Colors.grey[600],
                     size: 30.0,
                   ),
@@ -221,7 +221,7 @@ class _PatientProfileState extends State<PatientProfile> {
                         Row(
                           children: [
                             Text(
-                              "Logout from the current account",
+                              "Send us your feedback",
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12.0,
