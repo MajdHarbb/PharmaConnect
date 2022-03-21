@@ -160,7 +160,7 @@ class _PatientProfileState extends State<PatientProfile> {
               child: Row(
                 children: [
                   Icon(
-                    Icons.logout_outlined,
+                    Icons.favorite_outline_rounded,
                     color: Colors.grey[600],
                     size: 30.0,
                   ),
@@ -170,13 +170,13 @@ class _PatientProfileState extends State<PatientProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "My Account",
+                          "About Us",
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         Row(
                           children: [
                             Text(
-                              "Logout from the current account",
+                              "Read more about PharmaConnect",
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12.0,
@@ -215,7 +215,7 @@ class _PatientProfileState extends State<PatientProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "My Account",
+                          "Contact Us",
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         Row(
