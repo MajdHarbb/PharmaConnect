@@ -41,7 +41,9 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
             'phone' => 'required|regex:/[0-9]{8}/',
-            'profile_pic'  => 'required|mimes:png,jpg,jpeg,gif|max:2048',
+            //'profile_pic'  => 'required|mimes:png,jpg,jpeg,gif|max:2048',
+             'profile_pic'  => 'required|string|between:2,255',
+            
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -79,6 +81,9 @@ class AuthController extends Controller
         $info->name = $data["name"];
         $info->email = $data["email"];
         $info->phone = $data["phone"];
+        // $profile_pic_name = $request->file('profile_pic')->getClientOriginalName();
+        // $profile_pic_extension = $request->file('profile_pic')->getClientOriginalExtension();
+        // $info->profile_pic = $request->file('profile_pic')->storeAs('public\profile_pictures', $user->id.'.'.$profile_pic_extension);
         $info->profile_pic = $data["profile_pic"];
         $info->save();
 
