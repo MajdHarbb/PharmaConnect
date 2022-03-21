@@ -52,12 +52,13 @@ class PostsController extends Controller
         $user->save();
         Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
         
-              Post::where('id', $user->id)
+        Post::where('id', $user->id)
               ->update(['post_pic' => $user->id.'.'.$extension]);
               
         return response()->json([
             'message' => 'Post successfully added',
-            'post' => $image,
+            'post' => $user,
+            'image_name' => $user->id.'.'.$extension,
         ], 201);
     }
 }
