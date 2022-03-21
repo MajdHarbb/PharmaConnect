@@ -75,18 +75,18 @@ class UserController extends Controller
     //     ], 201);
     // }
 
-    public function solvePost(Request $request){
+    // public function solvePost(Request $request){
         
-        $data = $request->all();
-        $user = new Postfind;
-        $user->post_id = $data["post_id"];
-        $user->poster_id = $data["poster_id"];
-        $user->pharmacy_id = $data["pharmacy_id"];
-        $user->save();
+    //     $data = $request->all();
+    //     $user = new Postfind;
+    //     $user->post_id = $data["post_id"];
+    //     $user->poster_id = $data["poster_id"];
+    //     $user->pharmacy_id = $data["pharmacy_id"];
+    //     $user->save();
 
-        return response()->json([
-            'message' => 'Post successfully solved',
-            'solved' => $user,
-        ], 201);
-    }
+    //     return response()->json([
+    //         'message' => 'Post successfully solved',
+    //         'solved' => $user,
+    //     ], 201);
+    // }
 }
