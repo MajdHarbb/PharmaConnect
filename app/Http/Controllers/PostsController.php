@@ -28,7 +28,7 @@ class PostsController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         
-        $currentId = Post::orderBy('id', 'desc')->first()->id + 1;
+
         $data = $request->all();
         $user = new Post;
 
@@ -43,7 +43,7 @@ class PostsController extends Controller
 
         $image = str_replace(' ', '+', $image); 
 
-        $imageName = $currentId.'.'.$extension;
+        $imageName = $user->id.'.'.$extension;
         
         
         $user->user_id = $data["user_id"];
@@ -51,6 +51,10 @@ class PostsController extends Controller
         $user->post_pic = $imageName;
         $user->save();
         Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
+        
+              Post::where('id', $user->id)
+              ->update(['post_pic' => $user->id.'.'.$extension]);
+              
         return response()->json([
             'message' => 'Post successfully added',
             'post' => $image,
