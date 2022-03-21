@@ -28,7 +28,7 @@ class PostsController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         
-
+        $currentId = Post::orderBy('id', 'desc')->first()->id + 1;
         $data = $request->all();
         $user = new Post;
 
@@ -43,7 +43,7 @@ class PostsController extends Controller
 
         $image = str_replace(' ', '+', $image); 
 
-        $imageName = $user->id.'.'.$extension;
+        $imageName = $currentId.'.'.$extension;
         
         
         $user->user_id = $data["user_id"];
