@@ -15,6 +15,8 @@ class CreatePostfindsTable extends Migration
     {
         Schema::create('postfinds', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->unsignedBigInteger('poster_id');
             $table->unsignedBigInteger('pharmacy_id');
             $table->timestamps();
