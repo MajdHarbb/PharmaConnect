@@ -106,6 +106,51 @@ class _PatientProfileState extends State<PatientProfile> {
                 ]
                 
               ),
+            
+            ),
+            const SizedBox(height: 8.0),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.person,
+                    color: Colors.grey[600],
+                    size: 30.0,
+                  ),
+                  const SizedBox(width: 8.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "My Account",
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Edit Your Profile Information",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_rounded),
+                    onPressed: () {
+                      print('more');
+                    },
+                  )
+                ]
+                
+              ),
               
             ),
           ]
