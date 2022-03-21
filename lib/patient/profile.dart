@@ -19,7 +19,7 @@ class _PatientProfileState extends State<PatientProfile> {
           padding: const EdgeInsets.all(8.0),
           color: Colors.blue,
           child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(
               children: [
                 CircleAvatar(
@@ -63,18 +63,16 @@ class _PatientProfileState extends State<PatientProfile> {
                 )
               ],
             ),
-            
             const SizedBox(height: 8.0),
-          
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            color: Colors.white,
-            child: Row(
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              color: Colors.white,
+              child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.grey[200],
-                    //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                  Icon(
+                    Icons.person,
+                    color: Colors.grey[600],
+                    size: 30.0,
                   ),
                   const SizedBox(width: 8.0),
                   Expanded(
@@ -82,38 +80,34 @@ class _PatientProfileState extends State<PatientProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Pharmacy Name",
+                          "My Account",
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         Row(
                           children: [
                             Text(
-                              "1 hour ago",
+                              "Edit Your Profile Information",
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12.0,
                               ),
                             ),
-                            Icon(
-                              Icons.public,
-                              color: Colors.grey[600],
-                              size: 12.0,
-                            )
                           ],
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.more_horiz),
+                    icon: const Icon(Icons.arrow_forward_rounded),
                     onPressed: () {
                       print('more');
                     },
                   )
-                ],
+                ]
+                
               ),
-          ),
-            
+              
+            ),
           ]
                   // color: Colors.blue[100 * (index % 9 + 1)],
                   // height: 80,
