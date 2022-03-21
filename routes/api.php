@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostsController;
 
 
 Route::group(['middleware' => ['auth:api']], function () {
@@ -10,7 +11,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
         Route::get('/info', [UserController::class, 'info'])->name('user-info');  
-        Route::post('/addPost', [UserController::class, 'addPost'])->name('addPost');  
+        Route::post('/addPost', [PostsController::class, 'addPost'])->name('addPost');
+        Route::post('/solvePost', [UserController::class, 'solvePost'])->name('solvePost');  
     });
     
     Route::group(['middleware' => ['role.pharmacy']], function () {
