@@ -11,8 +11,13 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
-        Route::get('/info', [UserController::class, 'info'])->name('user-info');  
+        Route::get('/info', [UserController::class, 'info'])->name('user-info');
+        Route::get('/get-pharmacies', [UserController::class, 'getAllPharmacies'])->name('get-pharmacies');  
         Route::post('/addPost', [PostsController::class, 'addPost'])->name('addPost');
+        Route::get('/get-posts', [PostsController::class, 'getAllPosts'])->name('get-posts');
+
+
+
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');  
     });
     

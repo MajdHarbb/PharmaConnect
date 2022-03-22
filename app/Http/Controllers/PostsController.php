@@ -52,13 +52,22 @@ class PostsController extends Controller
         $user->save();
         Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
         
-        Post::where('id', $user->id)
-              ->update(['post_pic' => $user->id.'.'.$extension]);
+        Post::where('id', $user->id)->update(['post_pic' => $user->id.'.'.$extension]);
               
         return response()->json([
             'message' => 'Post successfully added',
             'post' => $user,
             'image_name' => $user->id.'.'.$extension,
         ], 201);
+    }
+
+    public function getAllPosts() {
+
+        $posts = Post::join('infos', 'posts.user_id', '=', 'infos.user_id')
+            ->select('posts.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic')
+            ->get();
+        return response()->json(
+            $posts,
+        );
     }
 }
