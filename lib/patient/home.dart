@@ -117,22 +117,22 @@ class _PatientHomeState extends State<PatientHome> {
       print(profileJson);
       print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(response.body);
-
+      
       await prefs.setString('name', nameJson);
       await prefs.setString('email', emailJson);
       await prefs.setString('phone', phoneJson);
-      await prefs.setString('profile_picture', profileJson);
-      final String? action = prefs.getString('name');
-      final String? action2 = prefs.getString('email');
-      final String? action3 = prefs.getString('phone');
-      final String? action4 = prefs.getString('phone');
+      await prefs.setString('profile_pic', profileJson);
+      // final String? action = prefs.getString('name');
+      // final String? action2 = prefs.getString('email');
+      // final String? action3 = prefs.getString('phone');
+      // final String? action4 = prefs.getString('phone');
+      setState(() {
+      user_name = prefs.getString('name')!;
+      user_email = prefs.getString('email')!;
+      user_phone = prefs.getString('phone')!;
+      user_profile_picture = prefs.getString('profile_pic')!;
+    });
 
-      print('name: $action');
-      print('email $action2');
-      print("phone $action3");
-      print("phone $action3");
-
-      //return Album.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -222,6 +222,7 @@ class _PatientHomeState extends State<PatientHome> {
             Text(user_id),
             Text(user_type),
             Text(access_Token),
+            Text(user_profile_picture),
             Container(
               padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
               color: Colors.white,
