@@ -1,22 +1,8 @@
 import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Kindacode.com',
-//       home: HomePage(),
-//     );
-//   }
-// }
-
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'dart:convert';
 class PatientPharmacies extends StatefulWidget {
   const PatientPharmacies({Key? key}) : super(key: key);
 
@@ -26,6 +12,40 @@ class PatientPharmacies extends StatefulWidget {
 
 class _PatientPharmaciesState extends State<PatientPharmacies> {
   @override
+    // The list that contains information about photos
+  List _loadedPhotos = [];
+  String access_Token = "";
+
+  // The function that fetches data from the API
+  Future<void> _fetchData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString('accesToken');
+
+    setState(() {
+      access_Token = prefs.getString('accesToken')!;
+    });
+    const API_URL = 'http://192.168.0.117:8000/api/user/get-pharmacies';
+
+    final response = await http.get(Uri.parse(API_URL),
+    headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+    );
+    final data = json.decode(response.body);
+    print(data);
+
+    setState(() {
+      _loadedPhotos = data;
+      print(_loadedPhotos[1]["district"]);
+    });
+  }
+  initState() {
+    super.initState();
+    print(
+        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
+    _fetchData();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
@@ -63,9 +83,9 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Pharmacy Name",
-                                style: TextStyle(fontWeight: FontWeight.w600),
+                              Text(
+                                _loadedPhotos[index]["building"],
+                                style: const TextStyle(fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
@@ -178,10 +198,11 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                 ),
               );
             },
-            childCount: 5, // 1000 list items
+            childCount: _loadedPhotos.length, // 1000 list items
           ),
         ),
       ],
-    ));
+    )
+    );
   }
 }
