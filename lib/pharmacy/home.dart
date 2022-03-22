@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class PharmacyHome extends StatefulWidget {
   const PharmacyHome({ Key? key }) : super(key: key);
 
@@ -11,119 +15,157 @@ class PharmacyHome extends StatefulWidget {
 class _PharmacyHomeState extends State<PharmacyHome> {
 
 
-  int currentIndex = 0;
+List _loadedPhotos = [];
+  String access_Token = "";
 
-  final screens = [
-    const PatientProfile(),
-    const PatientProfile(),
-    const PatientProfile(),
-    const PatientProfile(),
+  // The function that fetches data from the API
+  Future<void> _fetchData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString('accesToken');
 
+    setState(() {
+      access_Token = prefs.getString('accesToken')!;
+    });
+    const API_URL = 'http://192.168.0.117:8000/api/user/get-posts';
+
+    final response = await http.get(Uri.parse(API_URL),
+    headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+    );
+    final data = json.decode(response.body);
+    print(data);
+
+    setState(() {
+      _loadedPhotos = data;
+      print(_loadedPhotos[1]["name"]);
+    });
+  }
+  initState() {
+    super.initState();
+    print(
+        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
+    _fetchData();
+    print("==========> LENGHT");
     
-  ];
-
-  String test = '';
-  String user_id ="";
-  String user_type = "";
-  
-  getStringValuesSF() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  //Return String
-  String? stringValue = prefs.getString('accesToken');
-  user_id = prefs.getString('id')!;
-  user_type = prefs.getString('user_type')!;
-  print(user_id);
-  print(user_type);
-  // String? stringValue = prefs.getString('accesToken');
-  
-  
-  // test = stringValue!;
-
-  // const start = 'id":';
-  // const end = ",";
-  // final startIndex = test.indexOf(start);
-  // final endIndex = test.indexOf(end, startIndex + start.length);
-
-  // user_id = test.substring(startIndex + start.length, endIndex);
-
-  // print("user id : $user_id");
-  // await prefs.setString('user_id', user_id);
-  // String? user_id_fromSP = prefs.getString('user_id');
-  // print("from shared $user_id_fromSP");
-  // //print(test.substring(startIndex + start.length, endIndex));
-  // print(stringValue);
-  //return stringValue;
-}
+  }
 
   @override
   Widget build(BuildContext context) {
-    getStringValuesSF();
-    return Scaffold(
-      
-      appBar: AppBar(
-        title: const Text('Pharmacy Home:'),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            // const Text(
-            //   'Welcome To PharmaConnect!',
-            // ),
-            Text(user_id),
-            Text(user_type),
-            
-            
-            
-          ],
+    print(_loadedPhotos.length);
+    return  Scaffold(
+        body: CustomScrollView(
+      slivers: [
+        // const SliverAppBar(
+        //   backgroundColor: Colors.amber,
+        //   title: Text('Kindacode.com'),
+        //   expandedHeight: 30,
+        //   collapsedHeight: 150,
+        // ),
+        const SliverAppBar(
+          //backgroundColor: Colors.green,
+          title: Text('Pharmacies'),
+          floating: true,
         ),
-      ),
-    //  bottomNavigationBar: BottomNavigationBar(
-    //    type: BottomNavigationBarType.fixed,
-    //    currentIndex: currentIndex,
-    //    onTap: (index) => setState(()=> currentIndex = index),
-    //     items: const <BottomNavigationBarItem>[
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.home),
-    //         label: 'Home',
-    //         backgroundColor: Colors.red,
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.business),
-    //         label: 'Business',
-    //         backgroundColor: Colors.green,
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.school),
-    //         label: 'School',
-    //         backgroundColor: Colors.purple,
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.settings),
-    //         label: 'Settings',
-    //         backgroundColor: Colors.pink,
-    //       ),
-    //     ],
-    //     selectedItemColor: Colors.amber[800],
-    //   ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, int index) {
+              return Container(
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(8.0),
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: Colors.grey[200],
+                          //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                _loadedPhotos[index]["name"],
+                                style: const TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    _loadedPhotos[index]["updated_at"],
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.public,
+                                    color: Colors.grey[600],
+                                    size: 12.0,
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.more_horiz),
+                          onPressed: () {
+                            print('more');
+                          },
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(_loadedPhotos[index]["post_text"]),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Image.asset(
+                        'assets/images/aspirin.jpg',
+                        width: 600.0,
+                        height: 240.0,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.check_circle_outline_rounded,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(80.0, 60.0),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            print("Send Availability Message");
+                          },
+                          label: const Text(
+                            'Send Availability Message',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
+            childCount: _loadedPhotos.length, // 1000 list items
+          ),
+        ),
+      ],
+    )
     );
   }
 }

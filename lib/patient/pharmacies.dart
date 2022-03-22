@@ -84,7 +84,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _loadedPhotos[index]["building"],
+                                _loadedPhotos[index]["name"],
                                 style: const TextStyle(fontWeight: FontWeight.w600),
                               ),
                               Row(
@@ -188,13 +188,6 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                       ],
                     )
                   ],
-                  // color: Colors.blue[100 * (index % 9 + 1)],
-                  // height: 80,
-                  // alignment: Alignment.center,
-                  // child: Text(
-                  //   "Item $index",
-                  //   style: const TextStyle(fontSize: 30),
-                  // ),
                 ),
               );
             },
