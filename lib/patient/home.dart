@@ -118,15 +118,19 @@ class _PatientHomeState extends State<PatientHome> {
       print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(response.body);
 
-      // await prefs.setString('accesToken', response_jsondata["access_token"]);
-      // await prefs.setString('id', userJsonId);
-      // await prefs.setString('user_type', user_type);
-      // final String? action = prefs.getString('accesToken');
-      // final String? action2 = prefs.getString('id');
-      // final String? action3 = prefs.getString('user_type');
-      // print('hiii $action');
-      // print('iddddddddddddd from storage $action2');
-      // print("user type $action3");
+      await prefs.setString('name', nameJson);
+      await prefs.setString('email', emailJson);
+      await prefs.setString('phone', phoneJson);
+      await prefs.setString('profile_picture', profileJson);
+      final String? action = prefs.getString('name');
+      final String? action2 = prefs.getString('email');
+      final String? action3 = prefs.getString('phone');
+      final String? action4 = prefs.getString('phone');
+
+      print('name: $action');
+      print('email $action2');
+      print("phone $action3");
+      print("phone $action3");
 
       //return Album.fromJson(jsonDecode(response.body));
     } else {
