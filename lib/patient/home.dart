@@ -24,19 +24,26 @@ class _PatientHomeState extends State<PatientHome> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
+  final TextEditingController postTextController = TextEditingController();
   String test = '';
   String user_id = "";
   String user_type = "";
   String access_Token = "";
-  String extension= "";
+  String extension = "";
+  String user_name = "";
+  String user_email = "";
+  String user_phone = "";
+  String user_profile_picture = "";
 
   Future<void> AddPost() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
-      headers : { 'Authorization': 'Bearer $access_Token',},
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
       body: {
         'user_id': user_id,
-        'post_text': "emailController.text",
+        'post_text': postTextController.text,
         'post_pic': "data:image/$extension;base64,$base64_img",
       },
     );
@@ -79,6 +86,56 @@ class _PatientHomeState extends State<PatientHome> {
     }
   }
 
+  Future<void> getUserInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    final response = await http.get(
+      Uri.parse('http://192.168.0.117:8000/api/user/info?user_id=2'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      // body: <String, String>{
+      //   'user_id': user_id,
+      // },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      var response_jsondata = json.decode(response.body);
+      print("here ======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      print(response_jsondata);
+      //var user_json_id = json.decode(response_jsondata);
+      final String nameJson = (response_jsondata["user"][0]["name"]).toString();
+      final String emailJson =(response_jsondata["user"][0]["email"]).toString();
+      final String phoneJson =(response_jsondata["user"][0]["phone"]).toString();
+      final String profileJson =(response_jsondata["user"][0]["profile_pic"]).toString();
+      print("user iddddddddddddddddddddd ===================>>>>>>>>>>");
+      print(nameJson);
+      print(emailJson);
+
+      print(phoneJson);
+      print(profileJson);
+      print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      print(response.body);
+
+      // await prefs.setString('accesToken', response_jsondata["access_token"]);
+      // await prefs.setString('id', userJsonId);
+      // await prefs.setString('user_type', user_type);
+      // final String? action = prefs.getString('accesToken');
+      // final String? action2 = prefs.getString('id');
+      // final String? action3 = prefs.getString('user_type');
+      // print('hiii $action');
+      // print('iddddddddddddd from storage $action2');
+      // print("user type $action3");
+
+      //return Album.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
+    }
+  }
+
   List _loadedPhotos = [];
 
   // The function that fetches data from the API
@@ -102,8 +159,6 @@ class _PatientHomeState extends State<PatientHome> {
     const PatientProfile(),
   ];
 
-  
-
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
@@ -117,24 +172,6 @@ class _PatientHomeState extends State<PatientHome> {
 
     print(user_id);
     print(user_type);
-    // String? stringValue = prefs.getString('accesToken');
-
-    // test = stringValue!;
-
-    // const start = 'id":';
-    // const end = ",";
-    // final startIndex = test.indexOf(start);
-    // final endIndex = test.indexOf(end, startIndex + start.length);
-
-    // user_id = test.substring(startIndex + start.length, endIndex);
-
-    // print("user id : $user_id");
-    // await prefs.setString('user_id', user_id);
-    // String? user_id_fromSP = prefs.getString('user_id');
-    // print("from shared $user_id_fromSP");
-    // //print(test.substring(startIndex + start.length, endIndex));
-    // print(stringValue);
-    //return stringValue;
   }
 
   @override
@@ -143,6 +180,7 @@ class _PatientHomeState extends State<PatientHome> {
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
+    getUserInfo();
   }
 
   @override
@@ -191,12 +229,14 @@ class _PatientHomeState extends State<PatientHome> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                          backgroundImage:
+                              AssetImage('assets/images/no-image-icon-13.png'),
                         ),
                         const SizedBox(width: 8.0),
-                        const Expanded(
-                          child: TextField(
-                            decoration: InputDecoration.collapsed(
+                        Expanded(
+                          child: TextFormField(
+                            controller: postTextController,
+                            decoration: const InputDecoration.collapsed(
                                 hintText: "What's on your mind?"),
                           ),
                         ),
