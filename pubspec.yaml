@@ -66,6 +66,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
      - assets/images/
+     - C:/Users/User/Desktop/FSW/Final Project/PharmaConnect/storage/app/public/posts_pictures/33.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

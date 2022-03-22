@@ -235,7 +235,7 @@ class _PatientHomeState extends State<PatientHome> {
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
                           backgroundImage:
-                              AssetImage('assets/images/no-image-icon-13.png'),
+                              const AssetImage(r'C:/Users/User/Desktop/FSW/Final Project/PharmaConnect/storage/app/public/posts_pictures/33.jpeg'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
