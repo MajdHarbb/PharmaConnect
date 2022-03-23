@@ -30,7 +30,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     const API_URL = 'http://192.168.0.117:8000/api/user/get-posts';
 
     final response = await http.get(
-      Uri.parse(API_URL),
+      Uri.parse('http://192.168.0.117:8000/api/user/get-posts?$user_id'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
@@ -44,15 +44,15 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     });
   }
 
-  Future<void> SolvePost() async {
+  Future<void> SolvePost(postId,posterId) async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/solvePost'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
-        'post_id': '2',
-        'poster_id': '35',
+        'post_id': postId,
+        'poster_id': posterId,
         'pharmacy_id': user_id,
       },
     );
@@ -180,7 +180,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                           ),
 
                           onPressed: () {
-                            SolvePost();
+                            SolvePost((_loadedPhotos[index]["id"]).toString(),(_loadedPhotos[index]["user_id"].toString()));
                           },
                           label: const Text(
                             'Send Availability Message',
@@ -194,7 +194,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                 ),
               );
             },
-            childCount: _loadedPhotos.length, // 1000 list items
+            childCount: (_loadedPhotos.length)~/ 2, // 1000 list items
           ),
         ),
       ],
