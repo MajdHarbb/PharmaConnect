@@ -6,17 +6,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class PharmacyHome extends StatefulWidget {
-  const PharmacyHome({ Key? key }) : super(key: key);
+  const PharmacyHome({Key? key}) : super(key: key);
 
   @override
   State<PharmacyHome> createState() => _PharmacyHomeState();
 }
 
 class _PharmacyHomeState extends State<PharmacyHome> {
-
-
-List _loadedPhotos = [];
+  List _loadedPhotos = [];
   String access_Token = "";
+  String user_id = "";
 
   // The function that fetches data from the API
   Future<void> _fetchData() async {
@@ -26,11 +25,13 @@ List _loadedPhotos = [];
 
     setState(() {
       access_Token = prefs.getString('accesToken')!;
+      user_id = prefs.getString('id')!;
     });
     const API_URL = 'http://192.168.0.117:8000/api/user/get-posts';
 
-    final response = await http.get(Uri.parse(API_URL),
-    headers: {
+    final response = await http.get(
+      Uri.parse(API_URL),
+      headers: {
         'Authorization': 'Bearer $access_Token',
       },
     );
@@ -42,19 +43,49 @@ List _loadedPhotos = [];
       print(_loadedPhotos[1]["name"]);
     });
   }
+
+  Future<void> SolvePost() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/SolvePost'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'post_id': user_id,
+        'poster_id': user_id,
+        'pharmacy_id': user_id,
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done");
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
+    }
+  }
+
   initState() {
     super.initState();
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     _fetchData();
     print("==========> LENGHT");
-    
+    print("id ===> $user_id");
+    print(access_Token);
   }
 
   @override
   Widget build(BuildContext context) {
     print(_loadedPhotos.length);
-    return  Scaffold(
+    print("id ===> $user_id");
+    print(access_Token);
+    return Scaffold(
         body: CustomScrollView(
       slivers: [
         // const SliverAppBar(
@@ -92,7 +123,8 @@ List _loadedPhotos = [];
                             children: [
                               Text(
                                 _loadedPhotos[index]["name"],
-                                style: const TextStyle(fontWeight: FontWeight.w600),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
@@ -135,7 +167,6 @@ List _loadedPhotos = [];
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        
                         ElevatedButton.icon(
                           icon: const Icon(
                             Icons.check_circle_outline_rounded,
@@ -165,8 +196,6 @@ List _loadedPhotos = [];
           ),
         ),
       ],
-    )
-    );
+    ));
   }
 }
-

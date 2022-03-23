@@ -89,7 +89,7 @@ class _PatientHomeState extends State<PatientHome> {
   Future<void> getUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
     final response = await http.get(
-      Uri.parse('http://192.168.0.117:8000/api/user/info?user_id=2'),
+      Uri.parse('http://192.168.0.117:8000/api/user/info?user_id=$user_id'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
@@ -191,6 +191,10 @@ class _PatientHomeState extends State<PatientHome> {
   Widget build(BuildContext context) {
     //initState();
     // _fetchData();
+    print(user_name);
+    print(user_id);
+    print(user_email);
+    print(user_phone);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome Patient'),
