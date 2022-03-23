@@ -46,13 +46,13 @@ class _PharmacyHomeState extends State<PharmacyHome> {
 
   Future<void> SolvePost() async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/SolvePost'),
+      Uri.parse('http://192.168.0.117:8000/api/user/solvePost'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
-        'post_id': user_id,
-        'poster_id': user_id,
+        'post_id': '2',
+        'poster_id': '35',
         'pharmacy_id': user_id,
       },
     );
@@ -66,7 +66,9 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      print(response.body);
+      var bod = response.body;
+      print("$bod hhhhhhhhhhhhhhh");
+      print("errorrrrrrrrrrrrrr!");
     }
   }
 
@@ -178,7 +180,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                           ),
 
                           onPressed: () {
-                            print("Send Availability Message");
+                            SolvePost();
                           },
                           label: const Text(
                             'Send Availability Message',
