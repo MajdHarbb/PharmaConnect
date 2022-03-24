@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/user_options/common_functionalities/my_account.dart';
 
 class PatientProfile extends StatefulWidget {
   const PatientProfile({Key? key}) : super(key: key);
@@ -103,7 +104,9 @@ class _PatientProfileState extends State<PatientProfile> {
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
                   onPressed: () {
-                    print('more');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyAccount()));
                   },
                 )
               ]),
