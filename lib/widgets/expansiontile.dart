@@ -124,7 +124,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                       children: 
                         [Row(children: [
                           Icon(
-                            Icons.person,
+                            Icons.phone_android_rounded,
                             color: Colors.grey[600],
                             size: 30.0,
                           ),
@@ -134,13 +134,13 @@ class _ExpansiontileState extends State<Expansiontile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Edit Name",
+                                  "Edit Phone",
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      "Enter Your Name here: ",
+                                      "Enter Your Phone here: ",
                                       style: TextStyle(
                                         color: Colors.grey[600],
                                         fontSize: 12.0,
@@ -166,9 +166,9 @@ class _ExpansiontileState extends State<Expansiontile> {
                                     //controller: postTextController,
                                     decoration: const InputDecoration(
                                         prefixIcon:
-                                            Icon(Icons.text_fields_rounded),
+                                            Icon(Icons.phone_android_rounded),
                                         border: OutlineInputBorder(),
-                                        hintText: "Enter your new name"),
+                                        hintText: "Enter your new phone number"),
                                   ),
                                 ),
                               ],
@@ -200,6 +200,109 @@ class _ExpansiontileState extends State<Expansiontile> {
                                           
                                         ),
                                         hintText: "Confirm your password"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {}, child: Text('save')),
+                              ],
+                            ),
+                          ],
+                        ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+
+          ),
+          Container(
+            padding: const EdgeInsets.all(8.0),
+            color: Colors.white,
+            child: ExpansionTile(
+                    title: Column(
+                      children: 
+                        [Row(children: [
+                          Icon(
+                            Icons.password_rounded,
+                            color: Colors.grey[600],
+                            size: 30.0,
+                          ),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Edit Password",
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Enter Your Password",
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
+                    children: [
+                      ListTile(
+                        title: Container(
+                            child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    //controller: postTextController,
+                                    decoration: const InputDecoration(
+                                        prefixIcon:
+                                            Icon(Icons.text_fields_rounded),
+                                        border: OutlineInputBorder(),
+                                        hintText: "Enter your new password"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    //controller: postTextController,
+                                    decoration: const InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.password_outlined,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        hintText: "Enter your old password"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    //controller: postTextController,
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        prefixIcon: Icon(
+                                          Icons.password_outlined,
+                                          
+                                        ),
+                                        hintText: "Confirm your old password"),
                                   ),
                                 ),
                               ],
