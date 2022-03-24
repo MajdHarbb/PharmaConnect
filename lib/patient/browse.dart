@@ -1,6 +1,7 @@
 // main.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pharmaconnectflutter/models/botnav.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert'; // for using json.decode()
@@ -59,7 +60,11 @@ class _BrowseState extends State<Browse> {
                 ? Center(
                     child: ElevatedButton(
                       child: Text('Load Photos'),
-                      onPressed: _fetchData,
+                      onPressed: (){
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyApp()));
+                      },
                     ),
                   )
                 // The ListView that displays photos
