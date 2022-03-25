@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pharmaconnectflutter/map/map_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -139,7 +140,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            print("test");
+                            MapUtils.openMap(-55.42657, -93.39159);
                           },
                           label: const Text(
                             'View',
