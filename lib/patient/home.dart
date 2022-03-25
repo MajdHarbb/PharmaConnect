@@ -19,6 +19,7 @@ class _PatientHomeState extends State<PatientHome> {
   File? image;
   late String base64_img;
   String imagePath = '';
+  
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -34,7 +35,7 @@ class _PatientHomeState extends State<PatientHome> {
   String user_email = "";
   String user_phone = "";
   String user_profile_picture = "";
-
+  String profiletest = "33.jpeg";
   Future<void> AddPost() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
