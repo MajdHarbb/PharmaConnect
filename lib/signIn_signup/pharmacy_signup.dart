@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/models/testmodel.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart' as p;
+import 'package:image_picker/image_picker.dart';
 
 class PharmacySignUp extends StatefulWidget {
   const PharmacySignUp({Key? key}) : super(key: key);
@@ -20,14 +25,36 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   final TextEditingController streetController = TextEditingController();
   final TextEditingController localityController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
+  String extension = "";
+  File? image;
+  late String base64_img;
+  String imagePath = '';
   late double lat;
   late double long;
-  late int _user =0;
-var users = <String>[
-  'Bob',
-  'Allie',
-  'Jason',
-];
+  late String governate = "Beirut";
+  late String district = "Beirut";
+  late int _user =2;
+  late int _districtIndex = 0;
+  var governates = <String>[
+  'Akkar',
+  'Baalbek',
+  'Beirut',
+  'Beqaa',
+  'Mount Lebanon',
+  'Nabatieh',
+  'North Governate',
+  'South Governate',
+  ];
+  
+  var districts = <String>["Beirut"];
+  var Akkar = <String> ["Akkar Halba"];
+  var Baalbek = <String> ["Baalbek","Hermel"];
+  var Beirut = <String> ["Beirut"];
+  var Beqaa = <String> ["Rashaya","Western Beqaa", "Zahle"];
+  var Nabatieh = <String>["Bint Jbeil", "Hasbaya", "Marjeyoun","Nabatieh"];
+  var MountLebanon = <String> ["Byblos","Keserwan", "Aley","Baabda","Chouf","Matn"];
+  var NorthGovernate = <String> ["Batroun","Bsharri", "Koura","Miniyeh","Tripoli","Zgharta"];
+  var SouthGovernate = <String> ["Sidon","Jezzine","Tyre"];
 
   static const _initialCameraPoition = CameraPosition(
     target: LatLng(33.833797, 35.544144),
@@ -169,24 +196,82 @@ var users = <String>[
                 ],
               ),
               Row(
-                children: [
-                  DropdownButton<String>(
-  hint: new Text('Pickup on every'),
-  value: _user == null ? null : users[_user],
-  items: users.map((String value) {
-    return new DropdownMenuItem<String>(
-      value: value,
-      child: new Text(value),
-    );
-  }).toList(),
-  onChanged: (value) {
-    setState(() {
-      _user = users.indexOf(value!);
-    });
-  },
-),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Container(
+                        width: 170,
+                        child: DropdownButton<String>(
+                        hint: const Text('Pickup on every'),
+                        value: _user == null ? null : governates[_user],
+                        items: governates.map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _user = governates.indexOf(value!);
+                            if (_user == 0) {
+                              districts = Akkar;
+                            } else if (_user == 1){
+                              districts = Baalbek;
+                            } else if (_user == 2){
+                              districts = Beirut;
+                            } else if (_user == 3){
+                              districts = Beqaa;
+                            } else if (_user == 4){
+                              districts = MountLebanon;
+                            } else if (_user == 5){
+                              districts = Nabatieh;
+                            } else if (_user == 6){
+                              districts = NorthGovernate;
+                            } else if (_user == 7){
+                              districts = SouthGovernate;
+                            }
+                            print(governates[_user]);
+                            governate = governates[_user];
+                          });
+                        },
+                    ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Container(
+                        width: 170,
+                        child: DropdownButton<String>(
+                        hint: const Text('Pickup on every'),
+                        value: _districtIndex == null ? null : districts[_districtIndex],
+                        items: districts.map((String value) {
+                          return new DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _districtIndex = districts.indexOf(value!);
+                            
+                            print(districts[_districtIndex]);
+                            district = districts[_districtIndex];
+                          });
+                        },
+                    ),
+                      ),
+                    ),
+                  ),
+                  
                 ],
-              ),
+              ),   
+                
               SizedBox(
                 height: 600.0,
                 child: GoogleMap(
@@ -231,8 +316,8 @@ var users = <String>[
                       'user_type': 'pharmacy',
                       'building': buildingController.text,
                       'street': streetController.text,
-                      'locality': localityController.text,
-                      'district': districtController.text,
+                      'locality': district,
+                      'district': governate,
                       
                       'latitude': lat.toString(),
                       'longitude': long.toString(),
@@ -280,5 +365,30 @@ var users = <String>[
       print(x);
       
     });
+  }
+
+    Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      imagePath = image.path;
+      print("---------------------->>>>>>>>-------------------");
+      print(image.path);
+      print("------------------------>>>>>>>>>>>>>>>>>");
+      base64_img = base64Encode(await image.readAsBytes());
+      String imageName = image.path.split("/").last;
+      extension = p.extension(imageName).substring(1);
+      print("extension : $extension");
+      print('image name $imageName');
+      print("baseeeeee $base64_img");
+      setState(() {
+        this.image = imageTemporary;
+        print("picked $imageTemporary");
+      });
+    } on Exception catch (e) {
+      print('Failed to capture image: $e');
+    }
   }
 }
