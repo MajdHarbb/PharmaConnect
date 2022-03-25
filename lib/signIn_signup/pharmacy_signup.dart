@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/models/testmodel.dart';
-
 
 class PharmacySignUp extends StatefulWidget {
   const PharmacySignUp({Key? key}) : super(key: key);
@@ -142,6 +142,12 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 600.0,
+                child: GoogleMap(
+                    initialCameraPosition:
+                        CameraPosition(target: LatLng(33.833797, 35.544144), zoom: 12.0)),
               ),
               ElevatedButton(
                 onPressed: () async {
