@@ -20,27 +20,31 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   final TextEditingController streetController = TextEditingController();
   final TextEditingController localityController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
-  double lat =  33.833797;
-  double long =  33.833797;
-  static const _initialCameraPoition = CameraPosition(target: 
-    LatLng(33.833797, 35.544144),
+  late double lat;
+  late double long;
+  late int _user =0;
+var users = <String>[
+  'Bob',
+  'Allie',
+  'Jason',
+];
+
+  static const _initialCameraPoition = CameraPosition(
+    target: LatLng(33.833797, 35.544144),
     zoom: 11.5,
+    tilt: 50.0,
   );
-  late Marker _origin = Marker(
+  late Marker _origin = const Marker(
       markerId: MarkerId('SomeId'),
-      position: LatLng(33.833797,35.544144),
-      infoWindow: InfoWindow(
-      title: 'The title of the marker'
-      )
-     );
-  final List<Marker> _markers = <Marker>[const Marker(
-      markerId: MarkerId('SomeId'),
-      position: LatLng(33.833797,35.544144),
-      infoWindow: InfoWindow(
-      title: 'The title of the marker'
-      )
-     )];
-  
+      position: LatLng(33.833797, 35.544144),
+      infoWindow: InfoWindow(title: 'My Current Location'));
+  final List<Marker> _markers = <Marker>[
+    const Marker(
+        markerId: MarkerId('SomeId'),
+        position: LatLng(33.833797, 35.544144),
+        infoWindow: InfoWindow(title: 'The title of the marker'))
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,42 +168,75 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   ),
                 ],
               ),
-               SizedBox(
+              Row(
+                children: [
+                  DropdownButton<String>(
+  hint: new Text('Pickup on every'),
+  value: _user == null ? null : users[_user],
+  items: users.map((String value) {
+    return new DropdownMenuItem<String>(
+      value: value,
+      child: new Text(value),
+    );
+  }).toList(),
+  onChanged: (value) {
+    setState(() {
+      _user = users.indexOf(value!);
+    });
+  },
+),
+                ],
+              ),
+              SizedBox(
                 height: 600.0,
                 child: GoogleMap(
                   myLocationButtonEnabled: true,
                   scrollGesturesEnabled: true,
                   myLocationEnabled: true,
+                  tiltGesturesEnabled: true,
                   initialCameraPosition: _initialCameraPoition,
+                  // onMapCreated: (mapController) {
+                  //   mapController
+                  //       .showMarkerInfoWindow(const MarkerId("origin"));
+                  // },
+
                   //markers: Set<Marker>.of(_markers),
-                  markers: {
-                    _origin
-                  },
-                  onTap: _addMarker,
-                  
-                  ),
-                  
-                    
+                  markers: {_origin},
+                  onLongPress: _addMarker,
+                ),
               ),
               ElevatedButton(
                 onPressed: () async {
                   final response = await http.post(
                     Uri.parse('http://192.168.0.117:8000/api/auth/register'),
                     body: <String, String>{
+                      // 'name': nameController.text,
+                      // 'email': emailController.text,
+                      // 'phone': phoneController.text,
+                      // 'password': passController.text,
+                      // 'password_confirmation': passConfirmController.text,
+                      // 'profile_pic': 'profile pic test',
+                      // 'user_type': 'pharmacy',
+                      // 'building': buildingController.text,
+                      // 'street': streetController.text,
+                      // 'district': districtController.text,
+                      // 'locality': localityController.text,
                       'name': nameController.text,
                       'email': emailController.text,
-                      'phone': phoneController.text,
+                      
                       'password': passController.text,
                       'password_confirmation': passConfirmController.text,
-                      'profile_pic': 'profile pic test',
+                      'phone': phoneController.text,
+                      'profile_pic': 'C:/Users/User/Desktop',
                       'user_type': 'pharmacy',
                       'building': buildingController.text,
                       'street': streetController.text,
-                      'district': districtController.text,
                       'locality': localityController.text,
-                      'longitude': '202.33',
-                      'latitude': '656.36',
-                      'license': 'license image test',
+                      'district': districtController.text,
+                      
+                      'latitude': lat.toString(),
+                      'longitude': long.toString(),
+                      'license': 'license',
                     },
                   );
 
@@ -226,18 +263,22 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
       ),
     );
   }
-  void _addMarker(LatLng pos){
-      setState(() {
-        _origin = Marker(
-          markerId: const MarkerId("origin"),
-          infoWindow: const InfoWindow(title: "Origin"),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-          position: pos,
-          
-        );
-        print(pos);
-      }
-      
+
+  void _addMarker(LatLng pos) {
+    setState(() {
+      lat = pos.latitude;
+      long = pos.longitude;
+
+      String x = lat.toString();
+      _origin = Marker(
+        markerId: const MarkerId("origin"),
+        infoWindow: const InfoWindow(title: "My New Location"),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        position: pos,
       );
+      print(pos);
+      print(x);
+      
+    });
   }
 }
