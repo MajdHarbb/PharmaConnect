@@ -23,7 +23,7 @@ class CreatePharmaciesTable extends Migration
             $table->string('district')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
-            $table->binary('license')->nullable(); 
+            $table->string('license')->nullable(); 
             $table->timestamps();
             $table->softDeletes();
         });

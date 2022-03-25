@@ -51,6 +51,7 @@ class PostsController extends Controller
         $user->post_pic = $imageName;
         $user->save();
         Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
+        Storage::disk('postsflutter')->put($user->id.'.'.$extension, base64_decode($image));
         
         Post::where('id', $user->id)->update(['post_pic' => $user->id.'.'.$extension]);
               

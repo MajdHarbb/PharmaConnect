@@ -48,6 +48,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'postsflutter' => [
+            'driver' => 'local',
+            'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/posts/', 
+        ],
 
         's3' => [
             'driver' => 's3',
