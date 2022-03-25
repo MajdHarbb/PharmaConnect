@@ -20,6 +20,27 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   final TextEditingController streetController = TextEditingController();
   final TextEditingController localityController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
+  double lat =  33.833797;
+  double long =  33.833797;
+  static const _initialCameraPoition = CameraPosition(target: 
+    LatLng(33.833797, 35.544144),
+    zoom: 11.5,
+  );
+  late Marker _origin = Marker(
+      markerId: MarkerId('SomeId'),
+      position: LatLng(33.833797,35.544144),
+      infoWindow: InfoWindow(
+      title: 'The title of the marker'
+      )
+     );
+  final List<Marker> _markers = <Marker>[const Marker(
+      markerId: MarkerId('SomeId'),
+      position: LatLng(33.833797,35.544144),
+      infoWindow: InfoWindow(
+      title: 'The title of the marker'
+      )
+     )];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,11 +164,22 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   ),
                 ],
               ),
-              const SizedBox(
+               SizedBox(
                 height: 600.0,
                 child: GoogleMap(
-                    initialCameraPosition:
-                        CameraPosition(target: LatLng(33.833797, 35.544144), zoom: 12.0)),
+                  myLocationButtonEnabled: true,
+                  scrollGesturesEnabled: true,
+                  myLocationEnabled: true,
+                  initialCameraPosition: _initialCameraPoition,
+                  //markers: Set<Marker>.of(_markers),
+                  markers: {
+                    _origin
+                  },
+                  onTap: _addMarker,
+                  
+                  ),
+                  
+                    
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -193,5 +225,19 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
         ),
       ),
     );
+  }
+  void _addMarker(LatLng pos){
+      setState(() {
+        _origin = Marker(
+          markerId: const MarkerId("origin"),
+          infoWindow: const InfoWindow(title: "Origin"),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          position: pos,
+          
+        );
+        print(pos);
+      }
+      
+      );
   }
 }
