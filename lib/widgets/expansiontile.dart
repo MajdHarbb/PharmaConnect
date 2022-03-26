@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -236,8 +237,13 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               Expanded(
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                  ],
                                   controller: phoneController,
                                   decoration: const InputDecoration(
+                                    
                                       prefixIcon:
                                           Icon(Icons.phone_android_rounded),
                                       border: OutlineInputBorder(),
@@ -282,7 +288,52 @@ class _ExpansiontileState extends State<Expansiontile> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
-                                  onPressed: () {}, child: Text('save')),
+                                  onPressed: () {
+                                      if(phoneController.text == "" || passController.text == "" || passConfirmController.text == ""){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Enter your phone number and password'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                      }else{
+                                        if(phoneController.text.length != 8){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Phone number must be 8 digits only '),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                        }
+                                        if(passController.text!=passConfirmController.text){
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Passwords did not match!'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                            );
+                                            
+                                        }
+                                        else{
+                                          updatePhone();
+                                        }
+                                      }
+                                  }, child: const Text('save')),
                             ],
                           ),
                         ],
