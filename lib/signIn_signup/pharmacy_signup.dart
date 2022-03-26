@@ -94,320 +94,299 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
         title: const Text('Pharmacy Sign Up'),
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your name',
-                    prefixIcon: Icon(Icons.person),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Sign In with Email',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 20,
+              ),
+            ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: TextFormField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter your name',
+                      prefixIcon: Icon(Icons.person),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your email',
-                    prefixIcon: Icon(Icons.email_rounded),
+                Padding(
+                  padding: const EdgeInsets.symmetric( vertical: 8),
+                  child: TextFormField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter your email',
+                      prefixIcon: Icon(Icons.email_rounded),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  controller: phoneController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your phone number',
-                    prefixIcon: Icon(Icons.phone_android_rounded),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: TextFormField(
+                    controller: phoneController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter your phone number',
+                      prefixIcon: Icon(Icons.phone_android_rounded),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  controller: passController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your password',
-                    prefixIcon: Icon(Icons.password_rounded),
+                Padding(
+                  padding: const EdgeInsets.symmetric( vertical: 8),
+                  child: TextFormField(
+                    controller: passController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter your password',
+                      prefixIcon: Icon(Icons.password_rounded),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  controller: passConfirmController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your password again',
-                    prefixIcon: Icon(Icons.password_rounded),
+                Padding(
+                  padding: const EdgeInsets.symmetric( vertical: 8),
+                  child: TextFormField(
+                    controller: passConfirmController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter your password again',
+                      prefixIcon: Icon(Icons.password_rounded),
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      child: TextFormField(
-                        controller: buildingController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Buidling',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric( horizontal:1.0, vertical: 8),
+                        child: TextFormField(
+                          controller: buildingController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Buidling',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: TextFormField(
-                        controller: streetController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Street',
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: TextFormField(
+                          controller: streetController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Street',
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: TextFormField(
-                        controller: districtController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'District',
+                  ],
+                ),
+               
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
+                        child: Container(
+                          width: 170,
+                          child: DropdownButton<String>(
+                            hint: const Text('Pickup on every'),
+                            value: _user == null ? null : governates[_user],
+                            items: governates.map((String value) {
+                              return new DropdownMenuItem<String>(
+                                value: value,
+                                child: new Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _user = governates.indexOf(value!);
+                                if (_user == 0) {
+                                  districts = Akkar;
+                                } else if (_user == 1) {
+                                  districts = Baalbek;
+                                } else if (_user == 2) {
+                                  districts = Beirut;
+                                } else if (_user == 3) {
+                                  districts = Beqaa;
+                                } else if (_user == 4) {
+                                  districts = MountLebanon;
+                                } else if (_user == 5) {
+                                  districts = Nabatieh;
+                                } else if (_user == 6) {
+                                  districts = NorthGovernate;
+                                } else if (_user == 7) {
+                                  districts = SouthGovernate;
+                                }
+                                print(governates[_user]);
+                                governate = governates[_user];
+                              });
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: TextFormField(
-                        controller: localityController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Locality',
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
+                        child: Container(
+                          width: 170,
+                          child: DropdownButton<String>(
+                            hint: const Text('Pickup on every'),
+                            value: _districtIndex == null
+                                ? null
+                                : districts[_districtIndex],
+                            items: districts.map((String value) {
+                              return new DropdownMenuItem<String>(
+                                value: value,
+                                child: new Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _districtIndex = districts.indexOf(value!);
+
+                                print(districts[_districtIndex]);
+                                district = districts[_districtIndex];
+                              });
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: Container(
-                        width: 170,
-                        child: DropdownButton<String>(
-                          hint: const Text('Pickup on every'),
-                          value: _user == null ? null : governates[_user],
-                          items: governates.map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              _user = governates.indexOf(value!);
-                              if (_user == 0) {
-                                districts = Akkar;
-                              } else if (_user == 1) {
-                                districts = Baalbek;
-                              } else if (_user == 2) {
-                                districts = Beirut;
-                              } else if (_user == 3) {
-                                districts = Beqaa;
-                              } else if (_user == 4) {
-                                districts = MountLebanon;
-                              } else if (_user == 5) {
-                                districts = Nabatieh;
-                              } else if (_user == 6) {
-                                districts = NorthGovernate;
-                              } else if (_user == 7) {
-                                districts = SouthGovernate;
-                              }
-                              print(governates[_user]);
-                              governate = governates[_user];
-                            });
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
+                        child: image != null
+                            ? ClipOval(
+                                child: Image.file(
+                                  image!,
+                                  height: 50,
+                                  width: 50,
+                                ),
+                              )
+                            : const FlutterLogo(size: 50),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 8),
+                        child: ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.image_outlined,
+                            color: Colors.blue,
+                            size: 24.0,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(50, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            pickImage();
                           },
+                          label: const Text(
+                            'Add License Image',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: Container(
-                        width: 170,
-                        child: DropdownButton<String>(
-                          hint: const Text('Pickup on every'),
-                          value: _districtIndex == null
-                              ? null
-                              : districts[_districtIndex],
-                          items: districts.map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              _districtIndex = districts.indexOf(value!);
-
-                              print(districts[_districtIndex]);
-                              district = districts[_districtIndex];
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: image != null
-                          ? ClipOval(
-                              child: Image.file(
-                                image!,
-                                height: 50,
-                                width: 50,
-                              ),
-                            )
-                          : const FlutterLogo(size: 50),
-                    ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
-                      child: ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.image_outlined,
-                          color: Colors.blue,
-                          size: 24.0,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(50, 40),
-                          primary: Colors.white,
-                        ),
-
-                        onPressed: () {
-                          pickImage();
-                        },
-                        label: const Text(
-                          'Add License Image',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        //controller: streetController,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 600.0,
-                child: GoogleMap(
-                  myLocationButtonEnabled: true,
-                  scrollGesturesEnabled: true,
-                  myLocationEnabled: true,
-                  tiltGesturesEnabled: true,
-                  initialCameraPosition: _initialCameraPoition,
-                  // onMapCreated: (mapController) {
-                  //   mapController
-                  //       .showMarkerInfoWindow(const MarkerId("origin"));
-                  // },
-
-                  //markers: Set<Marker>.of(_markers),
-                  markers: {_origin},
-                  onLongPress: _addMarker,
+                  ],
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final response = await http.post(
-                    Uri.parse('http://192.168.0.117:8000/api/auth/register'),
-                    body: <String, String>{
-                      // 'name': nameController.text,
-                      // 'email': emailController.text,
-                      // 'phone': phoneController.text,
-                      // 'password': passController.text,
-                      // 'password_confirmation': passConfirmController.text,
-                      // 'profile_pic': 'profile pic test',
-                      // 'user_type': 'pharmacy',
-                      // 'building': buildingController.text,
-                      // 'street': streetController.text,
-                      // 'district': districtController.text,
-                      // 'locality': localityController.text,
-                      'name': nameController.text,
-                      'email': emailController.text,
+                SizedBox(
+                  height: 600.0,
+                  child: GoogleMap(
+                    myLocationButtonEnabled: true,
+                    scrollGesturesEnabled: true,
+                    myLocationEnabled: true,
+                    tiltGesturesEnabled: true,
+                    initialCameraPosition: _initialCameraPoition,
+                    // onMapCreated: (mapController) {
+                    //   mapController
+                    //       .showMarkerInfoWindow(const MarkerId("origin"));
+                    // },
 
-                      'password': passController.text,
-                      'password_confirmation': passConfirmController.text,
-                      'phone': phoneController.text,
-                      'profile_pic': 'defualt_profile_picture_pharmaConnect.png',
-                      'user_type': 'pharmacy',
-                      'building': buildingController.text,
-                      'street': streetController.text,
-                      'locality': district,
-                      'district': governate,
+                    //markers: Set<Marker>.of(_markers),
+                    markers: {_origin},
+                    onLongPress: _addMarker,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final response = await http.post(
+                      Uri.parse('http://192.168.0.117:8000/api/auth/register'),
+                      body: <String, String>{
+                        // 'name': nameController.text,
+                        // 'email': emailController.text,
+                        // 'phone': phoneController.text,
+                        // 'password': passController.text,
+                        // 'password_confirmation': passConfirmController.text,
+                        // 'profile_pic': 'profile pic test',
+                        // 'user_type': 'pharmacy',
+                        // 'building': buildingController.text,
+                        // 'street': streetController.text,
+                        // 'district': districtController.text,
+                        // 'locality': localityController.text,
+                        'name': nameController.text,
+                        'email': emailController.text,
 
-                      'latitude': lat.toString(),
-                      'longitude': long.toString(),
-                      'license': "data:image/$extension;base64,$base64_img",
-                    },
-                  );
+                        'password': passController.text,
+                        'password_confirmation': passConfirmController.text,
+                        'phone': phoneController.text,
+                        'profile_pic': 'defualt_profile_picture_pharmaConnect.png',
+                        'user_type': 'pharmacy',
+                        'building': buildingController.text,
+                        'street': streetController.text,
+                        'locality': district,
+                        'district': governate,
 
-                  if (response.statusCode == 201) {
-                    // If the server did return a 201 CREATED response,
-                    // then parse the JSON.
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignInUser()),
+                        'latitude': lat.toString(),
+                        'longitude': long.toString(),
+                        'license': "data:image/$extension;base64,$base64_img",
+                      },
                     );
-                    print(response.body);
-                  } else {
-                    // If the server did not return a 201 CREATED response,
-                    // then throw an exception.
-                    print(response.body);
-                  }
-                },
-                child: const Text('Sign Up'),
-              ),
-            ],
+
+                    if (response.statusCode == 201) {
+                      // If the server did return a 201 CREATED response,
+                      // then parse the JSON.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInUser()),
+                      );
+                      print(response.body);
+                    } else {
+                      // If the server did not return a 201 CREATED response,
+                      // then throw an exception.
+                      print(response.body);
+                    }
+                  },
+                  child: const Text('Sign Up'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
