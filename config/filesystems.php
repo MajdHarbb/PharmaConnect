@@ -48,9 +48,22 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+
         'postsflutter' => [
             'driver' => 'local',
             'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/posts/', 
+        ],
+
+        'license' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/license_pictures/'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        
+        'licenseflutter' => [
+            'driver' => 'local',
+            'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/licenses/', 
         ],
 
         's3' => [
