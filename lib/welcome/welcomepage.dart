@@ -50,16 +50,24 @@ class WelcomePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15, letterSpacing: 1),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const WelcomePagetwo()),
-                    );
-                  },
-                  child: const Text('Next    >'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WelcomePagetwo()),
+                          );
+                          
+                        },
+                        child: const Text("Next")),
+                        const Icon(Icons.skip_next_sharp, color: Colors.blue),
+                  ],
                 ),
+                
               ],
             ),
           ),
