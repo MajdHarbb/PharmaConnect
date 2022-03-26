@@ -25,6 +25,7 @@ class _ExpansiontileState extends State<Expansiontile> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
+  final TextEditingController newpassContoller = TextEditingController();
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
@@ -146,7 +147,50 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-
+                                      if(nameController.text == "" || passController.text == "" || passConfirmController.text == ""){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('You are entering empty values!'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                      }else{
+                                        if(passController.text!=passConfirmController.text){
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Passwords did not match!'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                            );
+                                            
+                                        }
+                                        else{
+                                          showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Profile Picture Updated!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                                        }
+                                      }
                                   }, child: Text('save')),
                             ],
                           ),
@@ -305,7 +349,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               Expanded(
                                 child: TextFormField(
-                                  //controller: postTextController,
+                                  controller: newpassContoller,
                                   decoration: const InputDecoration(
                                       prefixIcon:
                                           Icon(Icons.text_fields_rounded),
@@ -319,7 +363,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               Expanded(
                                 child: TextFormField(
-                                  //controller: postTextController,
+                                  controller: passController,
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.password_outlined,
@@ -334,7 +378,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               Expanded(
                                 child: TextFormField(
-                                  //controller: postTextController,
+                                  controller: passConfirmController,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       prefixIcon: Icon(
@@ -364,7 +408,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       ),
     );
   }
-  Future<void> updateProfilePicture() async {
+  Future<void> updateName() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
       headers: {
@@ -372,9 +416,9 @@ class _ExpansiontileState extends State<Expansiontile> {
       },
       body: {
         'user_id': user_id,
-        'name': "",
-        'password': '',
-        'password': '',
+        'name': nameController.text,
+        'password': passController,
+        'password_confirmation': passConfirmController,
       },
     );
 
