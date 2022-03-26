@@ -16,6 +16,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
     // The list that contains information about photos
   List _loadedPhotos = [];
   String access_Token = "";
+  String pharmacy_profile_pic = "";
 
   // The function that fetches data from the API
   Future<void> _fetchData() async {
@@ -77,7 +78,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                          backgroundImage:
+                               AssetImage('assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -192,7 +194,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                 ),
               );
             },
-            childCount: _loadedPhotos.length, // 1000 list items
+            childCount: _loadedPhotos.length,
+            // 1000 list items
           ),
         ),
       ],
