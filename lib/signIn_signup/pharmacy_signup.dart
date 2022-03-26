@@ -33,28 +33,42 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   late double long;
   late String governate = "Beirut";
   late String district = "Beirut";
-  late int _user =2;
+  late int _user = 2;
   late int _districtIndex = 0;
   var governates = <String>[
-  'Akkar',
-  'Baalbek',
-  'Beirut',
-  'Beqaa',
-  'Mount Lebanon',
-  'Nabatieh',
-  'North Governate',
-  'South Governate',
+    'Akkar',
+    'Baalbek',
+    'Beirut',
+    'Beqaa',
+    'Mount Lebanon',
+    'Nabatieh',
+    'North Governate',
+    'South Governate',
   ];
-  
+
   var districts = <String>["Beirut"];
-  var Akkar = <String> ["Akkar Halba"];
-  var Baalbek = <String> ["Baalbek","Hermel"];
-  var Beirut = <String> ["Beirut"];
-  var Beqaa = <String> ["Rashaya","Western Beqaa", "Zahle"];
-  var Nabatieh = <String>["Bint Jbeil", "Hasbaya", "Marjeyoun","Nabatieh"];
-  var MountLebanon = <String> ["Byblos","Keserwan", "Aley","Baabda","Chouf","Matn"];
-  var NorthGovernate = <String> ["Batroun","Bsharri", "Koura","Miniyeh","Tripoli","Zgharta"];
-  var SouthGovernate = <String> ["Sidon","Jezzine","Tyre"];
+  var Akkar = <String>["Akkar Halba"];
+  var Baalbek = <String>["Baalbek", "Hermel"];
+  var Beirut = <String>["Beirut"];
+  var Beqaa = <String>["Rashaya", "Western Beqaa", "Zahle"];
+  var Nabatieh = <String>["Bint Jbeil", "Hasbaya", "Marjeyoun", "Nabatieh"];
+  var MountLebanon = <String>[
+    "Byblos",
+    "Keserwan",
+    "Aley",
+    "Baabda",
+    "Chouf",
+    "Matn"
+  ];
+  var NorthGovernate = <String>[
+    "Batroun",
+    "Bsharri",
+    "Koura",
+    "Miniyeh",
+    "Tripoli",
+    "Zgharta"
+  ];
+  var SouthGovernate = <String>["Sidon", "Jezzine", "Tyre"];
 
   static const _initialCameraPoition = CameraPosition(
     target: LatLng(33.833797, 35.544144),
@@ -75,6 +89,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Pharmacy Sign Up!'),
       ),
@@ -205,39 +220,39 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       child: Container(
                         width: 170,
                         child: DropdownButton<String>(
-                        hint: const Text('Pickup on every'),
-                        value: _user == null ? null : governates[_user],
-                        items: governates.map((String value) {
-                          return new DropdownMenuItem<String>(
-                            value: value,
-                            child: new Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            _user = governates.indexOf(value!);
-                            if (_user == 0) {
-                              districts = Akkar;
-                            } else if (_user == 1){
-                              districts = Baalbek;
-                            } else if (_user == 2){
-                              districts = Beirut;
-                            } else if (_user == 3){
-                              districts = Beqaa;
-                            } else if (_user == 4){
-                              districts = MountLebanon;
-                            } else if (_user == 5){
-                              districts = Nabatieh;
-                            } else if (_user == 6){
-                              districts = NorthGovernate;
-                            } else if (_user == 7){
-                              districts = SouthGovernate;
-                            }
-                            print(governates[_user]);
-                            governate = governates[_user];
-                          });
-                        },
-                    ),
+                          hint: const Text('Pickup on every'),
+                          value: _user == null ? null : governates[_user],
+                          items: governates.map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _user = governates.indexOf(value!);
+                              if (_user == 0) {
+                                districts = Akkar;
+                              } else if (_user == 1) {
+                                districts = Baalbek;
+                              } else if (_user == 2) {
+                                districts = Beirut;
+                              } else if (_user == 3) {
+                                districts = Beqaa;
+                              } else if (_user == 4) {
+                                districts = MountLebanon;
+                              } else if (_user == 5) {
+                                districts = Nabatieh;
+                              } else if (_user == 6) {
+                                districts = NorthGovernate;
+                              } else if (_user == 7) {
+                                districts = SouthGovernate;
+                              }
+                              print(governates[_user]);
+                              governate = governates[_user];
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -248,30 +263,76 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       child: Container(
                         width: 170,
                         child: DropdownButton<String>(
-                        hint: const Text('Pickup on every'),
-                        value: _districtIndex == null ? null : districts[_districtIndex],
-                        items: districts.map((String value) {
-                          return new DropdownMenuItem<String>(
-                            value: value,
-                            child: new Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            _districtIndex = districts.indexOf(value!);
-                            
-                            print(districts[_districtIndex]);
-                            district = districts[_districtIndex];
-                          });
-                        },
-                    ),
+                          hint: const Text('Pickup on every'),
+                          value: _districtIndex == null
+                              ? null
+                              : districts[_districtIndex],
+                          items: districts.map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _districtIndex = districts.indexOf(value!);
+
+                              print(districts[_districtIndex]);
+                              district = districts[_districtIndex];
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
-                  
                 ],
-              ),   
-                
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: image != null
+                          ? ClipOval(
+                              child: Image.file(
+                                image!,
+                                height: 50,
+                                width: 50,
+                              ),
+                            )
+                          : const FlutterLogo(size: 50),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: ElevatedButton.icon(
+                        icon: const Icon(
+                          Icons.image_outlined,
+                          color: Colors.blue,
+                          size: 24.0,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(50, 40),
+                          primary: Colors.white,
+                        ),
+
+                        onPressed: () {
+                          pickImage();
+                        },
+                        label: const Text(
+                          'Add License Image',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        //controller: streetController,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
                 height: 600.0,
                 child: GoogleMap(
@@ -308,20 +369,20 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       // 'locality': localityController.text,
                       'name': nameController.text,
                       'email': emailController.text,
-                      
+
                       'password': passController.text,
                       'password_confirmation': passConfirmController.text,
                       'phone': phoneController.text,
-                      'profile_pic': 'C:/Users/User/Desktop',
+                      'profile_pic': 'defualt_profile_picture_pharmaConnect.png',
                       'user_type': 'pharmacy',
                       'building': buildingController.text,
                       'street': streetController.text,
                       'locality': district,
                       'district': governate,
-                      
+
                       'latitude': lat.toString(),
                       'longitude': long.toString(),
-                      'license': 'license',
+                      'license': "data:image/$extension;base64,$base64_img",
                     },
                   );
 
@@ -363,11 +424,10 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
       );
       print(pos);
       print(x);
-      
     });
   }
 
-    Future pickImage() async {
+  Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
