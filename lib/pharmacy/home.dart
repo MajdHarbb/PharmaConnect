@@ -63,6 +63,20 @@ class _PharmacyHomeState extends State<PharmacyHome> {
 
       print(response.body);
       print("===========> done");
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title:  const Text('Availability notification sent, Thank you!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -116,7 +130,8 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                          backgroundImage: AssetImage(
+                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -131,7 +146,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                               Row(
                                 children: [
                                   Text(
-                                    _loadedPhotos[index]["updated_at"],
+                                    _loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T')),
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 12.0,
@@ -147,12 +162,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                             ],
                           ),
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.more_horiz),
-                          onPressed: () {
-                            print('more');
-                          },
-                        )
+                        
                       ],
                     ),
                     const SizedBox(height: 4.0),
@@ -160,7 +170,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Image.asset(
-                        'assets/images/aspirin.jpg',
+                        'assets/posts/${_loadedPhotos[index]["post_pic"]}',
                         width: 600.0,
                         height: 240.0,
                         fit: BoxFit.cover,
@@ -194,7 +204,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                 ),
               );
             },
-            childCount: (_loadedPhotos.length)~/ 2, // 1000 list items
+            childCount: _loadedPhotos.length, // 1000 list items
           ),
         ),
       ],
