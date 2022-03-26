@@ -12,4 +12,13 @@ class MapUtils {
       throw 'Unable to open map';
     }
   }
+  static Future<void> openDialer(String phone) async {
+    String dialerUrl = "tel:$phone";
+
+    if(await canLaunch(dialerUrl)){
+      await launch(dialerUrl);
+    }else{
+      throw 'Unable to open dialer';
+    }
+  }
 }

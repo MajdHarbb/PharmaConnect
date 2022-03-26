@@ -4,6 +4,7 @@ import 'package:pharmaconnectflutter/map/map_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
+
 class PatientPharmacies extends StatefulWidget {
   const PatientPharmacies({Key? key}) : super(key: key);
 
@@ -13,7 +14,7 @@ class PatientPharmacies extends StatefulWidget {
 
 class _PatientPharmaciesState extends State<PatientPharmacies> {
   @override
-    // The list that contains information about photos
+  // The list that contains information about photos
   List _loadedPhotos = [];
   String access_Token = "";
   String pharmacy_profile_pic = "";
@@ -29,8 +30,9 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
     });
     const API_URL = 'http://192.168.0.117:8000/api/user/get-pharmacies';
 
-    final response = await http.get(Uri.parse(API_URL),
-    headers: {
+    final response = await http.get(
+      Uri.parse(API_URL),
+      headers: {
         'Authorization': 'Bearer $access_Token',
       },
     );
@@ -42,12 +44,14 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
       print(_loadedPhotos[1]["district"]);
     });
   }
+
   initState() {
     super.initState();
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     _fetchData();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
@@ -63,13 +67,30 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
           title: Text('Pharmacies'),
           floating: true,
         ),
+
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
               return Container(
                 margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.all(8.0),
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                //color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -78,8 +99,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage:
-                               AssetImage('assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+                          backgroundImage: AssetImage(
+                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -88,12 +109,13 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             children: [
                               Text(
                                 _loadedPhotos[index]["name"],
-                                style: const TextStyle(fontWeight: FontWeight.w600),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
                                   Text(
-                                    "1 hour ago",
+                                    'member since ${_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))}',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 12.0,
@@ -109,31 +131,19 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             ],
                           ),
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.more_horiz),
-                          onPressed: () {
-                            print('more');
-                          },
-                        )
                       ],
                     ),
                     const SizedBox(height: 4.0),
-                    const Text("Post Caption"),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Image.asset(
-                        'assets/images/aspirin.jpg',
-                        width: 600.0,
-                        height: 240.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    Text(
+                        '${_loadedPhotos[index]["building"]}, ${_loadedPhotos[index]["street"]}'),
+                    Text('${_loadedPhotos[index]["district"]}'),
+                    Text('${_loadedPhotos[index]["locality"]}'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
                           icon: const Icon(
-                            Icons.remove_red_eye_outlined,
+                            Icons.location_on,
                             color: Colors.blue,
                           ),
                           style: ElevatedButton.styleFrom(
@@ -145,7 +155,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             MapUtils.openMap(-55.42657, -93.39159);
                           },
                           label: const Text(
-                            'View',
+                            'Maps',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,
@@ -161,7 +171,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            print("test");
+                            MapUtils.openDialer('${_loadedPhotos[index]["phone"]}');
                           },
                           label: const Text(
                             'Call',
@@ -199,7 +209,6 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
           ),
         ),
       ],
-    )
-    );
+    ));
   }
 }
