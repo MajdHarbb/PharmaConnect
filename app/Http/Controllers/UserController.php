@@ -86,4 +86,70 @@ class UserController extends Controller
             'message' => 'Image updated successfully',
         ], 201);
     }
+
+    public function updateName(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'password' => 'required|string|confirmed|min:6',]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        
+        $data=$request->all();
+
+        $user_id=$data['user_id'];
+        $user_name=$data['name'];
+
+        Info::where('id', $user_id)->update(['name' => $user_name]);
+        
+        return response()->json([
+            'message' => 'Name updated successfully',
+        ], 201);
+    }
+
+    public function updatePassword(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            //'name' => 'required|string|between:2,100',
+            'password' => 'required|string|confirmed|min:6',]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        
+        $data=$request->all();
+
+        $user_id=$data['user_id'];
+        $user_name=$data['name'];
+
+        Info::where('id', $user_id)->update(['name' => $user_name]);
+        
+        return response()->json([
+            'message' => 'Name updated successfully',
+        ], 201);
+    }
+
+    public function updatePhone(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required|regex:/[0-9]{8}/',
+            'password' => 'required|string|confirmed|min:6',]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        
+        $data=$request->all();
+
+        $user_id=$data['user_id'];
+        $phone=$data['phone'];
+
+        Info::where('id', $user_id)->update(['phone' => $phone]);
+        
+        return response()->json([
+            'message' => 'Phone updated successfully',
+        ], 201);
+    }
 }
