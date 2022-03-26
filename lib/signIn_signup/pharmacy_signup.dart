@@ -157,10 +157,12 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                     padding: const EdgeInsets.symmetric( vertical: 8),
                     child: TextFormField(
                       controller: passController,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Enter your password',
                         prefixIcon: Icon(Icons.password_rounded),
+                        
                       ),
                     ),
                   ),
@@ -168,6 +170,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                     padding: const EdgeInsets.symmetric( vertical: 8),
                     child: TextFormField(
                       controller: passConfirmController,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Enter your password again',
