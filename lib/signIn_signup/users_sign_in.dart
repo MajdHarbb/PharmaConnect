@@ -115,9 +115,8 @@ class _SignInUserState extends State<SignInUser> {
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.all(8.0),
-            child:
-                (_futureAlbum == null) ? buildColumn() : buildFutureBuilder(),
+            padding: const EdgeInsets.all(25.0),
+            child: buildColumn(),
           ),
         ),
       );
@@ -125,11 +124,23 @@ class _SignInUserState extends State<SignInUser> {
 
   Column buildColumn() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+
+      
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        const Text(
+                  'Sign In with Email',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 1,
+                     ),
+            ),
+            SizedBox(height: 25.00,),
         TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email_rounded),
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                   ),
@@ -137,23 +148,20 @@ class _SignInUserState extends State<SignInUser> {
         const SizedBox(height: 10),
         TextFormField(
                   controller: passController,
+                  obscureText: true,
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.password_rounded),
                     border: OutlineInputBorder(),
-                    labelText: 'Email',
+                    labelText: 'Password',
                   ),
                 ),
+        SizedBox(height: 20,),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+          
+          minimumSize: const Size.fromHeight(45), 
+        ),
           onPressed: () async {
-            //   setState(() {
-            //     _futureAlbum = createAlbum(emailController.text, passController.text);
-
-            //   Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const PatientMain()),
-            // );
-            //     // Save an integer value to 'counter' key.
-
-            //   });
             final prefs = await SharedPreferences.getInstance();
             final response = await http.post(
               Uri.parse('http://192.168.0.117:8000/api/auth/login'),
@@ -196,6 +204,7 @@ class _SignInUserState extends State<SignInUser> {
                   context,
                   MaterialPageRoute(builder: (context) => const PatientMain()),
                 );
+                
               } else {
                 Navigator.push(
                   context,
@@ -210,7 +219,7 @@ class _SignInUserState extends State<SignInUser> {
               print(response.body);
             }
           },
-          child: const Text('Create Data'),
+          child: const Text('Sign In'),
         ),
       ],
     );
