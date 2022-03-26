@@ -506,15 +506,15 @@ class _ExpansiontileState extends State<Expansiontile> {
   }
 
 
-  Future<void> updatePassword() async {
+  Future<void> updatePhone() async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
+      Uri.parse('http://192.168.0.117:8000/api/user/update-phone'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
         'user_id': user_id,
-        'name': nameController.text,
+        'phone': phoneController.text,
         'password': passController.text,
         'password_confirmation': passConfirmController.text,
       },
@@ -526,7 +526,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Name Successfully Updated!'),
+                        title: const Text('Phone Successfully Updated!'),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
@@ -540,11 +540,13 @@ class _ExpansiontileState extends State<Expansiontile> {
       
       print(response.body);
       print("===========> done");
-    } else {
+    } 
+    else {
+      
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Wrong Password!'),
+                        title:  Text(response.body),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
@@ -559,15 +561,15 @@ class _ExpansiontileState extends State<Expansiontile> {
     }
   }
 
-  Future<void> updatePhone() async {
+  Future<void> updatePassword() async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
+      Uri.parse('http://192.168.0.117:8000/api/user/update-password'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
         'user_id': user_id,
-        'name': nameController.text,
+        'phone': phoneController.text,
         'password': passController.text,
         'password_confirmation': passConfirmController.text,
       },
@@ -579,7 +581,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Name Successfully Updated!'),
+                        title: const Text('Phone Successfully Updated!'),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
@@ -593,11 +595,13 @@ class _ExpansiontileState extends State<Expansiontile> {
       
       print(response.body);
       print("===========> done");
-    } else {
+    } 
+    else {
+      
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Wrong Password!'),
+                        title:  Text(response.body),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
