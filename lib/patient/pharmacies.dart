@@ -181,7 +181,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                         ),
                         ElevatedButton.icon(
                           icon: const Icon(
-                            Icons.share,
+                            Icons.email_rounded,
                             color: Colors.blue,
                           ),
                           style: ElevatedButton.styleFrom(
@@ -190,10 +190,10 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            print("test");
+                            MapUtils.openMail('${_loadedPhotos[index]["email"]}');
                           },
                           label: const Text(
-                            'Share',
+                            'Email',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,

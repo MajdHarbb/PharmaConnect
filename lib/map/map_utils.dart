@@ -21,4 +21,15 @@ class MapUtils {
       throw 'Unable to open dialer';
     }
   }
+
+  static Future<void> openMail(String email) async {
+    String emailUrl = 'mailto:$email?subject=Searching for medicine:';
+    if(await canLaunch(emailUrl)){
+      await launch(emailUrl);
+    }else{
+      throw 'Unable to open dialer';
+    }
+  }
+
+
 }
