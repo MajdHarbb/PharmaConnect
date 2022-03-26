@@ -34,19 +34,20 @@ class _PatientProfileState extends State<PatientProfile> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String? stringValue = prefs.getString('accesToken');
-
+    print("======== acces $stringValue");
     setState(() {
       user_id = prefs.getString('id')!;
       user_name = prefs.getString('name')!;
       user_email = prefs.getString('email')!;
       user_phone = prefs.getString('phone')!;
-      access_Token = prefs.getString('access_Token')!;
       user_profile_picture = prefs.getString('profile_pic')!;
+      access_Token = prefs.getString('accesToken')!;
+      
     });
 
 
   }
-    @override
+  @override
   initState() {
     super.initState();
     print(
@@ -80,7 +81,7 @@ class _PatientProfileState extends State<PatientProfile> {
   }
     Future<void> updateProfilePicture() async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
+      Uri.parse('http://192.168.0.117:8000/api/user/update-profile-picture'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
@@ -104,7 +105,10 @@ class _PatientProfileState extends State<PatientProfile> {
   }
   @override
   Widget build(BuildContext context) {
-    
+    print(user_profile_picture);
+    print("==========access");
+    print(access_Token);
+    print("==============");
     return Scaffold(
         appBar: AppBar(
           title: const Text('Profile'),
@@ -175,12 +179,10 @@ class _PatientProfileState extends State<PatientProfile> {
                       ],
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.more_horiz),
-                    onPressed: () {
-                      print('more');
-                    },
-                  )
+                  TextButton.icon(onPressed: (){
+                    
+                  }, icon: const Icon(Icons.upload),label: const Text("Upload")),
+                  
                 ],
               ),
             ),
