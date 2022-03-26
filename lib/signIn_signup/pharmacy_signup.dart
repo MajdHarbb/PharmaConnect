@@ -318,14 +318,21 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       onLongPress: _addMarker,
                     ),
                   ),
-
+                  const SizedBox(height: 20,),
+                const Text(
+                    'Upload an image of your pharmacy`s license',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                ),
+              ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: image != null
                               ? ClipOval(
                                   child: Image.file(
@@ -334,13 +341,14 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                                     width: 50,
                                   ),
                                 )
-                              : const FlutterLogo(size: 50),
+                              :   const Text('No image selected yet',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(fontSize: 12,color: Colors.grey,),),
                         ),
                       ),
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: ElevatedButton.icon(
                             icon: const Icon(
                               Icons.image_outlined,
@@ -348,7 +356,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               size: 24.0,
                             ),
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(50, 40),
+                              minimumSize: const Size(100.0, 40),
                               primary: Colors.white,
                             ),
 
@@ -356,8 +364,9 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               pickImage();
                             },
                             label: const Text(
-                              'Add License Image',
+                              'Upload License',
                               style: TextStyle(color: Colors.black),
+                              
                             ),
                             //controller: streetController,
                           ),
