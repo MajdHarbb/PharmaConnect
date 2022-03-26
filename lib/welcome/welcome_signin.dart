@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/models/testmodel.dart';
+import 'package:pharmaconnectflutter/signIn_signup/users_sign_up.dart';
 import 'package:pharmaconnectflutter/welcome/patient_or_pharmacy.dart';
 
 class WelcomeSignIn extends StatelessWidget {
@@ -35,7 +35,7 @@ class WelcomeSignIn extends StatelessWidget {
                   
                 );
 
-                }, child:  const Text('Sign In'),
+                }, child:  const Text('Sign Up'),
                 autofocus: true,
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(240, 40),
@@ -45,10 +45,10 @@ class WelcomeSignIn extends StatelessWidget {
                 ElevatedButton(onPressed: (){
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SignUptest()),
+                  MaterialPageRoute(builder: (context) => const SignInUser()),
                 );
 
-                }, child:  const Text('Sign Up'),
+                }, child:  const Text('Sign In'),
                 autofocus: true,
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(240, 40),

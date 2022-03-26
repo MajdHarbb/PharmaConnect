@@ -24,7 +24,7 @@ class PatientOrPharmacy extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const PatientSignIn()),
+              MaterialPageRoute(builder: (context) => const PatientSignUp()),
             );
 
             }, child:  const Text('Sign Up As A Patient'),),

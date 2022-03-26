@@ -3,20 +3,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:pharmaconnectflutter/models/testmodel.dart';
+import 'package:pharmaconnectflutter/signIn_signup/users_sign_up.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
-class PatientSignIn extends StatefulWidget {
-  const PatientSignIn({Key? key}) : super(key: key);
+class PatientSignUp extends StatefulWidget {
+  const PatientSignUp({Key? key}) : super(key: key);
 
   @override
-  State<PatientSignIn> createState() => _PatientSignInState();
+  State<PatientSignUp> createState() => _PatientSignUpState();
 }
 
-class _PatientSignInState extends State<PatientSignIn> {
+class _PatientSignUpState extends State<PatientSignUp> {
   File? image;
   late String base64_img;
   String imagePath = '';
@@ -190,7 +190,7 @@ class _PatientSignInState extends State<PatientSignIn> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SignUptest()),
+                          builder: (context) => const SignInUser()),
                     );
                     print(response.body);
                   } else {

@@ -92,19 +92,19 @@ class Album {
 }
 
 void main() {
-  runApp(const SignUptest());
+  runApp(const SignInUser());
 }
 
-class SignUptest extends StatefulWidget {
-  const SignUptest({Key? key}) : super(key: key);
+class SignInUser extends StatefulWidget {
+  const SignInUser({Key? key}) : super(key: key);
 
   @override
-  _SignUptestState createState() {
-    return _SignUptestState();
+  _SignInUserState createState() {
+    return _SignInUserState();
   }
 }
 
-class _SignUptestState extends State<SignUptest> {
+class _SignInUserState extends State<SignInUser> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
