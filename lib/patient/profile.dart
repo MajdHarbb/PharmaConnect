@@ -40,6 +40,7 @@ class _PatientProfileState extends State<PatientProfile> {
       user_name = prefs.getString('name')!;
       user_email = prefs.getString('email')!;
       user_phone = prefs.getString('phone')!;
+      access_Token = prefs.getString('access_Token')!;
       user_profile_picture = prefs.getString('profile_pic')!;
     });
 
@@ -75,6 +76,30 @@ class _PatientProfileState extends State<PatientProfile> {
       });
     } on Exception catch (e) {
       print('Failed to capture image: $e');
+    }
+  }
+    Future<void> updateProfilePicture() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        'profile_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done");
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
     }
   }
   @override
@@ -335,5 +360,9 @@ class _PatientProfileState extends State<PatientProfile> {
                   // ),
                   ),
         ));
+
+
+  
   }
+  
 }
