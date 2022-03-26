@@ -5,6 +5,7 @@ import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:pharmaconnectflutter/patient/search.dart';
+import 'package:pharmaconnectflutter/pharmacy/home.dart';
 
 class TabNavigatorRoutes {
   static const String root = '/';
@@ -22,7 +23,10 @@ class TabNavigator extends StatelessWidget {
     late Widget child ;
     if(tabItem == "PatientHome") {
       child = const PatientHome();
-    } else if(tabItem == "PatientPharmacies") {
+    } else if(tabItem == "PharmacyHome") {
+      child = const PharmacyHome();
+    }
+    else if(tabItem == "PatientPharmacies") {
       child = const PatientPharmacies();
     } else if(tabItem == "PatientSearch") {
       child = const PatientSearch();

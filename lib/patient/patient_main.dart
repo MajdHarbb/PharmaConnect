@@ -56,7 +56,7 @@ class _PatientMainState extends State<PatientMain> {
             !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
         if (isFirstRouteInCurrentTab) {
           if (_currentPage != "PatientHome") {
-            _selectTab("PatientHome", 1);
+            _selectTab("PatientHome", 0);
 
             return false;
           }

@@ -437,7 +437,52 @@ class _ExpansiontileState extends State<Expansiontile> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
-                                  onPressed: () {}, child: Text('save')),
+                                  onPressed: () {
+                                      if(newpassContoller.text == "" || passController.text == "" || passConfirmController.text == ""){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Enter your password'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                      }else{
+                                        if(newpassContoller.text.length <= 8){
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Password must be at least 6 characters and include a number'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                        }
+                                        if(passController.text!=passConfirmController.text){
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                      content: const Text('Passwords did not match!'),
+                                                      action: SnackBarAction(
+                                                        label: 'OK',
+                                                        onPressed: () {
+                                                          // Code to execute.
+                                                        },
+                                                      ),
+                                                    ),
+                                            );
+                                            
+                                        }
+                                        else{
+                                          updatePassword();
+                                        }
+                                      }
+                                  }, child: Text('save')),
                             ],
                           ),
                         ],
@@ -569,9 +614,10 @@ class _ExpansiontileState extends State<Expansiontile> {
       },
       body: {
         'user_id': user_id,
-        'phone': phoneController.text,
+        
         'password': passController.text,
         'password_confirmation': passConfirmController.text,
+        'new_password': newpassContoller.text,
       },
     );
 
@@ -581,7 +627,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Phone Successfully Updated!'),
+                        title: const Text('Password Successfully Updated!'),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
