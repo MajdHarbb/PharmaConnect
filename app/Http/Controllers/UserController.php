@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pharmacie;
 use Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -102,33 +103,22 @@ class UserController extends Controller
         $user_id=$data['user_id'];
         $user_name=$data['name'];
 
-        Info::where('id', $user_id)->update(['name' => $user_name]);
-        
-        return response()->json([
-            'message' => 'Name updated successfully',
-        ], 201);
-    }
+        $password = $data["password"];
 
-    public function updatePassword(Request $request){
-
-        $validator = Validator::make($request->all(), [
-            //'name' => 'required|string|between:2,100',
-            'password' => 'required|string|confirmed|min:6',]);
-
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        $passdatabase = User::where('id', $user_id)->value('password'); 
+        if(Hash::check($password,$passdatabase)){
+            Info::where('id', $user_id)->update(['name' => $user_name]);
+            return response()->json([
+                'message' => 'Name updated successfully',
+            ], 201);
+        }else{
+            return response()->json([
+                'message' => 'Wrong Pasword',
+            ], 400);
         }
         
-        $data=$request->all();
-
-        $user_id=$data['user_id'];
-        $user_name=$data['name'];
-
-        Info::where('id', $user_id)->update(['name' => $user_name]);
         
-        return response()->json([
-            'message' => 'Name updated successfully',
-        ], 201);
+        
     }
 
     public function updatePhone(Request $request){
@@ -145,11 +135,58 @@ class UserController extends Controller
 
         $user_id=$data['user_id'];
         $phone=$data['phone'];
+        $password = $data['password'];
+        $passdatabase = User::where('id', $user_id)->value('password'); 
+        if(Hash::check($password,$passdatabase)){
+            
+            if (info::where('phone', '=', $phone)->exists()) {
+                return response()->json([
+                    'message' => 'Phone already exists',
+                ], 400);
+            }else{
+                Info::where('id', $user_id)->update(['phone' => $phone]);
+            return response()->json([
+                'message' => 'Phone updated successfully',
+            ], 201);
+            }
 
-        Info::where('id', $user_id)->update(['phone' => $phone]);
+        }else{
+            return response()->json([
+                'message' => 'Wrong Pasword',
+            ], 400);
+        }
         
-        return response()->json([
-            'message' => 'Phone updated successfully',
-        ], 201);
     }
+
+    public function updatePassword(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'new_password' => 'required|string|min:6',
+            'password' => 'required|string|confirmed|min:6',]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        
+        $data=$request->all();
+
+        $user_id=$data['user_id'];
+        $password = $data["password"];
+        $new_password=$data['new_password'];
+
+        $passdatabase = User::where('id', $user_id)->value('password'); 
+        if(Hash::check($password,$passdatabase)){
+            User::where('id', $user_id)->update(['password' => bcrypt($new_password)]);
+            return response()->json([
+                'message' => 'Password updated successfully',
+            ], 201);
+        }else{
+            return response()->json([
+                'message' => 'Wrong Pasword',
+            ], 400);
+        }
+
+    }
+
+    
 }

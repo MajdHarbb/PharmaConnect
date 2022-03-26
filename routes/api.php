@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('update-profile-picture');
         Route::post('/update-name', [UserController::class, 'updateName'])->name('update-name');
         Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update-phone');
-
+        Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update-password');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');  
     });
     
