@@ -89,6 +89,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -99,17 +100,28 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  const SizedBox(height: 40,),
                   const Text(
                     'Sign Up with Email',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20,
+                    ),
+                ),
+                const SizedBox(height: 20,),
+                const Text(
+                    'Enter your personal information',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
                 ),
               ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
+                    
                     child: TextFormField(
                       controller: nameController,
                       decoration: const InputDecoration(
@@ -163,6 +175,14 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       ),
                     ),
                   ),
+                const Text(
+                    'Enter your address information',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                ),
+              ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -272,6 +292,33 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       ),
                     ],
                   ),
+                  const Text(
+                    'Enter your precise location: press and hold on the map to choose your location',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 600.0,
+                    child: GoogleMap(
+                      myLocationButtonEnabled: true,
+                      scrollGesturesEnabled: true,
+                      myLocationEnabled: true,
+                      tiltGesturesEnabled: true,
+                      initialCameraPosition: _initialCameraPoition,
+                      // onMapCreated: (mapController) {
+                      //   mapController
+                      //       .showMarkerInfoWindow(const MarkerId("origin"));
+                      // },
+
+                      //markers: Set<Marker>.of(_markers),
+                      markers: {_origin},
+                      onLongPress: _addMarker,
+                    ),
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -317,24 +364,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 600.0,
-                    child: GoogleMap(
-                      myLocationButtonEnabled: true,
-                      scrollGesturesEnabled: true,
-                      myLocationEnabled: true,
-                      tiltGesturesEnabled: true,
-                      initialCameraPosition: _initialCameraPoition,
-                      // onMapCreated: (mapController) {
-                      //   mapController
-                      //       .showMarkerInfoWindow(const MarkerId("origin"));
-                      // },
-
-                      //markers: Set<Marker>.of(_markers),
-                      markers: {_origin},
-                      onLongPress: _addMarker,
-                    ),
                   ),
                   ElevatedButton(
                     onPressed: () async {
