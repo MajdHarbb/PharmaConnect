@@ -27,7 +27,7 @@ class _PatientHomeState extends State<PatientHome> {
   final TextEditingController passConfirmController = TextEditingController();
   final TextEditingController postTextController = TextEditingController();
   String test = '';
-  String user_id = "";
+  late String user_id = "";
   String user_type = "";
   String access_Token = "";
   String extension = "";
@@ -240,7 +240,7 @@ class _PatientHomeState extends State<PatientHome> {
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
                           backgroundImage:
-                              const AssetImage(r'C:/Users/User/Desktop/FSW/Final Project/PharmaConnect/storage/app/public/posts_pictures/33.jpeg'),
+                               AssetImage('assets/profiles/$user_profile_picture'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
