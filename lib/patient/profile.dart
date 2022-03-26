@@ -134,9 +134,26 @@ class _PatientProfileState extends State<PatientProfile> {
           padding: const EdgeInsets.all(8.0),
           //color: Colors.blue,
           child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+            
+            children: [
             Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
@@ -220,8 +237,23 @@ class _PatientProfileState extends State<PatientProfile> {
             ),
             const SizedBox(height: 8.0),
             Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.all(8.0),
-              color: Colors.white,
               child: Row(children: [
                 Icon(
                   Icons.person,
@@ -263,8 +295,23 @@ class _PatientProfileState extends State<PatientProfile> {
             ),
             const SizedBox(height: 8.0),
             Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.all(8.0),
-              color: Colors.white,
               child: Row(children: [
                 Icon(
                   Icons.logout_outlined,
@@ -304,8 +351,23 @@ class _PatientProfileState extends State<PatientProfile> {
             ),
             const SizedBox(height: 8.0),
             Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.all(8.0),
-              color: Colors.white,
               child: Row(children: [
                 Icon(
                   Icons.favorite_outline_rounded,
@@ -345,8 +407,23 @@ class _PatientProfileState extends State<PatientProfile> {
             ),
             const SizedBox(height: 8.0),
             Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.all(8.0),
-              color: Colors.white,
               child: Row(children: [
                 Icon(
                   Icons.message_outlined,

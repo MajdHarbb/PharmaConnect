@@ -7,14 +7,14 @@ import 'dart:async';
 import 'dart:convert'; // for using json.decode()
 
 
-class Browse extends StatefulWidget {
-  const Browse({Key? key}) : super(key: key);
+class Notifications extends StatefulWidget {
+  const Notifications({Key? key}) : super(key: key);
 
   @override
-  _BrowseState createState() => _BrowseState();
+  _NotificationsState createState() => _NotificationsState();
 }
 
-class _BrowseState extends State<Browse> {
+class _NotificationsState extends State<Notifications> {
   // The list that contains information about photos
   List _loadedPhotos = [];
   String access_Token = "";

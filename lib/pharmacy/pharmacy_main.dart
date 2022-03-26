@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/patient/browse.dart';
+import 'package:pharmaconnectflutter/patient/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
@@ -17,10 +17,10 @@ class PharmacyMain extends StatefulWidget {
 
 class _PharmacyMainState extends State<PharmacyMain> {
   String _currentPage = "PharmacyHome";
-  List<String> pageKeys = ["PharmacyHome", "Browse", "PatientProfile"];
+  List<String> pageKeys = ["PharmacyHome", "Notifications", "PatientProfile"];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "PharmacyHome": GlobalKey<NavigatorState>(),
-    "Browse": GlobalKey<NavigatorState>(),
+    "Notifications": GlobalKey<NavigatorState>(),
     "PatientProfile": GlobalKey<NavigatorState>(),
   };
   int _selectedIndex = 0;
@@ -44,7 +44,7 @@ class _PharmacyMainState extends State<PharmacyMain> {
     const PharmacyHome(),
     const PatientPharmacies(),
     const PatientSearch(),
-    const Browse(),
+    const Notifications(),
     const PatientProfile(),
   ];
   @override
@@ -67,7 +67,7 @@ class _PharmacyMainState extends State<PharmacyMain> {
         body: Stack(
           children:<Widget>[
             _buildOffstageNavigator("PharmacyHome"),
-            _buildOffstageNavigator("Browse"),
+            _buildOffstageNavigator("Notifications"),
             _buildOffstageNavigator("PatientProfile"),
           ]
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/patient/browse.dart';
+import 'package:pharmaconnectflutter/patient/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
@@ -16,12 +16,12 @@ class PatientMain extends StatefulWidget {
 
 class _PatientMainState extends State<PatientMain> {
   String _currentPage = "PatientHome";
-  List<String> pageKeys = ["PatientHome", "PatientPharmacies", "PatientSearch", "Browse", "PatientProfile"];
+  List<String> pageKeys = ["PatientHome", "PatientPharmacies", "PatientSearch", "Notifications", "PatientProfile"];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "PatientHome": GlobalKey<NavigatorState>(),
     "PatientPharmacies": GlobalKey<NavigatorState>(),
     "PatientSearch": GlobalKey<NavigatorState>(),
-    "Browse": GlobalKey<NavigatorState>(),
+    "Notifications": GlobalKey<NavigatorState>(),
     "PatientProfile": GlobalKey<NavigatorState>(),
   };
   int _selectedIndex = 0;
@@ -45,7 +45,7 @@ class _PatientMainState extends State<PatientMain> {
     const PatientHome(),
     const PatientPharmacies(),
     const PatientSearch(),
-    const Browse(),
+    const Notifications(),
     const PatientProfile(),
   ];
   @override
@@ -70,7 +70,7 @@ class _PatientMainState extends State<PatientMain> {
             _buildOffstageNavigator("PatientHome"),
             _buildOffstageNavigator("PatientPharmacies"),
             _buildOffstageNavigator("PatientSearch"),
-            _buildOffstageNavigator("Browse"),
+            _buildOffstageNavigator("Notifications"),
             _buildOffstageNavigator("PatientProfile"),
           ]
         ),

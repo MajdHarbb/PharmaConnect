@@ -55,6 +55,21 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Posted! You will get a reply soon from a pharmacy.'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
