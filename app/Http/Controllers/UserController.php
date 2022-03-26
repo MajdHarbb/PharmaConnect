@@ -55,15 +55,38 @@ class UserController extends Controller
     }
 
     public function getAllPharmacies() {
-        //$pharmacies = Pharmacie::get();
         $pharmacies = Info::join('pharmacies','pharmacies.pharmacy_id','=','infos.user_id')
-                ->get();
+                    ->get();
 
-        
         return response()->json(
             $pharmacies,
-            // $test,
         );
+    }
+
+    public function getNotifications(Request $request) {
+        
+        $data=$request->all();
+        $user_id=$data["user_id"];
+        $notifications=Postfind::where('poster_id', '=', $user_id)->exists();
+        
+        if($notifications){
+            $posts = Postfind::join('posts', 'postfinds.post_id', '=', 'posts.id')
+            ->join('infos', 'infos.user_id', '=', 'postfinds.pharmacy_id')
+            ->join('pharmacies', 'postfinds.pharmacy_id', '=', 'pharmacies.pharmacy_id')
+            ->select('posts.*', 'postfinds.pharmacy_id', 'infos.name','infos.email','infos.phone','infos.profile_pic','pharmacies.building','pharmacies.street','pharmacies.district','pharmacies.locality','pharmacies.latitude','pharmacies.longitude')
+            ->where('postfinds.poster_id', '=', $user_id)
+            ->get();
+            return response()->json(
+                $posts,
+            );
+        }else{
+            return response()->json([
+                'user' => $info,
+            ], 201);
+        }
+
+        
+        
     }
 
     public function updateProfilePicture(Request $request){
@@ -187,6 +210,8 @@ class UserController extends Controller
         }
 
     }
+
+    
 
     
 }
