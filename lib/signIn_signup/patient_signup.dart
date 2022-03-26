@@ -131,52 +131,52 @@ class _PatientSignUpState extends State<PatientSignUp> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: image != null
-                            ? ClipOval(
-                                child: Image.file(
-                                  image!,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                              )
-                            : const FlutterLogo(size: 50),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 8),
-                        child: ElevatedButton.icon(
-                          icon: const Icon(
-                            Icons.image_outlined,
-                            color: Colors.blue,
-                            size: 24.0,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(50, 40),
-                            primary: Colors.white,
-                          ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: <Widget>[
+                //     Flexible(
+                //       child: Padding(
+                //         padding: const EdgeInsets.symmetric(vertical: 8),
+                //         child: image != null
+                //             ? ClipOval(
+                //                 child: Image.file(
+                //                   image!,
+                //                   height: 50,
+                //                   width: 50,
+                //                 ),
+                //               )
+                //             : const FlutterLogo(size: 50),
+                //       ),
+                //     ),
+                //     Flexible(
+                //       child: Padding(
+                //         padding: const EdgeInsets.symmetric(
+                //             horizontal: 8, vertical: 8),
+                //         child: ElevatedButton.icon(
+                //           icon: const Icon(
+                //             Icons.image_outlined,
+                //             color: Colors.blue,
+                //             size: 24.0,
+                //           ),
+                //           style: ElevatedButton.styleFrom(
+                //             minimumSize: const Size(50, 40),
+                //             primary: Colors.white,
+                //           ),
 
-                          onPressed: () {
-                            pickImage();
-                          },
-                          label: const Text(
-                            'Pick Image',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          //controller: streetController,
-                        ),
-                      ),
-                    ),
+                //           onPressed: () {
+                //             pickImage();
+                //           },
+                //           label: const Text(
+                //             'Pick Image',
+                //             style: TextStyle(color: Colors.black),
+                //           ),
+                //           //controller: streetController,
+                //         ),
+                //       ),
+                //     ),
                     
-                  ],
-                ),
+                //   ],
+                // ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45),),
                   onPressed: () async {
