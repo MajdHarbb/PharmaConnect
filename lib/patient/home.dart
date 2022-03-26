@@ -198,36 +198,22 @@ class _PatientHomeState extends State<PatientHome> {
     print(user_phone);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome Patient'),
+        title: Text('Hello $user_name!'),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+     
 
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             // const Text(
             //   'Welcome To PharmaConnect!',
             // ),
-            Text(user_id),
-            Text(user_type),
-            Text(access_Token),
-            Text(user_profile_picture),
+            // Text(user_id),
+            // Text(user_type),
+            // Text(access_Token),
+            // Text(user_profile_picture),
             Container(
               padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
               color: Colors.white,
@@ -246,8 +232,8 @@ class _PatientHomeState extends State<PatientHome> {
                         Expanded(
                           child: TextFormField(
                             controller: postTextController,
-                            decoration: const InputDecoration.collapsed(
-                                hintText: "What's on your mind?"),
+                            decoration: InputDecoration.collapsed(
+                                hintText: "Find your medicine, $user_name"),
                           ),
                         ),
                       ]),
@@ -267,7 +253,9 @@ class _PatientHomeState extends State<PatientHome> {
                                       width: 50,
                                     ),
                                   )
-                                : const FlutterLogo(size: 50),
+                                : const Text('No image selected yet',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(fontSize: 12,color: Colors.grey,),),
                           ),
                         ),
                         Flexible(
@@ -284,14 +272,12 @@ class _PatientHomeState extends State<PatientHome> {
                             ),
                           ),
                         ),
-                        TextButton.icon(
+                        TextButton(
                           onPressed: AddPost,
-                          label: const Text('Post'),
-                          icon: const Icon(
-                            Icons.send,
-                            color: Colors.red,
-                          ),
+                          child: const Text('Post'),
+                          
                         ),
+                        Icon(Icons.send_rounded, color: Colors.blue,),
                       ]),
                 ],
               ),
