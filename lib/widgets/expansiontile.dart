@@ -104,8 +104,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                                 child: TextFormField(
                                   controller: nameController,
                                   decoration: const InputDecoration(
-                                      prefixIcon:
-                                          Icon(Icons.text_fields_rounded),
+                                      prefixIcon:Icon(Icons.text_fields_rounded),
                                       border: OutlineInputBorder(),
                                       hintText: "Enter your new name"),
                                 ),
@@ -117,6 +116,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.password_outlined,
@@ -132,6 +132,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passConfirmController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       prefixIcon: Icon(
@@ -175,20 +176,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                                             
                                         }
                                         else{
-                                          showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Profile Picture Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+                                          updateName();
                                         }
                                       }
                                   }, child: Text('save')),
@@ -263,6 +251,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.password_outlined,
@@ -278,6 +267,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passConfirmController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       prefixIcon: Icon(
@@ -350,6 +340,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: newpassContoller,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       prefixIcon:
                                           Icon(Icons.text_fields_rounded),
@@ -364,6 +355,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.password_outlined,
@@ -379,6 +371,7 @@ class _ExpansiontileState extends State<Expansiontile> {
                               Expanded(
                                 child: TextFormField(
                                   controller: passConfirmController,
+                                  obscureText: true,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       prefixIcon: Icon(
@@ -417,8 +410,8 @@ class _ExpansiontileState extends State<Expansiontile> {
       body: {
         'user_id': user_id,
         'name': nameController.text,
-        'password': passController,
-        'password_confirmation': passConfirmController,
+        'password': passController.text,
+        'password_confirmation': passConfirmController.text,
       },
     );
 
@@ -428,7 +421,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Profile Picture Updated!'),
+                        title: const Text('Name Successfully Updated!'),
                         content: const Text('Press okay to return to your screen'),
                         actions: <Widget>[
                          
@@ -443,8 +436,127 @@ class _ExpansiontileState extends State<Expansiontile> {
       print(response.body);
       print("===========> done");
     } else {
-      // If the server did not return a 201 CREATED response,
-      // then throw an exception.
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Wrong Password!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      print(response.body);
+    }
+  }
+
+
+  Future<void> updatePassword() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        'name': nameController.text,
+        'password': passController.text,
+        'password_confirmation': passConfirmController.text,
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Name Successfully Updated!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      
+      print(response.body);
+      print("===========> done");
+    } else {
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Wrong Password!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      print(response.body);
+    }
+  }
+
+  Future<void> updatePhone() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        'name': nameController.text,
+        'password': passController.text,
+        'password_confirmation': passConfirmController.text,
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Name Successfully Updated!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      
+      print(response.body);
+      print("===========> done");
+    } else {
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Wrong Password!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
       print(response.body);
     }
   }
