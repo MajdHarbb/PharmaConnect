@@ -11,6 +11,8 @@ use App\Models\Info;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pharmacie;
 use Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 
 
@@ -61,5 +63,27 @@ class UserController extends Controller
             $pharmacies,
             // $test,
         );
+    }
+
+    public function updateProfilePicture(Request $request){
+        $data=$request->all();
+        $user_id=$data['user_id'];
+        $image_64 = $data["profile_pic"];//your base64 encoded data
+
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf            $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        // find substring fro replace here eg: data:image/png;base64,
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        $image = str_replace($replace, '', $image_64); 
+        $image = str_replace(' ', '+', $image); 
+        $imageName = $user_id.'.'.$extension;
+
+            
+        Storage::disk('profile')->put($user_id.'.'.$extension, base64_decode($image));
+        Storage::disk('profileflutter')->put($user_id.'.'.$extension, base64_decode($image));
+        Info::where('id', $user_id)->update(['profile_pic' => $user_id.'.'.$extension]);
+        
+        return response()->json([
+            'message' => 'Image updated successfully',
+        ], 201);
     }
 }
