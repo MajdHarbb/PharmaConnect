@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmaconnectflutter/welcome/welcomepage.dart';
 
 
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color(0xFFE5E5E5)
+        scaffoldBackgroundColor: const Color(0xFFE5E5E5),
+        textTheme: GoogleFonts.nunitoTextTheme(
+          Theme.of(context).textTheme,
+          ),
       ),
       home: const WelcomePage(),
     );
