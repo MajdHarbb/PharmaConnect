@@ -91,10 +91,6 @@ class Album {
   }
 }
 
-void main() {
-  runApp(const SignInUser());
-}
-
 class SignInUser extends StatefulWidget {
   const SignInUser({Key? key}) : super(key: key);
 
@@ -112,14 +108,9 @@ class _SignInUserState extends State<SignInUser> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Create Data Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
-          title: const Text('Create Data Example'),
+          title: const Text('Login'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -129,25 +120,28 @@ class _SignInUserState extends State<SignInUser> {
                 (_futureAlbum == null) ? buildColumn() : buildFutureBuilder(),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Column buildColumn() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Enter Email here'),
-          controller: emailController,
-        ),
+        TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                ),
         const SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Enter password here'),
-          controller: passController,
-        ),
+        TextFormField(
+                  controller: passController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                ),
         ElevatedButton(
           onPressed: () async {
             //   setState(() {

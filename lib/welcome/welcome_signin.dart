@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaconnectflutter/signIn_signup/users_sign_up.dart';
+import 'package:pharmaconnectflutter/signIn_signup/users_sign_in.dart';
 import 'package:pharmaconnectflutter/welcome/patient_or_pharmacy.dart';
 
 class WelcomeSignIn extends StatelessWidget {
@@ -26,7 +26,7 @@ class WelcomeSignIn extends StatelessWidget {
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
-                Image.asset('assets/images/signup.png'),
+                Image.asset('assets/images/caringedit2.png'),
                 ElevatedButton(
                   onPressed: (){
                   Navigator.push(
