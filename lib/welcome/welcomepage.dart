@@ -9,7 +9,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only( left: 15.0, top: 50, right: 15.0, bottom: 40),
+          padding: const EdgeInsets.only( left: 15.0, top: 2, right: 15.0, bottom: 0.0),
           child: Center(
             
             child: Column(
@@ -34,7 +34,7 @@ class WelcomePage extends StatelessWidget {
                   ],
                 ),
                 const Text(
-                  'Welcome To PharmaConnect!',
+                  'PharmaConnect!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 35,
@@ -92,7 +92,7 @@ class WelcomePagetwo extends StatelessWidget {
      return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only( left: 15.0, top: 20, right: 15.0, bottom: 40),
+          padding: const EdgeInsets.only( left: 15.0, top: 2, right: 15.0, bottom: 15),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -115,7 +115,7 @@ class WelcomePagetwo extends StatelessWidget {
                   ],
                 ),
                 const Text(
-                  'Welcome To PharmaConnect!',
+                  'PharmaConnect!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 35,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/models/testmodel.dart';
-import 'package:pharmaconnectflutter/signIn_signup/signin.dart';
-import 'package:pharmaconnectflutter/signIn_signup/signup.dart';
 import 'package:pharmaconnectflutter/welcome/patient_or_pharmacy.dart';
 
 class WelcomeSignIn extends StatelessWidget {
@@ -10,62 +8,56 @@ class WelcomeSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome To PharmaConnect!'),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            // const Text(
-            //   'Welcome To PharmaConnect!',
-            // ),
-            Image.asset('assets/images/signup.png'),
-
-            // ElevatedButton(onPressed: (){
-            //   Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const SignIn()),
-            // );
-
-            // }, child:  const Text('Sign In'),),
-
-
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
-            );
-
-            }, child:  const Text('Sign In'),),
-
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignUptest()),
-            );
-
-            }, child:  const Text('Sign Up'),),
+      
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 80),
+          child: Center(
             
-          ],
+            child: Column(
+              
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text(
+                  'Welcome To PharmaConnect',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 35,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold),
+                ),
+                Image.asset('assets/images/signup.png'),
+                ElevatedButton(
+                  onPressed: (){
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
+                  
+                );
+
+                }, child:  const Text('Sign In'),
+                autofocus: true,
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(240, 40),
+                ),
+                ),
+
+                ElevatedButton(onPressed: (){
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUptest()),
+                );
+
+                }, child:  const Text('Sign Up'),
+                autofocus: true,
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(240, 40),
+                ),),
+
+                
+              ],
+            ),
+          ),
         ),
       ),
     );
