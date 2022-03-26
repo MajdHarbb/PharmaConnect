@@ -9,35 +9,48 @@ class PatientOrPharmacy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up!'),
+        title: const Text('Create PharmaConnect Acount'),
       ),
       body: Center(
 
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            Image.asset('assets/images/signup.png'),
-
-
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PatientSignUp()),
-            );
-
-            }, child:  const Text('Sign Up As A Patient'),),
-
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PharmacySignUp()),
-            );
-
-            }, child:  const Text('Sign Up As A Pharmacy'),),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+          child: Column(
             
-          ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              const Text(
+                    'Are You A Pharmacy Owner Or A Patient?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 30,
+                        letterSpacing: 1,
+                       ),
+              ),
+
+              Image.asset('assets/images/signup.png'),
+
+
+              ElevatedButton(
+                onPressed: (){
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PatientSignUp()),
+              );}, 
+              child:  const Text('Sign Up As A Patient'),
+              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(40),),
+              ),
+
+              ElevatedButton(onPressed: (){
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PharmacySignUp()),
+              );
+
+              }, child:  const Text('Sign Up As A Pharmacy'), style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(40),),),
+              
+            ],
+          ),
         ),
       ),
     );

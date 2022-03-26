@@ -221,6 +221,15 @@ class _SignInUserState extends State<SignInUser> {
           },
           child: const Text('Sign In'),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          
+          children: [
+            const Text("Don't have an account yet?"), 
+            TextButton(onPressed: (){}, child: const Text("Sign Up"), ),
+            const Icon(Icons.arrow_forward_ios_rounded,color: Colors.blue),
+          ],
+        )
       ],
     );
   }
