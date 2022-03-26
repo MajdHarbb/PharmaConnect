@@ -91,7 +91,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Pharmacy Sign Up!'),
+        title: const Text('Pharmacy Sign Up'),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -105,6 +105,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your name',
+                    prefixIcon: Icon(Icons.person),
                   ),
                 ),
               ),
@@ -115,6 +116,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your email',
+                    prefixIcon: Icon(Icons.email_rounded),
                   ),
                 ),
               ),
@@ -125,6 +127,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your phone number',
+                    prefixIcon: Icon(Icons.phone_android_rounded),
                   ),
                 ),
               ),
@@ -135,6 +138,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your password',
+                    prefixIcon: Icon(Icons.password_rounded),
                   ),
                 ),
               ),
@@ -145,6 +149,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your password again',
+                    prefixIcon: Icon(Icons.password_rounded),
                   ),
                 ),
               ),
@@ -153,8 +158,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                 children: <Widget>[
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       child: TextFormField(
                         controller: buildingController,
                         decoration: const InputDecoration(
