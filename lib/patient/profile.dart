@@ -1,5 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/user_options/common_functionalities/my_account.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart' as p;
+import 'package:image_picker/image_picker.dart';
 
 class PatientProfile extends StatefulWidget {
   const PatientProfile({Key? key}) : super(key: key);
@@ -9,8 +17,69 @@ class PatientProfile extends StatefulWidget {
 }
 
 class _PatientProfileState extends State<PatientProfile> {
+    late String user_id = "";
+    String user_type = "";
+    String access_Token = "";
+    String extension = "";
+    String user_name = "";
+    String user_email = "";
+    String user_phone = "";
+    String user_profile_picture = "";
+
+    File? image;
+  late String base64_img;
+  String imagePath = '';
+
+    getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String? stringValue = prefs.getString('accesToken');
+
+    setState(() {
+      user_id = prefs.getString('id')!;
+      user_name = prefs.getString('name')!;
+      user_email = prefs.getString('email')!;
+      user_phone = prefs.getString('phone')!;
+      user_profile_picture = prefs.getString('profile_pic')!;
+    });
+
+
+  }
+    @override
+  initState() {
+    super.initState();
+    print(
+        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
+    getStringValuesSF();
+  }
+
+    Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      imagePath = image.path;
+      print("---------------------->>>>>>>>-------------------");
+      print(image.path);
+      print("------------------------>>>>>>>>>>>>>>>>>");
+      base64_img = base64Encode(await image.readAsBytes());
+      String imageName = image.path.split("/").last;
+      extension = p.extension(imageName).substring(1);
+      print("extension : $extension");
+      print('image name $imageName');
+      print("baseeeeee $base64_img");
+      setState(() {
+        this.image = imageTemporary;
+        print("picked $imageTemporary");
+      });
+    } on Exception catch (e) {
+      print('Failed to capture image: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         appBar: AppBar(
           title: const Text('Profile'),
@@ -26,34 +95,56 @@ class _PatientProfileState extends State<PatientProfile> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.grey[200],
-                    //backgroundImage: NetworkImage("assets\images\test.jpg"),
+                  Stack(
+                      alignment: Alignment.bottomRight,
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 50.0,
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage:
+                                    AssetImage('assets/profiles/$user_profile_picture'),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius:BorderRadius.circular(100)
+                          ),
+                          child: image != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      image!,
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                  ) : IconButton(
+                              iconSize: 30,
+                              icon: const Icon(Icons.camera_alt_rounded),
+                              onPressed: () {
+                                pickImage();
+                              },
+                            ),
+                        )
+                      ],
                   ),
+                  
                   const SizedBox(width: 8.0),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Pharmacy Name",
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                         Text(user_name,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                         Row(
                           children: [
                             Text(
-                              "1 hour ago",
+                              "@: $user_email",
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12.0,
                               ),
                             ),
-                            Icon(
-                              Icons.public,
-                              color: Colors.grey[600],
-                              size: 12.0,
-                            )
+                            
                           ],
                         ),
                       ],

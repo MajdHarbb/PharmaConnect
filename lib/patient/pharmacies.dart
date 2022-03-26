@@ -45,6 +45,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
     });
   }
 
+  @override
   initState() {
     super.initState();
     print(
@@ -52,6 +53,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
     _fetchData();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
@@ -67,7 +69,6 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
           title: Text('Pharmacies'),
           floating: true,
         ),
-
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
@@ -193,7 +194,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             MapUtils.openMail('${_loadedPhotos[index]["email"]}');
                           },
                           label: const Text(
-                            'Email',
+                            'Share',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,
