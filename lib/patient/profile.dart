@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/user_options/common_functionalities/my_account.dart';
+import 'package:pharmaconnectflutter/widgets/alertdialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -94,7 +96,21 @@ class _PatientProfileState extends State<PatientProfile> {
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Profile Picture Updated!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      
       print(response.body);
       print("===========> done");
     } else {
@@ -180,6 +196,22 @@ class _PatientProfileState extends State<PatientProfile> {
                     ),
                   ),
                   TextButton.icon(onPressed: (){
+                    if (image == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text('Please select an image first!'),
+                          action: SnackBarAction(
+                            label: 'OK',
+                            onPressed: () {
+                              // Code to execute.
+                            },
+                          ),
+                        ),
+                      );
+                    } else {
+                      updateProfilePicture();
+                      
+                    }
                     
                   }, icon: const Icon(Icons.upload),label: const Text("Upload")),
                   
