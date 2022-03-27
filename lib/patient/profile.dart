@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/Common/contact_us.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
+import 'package:pharmaconnectflutter/signIn_signup/users_sign_in.dart';
 import 'package:pharmaconnectflutter/user_options/common_functionalities/my_account.dart';
 import 'package:pharmaconnectflutter/widgets/alertdialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -343,8 +345,12 @@ class _PatientProfileState extends State<PatientProfile> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
-                  onPressed: () {
-                    print('more');
+                  onPressed: () async {
+                    // SharedPreferences preferences = await SharedPreferences.getInstance();
+                    // await preferences.clear();
+                    // Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
+                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
+
                   },
                 )
               ]),
@@ -456,7 +462,9 @@ class _PatientProfileState extends State<PatientProfile> {
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
                   onPressed: () {
-                    print('more');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ContactUs()));
                   },
                 )
               ]),

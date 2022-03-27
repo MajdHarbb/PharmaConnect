@@ -19,7 +19,7 @@ class _PatientHomeState extends State<PatientHome> {
   File? image;
   late String base64_img;
   String imagePath = '';
-  
+  int count = 0;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -157,39 +157,39 @@ class _PatientHomeState extends State<PatientHome> {
   List _loadedPhotos = [];
 
   // The function that fetches data from the API
-  Future<void> myPosts() async {
-    String locid = user_id;
+  // Future<void> myPosts() async {
+  //   String locid = user_id;
 
-     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
-      headers: {
-        'Authorization': 'Bearer $access_Token',
-      },
-      body: {
-        'user_id': user_id,
-        // 'post_text': postTextController.text,
-        // 'post_pic': "data:image/$extension;base64,$base64_img",
-      },
-    );
-    final data = json.decode(response.body);
-    if (response.statusCode == 200) {
-      // If the server did return a 201 CREATED response,
-      // then parse the JSON.
+  //    final response = await http.post(
+  //     Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
+  //     headers: {
+  //       'Authorization': 'Bearer $access_Token',
+  //     },
+  //     body: {
+  //       'user_id': user_id,
+  //       // 'post_text': postTextController.text,
+  //       // 'post_pic': "data:image/$extension;base64,$base64_img",
+  //     },
+  //   );
+  //   final data = json.decode(response.body);
+  //   if (response.statusCode == 200) {
+  //     // If the server did return a 201 CREATED response,
+  //     // then parse the JSON.
 
-      print(response.body);
-      print("===========> done hh $data");
-      print("done hh ${response.body}");
-      print("done hh ${data[0][0]}");
-    } else {
-      // If the server did not return a 201 CREATED response,
-      // then throw an exception.
-      print("failed test${response.body}");
-    }
-    setState(() {
-      _loadedPhotos = data;
-      print("done hh${_loadedPhotos[0]['post_text']}");
-    });
-  }
+  //     print(response.body);
+  //     print("===========> done hh $data");
+  //     print("done hh ${response.body}");
+  //     print("done hh ${data[0][0]}");
+  //   } else {
+  //     // If the server did not return a 201 CREATED response,
+  //     // then throw an exception.
+  //     print("failed test${response.body}");
+  //   }
+  //   setState(() {
+  //     _loadedPhotos = data;
+  //     print("done hh${_loadedPhotos[0]['post_text']}");
+  //   });
+  // }
 
   int currentIndex = 0;
 
@@ -228,15 +228,21 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done hh");
+      setState(() {
+      _loadedPhotos = data;
+      count = _loadedPhotos.length;
+    });
       
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
       print("failed test${response.body}");
-    }
-    setState(() {
-      _loadedPhotos = data;
+      setState(() {
+      _loadedPhotos = ["no posts yet"];
+      count = 0;
     });
+    }
+    
 
 
     print(user_id);
@@ -269,124 +275,134 @@ class _PatientHomeState extends State<PatientHome> {
       appBar: AppBar(
         title: Text('Hello $user_name!'),
       ),
-      body: Center(
-        
-        child: Column(
+      body: SingleChildScrollView(
+        child: Center(
+          
+          child: Column(
      
 
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            
-            Container(
-              margin: const EdgeInsets.all(7),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-              padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
-              child: Column(
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: Colors.grey[200],
-                          backgroundImage:
-                               AssetImage('assets/profiles/$user_profile_picture'),
-                        ),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: TextFormField(
-                            controller: postTextController,
-                            decoration: InputDecoration.collapsed(
-                                hintText: "Find your medicine, $user_name"),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              
+              Container(
+                margin: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
+                child: Column(
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            radius: 30.0,
+                            backgroundColor: Colors.grey[200],
+                            backgroundImage:
+                                 AssetImage('assets/profiles/$user_profile_picture'),
                           ),
-                        ),
-                      ]),
-                  const Divider(height: 10.0, thickness: 0.1),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: image != null
-                                ? ClipOval(
-                                    child: Image.file(
-                                      image!,
-                                      height: 50,
-                                      width: 50,
-                                    ),
-                                  )
-                                : const Text('No image selected yet',
-                                textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 12,color: Colors.grey,),),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: TextFormField(
+                              controller: postTextController,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Find your medicine, $user_name"),
+                            ),
                           ),
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 8),
-                            child: TextButton.icon(
-                              onPressed: pickImage,
-                              label: const Text('Add Image'),
-                              icon: const Icon(
-                                Icons.photo,
-                                color: Colors.green,
+                        ]),
+                    const Divider(height: 10.0, thickness: 0.1),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: image != null
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        image!,
+                                        height: 50,
+                                        width: 50,
+                                      ),
+                                    )
+                                  : const Text('No image selected yet',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(fontSize: 12,color: Colors.grey,),),
+                            ),
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: TextButton.icon(
+                                onPressed: pickImage,
+                                label: const Text('Add Image'),
+                                icon: const Icon(
+                                  Icons.photo,
+                                  color: Colors.green,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: AddPost,
-                          child: const Text('Post'),
-                          
-                        ),
-                        Icon(Icons.send_rounded, color: Colors.blue,),
-                      ]),
-                ],
+                          TextButton(
+                            onPressed: AddPost,
+                            child: const Text('Post'),
+                            
+                          ),
+                          Icon(Icons.send_rounded, color: Colors.blue,),
+                        ]),
+                  ],
+                ),
               ),
-            ),
-            Column(
-              children: [
-                Text("My Posts: "),
-                ListView.builder(
-        itemBuilder: (BuildContext, index){
-          return Card(
-            child: ListTile(
-              leading: CircleAvatar(backgroundImage: AssetImage('assets/posts/${_loadedPhotos[index]["post_oic"]}'),),
-              title: Text(_loadedPhotos[index]["post_text"]),
-              subtitle: Text(_loadedPhotos[index]["updated_at"]),
-              trailing: const Icon(Icons.save),
-            ),
-          );
-        },
-        itemCount: _loadedPhotos.length,
-        shrinkWrap: true,
-        padding: EdgeInsets.all(5),
-        scrollDirection: Axis.vertical,
-      )
-              
+              Column(
                 
-              ]
-            ),
-          ],
+                children: [
+                  Text("My Posts: $count"),
+                  count !=0 ? 
+                  
+                  ListView.builder(
+                  itemBuilder: (BuildContext, index){
+                    return Card(
+              
+                    child: ListTile(
+                
+                leading: CircleAvatar(backgroundImage: AssetImage('assets/posts/${_loadedPhotos[index]["post_pic"]}'),),
+                title: TextFormField(
+                              controller: postTextController,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: _loadedPhotos[index]["post_text"]),
+                            ),
+                subtitle: Text(_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))),
+              ),
+            );
+          },
+          itemCount: _loadedPhotos.length,
+          shrinkWrap: true,
+          padding: EdgeInsets.all(5),
+          scrollDirection: Axis.vertical,
+        ) : Text("You don't have any posts yet, create a post"),
+                
+                  
+                ]
+              ),
+            ],
+            
+          ),
           
         ),
-        
       ),
     );
   }
