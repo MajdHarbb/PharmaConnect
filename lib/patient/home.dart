@@ -27,7 +27,7 @@ class _PatientHomeState extends State<PatientHome> {
   final TextEditingController passConfirmController = TextEditingController();
   final TextEditingController postTextController = TextEditingController();
   String test = '';
-  late String user_id = "";
+  String user_id = "";
   String user_type = "";
   String access_Token = "";
   String extension = "";
@@ -158,26 +158,37 @@ class _PatientHomeState extends State<PatientHome> {
 
   // The function that fetches data from the API
   Future<void> myPosts() async {
-    final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/my-posts'),
-      headers: {'Authorization': 'Bearer $access_Token',},
-      body: {'user_id': user_id,},);
+    String locid = user_id;
 
+     final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        // 'post_text': postTextController.text,
+        // 'post_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+    final data = json.decode(response.body);
     if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
 
       print(response.body);
-      print("===========> done");
-      
+      print("===========> done hh $data");
+      print("done hh ${response.body}");
+      print("done hh ${data[0][0]}");
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      print(response.body);
+      print("failed test${response.body}");
     }
-    // setState(() {
-    //   _loadedPhotos = data;
-    // });
+    setState(() {
+      _loadedPhotos = data;
+      print("done hh${_loadedPhotos[0]['post_text']}");
+    });
   }
 
   int currentIndex = 0;
@@ -199,9 +210,39 @@ class _PatientHomeState extends State<PatientHome> {
       user_type = prefs.getString('user_type')!;
       access_Token = prefs.getString('accesToken')!;
     });
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        // 'post_text': postTextController.text,
+        // 'post_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+    final data = json.decode(response.body);
+    if (response.statusCode == 200) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done hh");
+      
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print("failed test${response.body}");
+    }
+    setState(() {
+      _loadedPhotos = data;
+    });
+
 
     print(user_id);
     print(user_type);
+
+
   }
 
   @override
@@ -211,16 +252,19 @@ class _PatientHomeState extends State<PatientHome> {
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
     getUserInfo();
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    //myPosts();
     //initState();
     // _fetchData();
     print(user_name);
     print(user_id);
     print(user_email);
     print(user_phone);
+    print(_loadedPhotos);
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello $user_name!'),
