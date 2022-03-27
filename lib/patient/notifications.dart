@@ -173,7 +173,7 @@ class _NotificationsState extends State<Notifications> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMap(-55.42657, -93.39159);
+                            MapUtils.openMap(_loadedPhotos[index]["latitude"], _loadedPhotos[index]["longitude"]);
                           },
                           label: const Text(
                             'Maps',
@@ -192,7 +192,7 @@ class _NotificationsState extends State<Notifications> {
                           ),
 
                           onPressed: () {
-                            print("test");
+                            MapUtils.openDialer('${_loadedPhotos[index]["phone"]}');
                           },
                           label: const Text(
                             'Call',
@@ -211,7 +211,7 @@ class _NotificationsState extends State<Notifications> {
                           ),
 
                           onPressed: () {
-                            print("test");
+                            MapUtils.openMail('${_loadedPhotos[index]["email"]}');
                           },
                           label: const Text(
                             'Mail',

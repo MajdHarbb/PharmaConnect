@@ -153,7 +153,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMap(-55.42657, -93.39159);
+                            MapUtils.openMap(_loadedPhotos[index]["latitude"], _loadedPhotos[index]["longitude"]);
                           },
                           label: const Text(
                             'Maps',
