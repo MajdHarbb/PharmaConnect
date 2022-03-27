@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmaconnectflutter/map/map_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
+
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
 
@@ -14,10 +14,10 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   @override
-    // The list that contains information about photos
+  // The list that contains information about photos
   List _loadedPhotos = [];
   String access_Token = "";
-  String user_id="";
+  String user_id = "";
 
   // The function that fetches data from the API
   Future<void> _fetchData() async {
@@ -31,13 +31,13 @@ class _NotificationsState extends State<Notifications> {
     });
     const API_URL = 'http://192.168.0.117:8000/api/user/get-notifications';
 
-    final response = await http.post(Uri.parse(API_URL),
-    headers: {
+    final response = await http.post(
+      Uri.parse(API_URL),
+      headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
         'user_id': user_id,
-        
       },
     );
     final data = json.decode(response.body);
@@ -48,12 +48,14 @@ class _NotificationsState extends State<Notifications> {
       print(_loadedPhotos[1]["district"]);
     });
   }
+
   initState() {
     super.initState();
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     _fetchData();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
@@ -69,6 +71,7 @@ class _NotificationsState extends State<Notifications> {
           title: Text('Pharmacies'),
           floating: true,
         ),
+        
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
@@ -91,16 +94,18 @@ class _NotificationsState extends State<Notifications> {
                 ),
                 margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
+                child: 
+                
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
                       children: [
                         CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: Colors.grey[200],
-                          backgroundImage: AssetImage('assets/profiles/${_loadedPhotos[index]["profile_pic"]}')
-                        ),
+                            radius: 30.0,
+                            backgroundColor: Colors.grey[200],
+                            backgroundImage: AssetImage(
+                                'assets/profiles/${_loadedPhotos[index]["profile_pic"]}')),
                         const SizedBox(width: 8.0),
                         Expanded(
                           child: Column(
@@ -108,7 +113,8 @@ class _NotificationsState extends State<Notifications> {
                             children: [
                               Text(
                                 "${_loadedPhotos[index]["name"]}: Yes, it's available.",
-                                style: const TextStyle(fontWeight: FontWeight.w600),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
@@ -124,12 +130,10 @@ class _NotificationsState extends State<Notifications> {
                                       fontSize: 12.0,
                                     ),
                                   ),
-                                  
                                 ],
                               ),
                               Row(
                                 children: [
-
                                   Text(
                                     "${_loadedPhotos[index]["locality"]}, ${_loadedPhotos[index]["district"]}",
                                     style: TextStyle(
@@ -137,13 +141,11 @@ class _NotificationsState extends State<Notifications> {
                                       fontSize: 12.0,
                                     ),
                                   ),
-                                  
                                 ],
                               ),
                             ],
                           ),
                         ),
-                        
                       ],
                     ),
                     const SizedBox(height: 4.0),
@@ -162,7 +164,7 @@ class _NotificationsState extends State<Notifications> {
                       children: [
                         ElevatedButton.icon(
                           icon: const Icon(
-                            Icons.remove_red_eye_outlined,
+                            Icons.location_on,
                             color: Colors.blue,
                           ),
                           style: ElevatedButton.styleFrom(
@@ -174,7 +176,7 @@ class _NotificationsState extends State<Notifications> {
                             MapUtils.openMap(-55.42657, -93.39159);
                           },
                           label: const Text(
-                            'View',
+                            'Maps',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,
@@ -200,7 +202,7 @@ class _NotificationsState extends State<Notifications> {
                         ),
                         ElevatedButton.icon(
                           icon: const Icon(
-                            Icons.share,
+                            Icons.email_rounded,
                             color: Colors.blue,
                           ),
                           style: ElevatedButton.styleFrom(
@@ -212,7 +214,7 @@ class _NotificationsState extends State<Notifications> {
                             print("test");
                           },
                           label: const Text(
-                            'Share',
+                            'Mail',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,
@@ -227,7 +229,6 @@ class _NotificationsState extends State<Notifications> {
           ),
         ),
       ],
-    )
-    );
+    ));
   }
 }
