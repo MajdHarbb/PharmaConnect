@@ -45,7 +45,6 @@ class _NotificationsState extends State<Notifications> {
 
     setState(() {
       _loadedPhotos = data;
-      print(_loadedPhotos[1]["district"]);
     });
   }
 
@@ -56,15 +55,12 @@ class _NotificationsState extends State<Notifications> {
     _fetchData();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        // const SliverAppBar(
-        //   backgroundColor: Colors.amber,
-        //   title: Text('Kindacode.com'),
-        //   expandedHeight: 30,
-        //   collapsedHeight: 150,
+
         // ),
         const SliverAppBar(
           //backgroundColor: Colors.green,
@@ -75,7 +71,11 @@ class _NotificationsState extends State<Notifications> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
-              return Container(
+              
+              return 
+              _loadedPhotos.length ==0
+                                ? 
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.only(
@@ -223,7 +223,30 @@ class _NotificationsState extends State<Notifications> {
                     )
                   ],
                 ),
-              );
+              ) : 
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(8.0),
+                child: 
+                const Text("You don't have any notifications"),
+              ); 
+              
             },
             childCount: _loadedPhotos.length, // 1000 list items
           ),
