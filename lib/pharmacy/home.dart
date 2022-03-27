@@ -27,20 +27,18 @@ class _PharmacyHomeState extends State<PharmacyHome> {
       access_Token = prefs.getString('accesToken')!;
       user_id = prefs.getString('id')!;
     });
-    const API_URL = 'http://192.168.0.117:8000/api/user/get-posts';
 
     final response = await http.get(
-      Uri.parse('http://192.168.0.117:8000/api/user/get-posts?$user_id'),
+      Uri.parse('http://192.168.0.117:8000/api/pharmacy/get-unsolved-posts?$user_id'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
     );
     final data = json.decode(response.body);
-    print(data);
+    
 
     setState(() {
       _loadedPhotos = data;
-      print(_loadedPhotos[1]["name"]);
     });
   }
 

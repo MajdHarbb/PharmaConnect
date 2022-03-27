@@ -73,7 +73,7 @@ class _NotificationsState extends State<Notifications> {
             (context, int index) {
               
               return 
-              _loadedPhotos.length ==0
+              _loadedPhotos.length >= 1
                                 ? 
               Container(
                 decoration: BoxDecoration(
