@@ -55,12 +55,24 @@ class UserController extends Controller
     }
 
     public function getAllPharmacies() {
-        $pharmacies = Info::join('pharmacies','pharmacies.pharmacy_id','=','infos.user_id')
+        
+
+        if(Pharmacie::exists()){
+
+            $pharmacies = Info::join('pharmacies','pharmacies.pharmacy_id','=','infos.user_id')
                     ->get();
 
-        return response()->json(
-            $pharmacies,
-        );
+            return response()->json(
+                $pharmacies,
+            );
+        }else{
+            return response()->json(
+                "No Pharmacies yet",
+            );
+        }
+        
+
+        
     }
 
     public function getNotifications(Request $request) {
@@ -81,8 +93,8 @@ class UserController extends Controller
             );
         }else{
             return response()->json([
-                'user' => $info,
-            ], 201);
+                "No notifications yet",
+            ], 400);
         }
 
         

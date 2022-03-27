@@ -10,23 +10,25 @@ use App\Http\Controllers\PostfindsController;
 Route::group(['middleware' => ['auth:api']], function () {
 
     Route::group(['prefix' => 'user'], function () {
+
         Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
         Route::get('/info', [UserController::class, 'info'])->name('user-info');
         Route::get('/get-pharmacies', [UserController::class, 'getAllPharmacies'])->name('get-pharmacies');  
         Route::post('/addPost', [PostsController::class, 'addPost'])->name('addPost');
-        Route::get('/get-posts', [PostsController::class, 'getAllPosts'])->name('get-posts');
+        
         Route::post('/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('update-profile-picture');
         Route::post('/update-name', [UserController::class, 'updateName'])->name('update-name');
         Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update-phone');
         Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update-password');
         Route::post('/get-notifications', [UserController::class, 'getNotifications'])->name('get-notifications');
-        
+
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');  
     });
     
     Route::group(['middleware' => ['role.pharmacy']], function () {
         Route::group(['prefix' => 'pharmacy'], function () {
-            Route::get('/profile', [UserController::class, 'pharmacyprofile'])->name('pharmacy-profile');  
+            Route::get('/profile', [UserController::class, 'pharmacyprofile'])->name('pharmacy-profile'); 
+            Route::get('/get-unsolved-posts', [PostsController::class, 'getAllPosts'])->name('get-posts'); 
         });
     });
 
