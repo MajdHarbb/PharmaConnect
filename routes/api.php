@@ -22,7 +22,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update-password');
         Route::post('/get-notifications', [UserController::class, 'getNotifications'])->name('get-notifications');
 
-        Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');  
+        Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
+        Route::post('/my-posts', [PostsController::class, 'myPosts'])->name('my-posts');
     });
     
     Route::group(['middleware' => ['role.pharmacy']], function () {
@@ -34,12 +35,9 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     
     
-    Route::group(['prefix' => 'patient'], function () {
-         
-    });
     
     Route::group(['prefix' => 'admin'], function () {
-         
+
     });
 
     Route::group(['prefix' => 'auth'], function () {

@@ -25,7 +25,7 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->json($user);
     }
-
+    
     public function pharmacyprofile(Request $request) {
         // $user = Auth::user();
         // return response()->json($user);
