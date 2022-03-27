@@ -18,6 +18,7 @@ class _NotificationsState extends State<Notifications> {
   List _loadedPhotos = [];
   String access_Token = "";
   String user_id = "";
+  int count = 0;
 
   // The function that fetches data from the API
   Future<void> _fetchData() async {
@@ -42,10 +43,23 @@ class _NotificationsState extends State<Notifications> {
     );
     final data = json.decode(response.body);
     print(data);
+    if (response.statusCode == 200) {
+        setState(() {
+          count =1;
+        _loadedPhotos = data;
+        print("7alew 200 $count");
 
-    setState(() {
-      _loadedPhotos = data;
-    });
+      });
+    }else {
+      setState(() {
+        // _loadedPhotos.length = 0;
+        print("7alew in 400 $count");
+        count =0;
+        _loadedPhotos = ["no notifications yet"];
+        
+      });
+    }
+    
   }
 
   initState() {
@@ -53,6 +67,7 @@ class _NotificationsState extends State<Notifications> {
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     _fetchData();
+    print("hereeeeeeeeeeeeeeeeeeee $count");
   }
 
   @override
@@ -73,8 +88,7 @@ class _NotificationsState extends State<Notifications> {
             (context, int index) {
               
               return 
-              _loadedPhotos.length >= 1
-                                ? 
+              count !=0? 
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
