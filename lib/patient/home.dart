@@ -363,7 +363,23 @@ class _PatientHomeState extends State<PatientHome> {
             Column(
               children: [
                 Text("My Posts: "),
-                
+                ListView.builder(
+        itemBuilder: (BuildContext, index){
+          return Card(
+            child: ListTile(
+              leading: CircleAvatar(backgroundImage: AssetImage('assets/posts/${_loadedPhotos[index]["post_oic"]}'),),
+              title: Text(_loadedPhotos[index]["post_text"]),
+              subtitle: Text(_loadedPhotos[index]["updated_at"]),
+              trailing: const Icon(Icons.save),
+            ),
+          );
+        },
+        itemCount: _loadedPhotos.length,
+        shrinkWrap: true,
+        padding: EdgeInsets.all(5),
+        scrollDirection: Axis.vertical,
+      )
+              
                 
               ]
             ),
