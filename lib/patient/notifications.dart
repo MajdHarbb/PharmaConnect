@@ -42,18 +42,15 @@ class _NotificationsState extends State<Notifications> {
       },
     );
     final data = json.decode(response.body);
-    print(data);
     if (response.statusCode == 200) {
         setState(() {
           count =1;
         _loadedPhotos = data;
-        print("7alew 200 $count");
 
       });
     }else {
       setState(() {
         // _loadedPhotos.length = 0;
-        print("7alew in 400 $count");
         count =0;
         _loadedPhotos = ["no notifications yet"];
         

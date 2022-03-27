@@ -109,9 +109,7 @@ class _PatientHomeState extends State<PatientHome> {
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
-      // body: <String, String>{
-      //   'user_id': user_id,
-      // },
+
     );
 
     if (response.statusCode == 201) {
@@ -222,16 +220,26 @@ class _PatientHomeState extends State<PatientHome> {
 
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            // const Text(
-            //   'Welcome To PharmaConnect!',
-            // ),
-            // Text(user_id),
-            // Text(user_type),
-            // Text(access_Token),
-            // Text(user_profile_picture),
+            
             Container(
+              margin: const EdgeInsets.all(7),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
-              color: Colors.white,
               child: Column(
                 children: [
                   Row(
@@ -258,8 +266,7 @@ class _PatientHomeState extends State<PatientHome> {
                       children: [
                         Flexible(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 8),
                             child: image != null
                                 ? ClipOval(
                                     child: Image.file(
@@ -297,8 +304,17 @@ class _PatientHomeState extends State<PatientHome> {
                 ],
               ),
             ),
+            Column(
+              children: [
+                Text("My Posts: "),
+                
+                
+              ]
+            ),
           ],
+          
         ),
+        
       ),
     );
   }
