@@ -211,7 +211,7 @@ class _PatientHomeState extends State<PatientHome> {
       access_Token = prefs.getString('accesToken')!;
     });
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
+      Uri.parse('http://192.168.0.117:8000/api/user/my-posts'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },

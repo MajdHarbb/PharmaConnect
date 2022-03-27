@@ -14,6 +14,12 @@ class _ContactUsState extends State<ContactUs> {
       appBar: AppBar(
         title: Text('Contact Us, !'),
       ),
+      body:  
+      
+          Center(
+            
+          ),
+
     );
   }
 }

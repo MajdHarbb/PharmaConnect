@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/Common/about_us.dart';
 import 'package:pharmaconnectflutter/Common/contact_us.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/signIn_signup/users_sign_in.dart';
@@ -406,7 +407,9 @@ class _PatientProfileState extends State<PatientProfile> {
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
                   onPressed: () {
-                    print('more');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AboutUs()));
                   },
                 )
               ]),
