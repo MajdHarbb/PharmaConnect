@@ -157,12 +157,24 @@ class _PatientHomeState extends State<PatientHome> {
   List _loadedPhotos = [];
 
   // The function that fetches data from the API
-  Future<void> _fetchData() async {
-    const API_URL = 'https://jsonplaceholder.typicode.com/photos';
+  Future<void> myPosts() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/my-posts'),
+      headers: {'Authorization': 'Bearer $access_Token',},
+      body: {'user_id': user_id,},);
 
-    final response = await http.get(Uri.parse(API_URL));
-    final data = json.decode(response.body);
-    print("==============> albums");
+    if (response.statusCode == 200) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done");
+      
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
+    }
     // setState(() {
     //   _loadedPhotos = data;
     // });
