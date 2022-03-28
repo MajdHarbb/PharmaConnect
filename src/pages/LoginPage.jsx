@@ -79,7 +79,8 @@ const LoginPage = () => {
       "Content-Type": "application/json;charset=UTF-8",
     },
   };
-  async function fetchLoginApi() {
+  async function fetchLoginApi(e) {
+    //e.preventDefault();
     axios
       .post(
         `http://127.0.0.1:8000/api/auth/login-admin`,
