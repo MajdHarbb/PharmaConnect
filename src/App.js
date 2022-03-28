@@ -1,6 +1,6 @@
 
 import React from "react";
-import LandingPage from "./pages/LandingPage.js";
+import LandingPage from "./pages/LoggedIn/LandingPage.js";
 import LoginPage from "./pages/LoginPage.jsx";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 import ProtectedRoutes from "./pages/ProtectedRoutes.jsx";

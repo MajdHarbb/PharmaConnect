@@ -1,7 +1,8 @@
 import React from 'react';
-import SideBar from '../components/topbar/SideBar';
-import Topbar from '../components/topbar/Topbar';
-import "../css/LandingPage.css";
+import SideBar from '../../components/topbar/SideBar';
+import Topbar from '../../components/topbar/Topbar';
+import "../../css/LandingPage.css";
+import Home from './Home';
 const LandingPage = () => {
     return (
         <div>
@@ -9,9 +10,7 @@ const LandingPage = () => {
             <div className='container'>
                 <SideBar/>
                 
-                <div className='others'>
-                other pages
-                </div>
+                <Home/>
             </div>
             
         </div>
