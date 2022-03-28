@@ -8,6 +8,7 @@ import UserList from "./pages/LoggedIn/UserList.js";
 import Home from "./pages/LoggedIn/Home.js";
 import './css/LandingPage.css'
 import Topbar from "./components/topbar/Topbar.js";
+import User from "./pages/LoggedIn/User.js";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route exact path='/home' element={<LandingPage/>}>
                   <Route path='' element={<Home/>}/>
                   <Route path='users' element={<UserList/>}/>
+                  <Route path='users/:userId' element={<User/>}/>
               </Route>
               
               
