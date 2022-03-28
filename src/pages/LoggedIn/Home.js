@@ -1,9 +1,10 @@
 import React from 'react';
+import FeaturedInfo from '../../components/topbar/FeaturedInfo';
 
 const Home = () => {
     return (
         <div className='home'>
-            home
+            <FeaturedInfo/>
         </div>
     );
 };
