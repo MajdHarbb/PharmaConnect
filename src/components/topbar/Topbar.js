@@ -5,7 +5,9 @@ export default function Topbar() {
   return (
     <div className='topbar'>
         <div className='topbarWrapper'>
-            <div className='topLeft'>left</div>
+            <div className='topLeft'>
+                <span className='logo'>PharmaConnect</span>
+            </div>
             <div className='topLeft'>right</div>
         </div>
     </div>
