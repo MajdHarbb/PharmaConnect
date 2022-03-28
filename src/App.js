@@ -4,6 +4,10 @@ import LandingPage from "./pages/LoggedIn/LandingPage.js";
 import LoginPage from "./pages/LoginPage.jsx";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 import ProtectedRoutes from "./pages/ProtectedRoutes.jsx";
+import UserList from "./pages/LoggedIn/UserList.js";
+import Home from "./pages/LoggedIn/Home.js";
+import './css/LandingPage.css'
+import Topbar from "./components/topbar/Topbar.js";
 
 
 function App() {
@@ -14,9 +18,15 @@ function App() {
       <Routes>
             
             <Route exact path='/' element={ <LoginPage/>}/>
-            
+
             <Route element={<ProtectedRoutes/>}>
-              <Route path='/home' element={<LandingPage/>}/>
+              
+              <Route exact path='/home' element={<LandingPage/>}>
+                  <Route path='' element={<Home/>}/>
+                  <Route path='users' element={<UserList/>}/>
+              </Route>
+              
+              
             </Route>
             {/* Nested Routes: when the user is logged in  */}
             
