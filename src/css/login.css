@@ -111,7 +111,7 @@
   .wrapper a:hover{
     text-decoration: underline;
   }
-  form input[type="submit"]{
+  form input[type="button"]{
     height: 50px;
     margin-top: 30px;
     color: #fff;
@@ -122,6 +122,6 @@
     border-bottom: 2px solid rgba(0,0,0,0.1);
     transition: all 0.3s ease;
   }
-  form input[type="submit"]:hover{
+  form input[type="button"]:hover{
     background: #2c52ed;
   }
