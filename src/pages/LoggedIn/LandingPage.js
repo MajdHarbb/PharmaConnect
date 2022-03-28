@@ -9,9 +9,10 @@ const LandingPage = () => {
             <Topbar/>
             <div className='container'>
                 <SideBar/>
-                
                 <Home/>
+                
             </div>
+            
             
         </div>
     );
