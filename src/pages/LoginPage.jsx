@@ -115,7 +115,7 @@ const LoginPage = () => {
   return (
     
     <div>
-     
+     <div className="body-alt">
       <div className="wrapper">
         <header>Admin Panel</header>
         
@@ -153,6 +153,7 @@ const LoginPage = () => {
           <input type="button" onClick={fetchLoginApi} value="Login" />
         </form>
       </div>
+    </div>
     </div>
   );
 };

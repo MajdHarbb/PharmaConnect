@@ -1,10 +1,10 @@
 import React from 'react';
-
+import Topbar from '../components/topbar/Topbar';
+import "../css/LandingPage.css";
 const LandingPage = () => {
     return (
         <div>
-            Landing Page
-            <div>asdhbaksjd</div>
+            <Topbar/>
         </div>
     );
 };
