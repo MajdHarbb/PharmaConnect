@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../css/Topbar.css";
 import "../../assets/profile_pictures/test.jpg"
-import { NotificationsNone , Language, Settings} from "@material-ui/icons";
+import { NotificationsNone , Settings} from "@material-ui/icons";
 
 export default function Topbar() {
   return (
