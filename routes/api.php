@@ -21,11 +21,12 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update-phone');
         Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update-password');
         Route::post('/get-notifications', [UserController::class, 'getNotifications'])->name('get-notifications');
-
+        Route::post('/my-posts', [UserController::class, 'myPosts'])->name('my-posts');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
-        Route::post('/my-posts', [PostsController::class, 'myPosts'])->name('my-posts');
+        
     });
     
+
     Route::group(['middleware' => ['role.pharmacy']], function () {
         Route::group(['prefix' => 'pharmacy'], function () {
             Route::get('/profile', [UserController::class, 'pharmacyprofile'])->name('pharmacy-profile'); 
@@ -43,6 +44,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
+
+        
           
     });
 });
@@ -51,6 +54,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('auth-login');
     Route::post('/register', [AuthController::class, 'register'])->name('auth-register');
     Route::get('/notfound', [AuthController::class, 'notFound'])->name('not-found');
+    //Route::post('/my-posts', [UserController::class, 'myPosts'])->name('my-posts');
+    
       
 });
 

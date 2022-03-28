@@ -83,20 +83,20 @@ class PostsController extends Controller
         );
     }
 
-    public function myPosts(Request $request){
-        $user_id= $request->user_id;
-        $post_exists=Post::where('user_id', '=', $user_id)->exists();
+    // public function myPosts(Request $request){
+    //     $user_id= $request->user_id;
+    //     $post_exists=Post::where('user_id', '=', $user_id)->exists();
+
+    //     if($post_exists){
+    //         $posts = Post::where('user_id', '=', $user_id)->get();
+    //         return response()->json(
+    //             $posts,
+    //         );
+    //     }else{
+    //         return response()->json([
+    //             "No posts yet",
+    //         ], 400);
+    //     }
         
-        if($post_exists){
-            $posts = Post::where('user_id', '=', $user_id)->get();
-            return response()->json(
-                $posts,
-            );
-        }else{
-            return response()->json([
-                "No posts yet",
-            ], 400);
-        }
-        
-    }
+    // }
 }

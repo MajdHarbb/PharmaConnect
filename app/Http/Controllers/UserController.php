@@ -25,7 +25,7 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->json($user);
     }
-    
+
     public function pharmacyprofile(Request $request) {
         // $user = Auth::user();
         // return response()->json($user);
@@ -221,6 +221,23 @@ class UserController extends Controller
             ], 400);
         }
 
+    }
+
+    public function myPosts(Request $request){
+        $user_id= $request->user_id;
+        $post_exists=Post::where('user_id', '=', $user_id)->exists();
+        
+        if($post_exists){
+            $posts = Post::where('user_id', '=', $user_id)->get();
+            return response()->json(
+                $posts,
+            );
+        }else{
+            return response()->json([
+                "No posts yet",
+            ], 400);
+        }
+        
     }
 
     
