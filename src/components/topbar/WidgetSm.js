@@ -1,4 +1,3 @@
-import "./widgetSm.css";
 import { Visibility } from "@material-ui/icons";
 import "../../css/WidgetSm.css";
 
