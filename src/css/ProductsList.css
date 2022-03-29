@@ -5,6 +5,8 @@
 .productListItem{
     display: flex;
     align-items: center;
+    max-width: 150px;
+    word-wrap: break-word;
 }
 
 .productListImg {

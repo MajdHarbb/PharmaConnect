@@ -34,7 +34,7 @@ export default function ProductList() {
     };
   
     const columns = [
-      { field: "id", headerName: "ID", width: 50 },
+      { field: "id", headerName: "ID", width: 20 },
       {
         field: "name",
         headerName: "Name",
@@ -55,7 +55,7 @@ export default function ProductList() {
         width: 120,
         renderCell: (params) => {
           return (
-            <div className="userListUser">
+            <div className="productListItem">
               {params.row.district}
             </div>
           );
@@ -67,7 +67,7 @@ export default function ProductList() {
         width: 120,
         renderCell: (params) => {
           return (
-            <div className="userListUser">
+            <div className="productListItem">
               {params.row.locality}
             </div>
           );
@@ -79,20 +79,20 @@ export default function ProductList() {
         width: 120,
         renderCell: (params) => {
           return (
-            <div className="userListUser">
-              {params.row.district}
+            <div className="productListItem">
+              {params.row.street}
             </div>
           );
         },
       },
       {
-        field: "building",
-        headerName: "Building",
+        field: "License",
+        headerName: "License",
         width: 120,
         renderCell: (params) => {
           return (
-            <div className="userListUser">
-              {params.row.building}
+            <div className="productListItem">
+              <img className="productListImg" src={require("../../assets/licenses/"+params.row.license)} alt="" />
             </div>
           );
         },
@@ -121,6 +121,7 @@ export default function ProductList() {
       <div className="productList">
         <DataGrid
           rows={data}
+          
           disableSelectionOnClick
           columns={columns}
           pageSize={8}
