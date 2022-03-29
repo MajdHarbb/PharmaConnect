@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Info;
 use App\Models\Post;
-
+use App\Models\Postfind;
 use App\Models\Pharmacie;
 use Illuminate\Support\Facades\Storage;
 
@@ -89,6 +89,36 @@ class AdminController extends Controller
             'pharmacies' => $pharmacies,
             'posts' => $posts
         ], 201);
+    }
+
+    public function findsAccordingToGovernates(){
+        $akkar = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'akkar')
+        ->get();
+
+        $baalbek = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Baalbek')
+        ->get();
+        
+        $beirut = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Beirut')
+        ->get();
+
+        $beqaa = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Beqaa')
+        ->get();
+
+        $mount_lebanon = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Mount Lebanon')
+        ->get();
+
+        $beqaa = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Beqaa')
+        ->get();
+        
+        // $users = $users->count();
+
+        return ($users);
     }
 
     public function getSolvedPosts(){

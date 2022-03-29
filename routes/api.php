@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/get-all-patients', [AdminController::class, 'adminGetAllPatients'])->name('get-all-patients'); 
         Route::get('/get-all-pharmacies', [AdminController::class, 'adminGetAllPharmacies'])->name('get-all-pharmacies');
         Route::get('/counts', [AdminController::class, 'counts'])->name('counts');
-
+        Route::get('/finds-governates', [AdminController::class, 'findsAccordingToGovernates'])->name('finds-governates');
     });
 
     Route::group(['prefix' => 'auth'], function () {
