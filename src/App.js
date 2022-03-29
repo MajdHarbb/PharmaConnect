@@ -10,6 +10,7 @@ import './css/LandingPage.css'
 import Topbar from "./components/topbar/Topbar.js";
 import User from "./pages/LoggedIn/User.js";
 import NewUser from "./pages/LoggedIn/NewUser.js";
+import ProductList from "./pages/LoggedIn/ProductList.js";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
                   {/* needs fixing */}
                   <Route path='newUser' element={<NewUser/>}/>
 
-                  <Route path='products' element={<UserList/>}/>
+                  <Route path='products' element={<ProductList/>}/>
                   <Route path='products/:productId' element={<User/>}/>
                   {/* needs fixing */}
                   <Route path='newproduct' element={<NewUser/>}/>
