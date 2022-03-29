@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PostfindsController;
-use App\Http\Controllers\AdminContoller;
+use App\Http\Controllers\AdminController;
 
 
 Route::group(['middleware' => ['auth:api']], function () {
@@ -39,7 +39,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     
     
     Route::group(['prefix' => 'admin'], function () {
-
+        Route::get('/get-all-patients', [AdminController::class, 'adminGetAllPatients'])->name('get-all-patients'); 
+        Route::get('/get-all-pharmacies', [AdminController::class, 'adminGetAllPharmacies'])->name('get-all-pharmacies');
     });
 
     Route::group(['prefix' => 'auth'], function () {
@@ -53,7 +54,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('auth-login');
-    Route::post('/login-admin', [AdminContoller::class, 'login'])->name('admin-login');
+    Route::post('/login-admin', [AdminController::class, 'login'])->name('admin-login');
     Route::post('/register', [AuthController::class, 'register'])->name('auth-register');
     Route::get('/notfound', [AuthController::class, 'notFound'])->name('not-found');
     //Route::post('/my-posts', [UserController::class, 'myPosts'])->name('my-posts');
