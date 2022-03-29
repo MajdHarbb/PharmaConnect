@@ -38,31 +38,30 @@ export default function UserList() {
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
-      field: "name",
-      headerName: "Name",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.profile_pic} alt="" />
-            {params.row.name}
-          </div>
-        );
-      },
-    },
-    {
       field: "profile picture",
       headerName: "Profile Picture",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.profile_pic} alt="" />
+            <img className="userListImg" src={require("../../assets/profiles/"+params.row.profile_pic)} alt="" />
+          </div>
+        );
+      },
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="userListUser">
             {params.row.name}
           </div>
         );
       },
     },
+
     { field: "email", headerName: "Email", width: 200 },
     {
       field: "phone",
