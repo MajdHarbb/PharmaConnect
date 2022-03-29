@@ -102,7 +102,7 @@ const LoginPage = () => {
     
   }
   if (redirect) {
-   return <Navigate to="/home" />;
+   return <Navigate to="home/pharmaconnect" />;
  }
  
 

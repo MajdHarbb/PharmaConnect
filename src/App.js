@@ -9,6 +9,7 @@ import Home from "./pages/LoggedIn/Home.js";
 import './css/LandingPage.css'
 import Topbar from "./components/topbar/Topbar.js";
 import User from "./pages/LoggedIn/User.js";
+import NewUser from "./pages/LoggedIn/NewUser.js";
 
 
 function App() {
@@ -23,10 +24,14 @@ function App() {
             <Route element={<ProtectedRoutes/>}>
               
               <Route exact path='/home' element={<LandingPage/>}>
-                  <Route path='' element={<Home/>}/>
+                  <Route path='pharmaconnect' element={<Home/>}/>
+
                   <Route path='users' element={<UserList/>}/>
+                  
+                  <Route path='newUser' element={<NewUser/>}/>
+                  
                   <Route path='users/:userId' element={<User/>}/>
-                  <Route path='newUser' element={<User/>}/>
+                  
               </Route>
               
               
