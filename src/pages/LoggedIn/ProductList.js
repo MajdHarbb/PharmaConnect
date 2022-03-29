@@ -10,56 +10,92 @@ export default function ProductList() {
 
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
-  var patients = [];
-  //var [data, setData] = useState([]);
+  var pharmacies = [];
+  var [data, setData] = useState([]);
 
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
+    axios.get("http://127.0.0.1:8000/api/admin/get-all-pharmacies", { headers: { Authorization: AuthStr } })
    .then(response => {
        // If request is good...
-       patients = JSON.stringify(response.data);
-       patients = JSON.parse(patients)
-       //setData(patients);
-       console.log(patients)
+       pharmacies = JSON.stringify(response.data);
+       pharmacies = JSON.parse(pharmacies)
+       console.log(pharmacies)
+       setData(pharmacies);
       
     })
    .catch((error) => {
        console.log('error ' + error);
     });
   },[]);
-
-    const [data, setData] = useState(productRows);
   
     const handleDelete = (id) => {
       setData(data.filter((item) => item.id !== id));
     };
   
     const columns = [
-      { field: "id", headerName: "ID", width: 90 },
+      { field: "id", headerName: "ID", width: 50 },
       {
-        field: "product",
-        headerName: "Product",
+        field: "name",
+        headerName: "Name",
         width: 200,
         renderCell: (params) => {
           return (
             <div className="productListItem">
-              <img className="productListImg" src={params.row.img} alt="" />
+              <img className="productListImg" src={require("../../assets/profiles/"+params.row.profile_pic)} alt="" />
               {params.row.name}
             </div>
           );
         },
       },
-      { field: "stock", headerName: "Stock", width: 200 },
+      { field: "email", headerName: "Email", width: 200 },
       {
-        field: "status",
-        headerName: "Status",
+        field: "Governate",
+        headerName: "Governate",
         width: 120,
+        renderCell: (params) => {
+          return (
+            <div className="userListUser">
+              {params.row.district}
+            </div>
+          );
+        },
       },
       {
-        field: "price",
-        headerName: "Price",
-        width: 160,
+        field: "locality",
+        headerName: "locality",
+        width: 120,
+        renderCell: (params) => {
+          return (
+            <div className="userListUser">
+              {params.row.locality}
+            </div>
+          );
+        },
+      },
+      {
+        field: "street",
+        headerName: "Street",
+        width: 120,
+        renderCell: (params) => {
+          return (
+            <div className="userListUser">
+              {params.row.district}
+            </div>
+          );
+        },
+      },
+      {
+        field: "building",
+        headerName: "Building",
+        width: 120,
+        renderCell: (params) => {
+          return (
+            <div className="userListUser">
+              {params.row.building}
+            </div>
+          );
+        },
       },
       {
         field: "action",
