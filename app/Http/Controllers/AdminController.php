@@ -112,10 +112,18 @@ class AdminController extends Controller
         ->where("district", "=", 'Mount Lebanon')
         ->get();
 
-        $beqaa = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
-        ->where("district", "=", 'Beqaa')
+        $nabatieh = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'Nabatieh')
         ->get();
-        
+
+        $north = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'North Governate')
+        ->get();
+
+        $south = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'South Governate')
+        ->get();
+
         // $users = $users->count();
 
         return ($users);
