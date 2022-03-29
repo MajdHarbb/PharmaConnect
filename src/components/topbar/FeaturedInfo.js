@@ -1,33 +1,56 @@
 import "../../css/FeaturedInfo.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import { useState ,useEffect } from "react";
+import axios from "axios";
+
 
 export default function FeaturedInfo() {
+  var access_token=localStorage.getItem("access_token");
+  const AuthStr = 'Bearer '.concat(access_token); 
+  var pharmacies = [];
+  var [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/admin/counts", { headers: { Authorization: AuthStr } })
+   .then(response => {
+       // If request is good...
+       pharmacies = JSON.stringify(response.data);
+       pharmacies = JSON.parse(pharmacies)
+       console.log(pharmacies)
+       setData(pharmacies);
+      
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  },[]);
   return (
     <div className="featured">
       <div className="featuredItem">
-        <span className="featuredTitle">Revanue</span>
+        <span className="featuredTitle">Users</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$2,415</span>
+          <span className="featuredMoney">{data["users"]}</span>
           <span className="featuredMoneyRate">
-            -11.4 <ArrowDownward className="featuredIcon negative" />
+            +2.4 <ArrowUpward className="featuredIcon" />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Patients & Pharmacies</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Sales</span>
+        <span className="featuredTitle">Pharmacies</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$4,415</span>
+          <span className="featuredMoney">{data["pharmacies"]}</span>
           <span className="featuredMoneyRate">
-            -1.4 <ArrowDownward className="featuredIcon negative" />
+            +2.4 <ArrowUpward className="featuredIcon" />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Contributing Pharmacies With PharmaConnect</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Cost</span>
+        <span className="featuredTitle">Medicine Posts</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$2,225</span>
+          <span className="featuredMoney">{data["posts"]}</span>
           <span className="featuredMoneyRate">
             +2.4 <ArrowUpward className="featuredIcon" />
           </span>
