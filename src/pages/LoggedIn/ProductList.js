@@ -1,75 +1,72 @@
 import { Link } from "react-router-dom";
 import "../../css/ProductsList.css";
-import Chart from "../../components/topbar/Chart.js"
-import {productData} from "../../Data/DummyData.js"
-import { Publish } from "@material-ui/icons";
+import { DataGrid } from "@mui/x-data-grid";
+import { DeleteOutline } from "@material-ui/icons";
+import { productRows } from "../../Data/DummyData.js";
+import { useState } from "react";
 
-export default function Product() {
-  return (
-    <div className="product">
-      <div className="productTitleContainer">
-        <h1 className="productTitle">Product</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
+export default function ProductList() {
+    const [data, setData] = useState(productRows);
+  
+    const handleDelete = (id) => {
+      setData(data.filter((item) => item.id !== id));
+    };
+  
+    const columns = [
+      { field: "id", headerName: "ID", width: 90 },
+      {
+        field: "product",
+        headerName: "Product",
+        width: 200,
+        renderCell: (params) => {
+          return (
+            <div className="productListItem">
+              <img className="productListImg" src={params.row.img} alt="" />
+              {params.row.name}
+            </div>
+          );
+        },
+      },
+      { field: "stock", headerName: "Stock", width: 200 },
+      {
+        field: "status",
+        headerName: "Status",
+        width: 120,
+      },
+      {
+        field: "price",
+        headerName: "Price",
+        width: 160,
+      },
+      {
+        field: "action",
+        headerName: "Action",
+        width: 150,
+        renderCell: (params) => {
+          return (
+            <>
+              <Link to={"/product/" + params.row.id}>
+                <button className="productListEdit">Edit</button>
+              </Link>
+              <DeleteOutline
+                className="productListDelete"
+                onClick={() => handleDelete(params.row.id)}
+              />
+            </>
+          );
+        },
+      },
+    ];
+  
+    return (
+      <div className="productList">
+        <DataGrid
+          rows={data}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+        />
       </div>
-      <div className="productTop">
-          <div className="productTopLeft">
-              <Chart data={productData} dataKey="Sales" title="Sales Performance"/>
-          </div>
-          <div className="productTopRight">
-              <div className="productInfoTop">
-                  <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productInfoImg" />
-                  <span className="productName">Apple Airpods</span>
-              </div>
-              <div className="productInfoBottom">
-                  <div className="productInfoItem">
-                      <span className="productInfoKey">id:</span>
-                      <span className="productInfoValue">123</span>
-                  </div>
-                  <div className="productInfoItem">
-                      <span className="productInfoKey">sales:</span>
-                      <span className="productInfoValue">5123</span>
-                  </div>
-                  <div className="productInfoItem">
-                      <span className="productInfoKey">active:</span>
-                      <span className="productInfoValue">yes</span>
-                  </div>
-                  <div className="productInfoItem">
-                      <span className="productInfoKey">in stock:</span>
-                      <span className="productInfoValue">no</span>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div className="productBottom">
-          <form className="productForm">
-              <div className="productFormLeft">
-                  <label>Product Name</label>
-                  <input type="text" placeholder="Apple AirPod" />
-                  <label>In Stock</label>
-                  <select name="inStock" id="idStock">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                  </select>
-                  <label>Active</label>
-                  <select name="active" id="active">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                  </select>
-              </div>
-              <div className="productFormRight">
-                  <div className="productUpload">
-                      <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productUploadImg" />
-                      <label for="file">
-                          <Publish/>
-                      </label>
-                      <input type="file" id="file" style={{display:"none"}} />
-                  </div>
-                  <button className="productButton">Update</button>
-              </div>
-          </form>
-      </div>
-    </div>
-  );
-}
+    );
+  }
