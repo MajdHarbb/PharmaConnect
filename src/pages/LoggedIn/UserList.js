@@ -1,14 +1,14 @@
 import "../../css/UserList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../Data/DummyData.js";
 import { Link } from "react-router-dom";
 import { useState ,useEffect } from "react";
 import axios from "axios";
 
 export default function UserList() {
+
+
   var access_token=localStorage.getItem("access_token");
-  
   const AuthStr = 'Bearer '.concat(access_token); 
   var patients = [];
   var [data, setData] = useState([]);
@@ -20,7 +20,6 @@ export default function UserList() {
        // If request is good...
        patients = JSON.stringify(response.data);
        patients = JSON.parse(patients)
-       console.log(patients);
        setData(patients);
       
     })
