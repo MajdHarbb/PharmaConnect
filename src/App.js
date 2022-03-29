@@ -27,10 +27,16 @@ function App() {
                   <Route path='pharmaconnect' element={<Home/>}/>
 
                   <Route path='users' element={<UserList/>}/>
-                  
-                  <Route path='newUser' element={<NewUser/>}/>
-                  
                   <Route path='users/:userId' element={<User/>}/>
+                  {/* needs fixing */}
+                  <Route path='newUser' element={<NewUser/>}/>
+
+                  <Route path='products' element={<UserList/>}/>
+                  <Route path='products/:productId' element={<User/>}/>
+                  {/* needs fixing */}
+                  <Route path='newproduct' element={<NewUser/>}/>
+                  
+                  
                   
               </Route>
               
