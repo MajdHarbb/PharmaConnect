@@ -120,6 +120,7 @@ class AdminController extends Controller
         ->where("district", "=", 'North Governate')
         ->get();
         $test= "test";
+        $tets = "test";
         $south = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'South Governate')
         ->get();
