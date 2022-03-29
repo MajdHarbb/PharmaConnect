@@ -41,7 +41,7 @@ const SideBar = () => {
               <Link to="products" className="link">
                 <li className="sidebarListItem">
                   <Storefront className="sidebarIcon" />
-                  Products
+                  Pharmacies
                 </li>
               </Link>
               <li className="sidebarListItem">

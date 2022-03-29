@@ -3,9 +3,32 @@ import "../../css/ProductsList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { productRows } from "../../Data/DummyData.js";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import axios from "axios";
 
 export default function ProductList() {
+
+  var access_token=localStorage.getItem("access_token");
+  const AuthStr = 'Bearer '.concat(access_token); 
+  var patients = [];
+  //var [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
+   .then(response => {
+       // If request is good...
+       patients = JSON.stringify(response.data);
+       patients = JSON.parse(patients)
+       //setData(patients);
+       console.log(patients)
+      
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  },[]);
+
     const [data, setData] = useState(productRows);
   
     const handleDelete = (id) => {
