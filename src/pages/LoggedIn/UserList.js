@@ -3,15 +3,47 @@ import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../Data/DummyData.js";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState ,useEffect } from "react";
+import axios from "axios";
 
 export default function UserList() {
-  const [data, setData] = useState(userRows);
+  var access_token=localStorage.getItem("access_token");
+  
+  const AuthStr = 'Bearer '.concat(access_token); 
+  var patients = [];
+  var [data, setData] = useState();
+
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
+   .then(response => {
+       // If request is good...
+       //console.log(response.data);
+       patients = JSON.stringify(response.data);
+       patients = JSON.parse(patients)
+       console.log(patients);
+       
+      
+      
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  });
+  
+  
+  
+  function setrows(){
+    setData(patients)
+  }
+  
+  
+  
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-  
+
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
@@ -45,7 +77,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-          {/* <Link to={"user/" + params.row.id}>
+            {/* <Link to={"user/" + params.row.id}>
               <button className="userListEdit">Edit</button>
             </Link> */}
             <Link to={"" + params.row.id}>
@@ -67,7 +99,7 @@ export default function UserList() {
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={100}
         checkboxSelection
       />
     </div>
