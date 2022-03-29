@@ -1,5 +1,5 @@
 import "../../css/FeaturedInfo.css";
-import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import { ArrowDownward, ArrowUpward, Person, LocalPharmacyRounded, PostAdd } from "@material-ui/icons";
 import { useState ,useEffect } from "react";
 import axios from "axios";
 
@@ -32,7 +32,7 @@ export default function FeaturedInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">{data["users"]}</span>
           <span className="featuredMoneyRate">
-            +2.4 <ArrowUpward className="featuredIcon" />
+            <Person className="featuredIcon" />
           </span>
         </div>
         <span className="featuredSub">Patients & Pharmacies</span>
@@ -42,7 +42,7 @@ export default function FeaturedInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">{data["pharmacies"]}</span>
           <span className="featuredMoneyRate">
-            +2.4 <ArrowUpward className="featuredIcon" />
+            <LocalPharmacyRounded className="featuredIcon" />
           </span>
         </div>
         <span className="featuredSub">Contributing Pharmacies With PharmaConnect</span>
@@ -52,10 +52,10 @@ export default function FeaturedInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">{data["posts"]}</span>
           <span className="featuredMoneyRate">
-            +2.4 <ArrowUpward className="featuredIcon" />
+            <PostAdd className="featuredIcon" />
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Posts searching for medication</span>
       </div>
     </div>
   );
