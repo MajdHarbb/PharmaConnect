@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Info;
+use App\Models\Post;
+
 use App\Models\Pharmacie;
 use Illuminate\Support\Facades\Storage;
 
@@ -70,6 +72,23 @@ class AdminController extends Controller
                 "No users yet",
             );
         }
+    }
+
+    public function counts(){
+        $users = User::all();
+        $users = $users->count();
+
+        $pharmacies = Pharmacie::all();
+        $pharmacies = $pharmacies->count();
+
+        $posts = Post::all();
+        $posts = $posts->count();
+
+        return response()->json([
+            'users' => $users,
+            'pharmacies' => $pharmacies,
+            'posts' => $posts
+        ], 201);
     }
 
     public function getSolvedPosts(){
