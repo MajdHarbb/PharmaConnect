@@ -14,7 +14,7 @@ export default function User() {
   var user_info = [];
 
   const [email, setEmail] = useState("");
-  const [name, setname] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
   var [data, setData] = useState([]);
@@ -28,7 +28,10 @@ export default function User() {
     console.log('You clicked submit.');
     console.log(typeof(params.userId))
     const id = params.userId;
-    axios.get(`http://127.0.0.1:8000/api/admin/update-patient-info?user_id=${id}`,
+    console.log(name, email,phone);
+    
+    axios.get(`http://127.0.0.1:8000/api/admin/update-patient-info?
+    user_id=${id}&name=${name}&phone=${phone}&email=${email}`,
      { headers: { Authorization: AuthStr } })
    .then(response => {
        console.log("response",response.data)
@@ -49,7 +52,7 @@ export default function User() {
        user_info = response.data;
        console.log("info" ,user_info)
        setData(user_info[0]);
-      console.log("data",data)
+       console.log("data",data)
       //  console.log("to strin")
       //  console.log(data["profile_pic"])
       //  setProfile(data["profile_pic"])
@@ -121,7 +124,7 @@ export default function User() {
                     type="text"
                     placeholder={data["name"]}
                     className="userUpdateInput"
-                    onChange={(e) => setname(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="userUpdateItem">

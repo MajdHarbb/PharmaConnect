@@ -4,6 +4,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useState ,useEffect } from "react";
 import axios from "axios";
+//import {access_token, AuthStr} from "../../constants/token"
 
 export default function UserList() {
 
@@ -13,6 +14,7 @@ export default function UserList() {
   var patients = [];
   var [data, setData] = useState([]);
 
+  
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
