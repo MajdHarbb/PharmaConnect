@@ -184,6 +184,16 @@ class AdminController extends Controller
         }
     }
 
+    public function pharmacyInfo(Request $request){
+        $user_id=$request->user_id;
+
+        $info = Info::where('user_id', '=', $user_id)
+        ->join('pharmacies','infos.user_id','=','pharmacies.pharmacy_id')
+        ->get();
+        
+        return response()->json($info,201);
+    }
+
     public function patientInfo(Request $request){
         $user_id=$request->user_id;
 
@@ -191,8 +201,9 @@ class AdminController extends Controller
         
         return response()->json($info,201);
     }
+    
 
-function updatePatientInfo(Request $request){
+    public function updatePatientInfo(Request $request){
     $validator = Validator::make($request->all(), [
         'name' => 'required|string|between:2,100',
         'email' => 'required|string|email|max:100|unique:users',
@@ -219,7 +230,7 @@ function updatePatientInfo(Request $request){
             'message' => 'Record already exists with another user',
         ], 401);
      }else{
-        Info::where('user_id', $user_id)->update(['name' => '$name', 'email' => '$email@email.com', 'phone' => '03555555']);
+        Info::where('user_id', $user_id)->update(['name' => $name, 'email' => $email, 'phone' => $phone]);
         User::where('id', $user_id)->update(['email' => "updated@email.com"]);
 
         return response()->json([
@@ -228,6 +239,8 @@ function updatePatientInfo(Request $request){
      }    
     
 }
+
+
 
     protected function createNewToken($token){
         return response()->json([

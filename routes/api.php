@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/solved', [AdminController::class, 'getSolvedPosts'])->name('solved');
         Route::get('/patient-info', [AdminController::class, 'patientInfo'])->name('patient-info');
         Route::get('/update-patient-info', [AdminController::class, 'updatePatientInfo'])->name('update-patient-info');
+        Route::get('/pharmacy-info', [AdminController::class, 'pharmacyInfo'])->name('pharmacy-info');
    
     });
 
