@@ -21,6 +21,7 @@ export default function UserList() {
        patients = JSON.stringify(response.data);
        patients = JSON.parse(patients)
        setData(patients);
+       console.log(response.data)
       
     })
    .catch((error) => {
