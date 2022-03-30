@@ -48,6 +48,9 @@ const Posts = () => {
                 molestiae culpa exercitationem, voluptate at dolor. Nam,
                 tenetur, beatae suscipit debitis magni laborum minus cupiditate,
                 in atque consequuntur corporis itaque possimus.
+              <img src={require("../../assets/profile_pictures/test.jpg")}
+                alt=""/>
+              
               </div>
               <div className="post-bottom">
                 <div className="action">
