@@ -184,16 +184,16 @@ class AdminController extends Controller
         }
     }
 
-    public function userProfile(Request $request){
+    public function patientInfo(Request $request){
         $user_id=$request->user_id;
 
-        $info = Info::where('user_id', '=', $type)->get();
+        $info = Info::where('user_id', '=', $user_id)->get();
         
         return response()->json([
-            'user' => $info,
+            $info,
         ], 201);
     }
-    
+
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,

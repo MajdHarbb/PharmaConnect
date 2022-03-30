@@ -44,15 +44,14 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/counts', [AdminController::class, 'counts'])->name('counts');
         Route::get('/finds-governates', [AdminController::class, 'findsAccordingToGovernates'])->name('finds-governates');
         Route::get('/solved', [AdminController::class, 'getSolvedPosts'])->name('solved');
+        Route::get('/patient-info', [AdminController::class, 'patientInfo'])->name('patient-info');
    
     });
 
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
-
-        
-          
+       
     });
 });
 
