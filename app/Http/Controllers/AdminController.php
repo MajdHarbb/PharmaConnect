@@ -189,10 +189,29 @@ class AdminController extends Controller
 
         $info = Info::where('user_id', '=', $user_id)->get();
         
-        return response()->json([
-            $info,
-        ], 201);
+        return response()->json($info,201);
     }
+
+function updatePatientInfo(Request $request){
+    // $validator = Validator::make($request->all(), [
+    //     'name' => 'required|string|between:2,100',
+    //     'email' => 'required|string|email|max:100|unique:users',
+    //     'phone' => 'required|regex:/[0-9]{8}/',
+        
+    // ]);
+    // if($validator->fails()){
+    //     return response()->json($validator->errors()->toJson(), 400);
+    // }
+    $user_id=$request->user_id;
+        Info::where('user_id', $user_id)->update(['name' => "Adam s", 'email' => 'updated@email.com', 'phone' => '03555555']);
+        User::where('id', $user_id)->update(['email' => "updated@email.com"]);
+
+        
+        return response()->json([
+            'message' => 'Name updated successfully',
+        ], 201);
+    
+}
 
     protected function createNewToken($token){
         return response()->json([

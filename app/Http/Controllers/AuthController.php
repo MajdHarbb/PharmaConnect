@@ -106,7 +106,7 @@ class AuthController extends Controller
         $info->profile_pic = $data["profile_pic"];
         $info->save();
 
-
+        
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user,

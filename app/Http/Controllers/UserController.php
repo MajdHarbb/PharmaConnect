@@ -142,7 +142,7 @@ class UserController extends Controller
 
         $passdatabase = User::where('id', $user_id)->value('password'); 
         if(Hash::check($password,$passdatabase)){
-            Info::where('id', $user_id)->update(['name' => $user_name]);
+            Info::where('user_id', $user_id)->update(['name' => $user_name]);
             return response()->json([
                 'message' => 'Name updated successfully',
             ], 201);
