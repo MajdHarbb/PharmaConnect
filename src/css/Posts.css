@@ -1,8 +1,10 @@
 
 
 .posts-div{
-    margin: auto;
+    margin: 50px 50px 50px 50px;
     width: 60%;
+    
+
 }
   .user-posts {
     float: left;

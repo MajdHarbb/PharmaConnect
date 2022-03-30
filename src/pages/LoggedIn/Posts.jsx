@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as css from "../../css/Posts.css";
+import { Check } from "@material-ui/icons";
 const Posts = () => {
   var access_token = localStorage.getItem("access_token");
   const AuthStr = "Bearer ".concat(access_token);
@@ -34,33 +35,30 @@ const Posts = () => {
             <div className="post">
               <div className="post-top">
                 <div className="dp">
-                  <img src="images/profile pic.jpg" alt />
+                  <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt />
                 </div>
                 <div className="post-info">
                   <a href="#">
-                    <p className="name">User 1</p>
+                    <p className="name">{singlePost.name}</p>
                   </a>
-                  <span className="time">12 hrs ago</span>
+                  <span className="time">{singlePost.updated_at}</span>
                 </div>
               </div>
               <div className="post-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui
-                molestiae culpa exercitationem, voluptate at dolor. Nam,
-                tenetur, beatae suscipit debitis magni laborum minus cupiditate,
-                in atque consequuntur corporis itaque possimus.
-              <img src={require("../../assets/profile_pictures/test.jpg")}
-                alt=""/>
+              {singlePost.post_text}
+              <img src={require("../../assets/posts/"+singlePost.post_pic)}
+                alt="" />
               
               </div>
               <div className="post-bottom">
                 <div className="action">
-                  <i className="far fa-thumbs-up" />
-                  <span>Like</span>
+                  <Check/>
+                  <span>Solved </span>
                 </div>
-                <div className="action">
+                {/* <div className="action">
                   <i className="far fa-heart" />
                   <span>Love</span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
