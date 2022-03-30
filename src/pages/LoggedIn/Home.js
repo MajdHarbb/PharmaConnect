@@ -3,7 +3,6 @@ import Chart from "../../components/topbar/Chart";
 import FeaturedInfo from "../../components/topbar/FeaturedInfo";
 import WidgetLg from "../../components/topbar/WidgetLg";
 import WidgetSm from "../../components/topbar/WidgetSm";
-import { userData } from "../../Data/DummyData";
 import "../../css/Home.css"
 const Home = () => {
 
