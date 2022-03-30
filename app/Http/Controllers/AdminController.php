@@ -193,23 +193,39 @@ class AdminController extends Controller
     }
 
 function updatePatientInfo(Request $request){
-    // $validator = Validator::make($request->all(), [
-    //     'name' => 'required|string|between:2,100',
-    //     'email' => 'required|string|email|max:100|unique:users',
-    //     'phone' => 'required|regex:/[0-9]{8}/',
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|between:2,100',
+        'email' => 'required|string|email|max:100|unique:users',
+        'phone' => 'required|regex:/[0-9]{8}/',
         
-    // ]);
-    // if($validator->fails()){
-    //     return response()->json($validator->errors()->toJson(), 400);
-    // }
+    ]);
+    if($validator->fails()){
+        return response()->json($validator->errors()->toJson(), 400);
+    }
+
     $user_id=$request->user_id;
-        Info::where('user_id', $user_id)->update(['name' => "Adam s", 'email' => 'updated@email.com', 'phone' => '03555555']);
+    $name = $request->name;
+    $email = $request->email;
+    $phone = $request->phone;
+
+    $all_except_email = User::all()->except($user_id);
+    // $all_except_phone = Info::all()->where('user_id', '!=', $user_id)->all();
+    $all_except_phone = Info::all()->except($user_id);
+    $email_check = $all_except_email->where('email', '=', $email)->count() > 0;
+    $phone_check = $all_except_phone->where('phone', '=', $phone)->count() > 0;
+
+    if ($email_check || $phone_check) {
+        return response()->json([
+            'message' => 'Record already exists with another user',
+        ], 401);
+     }else{
+        Info::where('user_id', $user_id)->update(['name' => '$name', 'email' => '$email@email.com', 'phone' => '03555555']);
         User::where('id', $user_id)->update(['email' => "updated@email.com"]);
 
-        
         return response()->json([
-            'message' => 'Name updated successfully',
+            'message' => 'Info Updated Successfully!',
         ], 201);
+     }    
     
 }
 
