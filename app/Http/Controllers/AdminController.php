@@ -94,40 +94,54 @@ class AdminController extends Controller
     public function findsAccordingToGovernates(){
         $akkar = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'akkar')
-        ->get();
+        ->count();
 
         $baalbek = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'Baalbek')
-        ->get();
+        ->count();
         
         $beirut = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'Beirut')
-        ->get();
+        ->count();
 
         $beqaa = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'Beqaa')
-        ->get();
+        ->count();
 
         $mount_lebanon = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'Mount Lebanon')
-        ->get();
+        ->count();
 
         $nabatieh = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'Nabatieh')
-        ->get();
+        ->count();
 
         $north = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'North Governate')
-        ->get();
-        $test= "test";
-        $tets = "test";
+        ->count();
+        
         $south = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
         ->where("district", "=", 'South Governate')
+        ->count();
+
+        $users = Postfind::join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+        ->where("district", "=", 'South Governate')
         ->get();
-
         // $users = $users->count();
+        
 
-        return ($users);
+        return response()->json([
+            
+            'Akkar' => $akkar,
+            'Baalbek' => $baalbek,
+            'Beirut' => $beirut,
+            'Beqaa' => $beqaa,
+            'Mount Lebanon' => $mount_lebanon,
+            'Nabatieh' => $nabatieh,
+            'North Governate' => $north,
+            'South Governate' => $south,
+            
+        ]);
     }
 
     public function getSolvedPosts(){
