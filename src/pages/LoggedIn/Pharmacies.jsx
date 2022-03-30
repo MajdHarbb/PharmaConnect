@@ -1,0 +1,154 @@
+import { Link } from "react-router-dom";
+import "../../css/Pharmacy.css";
+import Chart from "../../components/topbar/Chart";
+import { productData } from "../../Data/DummyData";
+import { Publish } from "@material-ui/icons";
+import { Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+export default function Pharmacy() {
+  var emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var phoneRegex = /^[0-9]{8}$/;
+
+  const navigate = useNavigate();
+  
+  //params to get user id
+  const params = useParams();
+  //get token from local storage
+  var access_token = localStorage.getItem("access_token");
+  const AuthStr = "Bearer ".concat(access_token);
+  var user_info = [];
+
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  var [data, setData] = useState([]);
+  var [profile_pic, setProfile] = useState(
+    "defualt_profile_picture_pharmaConnect.png"
+  );
+  const [p, setP] = useState("defualt_profile_picture_pharmaConnect.png");
+  //state that is to be set to true when api is fetched
+  const [isLoading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://127.0.0.1:8000/api/admin/pharmacy-info?user_id=1`,
+        { headers: { Authorization: AuthStr } }
+      )
+      .then((response) => {
+        console.log("response", response.data);
+        user_info = response.data;
+        console.log("info", user_info);
+        setData(user_info[0]);
+        console.log("data", data);
+        //  console.log("to strin")
+        //  console.log(data["profile_pic"])
+        //  setProfile(data["profile_pic"])
+        //  //console.log(typeof(profile_pic))
+        //  console.log(profile_pic)
+        setLoading(true);
+      })
+      .catch((error) => {
+        console.log("error " + error);
+      });
+  }, []);
+  if(isLoading){
+    return (
+      <div className="product">
+        <div className="productTitleContainer">
+          <h1 className="productTitle">Pharmacy</h1>
+          <Link to="/newproduct">
+            <button className="productAddButton">Create</button>
+          </Link>
+        </div>
+        <div className="productTop">
+          <div className="productTopLeft">
+            <Chart data={productData} dataKey="Sales" title="Medication Finds Distribution" />
+          </div>
+          <div className="productTopRight">
+            <div>
+            <div className="productInfoTop">
+              <img
+                src={require("../../assets/profiles/" + data["profile_pic"])}
+                alt=""
+                className="productInfoImg"
+              />
+              <span className="productName">{data["name"]}</span>
+            </div>
+            
+            <div className="productInfoBottom">
+              <div className="productInfoItem">
+                <span className="productInfoKey">id:</span>
+                <span className="productInfoValue">123</span>
+              </div>
+              <div className="productInfoItem">
+                <span className="productInfoKey">email: {"   "} </span>
+                <span className="productInfoValue">{data["email"]}</span>
+              </div>
+              <div className="productInfoItem">
+                <span className="productInfoKey">Phone</span>
+                <span className="productInfoValue">{data["phone"]}</span>
+              </div>
+              <div className="productInfoItem">
+                <span className="productInfoKey">in stock:</span>
+                <span className="productInfoValue">no</span>
+              </div>
+              <div className="productInfoItem">
+                <span className="productInfoKey">in stock:</span>
+                <span className="productInfoValue">no</span>
+              </div>
+              <div className="productInfoItem">
+                <span className="productInfoKey">in stock:</span>
+                <span className="productInfoValue">no</span>
+              </div>
+            </div>
+            </div>
+            <div>
+            <div className="productUpload">
+                <img
+                 src={require("../../assets/licenses/" + data["license"])}
+                  alt=""
+                  className="productUploadImg"
+                />
+                <p>Click to view license</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div className="productBottom">
+          <form className="productForm">
+            <div className="productFormLeft">
+              <label>Product Name</label>
+              <input type="text" placeholder="Apple AirPod" />
+              <label>In Stock</label>
+              <select name="inStock" id="idStock">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+              <label>Active</label>
+              <select name="active" id="active">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div className="productFormRight">
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }else{
+    return(
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
+}

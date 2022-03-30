@@ -10,9 +10,9 @@ import './css/LandingPage.css'
 import Topbar from "./components/topbar/Topbar.js";
 import User from "./pages/LoggedIn/User";
 import NewUser from "./pages/LoggedIn/NewUser.js";
-import Product from "./pages/LoggedIn/Pharmacies.js";
 import Posts from "./pages/LoggedIn/Posts.jsx";
 import PharmacyList from "./pages/LoggedIn/PharmacyList.js";
+import Pharmacy from "./pages/LoggedIn/Pharmacies";
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
                   <Route path='newUser' element={<NewUser/>}/>
 
                   <Route path='pharmacies' element={<PharmacyList/>}/>
-                  <Route path='pharmacies/:pharmacyId' element={<Product/>}/>
+                  <Route path='pharmacies/:pharmacyId' element={<Pharmacy/>}/>
                   {/* needs fixing */}
                   <Route path='newproduct' element={<NewUser/>}/>
                   <Route path='newproduct' element={<NewUser/>}/>
