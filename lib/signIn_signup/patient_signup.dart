@@ -190,7 +190,7 @@ class _PatientSignUpState extends State<PatientSignUp> {
                     // request.fields['user_type'] = 'patient';
                     // request.files.add(await http.MultipartFile.fromPath('profile_pic', imagePath));
                     // var response = await request.send();
-                    String defualtImage = r'C:\Users\User\Desktop\FSW\Final Project\PharmaConnect\storage\app\public\profile_pictures\defualt_profile_picture_pharmaConnect.png';
+                    String defualtImage = r'defualt_profile_picture_pharmaConnect.png';
                     final response = await http.post(
                       Uri.parse('http://192.168.0.117:8000/api/auth/register'),
                       //headers : { 'Content-Type': 'multipart/form-data',},
