@@ -6,19 +6,34 @@ import axios from "axios";
 
 export default function User() {
   const navigate = useNavigate();
-  function navigateNewUser() {
-    navigate(`newUser`);
-  }
+  //params to get user id
   const params = useParams();
-  console.log(params.userId);
-
+  //get token from local storage
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
   var user_info = [];
   var [data, setData] = useState([]);
   var [profile_pic, setProfile] = useState("defualt_profile_picture_pharmaConnect.png");
   const [p,setP] = useState("defualt_profile_picture_pharmaConnect.png");
+  //state that is to be set to true when api is fetched
   const [isLoading, setLoading] = useState(false);
+  
+  function update(e) {
+    e.preventDefault();
+    console.log('You clicked submit.');
+    console.log(typeof(params.userId))
+    const id = params.userId;
+    axios.get(`http://127.0.0.1:8000/api/admin/update-patient-info?user_id=${id}`, { headers: { Authorization: AuthStr } })
+   .then(response => {
+       console.log("response",response.data)
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  }
+  function navigateNewUser() {
+    navigate(`newUser`);
+  }
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/admin/patient-info?user_id=${params.userId}`, { headers: { Authorization: AuthStr } })
@@ -146,7 +161,7 @@ export default function User() {
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
                 </div>
-                <button className="userUpdateButton">Update</button>
+                <button className="userUpdateButton" onClick={update}>Update</button>
               </div>
             </form>
           </div>
