@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import * as css from "../../css/Posts.css";
 import { Check } from "@material-ui/icons";
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 const Posts = () => {
   var access_token = localStorage.getItem("access_token");
   const AuthStr = "Bearer ".concat(access_token);
@@ -42,6 +43,9 @@ const Posts = () => {
                     <p className="name">{singlePost.name}</p>
                   </a>
                   <span className="time">{singlePost.updated_at}</span>
+                </div>
+                <div className="delete">
+                  <DeleteRoundedIcon/>
                 </div>
               </div>
               <div className="post-content">
