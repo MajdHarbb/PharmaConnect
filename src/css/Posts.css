@@ -1,0 +1,122 @@
+
+
+.posts-div{
+    margin: auto;
+    width: 60%;
+}
+  .user-posts {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 100%; /* Should be removed. Only for demonstration */
+    margin-top: 5%;
+  }
+
+  .po {
+    margin-top: 5%;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50px;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .post-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+  }
+
+  .post{
+    -webkit-box-shadow: 3px 2px 10px 3px rgba(0,0,0,0.34); 
+box-shadow: 3px 2px 10px 3px rgba(0,0,0,0.34);
+      background:#fff;
+      border-radius:10px;
+      padding:10px;
+      margin:10px;
+  }
+  
+  .post .post-top{
+      display:flex;
+      align-items: center;
+      padding:10px;
+  }
+  
+  .post .post-top .dp{
+      width:40px;
+      height:40px;
+      border-radius: 50%;
+      overflow:hidden;
+  }
+  
+  .post .post-top .dp > img{
+      width:100%;
+      cursor:pointer;
+  }
+  
+  .post .post-top .post-info{
+      margin-left:10px;    
+      font-weight: bold;
+  }
+  
+  .post .post-top .post-info .name{
+      cursor:pointer;
+      font-size:16px;
+  }
+  
+  .post .post-top .post-info .time{
+      font-size:12px;
+      cursor:pointer;
+  }
+  
+  .post .post-top i{
+      margin-left:auto;
+      cursor: pointer;
+  }
+  
+  .post .post-top > input{
+      height:40px;
+      padding:5px 10px;
+      border-radius:25px;
+      outline:none;
+      border:none;
+      flex:1;
+      background:#eee;
+      margin-left:10px;
+  }
+  
+  .post .post-content{
+      font-size:16px;
+      font-weight:normal;
+      padding:10px;
+  }
+  
+  .post .post-content > img{
+      width:100%;
+      margin:5px 0px;
+  }
+  
+  .post .post-bottom{
+      box-shadow: 1px solid #ddd;
+      display:flex;
+      justify-content: flex-start;
+      padding:5px 5px 0px 5px;
+  }
+  
+  .post .post-bottom .action{
+      padding:10px;
+      border-radius:10px;
+      transition: .3s ease-in;
+      cursor: pointer;
+  }
+
+  
+
+  
+  
+  
+  
+  
