@@ -12,6 +12,11 @@ export default function User() {
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
   var user_info = [];
+
+  const [email, setEmail] = useState("");
+  const [name, setname] = useState("");
+  const [phone, setPhone] = useState("");
+
   var [data, setData] = useState([]);
   var [profile_pic, setProfile] = useState("defualt_profile_picture_pharmaConnect.png");
   const [p,setP] = useState("defualt_profile_picture_pharmaConnect.png");
@@ -23,7 +28,8 @@ export default function User() {
     console.log('You clicked submit.');
     console.log(typeof(params.userId))
     const id = params.userId;
-    axios.get(`http://127.0.0.1:8000/api/admin/update-patient-info?user_id=${id}`, { headers: { Authorization: AuthStr } })
+    axios.get(`http://127.0.0.1:8000/api/admin/update-patient-info?user_id=${id}`,
+     { headers: { Authorization: AuthStr } })
    .then(response => {
        console.log("response",response.data)
     })
@@ -108,52 +114,41 @@ export default function User() {
             <span className="userUpdateTitle">Edit</span>
             <form className="userUpdateForm">
               <div className="userUpdateLeft">
-                <div className="userUpdateItem">
-                  <label>Username</label>
-                  <input
-                    type="text"
-                    placeholder="annabeck99"
-                    className="userUpdateInput"
-                  />
-                </div>
+
                 <div className="userUpdateItem">
                   <label>Full Name</label>
                   <input
                     type="text"
-                    placeholder="Anna Becker"
+                    placeholder={data["name"]}
                     className="userUpdateInput"
+                    onChange={(e) => setname(e.target.value)}
                   />
                 </div>
                 <div className="userUpdateItem">
                   <label>Email</label>
                   <input
                     type="text"
-                    placeholder="annabeck99@gmail.com"
+                    placeholder={data["email"]}
                     className="userUpdateInput"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="userUpdateItem">
                   <label>Phone</label>
                   <input
                     type="text"
-                    placeholder="+1 123 456 67"
+                    placeholder={data["phone"]}
                     className="userUpdateInput"
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
-                  <label>Address</label>
-                  <input
-                    type="text"
-                    placeholder="New York | USA"
-                    className="userUpdateInput"
-                  />
-                </div>
+
               </div>
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
                   <img
                     className="userUpdateImg"
-                    src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                    src={require("../../assets/profiles/"+data["profile_pic"])}
                     alt=""
                   />
                   <label htmlFor="file">
