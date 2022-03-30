@@ -166,7 +166,7 @@ class AdminController extends Controller
             );
         }
     }
-
+    
     public function getUnsolvedPosts(){
         if(Pharmacie::exists()){
 
@@ -184,6 +184,16 @@ class AdminController extends Controller
         }
     }
 
+    public function userProfile(Request $request){
+        $user_id=$request->user_id;
+
+        $info = Info::where('user_id', '=', $type)->get();
+        
+        return response()->json([
+            'user' => $info,
+        ], 201);
+    }
+    
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
