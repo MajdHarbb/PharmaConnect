@@ -1,6 +1,17 @@
 import "../../css/NewUser.css";
+import { useState } from "react";
 
 export default function NewUser() {
+  //use State to update variables according to user input
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password_confirmation, setPasswordRepeat] = useState("");
+  
+  const create = ()=>{
+    console.log("test")
+  }
   return (
     <div className="newUser">
       <h1 className="newUserTitle">New User</h1>

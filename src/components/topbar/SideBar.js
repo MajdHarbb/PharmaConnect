@@ -4,6 +4,7 @@ import {LineStyle,Timeline,TrendingUp,PermIdentity,
 Storefront,MailOutline,
 DynamicFeed,ChatBubbleOutline,WorkOutline,Report, Check} from "@material-ui/icons";
 import { Newspaper } from "@mui/icons-material";
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -20,14 +21,12 @@ const SideBar = () => {
                   Home
                 </li>
               </Link>
+              <Link to="newUser" className="link">
               <li className="sidebarListItem">
-                <Timeline className="sidebarIcon" />
-                Analytics
+                <PersonAddAltIcon className="sidebarIcon" />
+                Create User
               </li>
-              <li className="sidebarListItem">
-                <TrendingUp className="sidebarIcon" />
-                Sales
-              </li>
+              </Link>
             </ul>
           </div>
           <div className="sidebarMenu">
@@ -61,14 +60,8 @@ const SideBar = () => {
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Notifications</h3>
             <ul className="sidebarList">
-              <li className="sidebarListItem">
-                <MailOutline className="sidebarIcon" />
-                Mail
-              </li>
-              <li className="sidebarListItem">
-                <DynamicFeed className="sidebarIcon" />
-                Feedback
-              </li>
+              
+              
               <li className="sidebarListItem">
                 <ChatBubbleOutline className="sidebarIcon" />
                 Messages
