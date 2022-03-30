@@ -148,15 +148,21 @@ class AdminController extends Controller
         if(Post::exists()){
 
             $patients = Pharmacie::join('infos','pharmacies.pharmacy_id','=','infos.user_id')
-                    
-                    ->get();
+                                ->select('infos.name', 'infos.email', 'infos.profile_pic as poster_profile_pic', 'infos.*')
+                                ->get();
 
+            $posts = Post::join('postfinds', 'posts.id', '=', 'postfinds.post_id')
+                        ->join('infos','infos.user_id','=','postfinds.poster_id')
+                        ->join('pharmacies', 'pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+                            // ->join('postfinds', 'infos.user_id', '=', 'postfinds.poster_id')
+                            // ->select('posts.*','infos.*','postfinds.*')
+                            ->get();
             return response()->json(
-                $patients,
+                $posts,
             );
         }else{
             return response()->json(
-                "No users yet",
+                "No posts yet",
             );
         }
     }
@@ -173,7 +179,7 @@ class AdminController extends Controller
             );
         }else{
             return response()->json(
-                "No users yet",
+                "No posts yet",
             );
         }
     }
