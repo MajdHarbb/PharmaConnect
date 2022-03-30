@@ -6,14 +6,14 @@ import WidgetSm from "../../components/topbar/WidgetSm";
 import { userData } from "../../Data/DummyData";
 import "../../css/Home.css"
 const Home = () => {
+
   return (
     <div className="home">
       <FeaturedInfo />
       <Chart
-        data={userData}
-        title="User Analytics"
+        title="Medicine Availability Accoding to Governates"
         grid
-        dataKey="Active User"
+        
       />
       <div className="homeWidgets">
         <WidgetSm />
