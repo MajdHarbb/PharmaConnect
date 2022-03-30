@@ -14,7 +14,6 @@ export default function UserList() {
   var patients = [];
   var [data, setData] = useState([]);
 
-  
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })

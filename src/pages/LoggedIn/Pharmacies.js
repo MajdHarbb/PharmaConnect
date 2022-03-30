@@ -4,9 +4,14 @@ import Chart from "../../components/topbar/Chart.js"
 import {productData} from "../../Data/DummyData.js"
 import { Publish } from "@material-ui/icons";
 import { Navigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Product() {
+
+
+
   return (
     <div className="product">
       <div className="productTitleContainer">
