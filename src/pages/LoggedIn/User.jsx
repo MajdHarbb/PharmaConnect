@@ -14,18 +14,24 @@ export default function User() {
 
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
-  var patients = [];
+  var user_info = [];
   var [data, setData] = useState([]);
+  var [profile_pic, setProfile] = useState(null);
 
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
+    axios.get(`http://127.0.0.1:8000/api/admin/patient-info?user_id=${params.userId}`, { headers: { Authorization: AuthStr } })
    .then(response => {
-       // If request is good...
-       patients = JSON.stringify(response.data);
-       patients = JSON.parse(patients)
-       setData(patients);
-       console.log(response.data)
+       
+       console.log("response",response.data)
+       user_info = response.data;
+       console.log("info" ,user_info)
+       setData(user_info[0]);
+       console.log("data",data)
+       console.log(data["profile_pic"])
+       setProfile(data["profile_pic"])
+       console.log(typeof(profile_pic))
+      
       
     })
    .catch((error) => {
@@ -46,12 +52,12 @@ export default function User() {
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={require("../../assets/profiles/"+profile_pic)}
               alt=""
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
+              <span className="userShowUsername">{data["name"]}</span>
               <span className="userShowUserTitle">Software Engineer</span>
             </div>
           </div>
@@ -59,20 +65,20 @@ export default function User() {
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">{data["name"]}</span>
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
+              <span className="userShowInfoTitle">{data["updated_at"].split("T")[0]}</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
+              <span className="userShowInfoTitle">{data["phone"]}</span>
             </div>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+              <span className="userShowInfoTitle">{data["email"]}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
