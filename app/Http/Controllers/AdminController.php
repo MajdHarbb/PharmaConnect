@@ -154,9 +154,9 @@ class AdminController extends Controller
             $posts = Post::join('postfinds', 'posts.id', '=', 'postfinds.post_id')
                         ->join('infos','infos.user_id','=','postfinds.poster_id')
                         ->join('pharmacies', 'pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
-                            // ->join('postfinds', 'infos.user_id', '=', 'postfinds.poster_id')
-                            // ->select('posts.*','infos.*','postfinds.*')
-                            ->get();
+                        // ->select('infos.name')
+                        // ->where('infos.user_id','=','pharmacies.pharmacy_id')
+                        ->get();
             return response()->json(
                 $posts,
             );
