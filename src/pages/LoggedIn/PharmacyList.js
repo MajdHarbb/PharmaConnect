@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import "../../css/ProductsList.css";
+import "../../css/PharmaciesList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { productRows } from "../../Data/DummyData.js";
 import { useState , useEffect} from "react";
 import axios from "axios";
 
-export default function ProductList() {
+export default function PharmacyList() {
 
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 

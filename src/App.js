@@ -8,11 +8,11 @@ import UserList from "./pages/LoggedIn/UserList.js";
 import Home from "./pages/LoggedIn/Home.js";
 import './css/LandingPage.css'
 import Topbar from "./components/topbar/Topbar.js";
-import User from "./pages/LoggedIn/User.js";
+import User from "./pages/LoggedIn/User";
 import NewUser from "./pages/LoggedIn/NewUser.js";
-import ProductList from "./pages/LoggedIn/ProductList.js";
-import Product from "./pages/LoggedIn/Products.js";
+import Product from "./pages/LoggedIn/Pharmacies.js";
 import Posts from "./pages/LoggedIn/Posts.jsx";
+import PharmacyList from "./pages/LoggedIn/PharmacyList.js";
 
 
 function App() {
@@ -34,8 +34,8 @@ function App() {
                   {/* needs fixing */}
                   <Route path='newUser' element={<NewUser/>}/>
 
-                  <Route path='products' element={<ProductList/>}/>
-                  <Route path='products/:productId' element={<Product/>}/>
+                  <Route path='pharmacies' element={<PharmacyList/>}/>
+                  <Route path='pharmacies/:pharmacyId' element={<Product/>}/>
                   {/* needs fixing */}
                   <Route path='newproduct' element={<NewUser/>}/>
                   <Route path='newproduct' element={<NewUser/>}/>

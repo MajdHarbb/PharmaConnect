@@ -7,17 +7,28 @@ import {
     PhoneAndroid,
     Publish,
   } from "@material-ui/icons";
-  import { Link } from "react-router-dom";
   import "../../css/User.css";
+  import { useNavigate } from "react-router-dom";
+  import { useParams } from "react-router-dom"
+
+
+
   
   export default function User() {
+    const navigate = useNavigate();
+      function navigateNewUser () {
+        navigate(`newUser`);
+    }
+    const params = useParams();
+    console.log(params.userId);
     return (
+
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
-          <Link to="newUser">
-            <button className="userAddButton">Create</button>
-          </Link>
+          
+            <button className="userAddButton" onClick={navigateNewUser}>Create</button>
+          
         </div>
         <div className="userContainer">
           <div className="userShow">
