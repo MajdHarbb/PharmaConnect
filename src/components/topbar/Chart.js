@@ -12,42 +12,10 @@ import {
 } from "recharts";
 
 export default function Chart({ title, grid }) {
-  var data = [
-    {
-      "name": "Jan",
-      "Active User": "4000",
-      
-    },
-    {
-      "name": "Feb",
-      "Active User": "3000",
-    },
-    {
-      "name": "Mar",
-      "Active User": "5000",
-    },
-    {
-      "name": "Apr",
-      "Active User": "0",
-    },
-    {
-      "name": "May",
-      "Active User": "3000",
-    },
-    {
-      "name": "Jun",
-      "Active User": "2000",
-    },
-    {
-      "name": "Jul",
-      "Active User": "4000",
-    },
-  
-  ];
+
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
   var governates = [];
-  var patients = [];
   var [data2, setData] = useState(null);
   const [isLoading,setLoading] = useState(false);
 
@@ -60,7 +28,8 @@ export default function Chart({ title, grid }) {
        governates = JSON.stringify(response.data);
        governates = JSON.parse(governates)
        setData(governates);
-      //  console.log(governates["Akkar"]);
+
+       //matching the graph's input: 
       var x = [
       {"Governate": "Akkar", "Medications Found": governates["Akkar"]},
       {"Governate": "Baalbek", "Medications Found": governates["Baalbek"]},
@@ -70,27 +39,10 @@ export default function Chart({ title, grid }) {
       {"Governate": "Nabatieh", "Medications Found": governates["Nabatieh"]},
       {"Governate": "North Governate", "Medications Found": governates["North Governate"]},
       {"Governate": "South Governate", "Medications Found": governates["South Governate"]},];
-      // var stringified = JSON.stringify(x);
-      // console.log("stringified "+ stringified)
       
-      // patients = JSON.stringify(x);
-      // console.log(patients)
-      // console.log(typeof(patients))
-
-      // patients = JSON.parse(patients)
-      // patients =JSON.stringify(patients);
-      // patients = JSON.parse(patients)
-      // console.log(typeof(patients))
-      // console.log(patients)
-      // console.log(data)
       console.log(x)
       setData(x);
-      //console.log(data2)
-      
-      // var parssed = JSON.parse(stringified);
-      //   console.log("parsed "+parssed)
-      // //  console.log(JSON.stringify(x));
-      // //  console.log(JSON.parse(x))
+      //now render the actual component
       setLoading(true);
        
     })
@@ -99,8 +51,7 @@ export default function Chart({ title, grid }) {
     });
   },[]);
 
-  var test = [{"governate": "value" , "found medication": "2000"}];
-  //console.log(test["governate"])
+
   if(isLoading){
     return (
     

@@ -1,8 +1,9 @@
 import React from "react";
 import "../../css/SideBar.css";
 import {LineStyle,Timeline,TrendingUp,PermIdentity,
-Storefront,AttachMoney,BarChart,MailOutline,
-DynamicFeed,ChatBubbleOutline,WorkOutline,Report,} from "@material-ui/icons";
+Storefront,MailOutline,
+DynamicFeed,ChatBubbleOutline,WorkOutline,Report, Check} from "@material-ui/icons";
+import { Newspaper } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -44,13 +45,16 @@ const SideBar = () => {
                   Pharmacies
                 </li>
               </Link>
+              <Link to="posts" className="link">
               <li className="sidebarListItem">
-                <AttachMoney className="sidebarIcon" />
-                Transactions
+                <Newspaper className="sidebarIcon" />
+                Posts
               </li>
+              </Link>
+              
               <li className="sidebarListItem">
-                <BarChart className="sidebarIcon" />
-                Reports
+                <Check className="sidebarIcon" />
+                Solved Posts
               </li>
             </ul>
           </div>

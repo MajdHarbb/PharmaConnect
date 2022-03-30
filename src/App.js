@@ -12,6 +12,7 @@ import User from "./pages/LoggedIn/User.js";
 import NewUser from "./pages/LoggedIn/NewUser.js";
 import ProductList from "./pages/LoggedIn/ProductList.js";
 import Product from "./pages/LoggedIn/Products.js";
+import Posts from "./pages/LoggedIn/Posts.jsx";
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
                   <Route path='products/:productId' element={<Product/>}/>
                   {/* needs fixing */}
                   <Route path='newproduct' element={<NewUser/>}/>
+                  <Route path='newproduct' element={<NewUser/>}/>
+
+                  <Route path='posts' element={<Posts/>}/>
                   
                   
                   
