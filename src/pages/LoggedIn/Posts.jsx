@@ -38,7 +38,9 @@ const Posts = () => {
 
 <div className="card_item">
   <div className="card_inner">
-    <div className="userdiv">
+    <div className="topbaruser">
+      <div>
+      <div className="userdiv">
           <div>
           <img src={require("../../assets/profiles/"+singlePost.profile_pic)} />
           </div>
@@ -48,13 +50,20 @@ const Posts = () => {
           <div className="date">{(singlePost.updated_at).split("T")[0]}</div>
           </div>
     </div>
-    
-    
-    
-    <div className="post-text">{singlePost.post_text}</div>
+      </div>
+      <div>
         <div className="delete">
          <DeleteRoundedIcon/>
       </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <img src={require("../../assets/profiles/"+singlePost.post_pic)} />
+    <div className="">{singlePost.post_pic}</div>
+        
   </div>
 </div>
 
