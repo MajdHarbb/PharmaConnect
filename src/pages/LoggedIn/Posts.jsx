@@ -28,7 +28,7 @@ const Posts = () => {
         console.log("error " + error);
       });
   }, []);
-
+  if(isLoading){
   return (
     <div className="main-div">
         <h2>Solved Posts:</h2>
@@ -40,7 +40,7 @@ const Posts = () => {
             <div className="post">
               <div className="post-top">
                 <div className="dp">
-                  {/* <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt /> */}
+                  <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt />
                 </div>
                 <div className="post-info">
                   <a href="#">
@@ -74,6 +74,13 @@ const Posts = () => {
       })}
     </div>
   );
+    }else{
+      return(
+        <div>
+          <h1>Loading</h1>
+        </div>
+      )
+    }
 };
 
 export default Posts;
