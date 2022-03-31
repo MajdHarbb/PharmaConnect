@@ -14,10 +14,7 @@ const Home = () => {
         grid
         
       />
-      <div className="homeWidgets">
-        <WidgetSm />
-        <WidgetLg />
-      </div>
+      
     </div>
   );
 };

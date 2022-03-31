@@ -9,6 +9,9 @@ const Posts = () => {
   const AuthStr = "Bearer ".concat(access_token);
 
   const [posts, setPosts] = useState([]);
+
+  const [isLoading, setLoading] = useState(false);
+
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/admin/solved", {
@@ -19,6 +22,7 @@ const Posts = () => {
         console.log(response.data);
         setPosts(response.data);
         console.log(posts);
+        setLoading(true);
       })
       .catch((error) => {
         console.log("error " + error);
@@ -36,7 +40,7 @@ const Posts = () => {
             <div className="post">
               <div className="post-top">
                 <div className="dp">
-                  <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt />
+                  {/* <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt /> */}
                 </div>
                 <div className="post-info">
                   <a href="#">
@@ -50,8 +54,8 @@ const Posts = () => {
               </div>
               <div className="post-content">
               {singlePost.post_text}
-              <img src={require("../../assets/posts/"+singlePost.post_pic)}
-                alt="" />
+              {/* <img src={require("../../assets/posts/"+singlePost.post_pic)}
+                alt="" /> */}
               
               </div>
               <div className="post-bottom">
