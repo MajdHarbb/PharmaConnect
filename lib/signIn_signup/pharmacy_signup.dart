@@ -91,7 +91,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -106,33 +105,36 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    const SizedBox(height: 40,),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     const Text(
                       'Sign Up with Email',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20,
+                        fontSize: 20,
                       ),
-                  ),
-                  const SizedBox(height: 20,),
-                  const Text(
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
                       'Enter your personal information',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                  ),
-                ),
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      
                       child: TextFormField(
                         validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
                         controller: nameController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -142,13 +144,16 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric( vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
                         validator: (value) {
-              if (RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!) == false) {
-                return 'Please enter a valid email example: ex@ex.com';
-              }
-              return null;},
+                          if (RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value!) ==
+                              false) {
+                            return 'Please enter a valid email example: ex@ex.com';
+                          }
+                          return null;
+                        },
                         controller: emailController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -162,10 +167,12 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       child: TextFormField(
                         controller: phoneController,
                         validator: (value) {
-                    if (RegExp(r"^(?=.*?[0-9]).{8,}$").hasMatch(value!) == false) {
-                      return 'Phone number must be 8 digits';
-                    }
-                    return null;},
+                          if (RegExp(r"^(?=.*?[0-9]).{8,}$").hasMatch(value!) ==
+                              false) {
+                            return 'Phone number must be 8 digits';
+                          }
+                          return null;
+                        },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Enter your phone number',
@@ -174,31 +181,34 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric( vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
                         validator: (value) {
-                    if (RegExp(r"^(?=.*?[a-z])(?=.*?[0-9]).{6,}$").hasMatch(value!) == false) {
-                      return 'Please must be at least 6 characters including a digit';
-                    }
-                    return null;},
+                          if (RegExp(r"^(?=.*?[a-z])(?=.*?[0-9]).{6,}$")
+                                  .hasMatch(value!) ==
+                              false) {
+                            return 'Please must be at least 6 characters including a digit';
+                          }
+                          return null;
+                        },
                         controller: passController,
                         obscureText: true,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Enter your password',
                           prefixIcon: Icon(Icons.password_rounded),
-                          
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric( vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: TextFormField(
                         validator: (value) {
-                    if ((value != passController.text)) {
-                      return 'Password does not match';
-                    }
-                    return null;},
+                          if ((value != passController.text)) {
+                            return 'Password does not match';
+                          }
+                          return null;
+                        },
                         controller: passConfirmController,
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -208,27 +218,28 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         ),
                       ),
                     ),
-                  const Text(
+                    const Text(
                       'Enter your address information',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                  ),
-                ),
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Flexible(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric( horizontal:1.0, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 1.0, vertical: 8),
                             child: TextFormField(
                               validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
                               controller: buildingController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
@@ -243,11 +254,11 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: TextFormField(
                               validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
                               controller: streetController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
@@ -259,7 +270,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         ),
                       ],
                     ),
-                   
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -270,13 +280,13 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               width: 170,
                               child: DropdownButtonFormField<String>(
                                 decoration: const InputDecoration(
-                                border: OutlineInputBorder()),
+                                    border: OutlineInputBorder()),
                                 hint: const Text('Pickup on every'),
                                 value: _user == null ? null : governates[_user],
                                 items: governates.map((String value) {
-                                  return  DropdownMenuItem<String>(
+                                  return DropdownMenuItem<String>(
                                     value: value,
-                                    child:  Text(value),
+                                    child: Text(value),
                                   );
                                 }).toList(),
                                 onChanged: (value) {
@@ -314,13 +324,13 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               width: 170,
                               child: DropdownButtonFormField<String>(
                                 decoration: const InputDecoration(
-                                border: OutlineInputBorder()),
+                                    border: OutlineInputBorder()),
                                 hint: const Text('Pickup on every'),
                                 value: districts[_districtIndex],
                                 items: districts.map((String value) {
-                                  return  DropdownMenuItem<String>(
+                                  return DropdownMenuItem<String>(
                                     value: value,
-                                    child:  Text(value),
+                                    child: Text(value),
                                   );
                                 }).toList(),
                                 onChanged: (value) {
@@ -341,8 +351,8 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       'Enter your precise location: press and hold on the map to choose your location',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+                        fontSize: 12,
+                        color: Colors.grey,
                       ),
                     ),
                     SizedBox(
@@ -363,15 +373,17 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                         onLongPress: _addMarker,
                       ),
                     ),
-                    const SizedBox(height: 20,),
-                  const Text(
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
                       'Upload an image of your pharmacy`s license',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                  ),
-                ),
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -386,9 +398,14 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                                       width: 50,
                                     ),
                                   )
-                                :   const Text('No image selected yet',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(fontSize: 12,color: Colors.grey,),),
+                                : const Text(
+                                    'No image selected yet',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                           ),
                         ),
                         Flexible(
@@ -411,7 +428,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               label: const Text(
                                 'Upload License',
                                 style: TextStyle(color: Colors.black),
-                                
                               ),
                               //controller: streetController,
                             ),
@@ -423,41 +439,44 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           final response = await http.post(
-                          Uri.parse('http://192.168.0.117:8000/api/auth/register'),
-                          body: <String, String>{
-                            'name': nameController.text,
-                            'email': emailController.text,
-                            'password': passController.text,
-                            'password_confirmation': passConfirmController.text,
-                            'phone': phoneController.text,
-                            'profile_pic': 'defualt_profile_picture_pharmaConnect.png',
-                            'user_type': 'pharmacy',
-                            'building': buildingController.text,
-                            'street': streetController.text,
-                            'locality': district,
-                            'district': governate,
-                            'latitude': lat.toString(),
-                            'longitude': long.toString(),
-                            'license': "data:image/$extension;base64,$base64_img",
-                          },
-                        );
-
-                        if (response.statusCode == 201) {
-                          // If the server did return a 201 CREATED response,
-                          // then parse the JSON.
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignInUser()),
+                            Uri.parse(
+                                'http://192.168.0.117:8000/api/auth/register'),
+                            body: <String, String>{
+                              'name': nameController.text,
+                              'email': emailController.text,
+                              'password': passController.text,
+                              'password_confirmation':
+                                  passConfirmController.text,
+                              'phone': phoneController.text,
+                              'profile_pic':
+                                  'defualt_profile_picture_pharmaConnect.png',
+                              'user_type': 'pharmacy',
+                              'building': buildingController.text,
+                              'street': streetController.text,
+                              'locality': district,
+                              'district': governate,
+                              'latitude': lat.toString(),
+                              'longitude': long.toString(),
+                              'license':
+                                  "data:image/$extension;base64,$base64_img",
+                            },
                           );
-                          print(response.body);
-                        } else {
-                          // If the server did not return a 201 CREATED response,
-                          // then throw an exception.
-                          print(response.body);
+
+                          if (response.statusCode == 201) {
+                            // If the server did return a 201 CREATED response,
+                            // then parse the JSON.
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignInUser()),
+                            );
+                            print(response.body);
+                          } else {
+                            // If the server did not return a 201 CREATED response,
+                            // then throw an exception.
+                            print(response.body);
+                          }
                         }
-                        }
-                        
                       },
                       child: const Text('Sign Up'),
                     ),
