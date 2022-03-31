@@ -55,6 +55,7 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
+      getUserInfo();
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
