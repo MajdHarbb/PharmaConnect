@@ -364,7 +364,22 @@ class _PatientHomeState extends State<PatientHome> {
           shrinkWrap: true,
           padding: const EdgeInsets.all(5),
           scrollDirection: Axis.vertical,
-        ) : const Text("You don't have any posts yet, create a post"),
+        ) : Column(
+          
+          children:  [
+            const Text("You don't have any posts yet, create a post"),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                Text("Get Statred ", style: TextStyle(fontSize: 50.0),),
+                Image.asset("assets/images/Demo.gif")
+
+              ],
+            )
+          ],
+        ),
                 
                   
                 ]

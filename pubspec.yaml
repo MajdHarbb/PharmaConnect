@@ -72,9 +72,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
      - assets/images/
+     - assets/images/Demo.gif
      - assets/profiles/
      - assets/posts/
      - assets/licenses/
+     - file:///C:/Users/User/Desktop/FSW/Final%20Project/PharmaConnect/storage/app/public/profile_pictures/20.jpg
+     - C:/Users/User/Desktop/FSW/Final%20Project/PharmaConnect/storage/app/public/profile_pictures/20.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
