@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -9,6 +10,9 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController messageController = TextEditingController();
+
   String user_id = "";
   String access_Token = "";
 
@@ -47,18 +51,80 @@ class _ContactUsState extends State<ContactUs> {
                       ),
                     ]),
                 child: Form(
-                  child: TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    minLines: 5, //Normal textInputField will be displayed
-                    maxLines: 5,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.message_rounded),
-                      border: OutlineInputBorder(),
-                      labelText: 'Your Message Text Here...',
-                    ),
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.multiline,
+                        minLines: 5, //Normal textInputField will be displayed
+                        maxLines: 5,
+                        controller: messageController,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.message_rounded),
+                          border: OutlineInputBorder(),
+                          labelText: 'Your Message Text Here...',
+                        ),
+                      ),
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                        TextButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              final response = await http.post(
+                                Uri.parse(
+                                    'http://192.168.0.117:8000/api/user/send-message'),
+                                headers: {
+                                  'Authorization': 'Bearer $access_Token',
+                                },
+                                body: {
+                                  'user_id': user_id,
+                                  'message_text': messageController.text,
+                                },
+                              );
+
+                              if (response.statusCode == 201) {
+                                // If the server did return a 201 CREATED response,
+                                // then parse the JSON.
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Text(
+                                        'Thank You! We Received Your Message.'),
+                                    content: const Text(
+                                        'Press okay to return to your screen'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'OK'),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                // If the server did not return a 201 CREATED response,
+                                // then throw an exception.
+                                print(response.body);
+                              }
+                            }
+                          },
+                          child: const Text('Send Message'),
+                        ),
+                        const Icon(
+                          Icons.send_rounded,
+                          color: Colors.blue,
+                        ),
+                      ]),
+                    ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
