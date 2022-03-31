@@ -59,22 +59,11 @@ const Posts = () => {
           //       alt="" /> */}
               
           //     </div>
-          //     <div className="post-bottom">
-          //       <div className="action">
-          //         <Check/>
-          //         <span>Solved </span>
-          //       </div>
-          //       {/* <div className="action">
-          //         <i className="far fa-heart" />
-          //         <span>Love</span>
-          //       </div> */}
-          //     </div>
-          //   </div>
-          // </div>
+
 <div className="card_item">
   <div className="card_inner">
-    <img src="post" />
-    <div className="name">test</div>
+    <img src={require("../../assets/profiles/"+singlePost.profile_pic)} />
+    <div className="name">{singlePost.name}</div>
     <div className="date">test</div>
     <div className="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.</div>
