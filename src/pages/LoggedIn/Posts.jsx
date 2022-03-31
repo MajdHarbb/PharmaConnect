@@ -36,19 +36,7 @@ const Posts = () => {
       {posts.map((singlePost) => {
         return (
             
-          // <div id="posts-div">
-              
-          //   <div className="post">
-          //     <div className="post-top">
-          //       <div className="dp">
-          //         <img src={require("../../assets/profiles/"+singlePost.profile_pic)} alt />
-          //       </div>
-          //       <div className="post-info">
-          //         <a href="#">
-          //           <p className="name">{singlePost.name}</p>
-          //         </a>
-          //         <span className="time">{singlePost.updated_at}</span>
-          //       </div>
+    
           //       <div className="delete">
           //         <DeleteRoundedIcon/>
           //       </div>
@@ -64,9 +52,8 @@ const Posts = () => {
   <div className="card_inner">
     <img src={require("../../assets/profiles/"+singlePost.profile_pic)} />
     <div className="name">{singlePost.name}</div>
-    <div className="date">test</div>
-    <div className="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.</div>
+    <div className="date">{singlePost.updated_at}</div>
+    <div className="post-text">{singlePost.post_text}</div>
   </div>
 </div>
 
