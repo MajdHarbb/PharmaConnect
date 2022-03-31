@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/delete-post', [PostsController::class, 'deletePost'])->name('delete-post');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
         Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
-        Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
+        Route::get('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
         
     });
     
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/patient-info', [AdminController::class, 'patientInfo'])->name('patient-info');
         Route::get('/update-patient-info', [AdminController::class, 'updatePatientInfo'])->name('update-patient-info');
         Route::get('/pharmacy-info', [AdminController::class, 'pharmacyInfo'])->name('pharmacy-info');
-   
+        Route::get('/all-posts', [PostsController::class, 'allPosts'])->name('all-posts');
     });
 
     Route::group(['prefix' => 'auth'], function () {

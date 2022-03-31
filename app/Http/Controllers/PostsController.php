@@ -80,23 +80,6 @@ class PostsController extends Controller
         );
     }
 
-    // public function myPosts(Request $request){
-    //     $user_id= $request->user_id;
-    //     $post_exists=Post::where('user_id', '=', $user_id)->exists();
-
-    //     if($post_exists){
-    //         $posts = Post::where('user_id', '=', $user_id)->get();
-    //         return response()->json(
-    //             $posts,
-    //         );
-    //     }else{
-    //         return response()->json([
-    //             "No posts yet",
-    //         ], 400);
-    //     }
-        
-    // }
-
     public function myPosts(Request $request){
         $user_id= $request->user_id;
         $post_exists=Post::where('user_id', '=', $user_id)->exists();
@@ -128,5 +111,15 @@ class PostsController extends Controller
                 'message' => 'Record does not exist',
             ], 401);
          }
+    }
+
+    public function allPosts(){
+        // $posts=Post::join('infos', 'infos.user_id' = 'posts.poster_id')->get(['']);
+        $posts = Post::join('infos', 'infos.user_id', '=', 'posts.user_id')
+               ->get(['infos.*', 'posts.*']);
+
+               return response()->json([
+                $posts,
+            ], 201);
     }
 }
