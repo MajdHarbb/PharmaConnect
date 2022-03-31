@@ -153,7 +153,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMap(_loadedPhotos[index]["latitude"], _loadedPhotos[index]["longitude"]);
+                            MapUtils.openMap(_loadedPhotos[index]["latitude"],
+                                _loadedPhotos[index]["longitude"]);
                           },
                           label: const Text(
                             'Maps',
@@ -172,7 +173,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openDialer('${_loadedPhotos[index]["phone"]}');
+                            MapUtils.openDialer(
+                                '${_loadedPhotos[index]["phone"]}');
                           },
                           label: const Text(
                             'Call',
@@ -191,7 +193,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMail('${_loadedPhotos[index]["email"]}');
+                            MapUtils.openMail(
+                                '${_loadedPhotos[index]["email"]}');
                           },
                           label: const Text(
                             'Share',
