@@ -16,7 +16,13 @@ class PatientMain extends StatefulWidget {
 
 class _PatientMainState extends State<PatientMain> {
   String _currentPage = "PatientHome";
-  List<String> pageKeys = ["PatientHome", "PatientPharmacies", "PatientSearch", "Notifications", "PatientProfile"];
+  List<String> pageKeys = [
+    "PatientHome",
+    "PatientPharmacies",
+    "PatientSearch",
+    "Notifications",
+    "PatientProfile"
+  ];
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "PatientHome": GlobalKey<NavigatorState>(),
     "PatientPharmacies": GlobalKey<NavigatorState>(),
@@ -38,8 +44,6 @@ class _PatientMainState extends State<PatientMain> {
   }
 
   int currentIndex = 0;
-
-  
 
   final screens = [
     const PatientHome(),
@@ -64,54 +68,49 @@ class _PatientMainState extends State<PatientMain> {
         // let system handle back button if we're on the first route
         return isFirstRouteInCurrentTab;
       },
-          child: Scaffold(
-        body: Stack(
-          children:<Widget>[
-            _buildOffstageNavigator("PatientHome"),
-            _buildOffstageNavigator("PatientPharmacies"),
-            _buildOffstageNavigator("PatientSearch"),
-            _buildOffstageNavigator("Notifications"),
-            _buildOffstageNavigator("PatientProfile"),
-          ]
-        ),
+      child: Scaffold(
+        body: Stack(children: <Widget>[
+          _buildOffstageNavigator("PatientHome"),
+          _buildOffstageNavigator("PatientPharmacies"),
+          _buildOffstageNavigator("PatientSearch"),
+          _buildOffstageNavigator("Notifications"),
+          _buildOffstageNavigator("PatientProfile"),
+        ]),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blueAccent,
-          onTap: (int index) { _selectTab(pageKeys[index], index); },
-          currentIndex: _selectedIndex, 
+          onTap: (int index) {
+            _selectTab(pageKeys[index], index);
+          },
+          currentIndex: _selectedIndex,
           items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.storefront),
-            label: 'Pharmacy',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-            backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-            backgroundColor: Colors.pink,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-            backgroundColor: Colors.pink,
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.storefront),
+              label: 'Pharmacy',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart_rounded),
+              label: 'My Activity',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: 'Notification',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );
   }
 
-    Widget _buildOffstageNavigator(String tabItem) {
+  Widget _buildOffstageNavigator(String tabItem) {
     return Offstage(
       offstage: _currentPage != tabItem,
       child: TabNavigator(
@@ -121,4 +120,3 @@ class _PatientMainState extends State<PatientMain> {
     );
   }
 }
-
