@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PostfindsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MessagesController;
 
 
 Route::group(['middleware' => ['auth:api']], function () {
@@ -24,6 +25,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/get-notifications', [UserController::class, 'getNotifications'])->name('get-notifications');
         Route::post('/my-posts', [UserController::class, 'myPosts'])->name('my-posts');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
+        Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
         
     });
     
