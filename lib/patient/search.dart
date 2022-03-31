@@ -14,98 +14,121 @@ class PatientSearch extends StatefulWidget {
 
 class _PatientSearchState extends State<PatientSearch> {
   List _loadedPhotos = [];
+  String test = '';
+  String user_id = "";
   String access_Token = "";
-  String pharmacy_profile_pic = "";
+  String user_name = "";
+  String user_email = "";
+  String user_phone = "";
+  String user_profile_picture = "";
+  int count = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Posts'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Expansiontile(),
-            Container(
-              padding: const EdgeInsets.all(8.0),
+      body: Scaffold(
+        body: CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          //backgroundColor: Colors.green,
+          title: Text('Pharmacies'),
+          floating: true,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, int index) {
+              return Container(
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(8.0),
                 color: Colors.white,
-              child: ExpansionTile(
-                title: Row(children: [
-                  Icon(
-                    Icons.person,
-                    color: Colors.grey[600],
-                    size: 30.0,
-                  ),
-                  const SizedBox(width: 8.0),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
                       children: [
-                        const Text(
-                          "My Account",
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                        CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage: AssetImage(
+                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Edit Your Profile Information",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 12.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                ]),
-                children: [
-                  ListTile(
-                    title: Container(
-                  
-                  child: Row(children: [
-                    Icon(
-                      Icons.person,
-                      color: Colors.grey[600],
-                      size: 30.0,
-                    ),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "My Account",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          Row(
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Edit Your Profile Information",
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 12.0,
-                                ),
+                                _loadedPhotos[index]["name"],
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    _loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T')),
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.public,
+                                    color: Colors.grey[600],
+                                    size: 12.0,
+                                  )
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
+                        
+                      ],
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(_loadedPhotos[index]["post_text"]),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Image.asset(
+                        'assets/posts/${_loadedPhotos[index]["post_pic"]}',
+                        width: 600.0,
+                        height: 240.0,
+                        fit: BoxFit.cover,
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.check_circle_outline_rounded,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(80.0, 60.0),
+                            primary: Colors.white,
+                          ),
 
-                  ]),
+                          onPressed: () {
+                          },
+                          label: const Text(
+                            'Send Availability Message',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                  )
-                ],
-              ),
-            ),
-          ],
+              );
+            },
+            childCount: _loadedPhotos.length, // 1000 list items
+          ),
         ),
-      ),
-    );
+      ],
+    ));
   }
 
 
@@ -118,7 +141,6 @@ class _PatientSearchState extends State<PatientSearch> {
 
     setState(() {
       user_id = prefs.getString('id')!;
-      user_type = prefs.getString('user_type')!;
       access_Token = prefs.getString('accesToken')!;
     });
     final response = await http.post(
@@ -153,13 +175,6 @@ class _PatientSearchState extends State<PatientSearch> {
       count = 0;
     });
     }
-    
-
-
-    print(user_id);
-    print(user_type);
-
-
   }
 
   @override
@@ -168,7 +183,6 @@ class _PatientSearchState extends State<PatientSearch> {
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
-    getUserInfo();
     
   }
 
