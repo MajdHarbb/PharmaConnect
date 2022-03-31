@@ -55,8 +55,6 @@ class _PatientProfileState extends State<PatientProfile> {
   @override
   initState() {
     super.initState();
-    print(
-        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
   }
 

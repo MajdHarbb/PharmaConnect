@@ -55,7 +55,7 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
-      getUserInfo();
+      
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -70,6 +70,10 @@ class _PatientHomeState extends State<PatientHome> {
                         ],
                       ),
                     );
+        getStringValuesSF();
+        setState(() {
+          
+        });
       
     } else {
       // If the server did not return a 201 CREATED response,

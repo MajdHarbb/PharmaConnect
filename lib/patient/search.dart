@@ -203,11 +203,27 @@ class _PatientSearchState extends State<PatientSearch> {
         'post_id': id.toString(),
       },
     );
-    if (response.statusCode == 200) {
-      setState(() {});
+    if (response.statusCode == 201) {
+      
+        showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title:  const Text('Your post was deleted successfully'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      getStringValuesSF();
+      setState(() {
+        
+      });
 
-    } else {
-      setState(() {});
     }
   }
 
