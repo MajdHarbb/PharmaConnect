@@ -61,7 +61,7 @@ const Posts = () => {
     
     
     
-    <img src={require("../../assets/profiles/"+singlePost.post_pic)} />
+    <img src={require("../../assets/posts/"+singlePost.post_pic)} />
     <div className="">{singlePost.post_pic}</div>
         
   </div>
