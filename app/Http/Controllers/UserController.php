@@ -223,6 +223,22 @@ class UserController extends Controller
 
     }
 
+    public function deleteUser (Request $request) {
+        $id=$request->user_id;
+        if (User::where('id', '=', $id)->exists()) {
+
+           $user = User::find($id);
+           $user->delete();
+           return response()->json([
+            'message' => 'User deleted successfully',
+        ], 201);
+         }else{
+            return response()->json([
+                'message' => 'Record does not exist',
+            ], 401);
+         }
+    }
+
     
 
     

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/delete-post', [PostsController::class, 'deletePost'])->name('delete-post');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
         Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
+        Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
         
     });
     
