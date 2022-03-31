@@ -125,6 +125,71 @@ class _PatientSearchState extends State<PatientSearch> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.location_on,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            // MapUtils.openMap(_loadedPhotos[index]["latitude"],
+                            //     _loadedPhotos[index]["longitude"]);
+                          },
+                          label: const Text(
+                            'Maps',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.phone,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            // MapUtils.openDialer(
+                            //     '${_loadedPhotos[index]["phone"]}');
+                          },
+                          label: const Text(
+                            'Call',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.email_rounded,
+                            color: Colors.blue,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(10, 40),
+                            primary: Colors.white,
+                          ),
+
+                          onPressed: () {
+                            // MapUtils.openMail(
+                            //     '${_loadedPhotos[index]["email"]}');
+                          },
+                          label: const Text(
+                            'Email',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          //controller: streetController,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ) : Container(
