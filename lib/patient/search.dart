@@ -34,186 +34,168 @@ class _PatientSearchState extends State<PatientSearch> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
-
-              
-              return 
-              count !=0 ? 
-              Container(
-                margin: const EdgeInsets.all(15),
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: Colors.grey[200],
-                          backgroundImage: AssetImage(
-                              'assets/profiles/$user_profile_picture'),
-                        ),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+              return count != 0
+                  ? Container(
+                      margin: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    user_name,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.delete_rounded),
-                                    color: Colors.grey[600],
-                                    onPressed: () {deletePost(_loadedPhotos[index]["id"]);},
-                                  ),
-                                ],
+                              CircleAvatar(
+                                radius: 30.0,
+                                backgroundColor: Colors.grey[200],
+                                backgroundImage: AssetImage(
+                                    'assets/profiles/$user_profile_picture'),
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    _loadedPhotos[index]["updated_at"]
-                                        .substring(
-                                            0,
-                                            _loadedPhotos[index]["updated_at"]
-                                                .indexOf('T')),
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 12.0,
+                              const SizedBox(width: 8.0),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          user_name,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  Icon(
-                                    Icons.public,
-                                    color: Colors.grey[600],
-                                    size: 12.0,
-                                  )
-                                ],
+                                    Row(
+                                      children: [
+                                        Text(
+                                          _loadedPhotos[index]["updated_at"]
+                                              .substring(
+                                                  0,
+                                                  _loadedPhotos[index]
+                                                          ["updated_at"]
+                                                      .indexOf('T')),
+                                          style: TextStyle(
+                                            color: Colors.grey[600],
+                                            fontSize: 12.0,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.public,
+                                          color: Colors.grey[600],
+                                          size: 12.0,
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4.0),
-                    Text(_loadedPhotos[index]["post_text"]),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Image.asset(
-                        'assets/posts/${_loadedPhotos[index]["post_pic"]}',
-                        width: 600.0,
-                        height: 240.0,
-                        fit: BoxFit.cover,
+                          const SizedBox(height: 4.0),
+                          TextFormField(
+                              //controller: postTextController,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: _loadedPhotos[index]["post_text"]),
+                            ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: GestureDetector(
+                              onTap: () {print("tap");}, // Image tapped
+                              child: Image.asset(
+                                'assets/posts/${_loadedPhotos[index]["post_pic"]}',
+                                width: 600.0,
+                                height: 240.0,
+                                fit: BoxFit.cover,
+                                
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton.icon(
+                                icon: const Icon(
+                                  Icons.delete_rounded,
+                                  color: Colors.red,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(10, 40),
+                                  primary: Colors.white,
+                                ),
+
+                                onPressed: () {
+                                  deletePost(_loadedPhotos[index]["id"]);
+                                },
+                                label: const Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                //controller: streetController,
+                              ),
+                              ElevatedButton.icon(
+                                icon: const Icon(
+                                  Icons.save,
+                                  color: Colors.blue,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(10, 40),
+                                  primary: Colors.white,
+                                ),
+
+                                onPressed: () {
+                                  // MapUtils.openDialer(
+                                  //     '${_loadedPhotos[index]["phone"]}');
+                                },
+                                label: const Text(
+                                  'Save',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                //controller: streetController,
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton.icon(
-                          icon: const Icon(
-                            Icons.location_on,
-                            color: Colors.blue,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(10, 40),
-                            primary: Colors.white,
-                          ),
-
-                          onPressed: () {
-                            // MapUtils.openMap(_loadedPhotos[index]["latitude"],
-                            //     _loadedPhotos[index]["longitude"]);
-                          },
-                          label: const Text(
-                            'Maps',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          //controller: streetController,
-                        ),
-                        ElevatedButton.icon(
-                          icon: const Icon(
-                            Icons.phone,
-                            color: Colors.blue,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(10, 40),
-                            primary: Colors.white,
-                          ),
-
-                          onPressed: () {
-                            // MapUtils.openDialer(
-                            //     '${_loadedPhotos[index]["phone"]}');
-                          },
-                          label: const Text(
-                            'Call',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          //controller: streetController,
-                        ),
-                        ElevatedButton.icon(
-                          icon: const Icon(
-                            Icons.email_rounded,
-                            color: Colors.blue,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(10, 40),
-                            primary: Colors.white,
-                          ),
-
-                          onPressed: () {
-                            // MapUtils.openMail(
-                            //     '${_loadedPhotos[index]["email"]}');
-                          },
-                          label: const Text(
-                            'Email',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          //controller: streetController,
-                        ),
-                      ],
                     )
-                  ],
-                ),
-              ) : Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                margin: const EdgeInsets.all(15),
-                padding: const EdgeInsets.all(8.0),
-                child: 
-                const Text("You don't have any posts yet"),
-              ); 
+                  : Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      margin: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(8.0),
+                      child: const Text("You don't have any posts yet"),
+                    );
             },
             childCount: _loadedPhotos.length, // 1000 list items
           ),
@@ -258,7 +240,6 @@ class _PatientSearchState extends State<PatientSearch> {
   }
 
   deletePost(id) async {
-    
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/delete-post'),
       headers: {
@@ -269,26 +250,21 @@ class _PatientSearchState extends State<PatientSearch> {
       },
     );
     if (response.statusCode == 201) {
-      
-        showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title:  const Text('Your post was deleted successfully'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Your post was deleted successfully'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
       getStringValuesSF();
-      setState(() {
-        
-      });
-
+      setState(() {});
     }
   }
 
