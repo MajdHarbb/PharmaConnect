@@ -31,16 +31,26 @@ const Posts = () => {
   if(isLoading){
   return (
   <div className="wrapperr">
-  <div className="header">Pharma Connect Solved Posts</div>
+  <div className="header"><h1>Pharma Connect Solved Posts</h1></div>
   <div className="cards_wrap">
       {posts.map((singlePost) => {
         return (
 
 <div className="card_item">
   <div className="card_inner">
-    <img src={require("../../assets/profiles/"+singlePost.profile_pic)} />
-    <div className="name">{singlePost.name}</div>
-    <div className="date">{singlePost.updated_at}</div>
+    <div className="userdiv">
+          <div>
+          <img src={require("../../assets/profiles/"+singlePost.profile_pic)} />
+          </div>
+
+          <div>
+          <div className="name">{singlePost.name}</div>
+          <div className="date">{(singlePost.updated_at).split("T")[0]}</div>
+          </div>
+    </div>
+    
+    
+    
     <div className="post-text">{singlePost.post_text}</div>
         <div className="delete">
          <DeleteRoundedIcon/>
