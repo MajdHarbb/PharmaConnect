@@ -371,10 +371,10 @@ class _PatientHomeState extends State<PatientHome> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: const [
 
                 Text("Get Statred ", style: TextStyle(fontSize: 50.0),),
-                Image.asset("assets/images/Demo.gif")
+                //Image.asset("assets/images/Demo.gif")
 
               ],
             )
