@@ -61,9 +61,10 @@ class _SignInUserState extends State<SignInUser> {
               TextFormField(
                 controller: emailController,
                 validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }},
+              if (RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!) == false) {
+                return 'Please enter a valid email example: ex@ex.com';
+              }
+              return null;},
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email_rounded),
                   border: OutlineInputBorder(),
@@ -74,7 +75,7 @@ class _SignInUserState extends State<SignInUser> {
               TextFormField(
                 validator: (value) {
                 if (value == null || value.isEmpty) {
-                return 'Please enter your password';
+                return 'The password should be a minimum of 6 letters and a digit';
                 }
               return null;
             },

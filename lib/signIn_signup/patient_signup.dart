@@ -131,65 +131,9 @@ class _PatientSignUpState extends State<PatientSignUp> {
                     ),
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: <Widget>[
-                //     Flexible(
-                //       child: Padding(
-                //         padding: const EdgeInsets.symmetric(vertical: 8),
-                //         child: image != null
-                //             ? ClipOval(
-                //                 child: Image.file(
-                //                   image!,
-                //                   height: 50,
-                //                   width: 50,
-                //                 ),
-                //               )
-                //             : const FlutterLogo(size: 50),
-                //       ),
-                //     ),
-                //     Flexible(
-                //       child: Padding(
-                //         padding: const EdgeInsets.symmetric(
-                //             horizontal: 8, vertical: 8),
-                //         child: ElevatedButton.icon(
-                //           icon: const Icon(
-                //             Icons.image_outlined,
-                //             color: Colors.blue,
-                //             size: 24.0,
-                //           ),
-                //           style: ElevatedButton.styleFrom(
-                //             minimumSize: const Size(50, 40),
-                //             primary: Colors.white,
-                //           ),
-
-                //           onPressed: () {
-                //             pickImage();
-                //           },
-                //           label: const Text(
-                //             'Pick Image',
-                //             style: TextStyle(color: Colors.black),
-                //           ),
-                //           //controller: streetController,
-                //         ),
-                //       ),
-                //     ),
-                    
-                //   ],
-                // ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45),),
                   onPressed: () async {
-
-                    // var request = http.MultipartRequest('POST', Uri.parse('http://192.168.0.117:8000/api/auth/register'));
-                    // request.fields['name'] = nameController.text;
-                    // request.fields['email'] = emailController.text;
-                    // request.fields['phone'] = phoneController.text;
-                    // request.fields['password'] = passController.text;
-                    // request.fields['password_confirmation'] = passConfirmController.text;
-                    // request.fields['user_type'] = 'patient';
-                    // request.files.add(await http.MultipartFile.fromPath('profile_pic', imagePath));
-                    // var response = await request.send();
                     String defualtImage = r'defualt_profile_picture_pharmaConnect.png';
                     final response = await http.post(
                       Uri.parse('http://192.168.0.117:8000/api/auth/register'),
