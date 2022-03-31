@@ -1,8 +1,7 @@
 import React from "react";
 import "../../css/SideBar.css";
-import {LineStyle,Timeline,TrendingUp,PermIdentity,
-Storefront,MailOutline,
-DynamicFeed,ChatBubbleOutline,WorkOutline,Report, Check} from "@material-ui/icons";
+import {LineStyle,PermIdentity,
+Storefront,ChatBubbleOutline, Check} from "@material-ui/icons";
 import { Newspaper } from "@mui/icons-material";
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Link } from "react-router-dom";
@@ -44,17 +43,18 @@ const SideBar = () => {
                   Pharmacies
                 </li>
               </Link>
-              <Link to="posts" className="link">
+              <Link to="allposts" className="link">
               <li className="sidebarListItem">
                 <Newspaper className="sidebarIcon" />
                 Posts
               </li>
               </Link>
-              
+              <Link to="solvedposts" className="link">
               <li className="sidebarListItem">
                 <Check className="sidebarIcon" />
                 Solved Posts
               </li>
+              </Link>
             </ul>
           </div>
           <div className="sidebarMenu">

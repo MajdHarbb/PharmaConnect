@@ -13,6 +13,7 @@ import NewUser from "./pages/LoggedIn/NewUser.js";
 import Posts from "./pages/LoggedIn/Posts.jsx";
 import PharmacyList from "./pages/LoggedIn/PharmacyList.js";
 import Pharmacy from "./pages/LoggedIn/Pharmacies";
+import AllPosts from "./pages/LoggedIn/AllPosts.jsx";
 
 
 function App() {
@@ -36,11 +37,10 @@ function App() {
 
                   <Route path='pharmacies' element={<PharmacyList/>}/>
                   <Route path='pharmacies/:pharmacyId' element={<Pharmacy/>}/>
-                  {/* needs fixing */}
-                  <Route path='newproduct' element={<NewUser/>}/>
-                  <Route path='newproduct' element={<NewUser/>}/>
+                  
 
-                  <Route path='posts' element={<Posts/>}/>
+                  <Route path='solvedposts' element={<Posts/>}/>
+                  <Route path="allposts" element={<AllPosts/>}/>
                   
                   
                   

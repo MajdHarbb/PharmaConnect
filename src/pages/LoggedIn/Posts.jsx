@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import * as css from "../../css/Posts.css";
 import { Check } from "@material-ui/icons";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 const Posts = () => {
   var access_token = localStorage.getItem("access_token");
   const AuthStr = "Bearer ".concat(access_token);
@@ -28,60 +28,61 @@ const Posts = () => {
         console.log("error " + error);
       });
   }, []);
-  if(isLoading){
-  return (
-  <div className="wrapperr">
-  <div className="header"><h1>Pharma Connect Solved Posts</h1></div>
-  <div className="cards_wrap">
-      {posts.map((singlePost) => {
-        return (
-
-<div className="card_item">
-  <div className="card_inner">
-    <div className="topbaruser">
-      <div>
-      <div className="userdiv">
-          <div>
-          <img className="profile" src={require("../../assets/profiles/"+singlePost.profile_pic)} />
-          </div>
-
-          <div>
-          <div className="name">{singlePost.name}</div>
-          <div className="date">{(singlePost.updated_at).split("T")[0]}</div>
-          </div>
-    </div>
-      </div>
-      <div>
-        <div className="delete">
-         <DeleteRoundedIcon/>
-      </div>
-      </div>
-    </div>
-    
-    
-    
-    <div className="text">{singlePost.post_text}</div>
-    <div className="postimg">
-    <img src={require("../../assets/posts/"+singlePost.post_pic)} />
-    </div>
-            
-  </div>
-</div>
-
-
-
-        );
-      })}
+  if (isLoading) {
+    return (
+      <div className="wrapperr">
+        <div className="header">
+          <h1>Pharma Connect Solved Posts</h1>
         </div>
-</div>
-  );
-    }else{
-      return(
-        <div>
-          <h1>Loading</h1>
+        <div className="cards_wrap">
+          {posts.map((singlePost) => {
+            return (
+              <div className="card_item">
+                <div className="card_inner">
+                  <div className="topbaruser">
+                    <div>
+                      <div className="userdiv">
+                        <div>
+                          <img
+                            className="profile"
+                            src={require("../../assets/profiles/" +
+                              singlePost.profile_pic)}
+                          />
+                        </div>
+
+                        <div>
+                          <div className="name">{singlePost.name}</div>
+                          <div className="date">
+                            {singlePost.updated_at.split("T")[0]}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="delete"></div>
+                    </div>
+                  </div>
+
+                  <div className="text">{singlePost.post_text}</div>
+                  <div className="postimg">
+                    <img
+                      src={require("../../assets/posts/" + singlePost.post_pic)}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      )
-    }
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
 };
 
 export default Posts;
