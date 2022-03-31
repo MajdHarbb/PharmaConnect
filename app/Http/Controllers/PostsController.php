@@ -15,10 +15,6 @@ use Validator;
 
 class PostsController extends Controller
 {
-    public function userProfile() {
-        $user = Auth::user();
-        return response()->json($user);
-    }
 
     public function addPost(Request $request){
         $validator = Validator::make($request->all(), [
@@ -100,4 +96,37 @@ class PostsController extends Controller
     //     }
         
     // }
+
+    public function myPosts(Request $request){
+        $user_id= $request->user_id;
+        $post_exists=Post::where('user_id', '=', $user_id)->exists();
+        
+        if($post_exists){
+            $posts = Post::where('user_id', '=', $user_id)->get();
+            return response()->json(
+                $posts,
+            );
+        }else{
+            return response()->json([
+                "No posts yet",
+            ], 400);
+        }
+        
+    }
+
+    public function deletePost (Request $request) {
+        $id=$request->post_id;
+        if (Post::where('id', '=', $id)->exists()) {
+
+           $posts = Post::find($id);
+           $posts->delete();
+           return response()->json([
+            'message' => 'Post deleted successfully',
+        ], 201);
+         }else{
+            return response()->json([
+                'message' => 'Record does not exist',
+            ], 401);
+         }
+    }
 }

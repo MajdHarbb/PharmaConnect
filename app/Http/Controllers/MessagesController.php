@@ -15,23 +15,19 @@ use App\Models\Message;
 
 use Validator;
 
-class MessagesContoller extends Controller
+class MessagesController extends Controller
 {
     public function sendMessage(Request $request){
         $validator = Validator::make($request->all(), [
-            'message' => 'required|string|between:2,255',
+            'message_text' => 'required|string|between:2,255',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
-
-        $user_id = $request->user_id;
-        $message_text = $request->message_text;
-        $messsage = new Message;
-        $messsage->user = $request->user_id;
-        $messsage->message_text = $request->message_text;
-        $messsage->save();
+        $message = new Message;
+        $message->user_id = $request->user_id;
+        $message->message_text = $request->message_text;
+        $message->save();
 
         return response()->json([
             'message' => 'message sent successfully',
