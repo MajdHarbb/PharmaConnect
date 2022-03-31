@@ -58,14 +58,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        // const SliverAppBar(
-        //   backgroundColor: Colors.amber,
-        //   title: Text('Kindacode.com'),
-        //   expandedHeight: 30,
-        //   collapsedHeight: 150,
-        // ),
         const SliverAppBar(
-          //backgroundColor: Colors.green,
           title: Text('Pharmacies'),
           floating: true,
         ),

@@ -37,7 +37,22 @@ class _PatientSearchState extends State<PatientSearch> {
               return Container(
                 margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.all(8.0),
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -54,10 +69,22 @@ class _PatientSearchState extends State<PatientSearch> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                user_name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    user_name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.delete_rounded),
+                                    color: Colors.grey[600],
+                                    onPressed: () {},
+                                    
+                                  ),
+
+                                ],
                               ),
                               Row(
                                 children: [

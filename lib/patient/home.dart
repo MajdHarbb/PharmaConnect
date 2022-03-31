@@ -156,41 +156,6 @@ class _PatientHomeState extends State<PatientHome> {
 
   List _loadedPhotos = [];
 
-  // The function that fetches data from the API
-  // Future<void> myPosts() async {
-  //   String locid = user_id;
-
-  //    final response = await http.post(
-  //     Uri.parse('http://192.168.0.117:8000/api/auth/my-posts'),
-  //     headers: {
-  //       'Authorization': 'Bearer $access_Token',
-  //     },
-  //     body: {
-  //       'user_id': user_id,
-  //       // 'post_text': postTextController.text,
-  //       // 'post_pic': "data:image/$extension;base64,$base64_img",
-  //     },
-  //   );
-  //   final data = json.decode(response.body);
-  //   if (response.statusCode == 200) {
-  //     // If the server did return a 201 CREATED response,
-  //     // then parse the JSON.
-
-  //     print(response.body);
-  //     print("===========> done hh $data");
-  //     print("done hh ${response.body}");
-  //     print("done hh ${data[0][0]}");
-  //   } else {
-  //     // If the server did not return a 201 CREATED response,
-  //     // then throw an exception.
-  //     print("failed test${response.body}");
-  //   }
-  //   setState(() {
-  //     _loadedPhotos = data;
-  //     print("done hh${_loadedPhotos[0]['post_text']}");
-  //   });
-  // }
-
   int currentIndex = 0;
 
   final screens = [
