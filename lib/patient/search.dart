@@ -25,15 +25,10 @@ class _PatientSearchState extends State<PatientSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Posts'),
-      ),
-      body: Scaffold(
         body: CustomScrollView(
       slivers: [
         const SliverAppBar(
-          //backgroundColor: Colors.green,
-          title: Text('Pharmacies'),
+          title: Text('My Posts'),
           floating: true,
         ),
         SliverList(
@@ -52,7 +47,7 @@ class _PatientSearchState extends State<PatientSearch> {
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
                           backgroundImage: AssetImage(
-                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+                              'assets/profiles/$user_profile_picture'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -60,7 +55,7 @@ class _PatientSearchState extends State<PatientSearch> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _loadedPhotos[index]["name"],
+                                user_name,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600),
                               ),
@@ -97,29 +92,6 @@ class _PatientSearchState extends State<PatientSearch> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton.icon(
-                          icon: const Icon(
-                            Icons.check_circle_outline_rounded,
-                            color: Colors.blue,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(80.0, 60.0),
-                            primary: Colors.white,
-                          ),
-
-                          onPressed: () {
-                          },
-                          label: const Text(
-                            'Send Availability Message',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          //controller: streetController,
-                        ),
-                      ],
-                    )
                   ],
                 ),
               );
@@ -141,35 +113,24 @@ class _PatientSearchState extends State<PatientSearch> {
 
     setState(() {
       user_id = prefs.getString('id')!;
+      user_name = prefs.getString('name')!;
+      user_email = prefs.getString('email')!;
+      user_profile_picture = prefs.getString('profile_pic')!;
       access_Token = prefs.getString('accesToken')!;
     });
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/my-posts'),
       headers: {
         'Authorization': 'Bearer $access_Token',
-      },
-      body: {
-        'user_id': user_id,
-        // 'post_text': postTextController.text,
-        // 'post_pic': "data:image/$extension;base64,$base64_img",
-      },
-    );
+      }, body: {'user_id': user_id,},);
     final data = json.decode(response.body);
     if (response.statusCode == 200) {
-      // If the server did return a 201 CREATED response,
-      // then parse the JSON.
-
-      print(response.body);
-      print("===========> done hh");
       setState(() {
       _loadedPhotos = data;
       count = _loadedPhotos.length;
     });
       
     } else {
-      // If the server did not return a 201 CREATED response,
-      // then throw an exception.
-      print("failed test${response.body}");
       setState(() {
       _loadedPhotos = ["no posts yet"];
       count = 0;
@@ -180,8 +141,6 @@ class _PatientSearchState extends State<PatientSearch> {
   @override
   initState() {
     super.initState();
-    print(
-        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
     
   }
