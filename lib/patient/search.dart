@@ -34,7 +34,11 @@ class _PatientSearchState extends State<PatientSearch> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
-              return Container(
+
+              
+              return 
+              count !=0 ? 
+              Container(
                 margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
@@ -70,7 +74,8 @@ class _PatientSearchState extends State<PatientSearch> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     user_name,
@@ -80,16 +85,18 @@ class _PatientSearchState extends State<PatientSearch> {
                                   IconButton(
                                     icon: const Icon(Icons.delete_rounded),
                                     color: Colors.grey[600],
-                                    onPressed: () {},
-                                    
+                                    onPressed: () {deletePost(_loadedPhotos[index]["id"]);},
                                   ),
-
                                 ],
                               ),
                               Row(
                                 children: [
                                   Text(
-                                    _loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T')),
+                                    _loadedPhotos[index]["updated_at"]
+                                        .substring(
+                                            0,
+                                            _loadedPhotos[index]["updated_at"]
+                                                .indexOf('T')),
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 12.0,
@@ -105,7 +112,6 @@ class _PatientSearchState extends State<PatientSearch> {
                             ],
                           ),
                         ),
-                        
                       ],
                     ),
                     const SizedBox(height: 4.0),
@@ -121,7 +127,28 @@ class _PatientSearchState extends State<PatientSearch> {
                     ),
                   ],
                 ),
-              );
+              ) : Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(8.0),
+                child: 
+                const Text("You don't have any posts yet"),
+              ); 
             },
             childCount: _loadedPhotos.length, // 1000 list items
           ),
@@ -129,9 +156,6 @@ class _PatientSearchState extends State<PatientSearch> {
       ],
     ));
   }
-
-
-
 
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -149,19 +173,41 @@ class _PatientSearchState extends State<PatientSearch> {
       Uri.parse('http://192.168.0.117:8000/api/user/my-posts'),
       headers: {
         'Authorization': 'Bearer $access_Token',
-      }, body: {'user_id': user_id,},);
+      },
+      body: {
+        'user_id': user_id,
+      },
+    );
     final data = json.decode(response.body);
     if (response.statusCode == 200) {
       setState(() {
-      _loadedPhotos = data;
-      count = _loadedPhotos.length;
-    });
-      
+        _loadedPhotos = data;
+        count = _loadedPhotos.length;
+      });
     } else {
       setState(() {
-      _loadedPhotos = ["no posts yet"];
-      count = 0;
-    });
+        _loadedPhotos = ["no posts yet"];
+        count = 0;
+      });
+    }
+  }
+
+  deletePost(id) async {
+    
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/delete-post'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'post_id': id.toString(),
+      },
+    );
+    if (response.statusCode == 200) {
+      setState(() {});
+
+    } else {
+      setState(() {});
     }
   }
 
@@ -169,8 +215,5 @@ class _PatientSearchState extends State<PatientSearch> {
   initState() {
     super.initState();
     getStringValuesSF();
-    
   }
-
-  
 }
