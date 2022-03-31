@@ -35,18 +35,6 @@ const Posts = () => {
   <div className="cards_wrap">
       {posts.map((singlePost) => {
         return (
-            
-    
-          //       <div className="delete">
-          //         <DeleteRoundedIcon/>
-          //       </div>
-          //     </div>
-          //     <div className="post-content">
-          //     {singlePost.post_text}
-          //     {/* <img src={require("../../assets/posts/"+singlePost.post_pic)}
-          //       alt="" /> */}
-              
-          //     </div>
 
 <div className="card_item">
   <div className="card_inner">
@@ -54,6 +42,9 @@ const Posts = () => {
     <div className="name">{singlePost.name}</div>
     <div className="date">{singlePost.updated_at}</div>
     <div className="post-text">{singlePost.post_text}</div>
+        <div className="delete">
+         <DeleteRoundedIcon/>
+      </div>
   </div>
 </div>
 
