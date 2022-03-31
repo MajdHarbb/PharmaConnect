@@ -347,10 +347,10 @@ class _PatientProfileState extends State<PatientProfile> {
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
                   onPressed: () async {
-                    // SharedPreferences preferences = await SharedPreferences.getInstance();
-                    // await preferences.clear();
-                    // Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
-                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
+                    SharedPreferences preferences = await SharedPreferences.getInstance();
+                    await preferences.clear();
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
 
                   },
                 )

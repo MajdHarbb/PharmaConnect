@@ -14,6 +14,12 @@ class _AboutUsState extends State<AboutUs> {
       appBar: AppBar(
         title: const Text('About Us'),
       ),
+      body: Center(
+        child: Column(
+          children: [
+            
+          ],
+        ),)
     );
   }
 }

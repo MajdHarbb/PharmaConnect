@@ -17,6 +17,7 @@ class PatientSignUp extends StatefulWidget {
 }
 
 class _PatientSignUpState extends State<PatientSignUp> {
+  final _formKey = GlobalKey<FormState>();
   File? image;
   late String base64_img;
   String imagePath = '';
@@ -52,6 +53,7 @@ class _PatientSignUpState extends State<PatientSignUp> {
 
   @override
   Widget build(BuildContext context) {
+     
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -61,7 +63,8 @@ class _PatientSignUpState extends State<PatientSignUp> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 50),
-          child: Center(
+          child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -77,6 +80,12 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
                     controller: nameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -88,6 +97,11 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    validator: (value) {
+              if (RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!) == false) {
+                return 'Please enter a valid email example: ex@ex.com';
+              }
+              return null;},
                     controller: emailController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -99,6 +113,11 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    validator: (value) {
+                    if (RegExp(r"^(?=.*?[0-9]).{8,}$").hasMatch(value!) == false) {
+                      return 'Phone number must be 8 digits';
+                    }
+                    return null;},
                     controller: phoneController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -110,6 +129,11 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    validator: (value) {
+                    if (RegExp(r"^(?=.*?[a-z])(?=.*?[0-9]).{6,}$").hasMatch(value!) == false) {
+                      return 'Please must be at least 6 characters including a digit';
+                    }
+                    return null;},
                     obscureText: true,
                     controller: passController,
                     decoration: const InputDecoration(
@@ -121,7 +145,13 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
+                  
                   child: TextFormField(
+                    validator: (value) {
+                    if ((value != passController.text)) {
+                      return 'Password does not match';
+                    }
+                    return null;},
                     obscureText: true,
                     controller: passConfirmController,
                     decoration: const InputDecoration(
@@ -134,6 +164,7 @@ class _PatientSignUpState extends State<PatientSignUp> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45),),
                   onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
                     String defualtImage = r'defualt_profile_picture_pharmaConnect.png';
                     final response = await http.post(
                       Uri.parse('http://192.168.0.117:8000/api/auth/register'),
@@ -163,6 +194,8 @@ class _PatientSignUpState extends State<PatientSignUp> {
                       // then throw an exception.
                       print(response.body);
                     }
+                    }
+                    
                   },
                   child: const Text('Sign Up'),
                 ),

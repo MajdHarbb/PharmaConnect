@@ -271,6 +271,7 @@ class _PatientHomeState extends State<PatientHome> {
     print(user_email);
     print(user_phone);
     print(_loadedPhotos);
+    print(user_profile_picture);
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello $user_name!'),
@@ -362,7 +363,7 @@ class _PatientHomeState extends State<PatientHome> {
                             child: const Text('Post'),
                             
                           ),
-                          Icon(Icons.send_rounded, color: Colors.blue,),
+                          const Icon(Icons.send_rounded, color: Colors.blue,),
                         ]),
                   ],
                 ),
@@ -391,9 +392,9 @@ class _PatientHomeState extends State<PatientHome> {
           },
           itemCount: _loadedPhotos.length,
           shrinkWrap: true,
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           scrollDirection: Axis.vertical,
-        ) : Text("You don't have any posts yet, create a post"),
+        ) : const Text("You don't have any posts yet, create a post"),
                 
                   
                 ]
