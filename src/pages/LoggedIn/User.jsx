@@ -83,11 +83,7 @@ export default function User() {
         console.log("info", user_info);
         setData(user_info[0]);
         console.log("data", data);
-        //  console.log("to strin")
-        //  console.log(data["profile_pic"])
-        //  setProfile(data["profile_pic"])
-        //  //console.log(typeof(profile_pic))
-        //  console.log(profile_pic)
+
         setLoading(true);
       })
       .catch((error) => {

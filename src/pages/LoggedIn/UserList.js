@@ -13,6 +13,11 @@ export default function UserList() {
   const AuthStr = 'Bearer '.concat(access_token); 
   var patients = [];
   var [data, setData] = useState([]);
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  };
 
 
   useEffect(() => {
@@ -33,8 +38,18 @@ export default function UserList() {
   
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+
+    axios.get(`http://127.0.0.1:8000/api/user/delete-user?user_id=${id}`, { headers: { Authorization: AuthStr } })
+   .then(response => {
+       // If request is good...
+       setData(data.filter((item) => item.id !== id));
+        console.log("deleted")
+      
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
