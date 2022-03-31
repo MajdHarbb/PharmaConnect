@@ -127,6 +127,7 @@ class _PatientProfileState extends State<PatientProfile> {
     print(access_Token);
     print("==============");
     return Scaffold(
+      
         appBar: AppBar(
           title: const Text('Profile'),
         ),
@@ -235,7 +236,7 @@ class _PatientProfileState extends State<PatientProfile> {
                   
                 ],
               ),
-            ),
+            ),         
             const SizedBox(height: 8.0),
             Container(
               decoration: BoxDecoration(

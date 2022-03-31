@@ -61,6 +61,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
 
       print(response.body);
       print("===========> done");
+      _fetchData();
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
