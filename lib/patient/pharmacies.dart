@@ -66,7 +66,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
               return Container(
-                margin: const EdgeInsets.all(15),
+                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -190,7 +190,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                                 '${_loadedPhotos[index]["email"]}');
                           },
                           label: const Text(
-                            'Share',
+                            'Email',
                             style: TextStyle(color: Colors.black),
                           ),
                           //controller: streetController,
