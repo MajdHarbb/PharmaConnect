@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/widgets/expansionTile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as p;
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -21,6 +26,11 @@ class _PatientSearchState extends State<PatientSearch> {
   String user_email = "";
   String user_phone = "";
   String user_profile_picture = "";
+  File? image;
+  late String base64_img;
+  String imagePath = '';
+  String extension = "";
+
   int count = 0;
   @override
   Widget build(BuildContext context) {
@@ -110,26 +120,41 @@ class _PatientSearchState extends State<PatientSearch> {
                           ),
                           const SizedBox(height: 4.0),
                           TextFormField(
-                              //controller: postTextController,
-                              decoration: InputDecoration.collapsed(
-                                  hintText: _loadedPhotos[index]["post_text"]),
-                            ),
+                            //controller: postTextController,
+                            decoration: InputDecoration.collapsed(
+                                hintText: _loadedPhotos[index]["post_text"]),
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: GestureDetector(
-                              onTap: () {print("tap");}, // Image tapped
+                            child: 
+                            GestureDetector(
+                              onTap: () {
+                                pickImage();
+                              }, // Image tapped
                               child: Image.asset(
                                 'assets/posts/${_loadedPhotos[index]["post_pic"]}',
                                 width: 600.0,
                                 height: 240.0,
                                 fit: BoxFit.cover,
-                                
                               ),
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              image != null
+                                ? ClipOval(
+                                    child: Image.file(
+                                      image!,
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                  ) :  GestureDetector(
+                                        onTap: () {
+                                          pickImage();
+                                        },
+                                        child: const Text("Tap here"),
+                                      ),
                               ElevatedButton.icon(
                                 icon: const Icon(
                                   Icons.delete_rounded,
@@ -273,4 +298,69 @@ class _PatientSearchState extends State<PatientSearch> {
     super.initState();
     getStringValuesSF();
   }
+
+      Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      imagePath = image.path;
+      print("---------------------->>>>>>>>-------------------");
+      print(image.path);
+      print("------------------------>>>>>>>>>>>>>>>>>");
+      base64_img = base64Encode(await image.readAsBytes());
+      String imageName = image.path.split("/").last;
+      extension = p.extension(imageName).substring(1);
+      print("extension : $extension");
+      print('image name $imageName');
+      print("baseeeeee $base64_img");
+      setState(() {
+        this.image = imageTemporary;
+        print("picked $imageTemporary");
+      });
+    } on Exception catch (e) {
+      print('Failed to capture image: $e');
+    }
+  }
+
+      Future<void> updateProfilePicture() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/update-profile-picture'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        'profile_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Profile Picture Updated!'),
+                        content: const Text('Press okay to return to your screen'),
+                        actions: <Widget>[
+                         
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+      
+      print(response.body);
+      print("===========> done");
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
+    }
+  }
+  
 }
