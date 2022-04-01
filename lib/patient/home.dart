@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -36,6 +37,23 @@ class _PatientHomeState extends State<PatientHome> {
   String user_phone = "";
   String user_profile_picture = "";
   String profiletest = "33.jpeg";
+  late double lat;
+  late double long;
+  static const _initialCameraPoition = CameraPosition(
+    target: LatLng(33.833797, 35.544144),
+    zoom: 11.5,
+    tilt: 50.0,
+  );
+  late Marker _origin = const Marker(
+      markerId: MarkerId('SomeId'),
+      position: LatLng(33.833797, 35.544144),
+      infoWindow: InfoWindow(title: 'My Current Location'));
+  final List<Marker> _markers = <Marker>[
+    const Marker(
+        markerId: MarkerId('SomeId'),
+        position: LatLng(33.833797, 35.544144),
+        infoWindow: InfoWindow(title: 'The title of the marker'))
+  ];
   Future<void> AddPost() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
@@ -55,26 +73,23 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
-      
+
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Posted! You will get a reply soon from a pharmacy.'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-        getStringValuesSF();
-        setState(() {
-          
-        });
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title:
+              const Text('Posted! You will get a reply soon from a pharmacy.'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      getStringValuesSF();
+      setState(() {});
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -114,7 +129,6 @@ class _PatientHomeState extends State<PatientHome> {
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
-
     );
 
     if (response.statusCode == 201) {
@@ -125,9 +139,12 @@ class _PatientHomeState extends State<PatientHome> {
       print(response_jsondata);
       //var user_json_id = json.decode(response_jsondata);
       final String nameJson = (response_jsondata["user"][0]["name"]).toString();
-      final String emailJson =(response_jsondata["user"][0]["email"]).toString();
-      final String phoneJson =(response_jsondata["user"][0]["phone"]).toString();
-      final String profileJson =(response_jsondata["user"][0]["profile_pic"]).toString();
+      final String emailJson =
+          (response_jsondata["user"][0]["email"]).toString();
+      final String phoneJson =
+          (response_jsondata["user"][0]["phone"]).toString();
+      final String profileJson =
+          (response_jsondata["user"][0]["profile_pic"]).toString();
       print("user iddddddddddddddddddddd ===================>>>>>>>>>>");
       print(nameJson);
       print(emailJson);
@@ -136,7 +153,7 @@ class _PatientHomeState extends State<PatientHome> {
       print(profileJson);
       print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(response.body);
-      
+
       await prefs.setString('name', nameJson);
       await prefs.setString('email', emailJson);
       await prefs.setString('phone', phoneJson);
@@ -146,12 +163,11 @@ class _PatientHomeState extends State<PatientHome> {
       // final String? action3 = prefs.getString('phone');
       // final String? action4 = prefs.getString('phone');
       setState(() {
-      user_name = prefs.getString('name')!;
-      user_email = prefs.getString('email')!;
-      user_phone = prefs.getString('phone')!;
-      user_profile_picture = prefs.getString('profile_pic')!;
-    });
-
+        user_name = prefs.getString('name')!;
+        user_email = prefs.getString('email')!;
+        user_phone = prefs.getString('phone')!;
+        user_profile_picture = prefs.getString('profile_pic')!;
+      });
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -199,26 +215,21 @@ class _PatientHomeState extends State<PatientHome> {
       print(response.body);
       print("===========> done hh");
       setState(() {
-      _loadedPhotos = data;
-      count = _loadedPhotos.length;
-    });
-      
+        _loadedPhotos = data;
+        count = _loadedPhotos.length;
+      });
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
       print("failed test${response.body}");
       setState(() {
-      _loadedPhotos = ["no posts yet"];
-      count = 0;
-    });
+        _loadedPhotos = ["no posts yet"];
+        count = 0;
+      });
     }
-    
-
 
     print(user_id);
     print(user_type);
-
-
   }
 
   @override
@@ -228,7 +239,6 @@ class _PatientHomeState extends State<PatientHome> {
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
     getUserInfo();
-    
   }
 
   @override
@@ -248,31 +258,27 @@ class _PatientHomeState extends State<PatientHome> {
       ),
       body: SingleChildScrollView(
         child: Center(
-          
           child: Column(
-     
-
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              
               Container(
                 margin: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8),
-                        bottomLeft: Radius.circular(8),
-                        bottomRight: Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
                 padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
                 child: Column(
                   children: [
@@ -282,8 +288,8 @@ class _PatientHomeState extends State<PatientHome> {
                           CircleAvatar(
                             radius: 30.0,
                             backgroundColor: Colors.grey[200],
-                            backgroundImage:
-                                 AssetImage('assets/profiles/$user_profile_picture'),
+                            backgroundImage: AssetImage(
+                                'assets/profiles/$user_profile_picture'),
                           ),
                           const SizedBox(width: 8.0),
                           Expanded(
@@ -309,9 +315,14 @@ class _PatientHomeState extends State<PatientHome> {
                                         width: 50,
                                       ),
                                     )
-                                  : const Text('No image selected yet',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(fontSize: 12,color: Colors.grey,),),
+                                  : const Text(
+                                      'No image selected yet',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
                             ),
                           ),
                           Flexible(
@@ -331,65 +342,110 @@ class _PatientHomeState extends State<PatientHome> {
                           TextButton(
                             onPressed: AddPost,
                             child: const Text('Post'),
-                            
                           ),
-                          const Icon(Icons.send_rounded, color: Colors.blue,),
+                          const Icon(
+                            Icons.send_rounded,
+                            color: Colors.blue,
+                          ),
                         ]),
                   ],
                 ),
               ),
-              Column(
-                
-                children: [
-                  Text("My Posts: $count"),
-                  count !=0 ? 
-                  
-                  ListView.builder(
-                  itemBuilder: (BuildContext, index){
-                    return Card(
-              
-                    child: ListTile(
-                
-                leading: CircleAvatar(backgroundImage: AssetImage('assets/posts/${_loadedPhotos[index]["post_pic"]}'),),
-                title: TextFormField(
-                              controller: postTextController,
-                              decoration: InputDecoration.collapsed(
-                                  hintText: _loadedPhotos[index]["post_text"]),
+              Column(children: [
+                const Text(
+                  'Enter your precise location: press and hold on the map to choose your location',
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 600.0,
+                  child: GoogleMap(
+                    myLocationButtonEnabled: true,
+                    scrollGesturesEnabled: true,
+                    myLocationEnabled: true,
+                    tiltGesturesEnabled: true,
+                    initialCameraPosition: _initialCameraPoition,
+                    // onMapCreated: (mapController) {
+                    //   mapController
+                    //       .showMarkerInfoWindow(const MarkerId("origin"));
+                    // },
+
+                    //markers: Set<Marker>.of(_markers),
+                    markers: {_origin},
+                    onLongPress: _addMarker,
+                  ),
+                ),
+                Text("My Posts: $count"),
+                count != 0
+                    ? ListView.builder(
+                        itemBuilder: (BuildContext, index) {
+                          return Card(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: AssetImage(
+                                    'assets/posts/${_loadedPhotos[index]["post_pic"]}'),
+                              ),
+                              title: TextFormField(
+                                controller: postTextController,
+                                decoration: InputDecoration.collapsed(
+                                    hintText: _loadedPhotos[index]
+                                        ["post_text"]),
+                              ),
+                              subtitle: Text(_loadedPhotos[index]["updated_at"]
+                                  .substring(
+                                      0,
+                                      _loadedPhotos[index]["updated_at"]
+                                          .indexOf('T'))),
                             ),
-                subtitle: Text(_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))),
-              ),
-            );
-          },
-          itemCount: _loadedPhotos.length,
-          shrinkWrap: true,
-          padding: const EdgeInsets.all(5),
-          scrollDirection: Axis.vertical,
-        ) : Column(
-          
-          children:  [
-            const Text("You don't have any posts yet, create a post"),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-
-                Text("Get Statred ", style: TextStyle(fontSize: 50.0),),
-                //Image.asset("assets/images/Demo.gif")
-
-              ],
-            )
-          ],
-        ),
-                
-                  
-                ]
-              ),
+                          );
+                        },
+                        itemCount: _loadedPhotos.length,
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(5),
+                        scrollDirection: Axis.vertical,
+                      )
+                    : Column(
+                        children: [
+                          const Text(
+                              "You don't have any posts yet, create a post"),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Get Statred ",
+                                style: TextStyle(fontSize: 50.0),
+                              ),
+                              //Image.asset("assets/images/Demo.gif")
+                            ],
+                          )
+                        ],
+                      ),
+              ]),
             ],
-            
           ),
-          
         ),
       ),
     );
+  }
+
+  void _addMarker(LatLng pos) {
+    setState(() {
+      lat = pos.latitude;
+      long = pos.longitude;
+
+      String x = lat.toString();
+      _origin = Marker(
+        markerId: const MarkerId("origin"),
+        infoWindow: const InfoWindow(title: "My New Location"),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        position: pos,
+      );
+      print(pos);
+      print(x);
+    });
   }
 }
