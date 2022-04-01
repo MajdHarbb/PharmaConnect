@@ -338,7 +338,7 @@ class _PatientSearchState extends State<PatientSearch> {
       },
       body: {
         'post_id': id.toString(),
-        'post_text:': post_text,
+        'post_text': post_text,
         'post_pic': "data:image/$extension;base64,$base64_img",
       },
     );
@@ -348,6 +348,8 @@ class _PatientSearchState extends State<PatientSearch> {
       // then parse the JSON.
       getStringValuesSF();
       setState(() {});
+      _controllers.length = 0;
+      image =null;
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
