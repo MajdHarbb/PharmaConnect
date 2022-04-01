@@ -18,6 +18,7 @@ class PatientSearch extends StatefulWidget {
 }
 
 class _PatientSearchState extends State<PatientSearch> {
+  List<TextEditingController> _controllers = [];
   List _loadedPhotos = [];
   String test = '';
   String user_id = "";
@@ -44,6 +45,7 @@ class _PatientSearchState extends State<PatientSearch> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
+              _controllers.add(new TextEditingController());
               return count != 0
                   ? Container(
                       margin: const EdgeInsets.all(15),
@@ -120,14 +122,13 @@ class _PatientSearchState extends State<PatientSearch> {
                           ),
                           const SizedBox(height: 4.0),
                           TextFormField(
-                            //controller: postTextController,
+                            controller: _controllers[index],
                             decoration: InputDecoration.collapsed(
                                 hintText: _loadedPhotos[index]["post_text"]),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: 
-                            GestureDetector(
+                            child: GestureDetector(
                               onTap: () {
                                 pickImage();
                               }, // Image tapped
@@ -143,18 +144,19 @@ class _PatientSearchState extends State<PatientSearch> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               image != null
-                                ? ClipOval(
-                                    child: Image.file(
-                                      image!,
-                                      height: 50,
-                                      width: 50,
-                                    ),
-                                  ) :  GestureDetector(
-                                        onTap: () {
-                                          pickImage();
-                                        },
-                                        child: const Text("Tap here"),
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        image!,
+                                        height: 50,
+                                        width: 50,
                                       ),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        pickImage();
+                                      },
+                                      child: const Text("Tap here"),
+                                    ),
                               ElevatedButton.icon(
                                 icon: const Icon(
                                   Icons.delete_rounded,
@@ -185,8 +187,7 @@ class _PatientSearchState extends State<PatientSearch> {
                                 ),
 
                                 onPressed: () {
-                                  // MapUtils.openDialer(
-                                  //     '${_loadedPhotos[index]["phone"]}');
+                                  print(_loadedPhotos[index]["id"]);
                                 },
                                 label: const Text(
                                   'Save',
@@ -299,7 +300,7 @@ class _PatientSearchState extends State<PatientSearch> {
     getStringValuesSF();
   }
 
-      Future pickImage() async {
+  Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
@@ -324,7 +325,7 @@ class _PatientSearchState extends State<PatientSearch> {
     }
   }
 
-      Future<void> updateProfilePicture() async {
+  Future<void> updateProfilePicture() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-profile-picture'),
       headers: {
@@ -340,20 +341,19 @@ class _PatientSearchState extends State<PatientSearch> {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Profile Picture Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Profile Picture Updated!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
       print(response.body);
       print("===========> done");
     } else {
@@ -362,5 +362,4 @@ class _PatientSearchState extends State<PatientSearch> {
       print(response.body);
     }
   }
-  
 }
