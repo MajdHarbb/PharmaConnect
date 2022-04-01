@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
         Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
         Route::get('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
+        Route::post('/update-post', [PostsController::class, 'updatePost'])->name('update-post');
         
     });
     

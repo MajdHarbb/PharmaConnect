@@ -128,11 +128,11 @@ class PostsController extends Controller
         if (Post::where('id', '=', $id)->exists()) {
 
            Post::where('id', $id)->update(['post_text' => $post_text, 'post_pic' => $imageName]);
-           Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
+           Storage::disk('posts')->put($id.'.'.$extension, base64_decode($image));
             //remove
-            Storage::disk('postsflutter')->put($user->id.'.'.$extension, base64_decode($image));
+            Storage::disk('postsflutter')->put($id.'.'.$extension, base64_decode($image));
            return response()->json([
-            'message' => 'Post deleted successfully',
+            'message' => 'Post updated successfully',
         ], 201);
          }else{
             return response()->json([
