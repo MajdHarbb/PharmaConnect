@@ -239,6 +239,10 @@ class UserController extends Controller
          }
     }
 
+    public function sendImage(){
+        return response()->file(public_path("/storage/posts_pictures/test.jpg"));
+    }
+
     
 
     

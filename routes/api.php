@@ -8,8 +8,9 @@ use App\Http\Controllers\PostfindsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MessagesController;
 
-
+Route::get('/image', [UserController::class, 'sendImage'])->name('sendImage');
 Route::group(['middleware' => ['auth:api']], function () {
+    
 
     Route::group(['prefix' => 'user'], function () {
 
@@ -29,6 +30,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
         Route::get('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
         Route::post('/update-post', [PostsController::class, 'updatePost'])->name('update-post');
+        
+        
         
     });
     
