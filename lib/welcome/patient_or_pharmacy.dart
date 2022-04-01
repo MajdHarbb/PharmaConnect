@@ -28,7 +28,7 @@ class PatientOrPharmacy extends StatelessWidget {
                        ),
               ),
 
-              Image.asset('assets/images/signup.png'),
+              Image.network('http://192.168.0.117:8000/images/signup.png'),
 
 
               ElevatedButton(

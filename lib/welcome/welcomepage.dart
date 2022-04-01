@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
-                Image.asset('assets/images/pharmacy.png'),
+                Image.network('http://192.168.0.117:8000/images/pharmacy.png'),
 
                 const Text(
                   'Find your medicine fast and easy',
@@ -122,7 +122,7 @@ class WelcomePagetwo extends StatelessWidget {
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
-                Image.asset('assets/images/logo.png'),
+                Image.network('http://192.168.0.117:8000/images/logo.png'),
 
                 const Text(
                   'Post about any medicine and know it’s location',

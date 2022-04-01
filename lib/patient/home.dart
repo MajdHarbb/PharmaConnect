@@ -276,7 +276,6 @@ class _PatientHomeState extends State<PatientHome> {
                 padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
                 child: Column(
                   children: [
-                    Image.network('http://192.168.0.117:8000/posts_pictures/test.jpg'),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -284,7 +283,8 @@ class _PatientHomeState extends State<PatientHome> {
                             radius: 30.0,
                             backgroundColor: Colors.grey[200],
                             backgroundImage:
-                                 AssetImage('assets/profiles/$user_profile_picture'),
+                            NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                                //  AssetImage('assets/profiles/$user_profile_picture'),
                           ),
                           const SizedBox(width: 8.0),
                           Expanded(

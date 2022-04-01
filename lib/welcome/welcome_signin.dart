@@ -26,7 +26,7 @@ class WelcomeSignIn extends StatelessWidget {
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
-                Image.asset('assets/images/caringedit2.png'),
+                Image.network('http://192.168.0.117:8000/images/caringedit2.png'),
                 ElevatedButton(
                   onPressed: (){
                   Navigator.push(
