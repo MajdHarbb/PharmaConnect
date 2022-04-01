@@ -144,18 +144,23 @@ class _PatientSearchState extends State<PatientSearch> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               image != null
-                                  ? ClipOval(
-                                      child: Image.file(
-                                        image!,
-                                        height: 50,
-                                        width: 50,
+                                  ? GestureDetector(
+                                    onTap: () {
+                                        pickImage();
+                                      },
+                                    child: ClipOval(
+                                        child: Image.file(
+                                          image!,
+                                          height: 50,
+                                          width: 50,
+                                        ),
                                       ),
-                                    )
+                                  )
                                   : GestureDetector(
                                       onTap: () {
                                         pickImage();
                                       },
-                                      child: const Text("Tap here"),
+                                      child: const Text("Edit Image"),
                                     ),
                               ElevatedButton.icon(
                                 icon: const Icon(
@@ -187,7 +192,7 @@ class _PatientSearchState extends State<PatientSearch> {
                                 ),
 
                                 onPressed: () {
-                                  print(_loadedPhotos[index]["id"]);
+                                  updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
                                 },
                                 label: const Text(
                                   'Save',
@@ -325,25 +330,28 @@ class _PatientSearchState extends State<PatientSearch> {
     }
   }
 
-  Future<void> updateProfilePicture() async {
+  Future<void> updatePost(id,post_text) async {
     final response = await http.post(
-      Uri.parse('http://192.168.0.117:8000/api/user/update-profile-picture'),
+      Uri.parse('http://192.168.0.117:8000/api/user/update-post'),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
       body: {
-        'user_id': user_id,
-        'profile_pic': "data:image/$extension;base64,$base64_img",
+        'post_id': id.toString(),
+        'post_text:': post_text,
+        'post_pic': "data:image/$extension;base64,$base64_img",
       },
     );
 
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
+      getStringValuesSF();
+      setState(() {});
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Profile Picture Updated!'),
+          title: const Text('Post Updated!'),
           content: const Text('Press okay to return to your screen'),
           actions: <Widget>[
             TextButton(
@@ -356,6 +364,7 @@ class _PatientSearchState extends State<PatientSearch> {
 
       print(response.body);
       print("===========> done");
+      
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
