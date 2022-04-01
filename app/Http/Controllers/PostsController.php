@@ -85,7 +85,7 @@ class PostsController extends Controller
         $post_exists=Post::where('user_id', '=', $user_id)->exists();
         
         if($post_exists){
-            $posts = Post::where('user_id', '=', $user_id)->get();
+            $posts = Post::orderBy('created_at', 'DESC')->where('user_id', '=', $user_id)->get();
             return response()->json(
                 $posts,
             );
@@ -113,13 +113,40 @@ class PostsController extends Controller
          }
     }
 
+    public function updatePost(Request $request){
+        $id=$request->post_id;
+        $post_text=$request->post_text;
+        $image_64=$request->post_pic;//your base64 encoded data
+
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        // find substring fro replace here eg: data:image/png;base64,
+        $image = str_replace($replace, '', $image_64); 
+        $image = str_replace(' ', '+', $image); 
+        $imageName = $id.'.'.$extension;
+
+        if (Post::where('id', '=', $id)->exists()) {
+
+           Post::where('id', $id)->update(['post_text' => $post_text, 'post_pic' => $imageName]);
+           Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
+            //remove
+            Storage::disk('postsflutter')->put($user->id.'.'.$extension, base64_decode($image));
+           return response()->json([
+            'message' => 'Post deleted successfully',
+        ], 201);
+         }else{
+            return response()->json([
+                'message' => 'Record does not exist',
+            ], 401);
+         }
+        
+    }
+
     public function allPosts(){
         // $posts=Post::join('infos', 'infos.user_id' = 'posts.poster_id')->get(['']);
         $posts = Post::join('infos', 'infos.user_id', '=', 'posts.user_id')
                ->get(['infos.*', 'posts.*']);
 
-               return response()->json([
-                $posts,
-            ], 201);
+               return response()->json($posts,201);
     }
 }

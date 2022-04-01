@@ -240,6 +240,22 @@ class AdminController extends Controller
     
 }
 
+public function delete (Request $request) {
+    $id=$request->post_id;
+    if (Post::where('id', '=', $id)->exists()) {
+
+       $posts = Post::find($id);
+       $posts->delete();
+       return response()->json([
+        'message' => 'Post deleted successfully',
+    ], 201);
+     }else{
+        return response()->json([
+            'message' => 'Record does not exist',
+        ], 401);
+     }
+}
+
 
 
     protected function createNewToken($token){

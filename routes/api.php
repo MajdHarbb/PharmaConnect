@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/update-patient-info', [AdminController::class, 'updatePatientInfo'])->name('update-patient-info');
         Route::get('/pharmacy-info', [AdminController::class, 'pharmacyInfo'])->name('pharmacy-info');
         Route::get('/all-posts', [PostsController::class, 'allPosts'])->name('all-posts');
+        Route::get('/delete', [AdminController::class, 'delete'])->name('delete');
+        
     });
 
     Route::group(['prefix' => 'auth'], function () {
