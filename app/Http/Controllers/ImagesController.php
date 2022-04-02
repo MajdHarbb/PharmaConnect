@@ -8,6 +8,9 @@ class ImagesController extends Controller
 {
     
     public function sendImage(){
-        return "heey";
+        return "hey";
+    }
+    public function get(){
+        return "hey";
     }
 }

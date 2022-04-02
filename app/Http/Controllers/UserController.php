@@ -115,7 +115,6 @@ class UserController extends Controller
 
             
         Storage::disk('profile')->put($user_id.'.'.$extension, base64_decode($image));
-        Storage::disk('profileflutter')->put($user_id.'.'.$extension, base64_decode($image));
         Info::where('id', $user_id)->update(['profile_pic' => $user_id.'.'.$extension]);
         
         return response()->json([
@@ -239,8 +238,16 @@ class UserController extends Controller
          }
     }
 
-    public function sendImage(){
-        return response()->file(public_path("/storage/posts_pictures/test.jpg"));
+    public function sendImage(Request $request){
+        // $id = $request->id;
+        return response()->file(storage_path("app/public/posts_pictures/"));
+        //C:\Users\User\Desktop\FSW\Final Project\PharmaConnect\storage\app\public\posts_pictures\5.jpg
+    }
+
+    public function imagename(Request $request){
+        $id = $request->id;
+        return response()->file(storage_path("app/public/posts_pictures/"));
+        //C:\Users\User\Desktop\FSW\Final Project\PharmaConnect\storage\app\public\posts_pictures\5.jpg
     }
 
     

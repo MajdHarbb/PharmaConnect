@@ -41,42 +41,28 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        'public_uploads' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/profiles',
+        ],
         'posts' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/posts_pictures/'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
-
-        'postsflutter' => [
-            'driver' => 'local',
-            'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/posts/', 
+            'root' => public_path() . '/posts',
         ],
 
         'license' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/license_pictures/'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-        ],
+            'root' => public_path() . '/licenses',
 
-        'licenseflutter' => [
-            'driver' => 'local',
-            'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/licenses/', 
         ],
 
         'profile' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/profile_pictures/'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'root' => public_path() . '/profiles',
+
         ],
         
-        'profileflutter' => [
-            'driver' => 'local',
-            'root' => 'C:/Users/User/Desktop/FSW/Final Project/pharmaconnectflutter/assets/profiles/', 
-        ],
+
 
         's3' => [
             'driver' => 's3',

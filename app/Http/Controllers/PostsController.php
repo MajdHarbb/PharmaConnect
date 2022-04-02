@@ -47,8 +47,6 @@ class PostsController extends Controller
         $user->post_pic = $imageName;
         $user->save();
         Storage::disk('posts')->put($user->id.'.'.$extension, base64_decode($image));
-        //remove
-        Storage::disk('postsflutter')->put($user->id.'.'.$extension, base64_decode($image));
         
         Post::where('id', $user->id)->update(['post_pic' => $user->id.'.'.$extension]);
               
@@ -129,8 +127,6 @@ class PostsController extends Controller
 
            Post::where('id', $id)->update(['post_text' => $post_text, 'post_pic' => $imageName]);
            Storage::disk('posts')->put($id.'.'.$extension, base64_decode($image));
-            //remove
-            Storage::disk('postsflutter')->put($id.'.'.$extension, base64_decode($image));
            return response()->json([
             'message' => 'Post updated successfully',
         ], 201);

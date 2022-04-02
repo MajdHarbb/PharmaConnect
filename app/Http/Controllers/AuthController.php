@@ -90,7 +90,6 @@ class AuthController extends Controller
             $pharmacy->save();
             
             Storage::disk('license')->put($user->id.'.'.$extension, base64_decode($image));
-            Storage::disk('licenseflutter')->put($user->id.'.'.$extension, base64_decode($image));
             
             //Pharmacie::where('id', $user->id)->update(['license' => $user->id.'.'.$extension]);
         }

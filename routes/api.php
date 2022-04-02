@@ -11,7 +11,7 @@ use App\Http\Controllers\MessagesController;
 Route::get('/image', [UserController::class, 'sendImage'])->name('sendImage');
 Route::group(['middleware' => ['auth:api']], function () {
     
-
+    
     Route::group(['prefix' => 'user'], function () {
 
         Route::get('/profile', [UserController::class, 'userProfile'])->name('user-profile');  
