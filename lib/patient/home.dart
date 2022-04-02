@@ -163,13 +163,6 @@ class _PatientHomeState extends State<PatientHome> {
 
   int currentIndex = 0;
 
-  final screens = [
-    const PatientProfile(),
-    const PatientProfile(),
-    const PatientProfile(),
-    const PatientProfile(),
-  ];
-
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String

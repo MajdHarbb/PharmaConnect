@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // const Text(
             //   'You have pushed the button this many times:',
             // ),
-            Image.asset('assets/images/pharmacy.png'),
+            Image.network('http://192.168.0.117:8000/images/pharmacy.png?v=${DateTime.now().millisecondsSinceEpoch}'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,

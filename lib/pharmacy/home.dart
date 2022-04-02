@@ -27,7 +27,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
       access_Token = prefs.getString('accesToken')!;
       user_id = prefs.getString('id')!;
     });
-
+  
     final response = await http.get(
       Uri.parse('http://192.168.0.117:8000/api/pharmacy/get-unsolved-posts?$user_id'),
       headers: {
