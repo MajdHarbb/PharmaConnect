@@ -1,6 +1,5 @@
 import React from "react";
 import "../../css/Topbar.css";
-import "../../assets/profile_pictures/test.jpg";
 import {
   NotificationsNone,
   ExitToAppRounded,
@@ -55,11 +54,8 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <ExitToAppRounded onClick={logout} />
           </div>
-          <img
-            src={require("../../assets/profile_pictures/test.jpg")}
-            alt=""
-            className="topAvatar"
-          />
+          <img className="topAvatar" src={`http://127.0.0.1:8000/profiles/defualt_profile_picture_pharmaConnect.png?v=${Math.round(Date.now() / 1000)}`} />
+
         </div>
       </div>
     </div>

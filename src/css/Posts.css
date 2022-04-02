@@ -1,108 +1,88 @@
-.wrapperr .header{
-    height: 50px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 14px;
-    color: black;
-}
+* {
+	margin: 0;
+	box-sizing: border-box;
+  }
 
-.cards_wrap{
-	padding: 20px;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-}
-
-.cards_wrap .card_item{
-	padding: 15px 25px;
-	width: 32%;
-	-webkit-box-shadow: 8px 6px 16px 3px rgba(0,0,0,0.22); 
-box-shadow: 8px 6px 16px 3px rgba(0,0,0,0.22);
-border-radius: 10px;
-margin-bottom: 15px;
-}
-
-.cards_wrap .card_inner{
-	background: #fff;
-	border-radius: 5px;
-	padding: 35px 20px;
-	min-width: 225px;
-	min-height: 315px;
-	max-height: 370px;
-	width: 100%;
-	overflow:auto;
-	
-}
-
-.cards_wrap .card_item .profile{
-	width: 50px;
-	height: 50px;
-	margin-bottom: 5px;
+  
+  .user__avatar {
 	border-radius: 50%;
-	max-height: 100px;
-}
-img{
-	float:right;
-	height:auto;
-}
-.postimg{
-	width: 150px;
-	max-height: fit-content;
-}
-.cards_wrap .card_item .name{
-	font-weight: 600;
-	font-size: 16px;
-	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+	width: 45px;
+  }
+  
 
-.cards_wrap .card_item .date{
-	font-size: 12px;
-	font-weight: 100;
-	margin: 5px 0 10px;
-}
-
-.cards_wrap .card_item .post-text{
-	font-size: 14px;
-	line-height: 24px;
-}
-
-.userdiv{
+  
+  .main__body {
 	display: flex;
+  }
+  
+  body {
+	background-color: #f1f2f5;
+  }
+  
+  .feed {
+	flex: 1;
+	/* padding: 30px 100px; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-}
+  }
 
-.topbaruser{
+  .post {
+	width: 65%;
+	margin-top: 15px;
+	border-radius: 15px;
+	background-color: white;
+	box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  }
+  
+  .post__image img {
+	width: 100%;
+  }
+  
+  .post__top {
 	display: flex;
-    justify-content: space-between;
-}
+	position: relative;
+	align-items: center;
+	padding: 15px;
+  }
+  
+  .post__avatar {
+	margin-right: 10px;
+  }
+  
+  .post__topInfo h3 {
+	font-size: medium;
+  }
+  
+  .post__topInfo p {
+	font-size: small;
+	color: gray;
+  }
+  
+  .post__bottom {
 
-@media screen and (max-width: 1024px){
-	.cards_wrap .card_item{
-		width: 30%;
+	padding: 15px 25px;
+  }
+  
+  @media (max-width: 768px) {
+	
+  
+	.feed {
+	  margin-top: 20px;
+	  width: 100%;
+	  padding: 0;
+	}
+  
+  }
 
+  
+  @media (min-width: 769px) and (max-width: 1440px) {
+	/* CSS To Target 767 px width of screen */
+  
+	.feed {
+	  width: 50%;
+	  padding: 10px 50px;
 	}
-}
-
-@media screen and (max-width: 768px){
-	.cards_wrap .card_item{
-		width: 50%;
-	}
-	.wrapperr .header{
-		font-size: 16px;
-		height: 60px;
-	}
-}
-
-@media screen and (max-width: 568px){
-	.cards_wrap .card_item{
-		width: 100%;
-	}
-	.wrapperr .header{
-		font-size: 14px;
-	}
-}
+  }
+  

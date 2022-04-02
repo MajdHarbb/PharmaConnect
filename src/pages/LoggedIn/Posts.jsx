@@ -28,49 +28,43 @@ const Posts = () => {
         console.log("error " + error);
       });
   }, []);
+
   if (isLoading) {
     return (
-      <div className="wrapperr">
-        <div className="header">
-          <h1>Pharma Connect Solved Posts</h1>
-        </div>
-        <div className="cards_wrap">
-          {posts.map((singlePost) => {
-            return (
-              <div className="card_item">
-                <div className="card_inner">
-                  <div className="topbaruser">
-                    <div>
-                      <div className="userdiv">
-                        <div>
-                        
-                  <img className="profile" src={`http://127.0.0.1:8000/profiles/${singlePost.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
-
-                        </div>
-
-                        <div>
-                          <div className="name">{singlePost.name}</div>
-                          <div className="date">
-                            {singlePost.updated_at.split("T")[0]}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="delete"></div>
+      <div>
+        <div className="main__body">
+          <div className="feed">
+            {posts.map((singlePost) => {
+              return (
+                <div className="post">
+                  <div className="post__top">
+                    <img
+                      className="user__avatar post__avatar"
+                      src={`http://127.0.0.1:8000/profiles/${
+                        singlePost.profile_pic
+                      }?v=${Math.round(Date.now() / 1000)}`}
+                    />
+                    <div className="post__topInfo">
+                      <h3>{singlePost.name}</h3>
+                      <p>{singlePost.updated_at.split("T")[0]}</p>
                     </div>
                   </div>
-
-                  <div className="text">{singlePost.post_text}</div>
-                  <div className="postimg">
-                    
-              <img src={`http://127.0.0.1:8000/posts/${singlePost.post_pic}?v=${Math.round(Date.now() / 1000)}`} />
-
+                  <div className="post__bottom">
+                    <p>{singlePost.post_text}</p>
+                  </div>
+                  <div className="post__image">
+                    <img
+                      src={`http://127.0.0.1:8000/posts/${
+                        singlePost.post_pic
+                      }?v=${Math.round(Date.now() / 1000)}`}
+                    />
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+            ;
+          </div>
+          {/* feed ends */}
         </div>
       </div>
     );
@@ -81,6 +75,7 @@ const Posts = () => {
       </div>
     );
   }
+  
 };
 
 export default Posts;
