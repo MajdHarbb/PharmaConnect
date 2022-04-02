@@ -51,24 +51,14 @@ const Messages = () => {
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
-      field: "profile picture",
-      headerName: "Profile Picture",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={`http://127.0.0.1:8000/profiles/${params.row.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
-          </div>
-        );
-      },
-    },
-    {
       field: "name",
       headerName: "Name",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="userListUser">
+           <img className="userListImg" src={`http://127.0.0.1:8000/profiles/${params.row.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
+
             {params.row.name}
           </div>
         );
@@ -77,35 +67,14 @@ const Messages = () => {
 
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "phone",
-      headerName: "Phone",
+      field: "message_text",
+      headerName: "Message",
+      width: 350,
+    },
+    {
+      field: "updated_at",
+      headerName: "Date",
       width: 120,
-    },
-    {
-      field: "data created",
-      headerName: "Joined At",
-      width: 160,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            {/* <Link to={"user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link> */}
-            <Link to={"" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
     },
   ];
 
