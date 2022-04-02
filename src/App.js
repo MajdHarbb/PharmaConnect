@@ -14,6 +14,7 @@ import Posts from "./pages/LoggedIn/Posts.jsx";
 import PharmacyList from "./pages/LoggedIn/PharmacyList.js";
 import Pharmacy from "./pages/LoggedIn/Pharmacies";
 import AllPosts from "./pages/LoggedIn/AllPosts.jsx";
+import Messages from "./pages/LoggedIn/Messages.jsx";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
                   <Route path='solvedposts' element={<Posts/>}/>
                   <Route path="allposts" element={<AllPosts/>}/>
+                  <Route path="messages" element={<Messages/>}/>
                   
                   
                   

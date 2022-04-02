@@ -61,11 +61,12 @@ const SideBar = () => {
             <h3 className="sidebarTitle">Notifications</h3>
             <ul className="sidebarList">
               
-              
+            <Link to="messages" className="link">
               <li className="sidebarListItem">
                 <ChatBubbleOutline className="sidebarIcon" />
                 Messages
               </li>
+              </Link>
             </ul>
           </div>
         </div>
