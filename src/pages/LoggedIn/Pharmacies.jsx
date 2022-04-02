@@ -74,11 +74,7 @@ export default function Pharmacy() {
           <div className="productTopRight">
             <div>
             <div className="productInfoTop">
-              <img
-                src={require("../../assets/profiles/" + data["profile_pic"])}
-                alt=""
-                className="productInfoImg"
-              />
+              <img className="productInfoImg" src={`http://127.0.0.1:8000/profiles/${data["profile_pic"]}?v=${Math.round(Date.now() / 1000)}`} />
               <span className="productName">{data["name"]}</span>
             </div>
             
@@ -111,11 +107,8 @@ export default function Pharmacy() {
             </div>
             <div>
             <div className="productUpload">
-                <img
-                 src={require("../../assets/licenses/" + data["license"])}
-                  alt=""
-                  className="productUploadImg"
-                />
+            <img className="productUploadImg" src={`http://127.0.0.1:8000/licenses/${data["license"]}?v=${Math.round(Date.now() / 1000)}`} />
+
                 <p>Click to view license</p>
               </div>
             </div>

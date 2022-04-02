@@ -41,7 +41,9 @@ export default function PharmacyList() {
         renderCell: (params) => {
           return (
             <div className="productListItem">
-              <img className="productListImg" src={require("../../assets/profiles/"+params.row.profile_pic)} alt="" />
+              <img className="productListImg"
+               src={`http://127.0.0.1:8000/profiles/${params.row.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
+
               {params.row.name}
             </div>
           );
@@ -91,7 +93,7 @@ export default function PharmacyList() {
         renderCell: (params) => {
           return (
             <div className="productListItem">
-              <img className="productListImg" src={require("../../assets/licenses/"+params.row.license)} alt="" />
+              <img className="productListImg" src={`http://127.0.0.1:8000/licenses/${params.row.license}?v=${Math.round(Date.now() / 1000)}`} />
             </div>
           );
         },

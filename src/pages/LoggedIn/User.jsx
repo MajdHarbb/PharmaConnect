@@ -103,11 +103,9 @@ export default function User() {
         <div className="userContainer">
           <div className="userShow">
             <div className="userShowTop">
-              <img
-                src={require("../../assets/profiles/" + data["profile_pic"])}
-                alt=""
-                className="userShowImg"
-              />
+              
+    <img className="userShowImg" src={`http://127.0.0.1:8000/profiles/${data["profile_pic"]}?v=${Math.round(Date.now() / 1000)}`} />
+
               <div className="userShowTopTitle">
                 <span className="userShowUsername">{data["name"]}</span>
                 <span className="userShowUserTitle">Software Engineer</span>
@@ -175,12 +173,8 @@ export default function User() {
               </div>
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
-                  <img
-                    className="userUpdateImg"
-                    src={require("../../assets/profiles/" +
-                      data["profile_pic"])}
-                    alt=""
-                  />
+          <img className="userUpdateImg" src={`http://127.0.0.1:8000/profiles/${data["profile_pic"]}?v=${Math.round(Date.now() / 1000)}`} />
+
                   <label htmlFor="file">
                     <Publish className="userUpdateIcon" />
                   </label>

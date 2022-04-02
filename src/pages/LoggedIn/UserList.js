@@ -60,7 +60,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            <img className="userListImg" src={require("../../assets/profiles/"+params.row.profile_pic)} alt="" />
+            <img className="userListImg" src={`http://127.0.0.1:8000/profiles/${params.row.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
           </div>
         );
       },

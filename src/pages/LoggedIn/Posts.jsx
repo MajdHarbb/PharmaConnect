@@ -43,11 +43,9 @@ const Posts = () => {
                     <div>
                       <div className="userdiv">
                         <div>
-                          <img
-                            className="profile"
-                            src={require("../../assets/profiles/" +
-                              singlePost.profile_pic)}
-                          />
+                        
+                  <img className="profile" src={`http://127.0.0.1:8000/profiles/${singlePost.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
+
                         </div>
 
                         <div>
@@ -65,9 +63,9 @@ const Posts = () => {
 
                   <div className="text">{singlePost.post_text}</div>
                   <div className="postimg">
-                    <img
-                      src={require("../../assets/posts/" + singlePost.post_pic)}
-                    />
+                    
+              <img src={`http://127.0.0.1:8000/posts/${singlePost.post_pic}?v=${Math.round(Date.now() / 1000)}`} />
+
                   </div>
                 </div>
               </div>
