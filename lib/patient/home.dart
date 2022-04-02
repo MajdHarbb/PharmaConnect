@@ -351,7 +351,9 @@ class _PatientHomeState extends State<PatientHome> {
               
                     child: ListTile(
                 
-                leading: CircleAvatar(backgroundImage: AssetImage('assets/posts/${_loadedPhotos[index]["post_pic"]}'),),
+                leading: CircleAvatar(backgroundImage:
+                NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                ),
                 title: TextFormField(
                               controller: postTextController,
                               decoration: InputDecoration.collapsed(

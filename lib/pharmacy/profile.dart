@@ -164,7 +164,7 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                           radius: 50.0,
                           backgroundColor: Colors.grey[200],
                           backgroundImage:
-                                    AssetImage('assets/profiles/$user_profile_picture'),
+                                    NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
                         ),
                         Container(
                           decoration: BoxDecoration(

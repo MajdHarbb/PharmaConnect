@@ -129,8 +129,8 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage: AssetImage(
-                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+                          backgroundImage: 
+                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -168,12 +168,12 @@ class _PharmacyHomeState extends State<PharmacyHome> {
                     Text(_loadedPhotos[index]["post_text"]),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Image.asset(
-                        'assets/posts/${_loadedPhotos[index]["post_pic"]}',
-                        width: 600.0,
+                      child: 
+                      
+                      Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}',width: 600.0,
                         height: 240.0,
-                        fit: BoxFit.cover,
-                      ),
+                        fit: BoxFit.cover,),
+                      
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

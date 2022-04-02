@@ -111,6 +111,10 @@ class _PatientProfileState extends State<PatientProfile> {
                         ],
                       ),
                     );
+        image=null;
+        setState(() {
+          
+        });
       
       print(response.body);
       print("===========> done");
@@ -165,8 +169,7 @@ class _PatientProfileState extends State<PatientProfile> {
                         CircleAvatar(
                           radius: 50.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage:
-                                    AssetImage('assets/profiles/$user_profile_picture'),
+                          backgroundImage: NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture?v=${DateTime.now().millisecondsSinceEpoch}'),
                         ),
                         Container(
                           decoration: BoxDecoration(

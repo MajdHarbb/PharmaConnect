@@ -75,8 +75,8 @@ class _PatientSearchState extends State<PatientSearch> {
                               CircleAvatar(
                                 radius: 30.0,
                                 backgroundColor: Colors.grey[200],
-                                backgroundImage: AssetImage(
-                                    'assets/profiles/$user_profile_picture'),
+                                backgroundImage: 
+                                    NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
                               ),
                               const SizedBox(width: 8.0),
                               Expanded(
@@ -132,12 +132,12 @@ class _PatientSearchState extends State<PatientSearch> {
                               onTap: () {
                                 pickImage();
                               }, // Image tapped
-                              child: Image.asset(
-                                'assets/posts/${_loadedPhotos[index]["post_pic"]}',
-                                width: 600.0,
+                              child: 
+                              Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
+                              width: 600.0,
                                 height: 240.0,
-                                fit: BoxFit.cover,
-                              ),
+                                fit: BoxFit.cover,),
+                                
                             ),
                           ),
                           Row(

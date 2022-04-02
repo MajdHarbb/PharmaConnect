@@ -93,8 +93,9 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage: AssetImage(
-                              'assets/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+                          backgroundImage: 
+                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
