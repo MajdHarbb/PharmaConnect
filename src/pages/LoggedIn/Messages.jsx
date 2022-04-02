@@ -31,22 +31,6 @@ const Messages = () => {
        console.log('error ' + error);
     });
   },[]);
-  
-  
-
-  const handleDelete = (id) => {
-
-    axios.get(`http://127.0.0.1:8000/api/user/delete-user?user_id=${id}`, { headers: { Authorization: AuthStr } })
-   .then(response => {
-       // If request is good...
-       setData(data.filter((item) => item.id !== id));
-        console.log("deleted")
-      
-    })
-   .catch((error) => {
-       console.log('error ' + error);
-    });
-  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
