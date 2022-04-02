@@ -11,10 +11,11 @@ const AllPosts = () => {
   const [posts, setPosts] = useState([]);
 
   const [isLoading, setLoading] = useState(false);
+  const [after,setAfter] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/admin/solved", {
+      .get("http://127.0.0.1:8000/api/admin/all-posts", {
         headers: { Authorization: AuthStr },
       })
       .then((response) => {
@@ -28,6 +29,22 @@ const AllPosts = () => {
         console.log("error " + error);
       });
   }, []);
+
+  const handleDelete = (id) => {
+
+    axios.get(`http://127.0.0.1:8000/api/admin/delete?post_id=${id}`, 
+    { headers: { Authorization: AuthStr } })
+   .then(response => {
+       console.log(response.data)
+        
+        setLoading(false);
+        setLoading(true);
+    })
+   .catch((error) => {
+       console.log('error ' + error);
+    });
+  }
+
   if(isLoading){
   return (
   <div className="wrapperr">
@@ -42,7 +59,7 @@ const AllPosts = () => {
       <div>
       <div className="userdiv">
           <div>
-          <img className="profile" src={require("../../assets/profiles/"+singlePost.profile_pic)} />
+          <img src={`http://127.0.0.1:8000/profiles/${singlePost.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
           </div>
 
           <div>
@@ -53,7 +70,7 @@ const AllPosts = () => {
       </div>
       <div>
         <div className="delete">
-         <DeleteRoundedIcon/>
+         <DeleteRoundedIcon onClick={() => handleDelete(singlePost.id)}/>
       </div>
       </div>
     </div>
@@ -62,7 +79,8 @@ const AllPosts = () => {
     
     <div className="text">{singlePost.post_text}</div>
     <div className="postimg">
-    <img src={require("../../assets/posts/"+singlePost.post_pic)} />
+    {/* http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}', */}
+      <img src={`http://127.0.0.1:8000/posts/${singlePost.post_pic}?v=${Math.round(Date.now() / 1000)}`} />
     </div>
             
   </div>
