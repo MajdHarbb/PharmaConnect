@@ -29,4 +29,26 @@ class PostfindsController extends Controller
             'solved' => $user,
         ], 201);
     }
+
+    public function postPharmacies(Request $request){
+        $user_id = $request->user_id;
+        $notifications=Postfind::where('poster_id', '=', $user_id)->exists();
+        if($notifications){
+            $posts = Postfind::where('poster_id', '=', $user_id)
+            ->distinct()
+            ->get();
+            $user = null;
+            foreach ($posts as $post) {
+                $post;
+            }
+            
+            return response()->json(
+                $post,
+            );
+        }else{
+            return response()->json([
+                "No notifications yet",
+            ], 400);
+        }
+    }
 }

@@ -18,7 +18,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/info', [UserController::class, 'info'])->name('user-info');
         Route::get('/get-pharmacies', [UserController::class, 'getAllPharmacies'])->name('get-pharmacies');  
         Route::post('/addPost', [PostsController::class, 'addPost'])->name('addPost');
-        
+        Route::post('/post-pharmacies', [PostfindsController::class, 'postPharmacies'])->name('post-pharmacies');
+
         Route::post('/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('update-profile-picture');
         Route::post('/update-name', [UserController::class, 'updateName'])->name('update-name');
         Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update-phone');
@@ -28,6 +29,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/delete-post', [PostsController::class, 'deletePost'])->name('delete-post');
         Route::post('/solvePost', [PostfindsController::class, 'solvePost'])->name('solvePost');
         Route::post('/send-message', [MessagesController::class, 'sendMessage'])->name('send-message');
+        
         Route::get('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
         Route::post('/update-post', [PostsController::class, 'updatePost'])->name('update-post');
         
@@ -57,6 +59,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/pharmacy-info', [AdminController::class, 'pharmacyInfo'])->name('pharmacy-info');
         Route::get('/all-posts', [PostsController::class, 'allPosts'])->name('all-posts');
         Route::get('/delete', [AdminController::class, 'delete'])->name('delete');
+        Route::get('/get-message', [MessagesController::class, 'getMessages'])->name('get-message');
         
     });
 

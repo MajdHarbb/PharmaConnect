@@ -33,4 +33,14 @@ class MessagesController extends Controller
             'message' => 'message sent successfully',
         ], 201);
     }
+
+    public function getMessages(){
+
+        $message = Message::join('infos', 'messages.user_id', '=', 'infos.user_id')
+            ->select('messages.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic',)
+            ->get();
+        
+
+        return response()->json($message, 201);
+    }
 }
