@@ -14,7 +14,7 @@ use Validator;
 
 class PostfindsController extends Controller
 {
-    //
+    //add post to postfinds table
     public function solvePost(Request $request){
         
         $data = $request->all();
@@ -29,7 +29,7 @@ class PostfindsController extends Controller
             'solved' => $user,
         ], 201);
     }
-
+    //still working
     public function postPharmacies(Request $request){
         $user_id = $request->user_id;
         $notifications=Postfind::where('poster_id', '=', $user_id)->exists();
