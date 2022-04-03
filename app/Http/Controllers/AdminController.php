@@ -11,8 +11,6 @@ use App\Models\Post;
 use App\Models\Postfind;
 use App\Models\Pharmacie;
 use Illuminate\Support\Facades\Storage;
-
-
 use Validator;
 
 

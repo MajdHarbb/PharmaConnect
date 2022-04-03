@@ -52,21 +52,17 @@ class AuthController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        // $user = User::create(array_merge(
-        //             $validator->validated(),
-        //             ['password' => bcrypt($request->password)]
-        //         ));
-        
-
+        //get user input
         $data = $request->all();
         $type=$request->user_type;
+        //insert into table users
         $user = new User;
         $user->email = $data["email"];
         $user->password = bcrypt($data["password"]);
         $user->user_type = $data["user_type"];
         $user->save();
         
-        
+        //check if type is pharmacy and insert data into pharmacies table
         if($type=="pharmacy"){
             $pharmacy = new Pharmacie;
             $pharmacy->pharmacy_id = $user->id;
@@ -77,32 +73,27 @@ class AuthController extends Controller
             $pharmacy->latitude  = $data["latitude"];
             $pharmacy->longitude  = $data["longitude"];
 
-            //testttttttttttttttttttttttttttttttttttttttttttttttttt
-            $image_64 = $data["license"];//your base64 encoded data
+            //your base64 encoded image data
+            //the pharmacy user role must upload an license image in order to register
+            $image_64 = $data["license"];
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
             $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
             // find substring fro replace here eg: data:image/png;base64,
             $image = str_replace($replace, '', $image_64); 
             $image = str_replace(' ', '+', $image); 
             $imageName = $user->id.'.'.$extension;
-            
-
             $pharmacy->license = $imageName;
             $pharmacy->save();
-            
+            //save to public/licenses folder
             Storage::disk('license')->put($user->id.'.'.$extension, base64_decode($image));
             
-            //Pharmacie::where('id', $user->id)->update(['license' => $user->id.'.'.$extension]);
         }
-
+        //insert into infos table
         $info = new Info;
         $info->user_id =$user->id;
         $info->name = $data["name"];
         $info->email = $data["email"];
         $info->phone = $data["phone"];
-        // $profile_pic_name = $request->file('profile_pic')->getClientOriginalName();
-        // $profile_pic_extension = $request->file('profile_pic')->getClientOriginalExtension();
-        // $info->profile_pic = $request->file('profile_pic')->storeAs('public\profile_pictures', $user->id.'.'.$profile_pic_extension);
         $info->profile_pic = $data["profile_pic"];
         $info->save();
 
@@ -114,38 +105,22 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    //logout destroys the jwt token
     public function logout() {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+    //refresh the token
     public function refresh() {
         return $this->createNewToken(auth()->refresh());
     }
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    //returns user info
     public function userProfile() {
         return response()->json(auth()->user());
     }
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
+    //create a jwt token
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,
