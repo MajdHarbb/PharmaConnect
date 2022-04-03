@@ -25,7 +25,7 @@ class _PatientHomeState extends State<PatientHome> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
-  final TextEditingController postTextController = TextEditingController();
+  TextEditingController postTextController = TextEditingController();
   String test = '';
   String user_id = "";
   String user_type = "";
@@ -55,7 +55,8 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
-      
+      image=null;
+      postTextController = TextEditingController();
       showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
