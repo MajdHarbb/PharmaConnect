@@ -107,8 +107,9 @@ class UserController extends Controller
         //name the image user_id+extension
         $imageName = $user_id.'.'.$extension;
 
-        //save to public path
+        //save to public path: public/profiles where disk('profile') is mapped to this location in filesystems.php
         Storage::disk('profile')->put($user_id.'.'.$extension, base64_decode($image));
+
         Info::where('id', $user_id)->update(['profile_pic' => $user_id.'.'.$extension]);
         
         return response()->json([
@@ -117,7 +118,7 @@ class UserController extends Controller
     }
 
     public function updateName(Request $request){
-
+        //validate name and check password
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'password' => 'required|string|confirmed|min:6',]);
@@ -125,14 +126,13 @@ class UserController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
+        //fetch user data
         $data=$request->all();
-
         $user_id=$data['user_id'];
         $user_name=$data['name'];
-
         $password = $data["password"];
 
+        //check if the user entered a correct password before updating
         $passdatabase = User::where('id', $user_id)->value('password'); 
         if(Hash::check($password,$passdatabase)){
             Info::where('user_id', $user_id)->update(['name' => $user_name]);
@@ -150,7 +150,7 @@ class UserController extends Controller
     }
 
     public function updatePhone(Request $request){
-
+        //validate data
         $validator = Validator::make($request->all(), [
             'phone' => 'required|regex:/[0-9]{8}/',
             'password' => 'required|string|confirmed|min:6',]);
@@ -158,12 +158,13 @@ class UserController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
+        //fetch data
         $data=$request->all();
 
         $user_id=$data['user_id'];
         $phone=$data['phone'];
         $password = $data['password'];
+        //check if the user entered a valid password before updating
         $passdatabase = User::where('id', $user_id)->value('password'); 
         if(Hash::check($password,$passdatabase)){
             
@@ -201,7 +202,7 @@ class UserController extends Controller
         $user_id=$data['user_id'];
         $password = $data["password"];
         $new_password=$data['new_password'];
-
+        //check if the user entered a valid password before updating
         $passdatabase = User::where('id', $user_id)->value('password'); 
         if(Hash::check($password,$passdatabase)){
             User::where('id', $user_id)->update(['password' => bcrypt($new_password)]);
@@ -215,7 +216,7 @@ class UserController extends Controller
         }
 
     }
-
+    //delete user and their entire activity
     public function deleteUser (Request $request) {
         $id=$request->user_id;
         if (User::where('id', '=', $id)->exists()) {
@@ -231,20 +232,4 @@ class UserController extends Controller
             ], 401);
          }
     }
-
-    public function sendImage(Request $request){
-        // $id = $request->id;
-        return response()->file(storage_path("app/public/posts_pictures/"));
-        //C:\Users\User\Desktop\FSW\Final Project\PharmaConnect\storage\app\public\posts_pictures\5.jpg
-    }
-
-    public function imagename(Request $request){
-        $id = $request->id;
-        return response()->file(storage_path("app/public/posts_pictures/"));
-        //C:\Users\User\Desktop\FSW\Final Project\PharmaConnect\storage\app\public\posts_pictures\5.jpg
-    }
-
-    
-
-    
 }
