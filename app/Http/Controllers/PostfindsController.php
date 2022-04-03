@@ -33,12 +33,7 @@ class PostfindsController extends Controller
     }
     //still working
     public function postPharmacies(Request $request){
-        // $pharmacy_id=$request->pharmacy_id;
-        // $posts = Post::join('infos', 'posts.user_id', '=', 'infos.user_id')
-        //     ->join('postfinds', 'infos.user_id', '!=', 'postfinds.pharmacy_id')
-        //     ->select('posts.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic','postfinds.pharmacy_id')
-        //     ->where('postfinds.pharmacy_id', '!=', $pharmacy_id)
-        //     ->distinct()->get();
+
         $user = auth()->user();
         $user_id=$user->id;
         $notifications=Postfind::where('poster_id', '=', $user_id)->exists();
@@ -51,6 +46,28 @@ class PostfindsController extends Controller
             ->get();
             return response()->json(
                 $posts,
+            );
+        }else{
+            return response()->json([
+                "No notifications yet",
+            ], 400);
+        }
+    }
+
+    public function pharmacyInfobyPostId(Request $request){
+        $user = auth()->user();
+        $user_id=$user->id;
+        $post_id = $request->post_id;
+        $notifications=Postfind::where('post_id', '=', $post_id)->exists();
+        if($notifications){
+            $pharmacies = Postfind::join('posts','posts.id','=','postfinds.post_id')
+            ->join('infos','infos.user_id','=','postfinds.pharmacy_id')
+            ->select('infos.*','postfinds.post_id')
+            ->where('post_id', '=', $post_id)
+            ->distinct()
+            ->get();
+            return response()->json(
+                $pharmacies,
             );
         }else{
             return response()->json([

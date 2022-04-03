@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/get-pharmacies', [UserController::class, 'getAllPharmacies'])->name('get-pharmacies');  
         Route::post('/addPost', [PostsController::class, 'addPost'])->name('addPost');
         Route::get('/post-pharmacies', [PostfindsController::class, 'postPharmacies'])->name('post-pharmacies');
+        Route::get('/pharmacy-by-post', [PostfindsController::class, 'pharmacyInfobyPostId'])->name('post-by-id');
 
         Route::post('/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('update-profile-picture');
         Route::post('/update-name', [UserController::class, 'updateName'])->name('update-name');
