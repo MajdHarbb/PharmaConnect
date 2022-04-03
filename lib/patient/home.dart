@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/patient/SolvedPost.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,7 @@ class _PatientHomeState extends State<PatientHome> {
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
   TextEditingController postTextController = TextEditingController();
-  String test = '';
+  String test = 'hiii';
   String user_id = "";
   String user_type = "";
   String access_Token = "";
@@ -55,27 +56,24 @@ class _PatientHomeState extends State<PatientHome> {
 
       print(response.body);
       print("===========> done");
-      image=null;
+      image = null;
       postTextController = TextEditingController();
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Posted! You will get a reply soon from a pharmacy.'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-        getStringValuesSF();
-        setState(() {
-          
-        });
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title:
+              const Text('Posted! You will get a reply soon from a pharmacy.'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      getStringValuesSF();
+      setState(() {});
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -115,7 +113,6 @@ class _PatientHomeState extends State<PatientHome> {
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
-
     );
 
     if (response.statusCode == 201) {
@@ -126,9 +123,12 @@ class _PatientHomeState extends State<PatientHome> {
       print(response_jsondata);
       //var user_json_id = json.decode(response_jsondata);
       final String nameJson = (response_jsondata["user"][0]["name"]).toString();
-      final String emailJson =(response_jsondata["user"][0]["email"]).toString();
-      final String phoneJson =(response_jsondata["user"][0]["phone"]).toString();
-      final String profileJson =(response_jsondata["user"][0]["profile_pic"]).toString();
+      final String emailJson =
+          (response_jsondata["user"][0]["email"]).toString();
+      final String phoneJson =
+          (response_jsondata["user"][0]["phone"]).toString();
+      final String profileJson =
+          (response_jsondata["user"][0]["profile_pic"]).toString();
       print("user iddddddddddddddddddddd ===================>>>>>>>>>>");
       print(nameJson);
       print(emailJson);
@@ -137,7 +137,7 @@ class _PatientHomeState extends State<PatientHome> {
       print(profileJson);
       print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(response.body);
-      
+
       await prefs.setString('name', nameJson);
       await prefs.setString('email', emailJson);
       await prefs.setString('phone', phoneJson);
@@ -147,12 +147,11 @@ class _PatientHomeState extends State<PatientHome> {
       // final String? action3 = prefs.getString('phone');
       // final String? action4 = prefs.getString('phone');
       setState(() {
-      user_name = prefs.getString('name')!;
-      user_email = prefs.getString('email')!;
-      user_phone = prefs.getString('phone')!;
-      user_profile_picture = prefs.getString('profile_pic')!;
-    });
-
+        user_name = prefs.getString('name')!;
+        user_email = prefs.getString('email')!;
+        user_phone = prefs.getString('phone')!;
+        user_profile_picture = prefs.getString('profile_pic')!;
+      });
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -174,7 +173,7 @@ class _PatientHomeState extends State<PatientHome> {
       user_type = prefs.getString('user_type')!;
       access_Token = prefs.getString('accesToken')!;
     });
-   const API_URL = 'http://192.168.0.117:8000/api/user/post-pharmacies';
+    const API_URL = 'http://192.168.0.117:8000/api/user/post-pharmacies';
 
     final response = await http.get(
       Uri.parse(API_URL),
@@ -190,22 +189,21 @@ class _PatientHomeState extends State<PatientHome> {
       print(response.body);
       print("===========> done hh");
       setState(() {
-      _loadedPhotos = data;
-      count = _loadedPhotos.length;
-    });
-      
+        _loadedPhotos = data;
+        count = _loadedPhotos.length;
+      });
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
       print("failed test${response.body}");
       setState(() {
-      _loadedPhotos = ["no posts yet"];
-      count = 0;
-    });
+        _loadedPhotos = ["no posts yet"];
+        count = 0;
+      });
     }
   }
-    //   Future<void> _fetchData() async {
-    
+  //   Future<void> _fetchData() async {
+
   //   const API_URL = 'http://192.168.0.117:8000/api/user/post-pharmacies';
 
   //   final response = await http.get(
@@ -222,8 +220,6 @@ class _PatientHomeState extends State<PatientHome> {
   //   });
   // }
 
-  
-
   @override
   initState() {
     super.initState();
@@ -231,7 +227,6 @@ class _PatientHomeState extends State<PatientHome> {
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
     getUserInfo();
-    
   }
 
   @override
@@ -250,312 +245,321 @@ class _PatientHomeState extends State<PatientHome> {
         title: Text('Hello $user_name!'),
       ),
       body: SingleChildScrollView(
-        // physics: const ScrollPhysics(),
-        child:  Center(
-            
-            child: Column(
-     
-              
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                
-                Container(
-                  margin: const EdgeInsets.all(7),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                          bottomLeft: Radius.circular(8),
-                          bottomRight: Radius.circular(8)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
-                  padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
-                  child: Column(
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CircleAvatar(
-                              radius: 30.0,
-                              backgroundColor: Colors.grey[200],
-                              backgroundImage:
-                              NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-                                  //  AssetImage('assets/profiles/$user_profile_picture'),
-                            ),
-                            const SizedBox(width: 8.0),
-                            Expanded(
-                              child: TextFormField(
-                                controller: postTextController,
-                                decoration: InputDecoration.collapsed(
-                                    hintText: "Find your medicine, $user_name"),
-                              ),
-                            ),
-                          ]),
-                      const Divider(height: 10.0, thickness: 0.1),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                child: image != null
-                                    ? ClipOval(
-                                        child: Image.file(
-                                          image!,
-                                          height: 50,
-                                          width: 50,
-                                        ),
-                                      )
-                                    : const Text('No image selected yet',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(fontSize: 12,color: Colors.grey,),),
-                              ),
-                            ),
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 8),
-                                child: TextButton.icon(
-                                  onPressed: pickImage,
-                                  label: const Text('Add Image'),
-                                  icon: const Icon(
-                                    Icons.photo,
-                                    color: Colors.green,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: AddPost,
-                              child: const Text('Post'),
-                              
-                            ),
-                            const Icon(Icons.send_rounded, color: Colors.blue,),
-                          ]),
-                    ],
-                  ),
+                  ],
                 ),
-                Column(
-                  
-                  
+                padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
+                child: Column(
                   children: [
-                    Text("My Posts: $count"),
-                    count !=0 ? 
-                    
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext, index){
-              //         return Card(
-                
-              //         child: ListTile(
-                  
-              //     leading: CircleAvatar(backgroundImage:
-              //     NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-              //     ),
-              //     title: TextFormField(
-              //                   controller: postTextController,
-              //                   decoration: InputDecoration.collapsed(
-              //                       hintText: _loadedPhotos[index]["post_text"]),
-              //                 ),
-              //     subtitle: Text(_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))),
-              //   ),
-              // );
-              return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            radius: 30.0,
+                            backgroundColor: Colors.grey[200],
+                            backgroundImage: NetworkImage(
+                                'http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                            //  AssetImage('assets/profiles/$user_profile_picture'),
+                          ),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: TextFormField(
+                              controller: postTextController,
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Find your medicine, $user_name"),
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundColor: Colors.grey[200],
-                                  backgroundImage: 
-                                      NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-                                ),
-                                const SizedBox(width: 8.0),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            user_name,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
+                          ),
+                        ]),
+                    const Divider(height: 10.0, thickness: 0.1),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: image != null
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        image!,
+                                        height: 50,
+                                        width: 50,
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            _loadedPhotos[index]["updated_at"]
-                                                .substring(
-                                                    0,
+                                    )
+                                  : const Text(
+                                      'No image selected yet',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: TextButton.icon(
+                                onPressed: pickImage,
+                                label: const Text('Add Image'),
+                                icon: const Icon(
+                                  Icons.photo,
+                                  color: Colors.green,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: AddPost,
+                            child: const Text('Post'),
+                          ),
+                          const Icon(
+                            Icons.send_rounded,
+                            color: Colors.blue,
+                          ),
+                        ]),
+                  ],
+                ),
+              ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(children: <Widget>[
+                          const Expanded(child: Divider()),
+                          Text("Solved Posts: ${_loadedPhotos.length}"),
+                          const Expanded(child: Divider()),
+                        ])),
+                    count != 0
+                        ? ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (BuildContext, index) {
+                              return Container(
+                                margin: const EdgeInsets.symmetric(vertical: 4),
+                                padding: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 30.0,
+                                          backgroundColor: Colors.grey[200],
+                                          backgroundImage: NetworkImage(
+                                              'http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    user_name,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) => SolvedPost(postid: _loadedPhotos[index]["post_id"].toString(),)),
+                                                        );
+                                                        
+                                                      },
+                                                      child:  const Text("pharmacies")),
+                                                      const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
+                                                ],
+                                              ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
                                                     _loadedPhotos[index]
                                                             ["updated_at"]
-                                                        .indexOf('T')),
-                                            style: TextStyle(
-                                              color: Colors.grey[600],
-                                              fontSize: 12.0,
-                                            ),
+                                                        .substring(
+                                                            0,
+                                                            _loadedPhotos[index]
+                                                                    [
+                                                                    "updated_at"]
+                                                                .indexOf('T')),
+                                                    style: TextStyle(
+                                                      color: Colors.grey[600],
+                                                      fontSize: 12.0,
+                                                    ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.public,
+                                                    color: Colors.grey[600],
+                                                    size: 12.0,
+                                                  )
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                          Icon(
-                                            Icons.public,
-                                            color: Colors.grey[600],
-                                            size: 12.0,
-                                          )
-                                        ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 4.0),
+                                    Text(_loadedPhotos[index]["post_text"]),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          pickImage();
+                                        }, // Image tapped
+                                        child: Image.network(
+                                          'http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
+                                          width: 600.0,
+                                          height: 240.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    //   children: [
+                                    //     image != null
+                                    //         ? GestureDetector(
+                                    //           onTap: () {
+                                    //               pickImage();
+                                    //             },
+                                    //           child: ClipOval(
+                                    //               child: Image.file(
+                                    //                 image!,
+                                    //                 height: 50,
+                                    //                 width: 50,
+                                    //               ),
+                                    //             ),
+                                    //         )
+                                    //         : GestureDetector(
+                                    //             onTap: () {
+                                    //               pickImage();
+                                    //             },
+                                    //             child: const Text("Edit Image"),
+                                    //           ),
+                                    //     ElevatedButton.icon(
+                                    //       icon: const Icon(
+                                    //         Icons.delete_rounded,
+                                    //         color: Colors.red,
+                                    //       ),
+                                    //       style: ElevatedButton.styleFrom(
+                                    //         minimumSize: const Size(10, 40),
+                                    //         primary: Colors.white,
+                                    //       ),
+
+                                    //       onPressed: () {
+                                    //         deletePost(_loadedPhotos[index]["id"]);
+                                    //       },
+                                    //       label: const Text(
+                                    //         'Delete',
+                                    //         style: TextStyle(color: Colors.black),
+                                    //       ),
+                                    //       //controller: streetController,
+                                    //     ),
+                                    //     ElevatedButton.icon(
+                                    //       icon: const Icon(
+                                    //         Icons.save,
+                                    //         color: Colors.blue,
+                                    //       ),
+                                    //       style: ElevatedButton.styleFrom(
+                                    //         minimumSize: const Size(10, 40),
+                                    //         primary: Colors.white,
+                                    //       ),
+
+                                    //       onPressed: () {
+                                    //         updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
+                                    //       },
+                                    //       label: const Text(
+                                    //         'Save',
+                                    //         style: TextStyle(color: Colors.black),
+                                    //       ),
+                                    //       //controller: streetController,
+                                    //     ),
+                                    //   ],
+                                    // )
+                                  ],
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 4.0),
-                            TextFormField(
-                              // controller: _controllers[index],
-                              decoration: InputDecoration.collapsed(
-                                  hintText: _loadedPhotos[index]["post_text"]),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  pickImage();
-                                }, // Image tapped
-                                child: 
-                                Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
-                                width: 600.0,
-                                  height: 240.0,
-                                  fit: BoxFit.cover,),
-                                  
-                              ),
-                            ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            //   children: [
-                            //     image != null
-                            //         ? GestureDetector(
-                            //           onTap: () {
-                            //               pickImage();
-                            //             },
-                            //           child: ClipOval(
-                            //               child: Image.file(
-                            //                 image!,
-                            //                 height: 50,
-                            //                 width: 50,
-                            //               ),
-                            //             ),
-                            //         )
-                            //         : GestureDetector(
-                            //             onTap: () {
-                            //               pickImage();
-                            //             },
-                            //             child: const Text("Edit Image"),
-                            //           ),
-                            //     ElevatedButton.icon(
-                            //       icon: const Icon(
-                            //         Icons.delete_rounded,
-                            //         color: Colors.red,
-                            //       ),
-                            //       style: ElevatedButton.styleFrom(
-                            //         minimumSize: const Size(10, 40),
-                            //         primary: Colors.white,
-                            //       ),
-
-                            //       onPressed: () {
-                            //         deletePost(_loadedPhotos[index]["id"]);
-                            //       },
-                            //       label: const Text(
-                            //         'Delete',
-                            //         style: TextStyle(color: Colors.black),
-                            //       ),
-                            //       //controller: streetController,
-                            //     ),
-                            //     ElevatedButton.icon(
-                            //       icon: const Icon(
-                            //         Icons.save,
-                            //         color: Colors.blue,
-                            //       ),
-                            //       style: ElevatedButton.styleFrom(
-                            //         minimumSize: const Size(10, 40),
-                            //         primary: Colors.white,
-                            //       ),
-
-                            //       onPressed: () {
-                            //         updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
-                            //       },
-                            //       label: const Text(
-                            //         'Save',
-                            //         style: TextStyle(color: Colors.black),
-                            //       ),
-                            //       //controller: streetController,
-                            //     ),
-                            //   ],
-                            // )
-                          ],
-                        ),
-                      );
-            },
-            itemCount: _loadedPhotos.length,
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(5),
-            scrollDirection: Axis.vertical,
-          ) : Column(
-            
-            children:  [
-              const Text("You don't have any posts yet, create a post"),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-
-                  Text("Get Statred ", style: TextStyle(fontSize: 50.0),),
-                  //Image.asset("assets/images/Demo.gif")
-
-                ],
-              )
+                              );
+                            },
+                            itemCount: _loadedPhotos.length,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.all(5),
+                            scrollDirection: Axis.vertical,
+                          )
+                        : Column(
+                            children: [
+                              const Text(
+                                  "You don't have any posts yet, create a post"),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "Get Statred ",
+                                    style: TextStyle(fontSize: 50.0),
+                                  ),
+                                  //Image.asset("assets/images/Demo.gif")
+                                ],
+                              )
+                            ],
+                          ),
+                  ]),
             ],
           ),
-                  
-                    
-                  ]
-                ),
-              ],
-              
-            ),
-            
-          ),
+        ),
       ),
     );
   }
