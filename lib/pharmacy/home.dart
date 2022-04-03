@@ -16,7 +16,62 @@ class _PharmacyHomeState extends State<PharmacyHome> {
   List _loadedPhotos = [];
   String access_Token = "";
   String user_id = "";
+  String user_name = "";
+  String user_email = "";
+  String user_phone = "";
+  String user_profile_picture = "";
+    
+    Future<void> getUserInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    final response = await http.get(
+      Uri.parse('http://192.168.0.117:8000/api/user/info?user_id=$user_id'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
 
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      var response_jsondata = json.decode(response.body);
+      print("here ======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      print(response_jsondata);
+      //var user_json_id = json.decode(response_jsondata);
+      final String nameJson = (response_jsondata["user"][0]["name"]).toString();
+      final String emailJson =(response_jsondata["user"][0]["email"]).toString();
+      final String phoneJson =(response_jsondata["user"][0]["phone"]).toString();
+      final String profileJson =(response_jsondata["user"][0]["profile_pic"]).toString();
+      print("user iddddddddddddddddddddd ===================>>>>>>>>>>");
+      print(nameJson);
+      print(emailJson);
+
+      print(phoneJson);
+      print(profileJson);
+      print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      print(response.body);
+      
+      await prefs.setString('name', nameJson);
+      await prefs.setString('email', emailJson);
+      await prefs.setString('phone', phoneJson);
+      await prefs.setString('profile_pic', profileJson);
+      // final String? action = prefs.getString('name');
+      // final String? action2 = prefs.getString('email');
+      // final String? action3 = prefs.getString('phone');
+      // final String? action4 = prefs.getString('phone');
+      setState(() {
+      user_name = prefs.getString('name')!;
+      user_email = prefs.getString('email')!;
+      user_phone = prefs.getString('phone')!;
+      user_profile_picture = prefs.getString('profile_pic')!;
+    });
+
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
+    }
+  }
   // The function that fetches data from the API
   Future<void> _fetchData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -40,6 +95,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     setState(() {
       _loadedPhotos = data;
     });
+    
   }
 
   Future<void> SolvePost(postId, posterId) async {
@@ -89,6 +145,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     print(
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     _fetchData();
+    getUserInfo();
     print("==========> LENGHT");
     print("id ===> $user_id");
     print(access_Token);
@@ -99,6 +156,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     print(_loadedPhotos.length);
     print("id ===> $user_id");
     print(access_Token);
+    print(user_profile_picture);
     return Scaffold(
         body: CustomScrollView(
       slivers: [

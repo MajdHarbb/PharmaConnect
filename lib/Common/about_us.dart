@@ -10,8 +10,7 @@ class AboutUs extends StatefulWidget {
 
 class _AboutUsState extends State<AboutUs> {
   @override
-    Set<Marker> _markers = {};
-    double test =32.195476;
+  Set<Marker> _markers = {};
   Marker marker1 = Marker(
     markerId: MarkerId('Marker1'),
     position: const LatLng(32.195476, 74.2023563),
@@ -51,6 +50,8 @@ class _AboutUsState extends State<AboutUs> {
          
     );
   }
+
+  
 
   
 }
