@@ -15,12 +15,15 @@ use Validator;
 
 
 class AdminController extends Controller
-{
+{   
+    //admin login
     public function login(Request $request){
+        //validate input
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
+        //check if the user type is admin in users table
         $if_admin =User::where("email", "=", $request->email)
                        ->where("user_type", "=",'admin')
                        ->exists();
@@ -31,8 +34,10 @@ class AdminController extends Controller
             if (! $token = auth()->attempt($validator->validated())) {
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
+            //if true create a new jwt token
             return $this->createNewToken($token);
         }else{
+            //if not an admin 
             return "Unauthorized: not an admin";
         }
         
