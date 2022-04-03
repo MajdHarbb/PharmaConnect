@@ -13,13 +13,14 @@ use Validator;
 class AuthController extends Controller
 {
 
-
+    //unauthorized route in middleware
      public function notFound(){
          return response()->json(['error' => 'Unauthorized'], 401);
      }
 
-
+    //login returns jwt token
     public function login(Request $request){
+        //validate input
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -28,17 +29,17 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+        //check if authentication validation is true
         if (! $token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        //return a jwt token
         return $this->createNewToken($token);
     }
-    /**
-     * Register a User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    
+    //register a user (patient and pharmacy)
     public function register(Request $request) {
+        //validate input
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
