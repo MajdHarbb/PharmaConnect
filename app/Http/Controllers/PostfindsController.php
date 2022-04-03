@@ -14,6 +14,8 @@ use Validator;
 
 class PostfindsController extends Controller
 {
+    
+
     //add post to postfinds table
     public function solvePost(Request $request){
         
@@ -31,19 +33,24 @@ class PostfindsController extends Controller
     }
     //still working
     public function postPharmacies(Request $request){
-        $user_id = $request->user_id;
+        // $pharmacy_id=$request->pharmacy_id;
+        // $posts = Post::join('infos', 'posts.user_id', '=', 'infos.user_id')
+        //     ->join('postfinds', 'infos.user_id', '!=', 'postfinds.pharmacy_id')
+        //     ->select('posts.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic','postfinds.pharmacy_id')
+        //     ->where('postfinds.pharmacy_id', '!=', $pharmacy_id)
+        //     ->distinct()->get();
+        $user = auth()->user();
+        $user_id=$user->id;
         $notifications=Postfind::where('poster_id', '=', $user_id)->exists();
         if($notifications){
-            $posts = Postfind::where('poster_id', '=', $user_id)
+            $posts = Postfind::join('posts','posts.id','=','postfinds.post_id')
+            ->join('infos','infos.user_id','=','postfinds.pharmacy_id')
+            ->select('posts.*','postfinds.post_id')
+            ->where('poster_id', '=', $user_id)
             ->distinct()
             ->get();
-            $user = null;
-            foreach ($posts as $post) {
-                $post;
-            }
-            
             return response()->json(
-                $post,
+                $posts,
             );
         }else{
             return response()->json([
