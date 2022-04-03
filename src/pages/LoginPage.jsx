@@ -18,6 +18,7 @@ const LoginPage = () => {
     var eInput = document.getElementById("input-email");
     var pField = document.getElementById("field-password");
     var pInput = document.getElementById("input-password");
+
     e.preventDefault(); //preventing from form submitting
     eInput.value == "" ? eField.classList.add("error") : checkEmail();
     pInput.value == "" ? pField.classList.add("error") : checkPass();
@@ -89,13 +90,16 @@ const LoginPage = () => {
         localStorage.setItem("access_token", res.data["access_token"]);
         localStorage.setItem("id", res.data["user"]["id"]);
         localStorage.setItem("email", res.data["user"]["email"]);
+        setRedirect(true);
       });
-    setRedirect(true);
+    
     // navigate("/home");
     //redirect to user home page on success
 
+
     
   }
+  console.log(redirect);
   if (redirect) {
     return <Navigate to="home/pharmaconnect" />;
   }
