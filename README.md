@@ -90,9 +90,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Home  | Reply  |Profile  |
 | -----------------| -----|-----|
-| ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-52-497_com.example.pharmaconnectflutter.jpg) | ![Reply](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/WhatsApp%20Image%202022-04-04%20at%208.20.09%20PM.jpeg) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/WhatsApp%20Image%202022-04-04%20at%208.20.09%20PM%20(1).jpeg) |
+| ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-52-497_com.example.pharmaconnectflutter.jpg) | ![Reply](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/Screenshot_2022-04-04-20-17-07-122_com.example.pharmaconnectflutter.jpg) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/Screenshot_2022-04-04-20-17-17-292_com.example.pharmaconnectflutter.jpg) |
 
 <h2>React Admin Panel</h2>
+<br/>
 | Login  | Home  |
 | -----------------| -----|
 | ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/login.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/home.png) |
