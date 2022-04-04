@@ -18,10 +18,19 @@
 > There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
 
 ### User Stories
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-
+- As a patient, I want to sign up, so that I can use PharmaConnect to find my medicine.
+- As a patient, I want to create a post, so that I can notify all pharmacies about a medicine.
+- As a patient, I want to see all pharmacies, so that I can find quick links to their location and contact information.
+- As a patient, I want to get replies from pharmacies on each post, so that I can go to the nearest pharmacy.
+- As a patient, I want to edit and delete my posts, so that I can remove unwanted replies.
+- As a patient, I want to edit my personal information, so that I can have more control over my profile.
+- As a patient, I want to get replies from pharmacies on each post, so that I can go to the nearest pharmacy.
+- As a pharmacy owner, I want to sign up, so that I can connect with medicine seeker.
+- As a pharmacy owner, I want to sign up, so that I can connect with medicine seeker.
+- As a pharmacy owner, I want to enter my extact location on google maps, so that I can connect with medicine seeker.
+- As a pharmacy owner, I want to upload a photo of my license, so that I can provide authenticity.
+- As a pharmacy owner, I want to see all posts from patients, so that I can notify them if I have their request.
+- As a pharmacy owner, I want to edit my personal information, so that I can have more control over my profile.
 <br><br>
 
 <img src="./readme/title3.svg"/>
