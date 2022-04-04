@@ -40,7 +40,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 | Landing  | Home/Search  |
 | -----------------| -----|
-| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/home%20pharmacy.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/home%20pharmacy.png) |
+| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/home%20pharmacy.png) |
 
 | Artists results  | Artist's Albums  |
 | -----------------| -----|
