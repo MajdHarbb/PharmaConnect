@@ -69,12 +69,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | Welcome  | welcome  |Welcome  |
 | -----------------| -----|-----|
 | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-02-231_com.example.pharmaconnectflutter.jpg) | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-06-626_com.example.pharmaconnectflutter.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg) |
-| Landing  | Home/Search  |
-| -----------------| -----|
-| ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-10-320_com.example.pharmaconnectflutter.jpg) |
-| Pharmacy Sign Up  | Patient Sign Up  |
-| -----------------| -----|
-| ![Pharmacy Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-30-506_com.example.pharmaconnectflutter.jpg) | ![Patient Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-17-727_com.example.pharmaconnectflutter.jpg) |
+
+| Pharmacy or Patient?  | Pharmacy Sign Up  |Patient Sign Up  |
+| -----------------| -----|-----|
+![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg)| ![Pharmacy Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-30-506_com.example.pharmaconnectflutter.jpg) | ![Patient Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-17-727_com.example.pharmaconnectflutter.jpg) |
 | Home  | Pharmacies  |
 | -----------------| -----|
 | ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Pharmacies](hhttps://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
