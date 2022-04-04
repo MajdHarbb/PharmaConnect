@@ -72,7 +72,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Pharmacy or Patient?  | Pharmacy Sign Up  |Patient Sign Up  |
 | -----------------| -----|-----|
-![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg)|| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Pharmacies](hhttps://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
+![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg)| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Pharmacies](hhttps://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
 | Posts  | Notifications  |
 | -----------------| -----|-----|
 | ![Posts](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-07-980_com.example.pharmaconnectflutter.jpg) | ![Notifications](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-11-384_com.example.pharmaconnectflutter.jpg) |
