@@ -8,6 +8,7 @@ const Home = () => {
 
   return (
     <div className="home">
+      {/* //display components  */}
       <FeaturedInfo />
       <Chart
         title="Medicine Availability Accoding to Governates"

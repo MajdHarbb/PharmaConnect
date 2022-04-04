@@ -34,7 +34,7 @@ export default function Pharmacy() {
   //state that is to be set to true when api is fetched
   const [isLoading, setLoading] = useState(false);
 
-
+  //fetch pha
   useEffect(() => {
     axios
       .get(
@@ -44,14 +44,8 @@ export default function Pharmacy() {
       .then((response) => {
         console.log("response", response.data);
         user_info = response.data;
-        console.log("info", user_info);
         setData(user_info[0]);
-        console.log("data", data);
-        //  console.log("to strin")
-        //  console.log(data["profile_pic"])
-        //  setProfile(data["profile_pic"])
-        //  //console.log(typeof(profile_pic))
-        //  console.log(profile_pic)
+
         setLoading(true);
       })
       .catch((error) => {

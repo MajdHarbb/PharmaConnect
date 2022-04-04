@@ -29,7 +29,7 @@ const AllPosts = () => {
         console.log("error " + error);
       });
   }, []);
-
+  //delete post
   const handleDelete = (id) => {
     axios
       .get(`http://127.0.0.1:8000/api/admin/delete?post_id=${id}`, {
@@ -51,6 +51,7 @@ const AllPosts = () => {
       <div>
         <div className="main__body">
           <div className="feed">
+        {/* loop through posts list and displlay data */}
             {posts.map((singlePost) => {
               return (
                 <div className="post">
@@ -87,6 +88,7 @@ const AllPosts = () => {
     );
   } else {
     return (
+      // display loading while api is being fetched
       <div>
         <h1>Loading</h1>
       </div>

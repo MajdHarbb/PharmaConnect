@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import "../../css/UserList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+
 const Messages = () => {
-    var access_token=localStorage.getItem("access_token");
-  const AuthStr = 'Bearer '.concat(access_token); 
+  var access_token = localStorage.getItem("access_token");
+  const AuthStr = "Bearer ".concat(access_token);
   var patients = [];
   var [data, setData] = useState([]);
   let axiosConfig = {
@@ -16,22 +17,25 @@ const Messages = () => {
     },
   };
 
-
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/admin/get-message", { headers: { Authorization: AuthStr } })
-   .then(response => {
-       // If request is good...
-       patients = JSON.stringify(response.data);
-       patients = JSON.parse(patients)
-       setData(patients);
-       console.log(response.data)
-      
-    })
-   .catch((error) => {
-       console.log('error ' + error);
-    });
-  },[]);
+    //fetch messages api
 
+    axios
+      .get("http://127.0.0.1:8000/api/admin/get-message", {
+        headers: { Authorization: AuthStr },
+      })
+      .then((response) => {
+        // If request is good...
+        patients = JSON.stringify(response.data);
+        patients = JSON.parse(patients);
+        setData(patients);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log("error " + error);
+      });
+  }, []);
+  
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
@@ -41,7 +45,12 @@ const Messages = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-           <img className="userListImg" src={`http://127.0.0.1:8000/profiles/${params.row.profile_pic}?v=${Math.round(Date.now() / 1000)}`} />
+            <img
+              className="userListImg"
+              src={`http://127.0.0.1:8000/profiles/${
+                params.row.profile_pic
+              }?v=${Math.round(Date.now() / 1000)}`}
+            />
 
             {params.row.name}
           </div>

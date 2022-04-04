@@ -25,6 +25,7 @@ export default function NewUser() {
   };
   const create = (e)=>{
     e.preventDefault();
+    //if input is valid fetch register api
     if(email.match(emailRegex) && password.match(passRegex) &&phone.match(phoneRegex) && name!="" && password===password_confirmation){
       axios
       .post(

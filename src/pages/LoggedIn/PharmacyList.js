@@ -6,13 +6,13 @@ import { useState , useEffect} from "react";
 import axios from "axios";
 
 export default function PharmacyList() {
-
+  //get token from storage
   var access_token=localStorage.getItem("access_token");
   const AuthStr = 'Bearer '.concat(access_token); 
   var pharmacies = [];
   var [data, setData] = useState([]);
 
-
+  //fetch pharmacies
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/admin/get-all-pharmacies", { headers: { Authorization: AuthStr } })
    .then(response => {
