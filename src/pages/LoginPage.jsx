@@ -16,7 +16,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const submit = (e) => {
-    
     const form = document.getElementById("form");
     var eField = document.getElementById("field-email");
     var eInput = document.getElementById("input-email");
@@ -81,7 +80,7 @@ const LoginPage = () => {
       "Content-Type": "application/json;charset=UTF-8",
     },
   };
-   function fetchLoginApi(e) {
+  function fetchLoginApi(e) {
     //fetch login api
     axios
       .post(
@@ -100,13 +99,11 @@ const LoginPage = () => {
         //redirect
         setRedirect(true);
       });
-    
   }
   console.log(redirect);
   if (redirect) {
     return <Navigate to="home/pharmaconnect" />;
   }
-  
 
   function test() {
     console.log("hi");

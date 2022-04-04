@@ -51,7 +51,7 @@ const AllPosts = () => {
       <div>
         <div className="main__body">
           <div className="feed">
-        {/* loop through posts list and displlay data */}
+            {/* loop through posts list and displlay data */}
             {posts.map((singlePost) => {
               return (
                 <div className="post">
@@ -82,7 +82,6 @@ const AllPosts = () => {
             })}
             ;
           </div>
-
         </div>
       </div>
     );

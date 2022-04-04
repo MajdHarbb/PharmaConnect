@@ -35,7 +35,7 @@ const Messages = () => {
         console.log("error " + error);
       });
   }, []);
-  
+
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
