@@ -1,9 +1,6 @@
 import React from "react";
 import "../../css/Topbar.css";
-import {
-  NotificationsNone,
-  ExitToAppRounded,
-} from "@material-ui/icons";
+import { NotificationsNone, ExitToAppRounded } from "@material-ui/icons";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +13,6 @@ export default function Topbar() {
   var bearer = "Bearer " + bearer_token;
 
   const logout = () => {
-    
-
     //logout fetches logout API that clears the JWT token in server
     async function logoutapi() {
       const response = await fetch("http://127.0.0.1:8000/api/auth/logout", {
@@ -54,8 +49,12 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <ExitToAppRounded onClick={logout} />
           </div>
-          <img className="topAvatar" src={`http://127.0.0.1:8000/profiles/defualt_profile_picture_pharmaConnect.png?v=${Math.round(Date.now() / 1000)}`} />
-
+          <img
+            className="topAvatar"
+            src={`http://127.0.0.1:8000/profiles/defualt_profile_picture_pharmaConnect.png?v=${Math.round(
+              Date.now() / 1000
+            )}`}
+          />
         </div>
       </div>
     </div>

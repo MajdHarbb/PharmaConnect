@@ -1,9 +1,14 @@
 import React from "react";
 import "../../css/SideBar.css";
-import {LineStyle,PermIdentity,
-Storefront,ChatBubbleOutline, Check} from "@material-ui/icons";
+import {
+  LineStyle,
+  PermIdentity,
+  Storefront,
+  ChatBubbleOutline,
+  Check,
+} from "@material-ui/icons";
 import { Newspaper } from "@mui/icons-material";
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -21,10 +26,10 @@ const SideBar = () => {
                 </li>
               </Link>
               <Link to="newUser" className="link">
-              <li className="sidebarListItem">
-                <PersonAddAltIcon className="sidebarIcon" />
-                Create User
-              </li>
+                <li className="sidebarListItem">
+                  <PersonAddAltIcon className="sidebarIcon" />
+                  Create User
+                </li>
               </Link>
             </ul>
           </div>
@@ -44,28 +49,27 @@ const SideBar = () => {
                 </li>
               </Link>
               <Link to="allposts" className="link">
-              <li className="sidebarListItem">
-                <Newspaper className="sidebarIcon" />
-                Posts
-              </li>
+                <li className="sidebarListItem">
+                  <Newspaper className="sidebarIcon" />
+                  Posts
+                </li>
               </Link>
               <Link to="solvedposts" className="link">
-              <li className="sidebarListItem">
-                <Check className="sidebarIcon" />
-                Solved Posts
-              </li>
+                <li className="sidebarListItem">
+                  <Check className="sidebarIcon" />
+                  Solved Posts
+                </li>
               </Link>
             </ul>
           </div>
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Notifications</h3>
             <ul className="sidebarList">
-              
-            <Link to="messages" className="link">
-              <li className="sidebarListItem">
-                <ChatBubbleOutline className="sidebarIcon" />
-                Messages
-              </li>
+              <Link to="messages" className="link">
+                <li className="sidebarListItem">
+                  <ChatBubbleOutline className="sidebarIcon" />
+                  Messages
+                </li>
               </Link>
             </ul>
           </div>
