@@ -94,9 +94,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 <h2>React Admin Panel</h2>
 <br/>
-| Login  | Home  |
+
+| Patients  | Edit Patient  |
 | -----------------| -----|
-| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/login.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/home.png) |
+| ![Patients](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/login.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/home.png) |
 
 | Patients  | Edit Patient  |
 | -----------------| -----|
