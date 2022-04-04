@@ -38,9 +38,9 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing  | Home/Search  |
-| -----------------| -----|
-| ![Landing](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Home/Search](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/home%20pharmacy.png) |
+| Landing  | Home/Search  |Home/Search  |
+| -----------------| -----|-----|
+| ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/signuppage.png) |
 
 | Artists results  | Artist's Albums  |
 | -----------------| -----|
