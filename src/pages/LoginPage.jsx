@@ -11,10 +11,12 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //redirect boolean
   const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
 
   const submit = (e) => {
+    
     const form = document.getElementById("form");
     var eField = document.getElementById("field-email");
     var eInput = document.getElementById("input-email");
@@ -22,11 +24,12 @@ const LoginPage = () => {
     var pInput = document.getElementById("input-password");
 
     e.preventDefault(); //preventing from form submitting
+    /**if input is empty add class error */
     eInput.value == "" ? eField.classList.add("error") : checkEmail();
     pInput.value == "" ? pField.classList.add("error") : checkPass();
 
     setTimeout(() => {
-      //remove error class after 500ms
+      //remove error class after 2 secs
       eField.classList.remove("error");
       pField.classList.remove("error");
     }, 2000);
@@ -68,17 +71,18 @@ const LoginPage = () => {
       !eField.classList.contains("error") &&
       !pField.classList.contains("error")
     ) {
+      //if user input is valid fetch login api
       fetchLoginApi();
     }
   };
-
+  //define headers as a constant
   let axiosConfig = {
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
     },
   };
    function fetchLoginApi(e) {
-    
+    //fetch login api
     axios
       .post(
         `http://127.0.0.1:8000/api/auth/login-admin`,
@@ -86,19 +90,16 @@ const LoginPage = () => {
         axiosConfig
       )
       .then((res) => {
+        //if success set id, access token , and email in local storage
         console.log(res);
         console.log(res.data["user"]["id"]);
 
         localStorage.setItem("access_token", res.data["access_token"]);
         localStorage.setItem("id", res.data["user"]["id"]);
         localStorage.setItem("email", res.data["user"]["email"]);
+        //redirect
         setRedirect(true);
       });
-    
-    // navigate("/home");
-    //redirect to user home page on success
-
-
     
   }
   console.log(redirect);
