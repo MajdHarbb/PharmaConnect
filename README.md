@@ -85,6 +85,10 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|-----|
 | ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |![Edit Info](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |
 
+<h2>Pharmacy UI</h2>
+| Activity History  | Settings  |
+| -----------------| -----|
+| ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |
 <br><br>
 <img src="./readme/title6.svg"/>
 
