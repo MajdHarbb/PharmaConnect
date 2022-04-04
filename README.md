@@ -83,12 +83,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Activity History  | Settings  | Edit Info |
 | -----------------| -----|-----|
-| ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |![Edit Info](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |
+| ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/WhatsApp%20Image%202022-04-04%20at%208.20.09%20PM.jpeg) |![Edit Info](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/WhatsApp%20Image%202022-04-04%20at%208.20.09%20PM%20(1).jpeg) |
 
 <h2>Pharmacy UI</h2>
-| Activity History  | Settings  |
-| -----------------| -----|
-| ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |
+| Home  | Reply  |Profile  |
+| -----------------| -----|-----|
+| ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-52-497_com.example.pharmaconnectflutter.jpg) | ![Reply](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/WhatsApp%20Image%202022-04-04%20at%208.20.09%20PM.jpeg) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-10-320_com.example.pharmaconnectflutter.jpg) |
+
 <br><br>
 <img src="./readme/title6.svg"/>
 
