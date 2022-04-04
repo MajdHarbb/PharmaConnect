@@ -10,7 +10,7 @@
 <br><br>
 
 
-<img src="./readme/title2.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/projectphmajd.svg"/>
 
 > PharmaConnect is an app to combat medicine shortages in Lebanon. PharmaConnect is more than an app or a practice of code; this app serves a good cause, reduces the impact of the disastrous medicine shortages, and maybe even, saves a soul. 
 > 
@@ -32,7 +32,7 @@
 - As a pharmacy owner, I want to edit my personal information, so that I can have more control over my profile.
 <br><br>
 
-<img src="./readme/title3.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/wireframes.svg"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
@@ -49,7 +49,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 <br><br>
 
-<img src="./readme/title4.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/techstack.svg"/>
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
@@ -60,7 +60,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="./readme/title5.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/imp.svg"/>
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
@@ -112,7 +112,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="./readme/title6.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/howw%20to%20run.svg"/>
 
 
 > This is an example of how you may give instructions on setting up your project locally.
