@@ -42,7 +42,7 @@ export default function User() {
     console.log(typeof params.userId);
     const id = params.userId;
     console.log(name, email, phone);
-
+    //if user input is valid fetch update api
     if (email.match(emailRegex) && phone.match(phoneRegex) && name != "") {
       axios
         .get(
@@ -61,17 +61,19 @@ export default function User() {
       var inputEmail = document.getElementById("input-email");
       var inputName = document.getElementById("input-name");
       var inputPhone = document.getElementById("input-phone");
-
+      //add class error if input is invalid
       inputEmail.classList.add("error");
       inputName.classList.add("error");
       inputPhone.classList.add("error");
     }
   }
+  //redirect to a page where admin can register a new user
   function navigateNewUser() {
     navigate(`newUser`);
   }
 
   useEffect(() => {
+    //user info api
     axios
       .get(
         `http://127.0.0.1:8000/api/admin/patient-info?user_id=${params.userId}`,

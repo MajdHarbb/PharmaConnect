@@ -38,10 +38,10 @@ export default function UserList() {
   
 
   const handleDelete = (id) => {
-
+    //delete user from database
     axios.get(`http://127.0.0.1:8000/api/user/delete-user?user_id=${id}`, { headers: { Authorization: AuthStr } })
    .then(response => {
-       // If request is good...
+       // If request is success delete row from front end
        setData(data.filter((item) => item.id !== id));
         console.log("deleted")
       
@@ -50,7 +50,7 @@ export default function UserList() {
        console.log('error ' + error);
     });
   }
-
+  //columns headers
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {

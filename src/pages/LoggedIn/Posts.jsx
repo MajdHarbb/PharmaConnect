@@ -9,10 +9,11 @@ const Posts = () => {
   const AuthStr = "Bearer ".concat(access_token);
 
   const [posts, setPosts] = useState([]);
-
+  //display "loading" if api is not fetched
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    //fetch solved posts
     axios
       .get("http://127.0.0.1:8000/api/admin/solved", {
         headers: { Authorization: AuthStr },
@@ -28,7 +29,7 @@ const Posts = () => {
         console.log("error " + error);
       });
   }, []);
-
+  //if api is fetched display posts
   if (isLoading) {
     return (
       <div>
@@ -69,6 +70,7 @@ const Posts = () => {
       </div>
     );
   } else {
+    //display Loading while api is being fetched
     return (
       <div>
         <h1>Loading</h1>
