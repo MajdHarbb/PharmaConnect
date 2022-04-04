@@ -73,14 +73,15 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | Pharmacy or Patient?  | Pharmacy Sign Up  |Patient Sign Up  |
 | -----------------| -----|-----|
 | ![Pharmacy or Patient?](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg) | ![Pharmacy](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-30-506_com.example.pharmaconnectflutter.jpg) | ![Patient Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-17-727_com.example.pharmaconnectflutter.jpg) |
+<br/>
 <h2>Patient UI</h2>
 | Home  | Replies  | Pharmacies List |
 | -----------------| -----|-----|
 | ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-11-384_com.example.pharmaconnectflutter.jpg) |![Pharmacies List](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
 
-| Home  | Replies  | Pharmacies List |
+| Activity History  | Settings  | Edit Info |
 | -----------------| -----|-----|
-| ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-11-384_com.example.pharmaconnectflutter.jpg) |![Pharmacies List](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
+| ![Activity History](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/my%20activity.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |![Edit Info](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/logout.jpg) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
