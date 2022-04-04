@@ -17,6 +17,7 @@
 > PharmaConnect connects medicine seekers with pharmacy owners. For example, instead of driving across the entire country to find your medicine, you can simply register, create a post detailing the medicine that you're looking for ie. with a caption and a picture and you'll get a reply from all the pharmacies that have your requested medicine. 
 
 ### User Stories
+Patient stories:
 - As a patient, I want to sign up, so that I can use PharmaConnect to find my medicine.
 - As a patient, I want to create a post, so that I can notify all pharmacies about a medicine.
 - As a patient, I want to see all pharmacies, so that I can find quick links to their location and contact information.
@@ -24,12 +25,20 @@
 - As a patient, I want to edit and delete my posts, so that I can remove unwanted replies.
 - As a patient, I want to edit my personal information, so that I can have more control over my profile.
 - As a patient, I want to get replies from pharmacies on each post, so that I can go to the nearest pharmacy.
+- 
+Pharmacy owner stories:
 - As a pharmacy owner, I want to sign up, so that I can connect with medicine seeker.
 - As a pharmacy owner, I want to sign up, so that I can connect with medicine seeker.
 - As a pharmacy owner, I want to enter my extact location on google maps, so that I can connect with medicine seeker.
 - As a pharmacy owner, I want to upload a photo of my license, so that I can provide authenticity.
 - As a pharmacy owner, I want to see all posts from patients, so that I can notify them if I have their request.
 - As a pharmacy owner, I want to edit my personal information, so that I can have more control over my profile.
+
+Admin stories: 
+- As an admin, I want to see statistics on the app, so I can benefit from these information for future use.
+- As an admin, I want to see to see a list of all users, so I can scale my app.
+- As an admin, I want to see to edit user information, so I can have more control.
+- As an admin, I want to see all posts, so I remove unwanted ones.
 <br><br>
 
 <img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/wireframes.svg"/>
@@ -53,7 +62,8 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- For the app, this project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- For the admin panel website, this project uses the [React JS](https://reactjs.org/). React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta and a community of individual developers and companies.
 - For persistent storage (database), the app uses the [Laravel 8](https://laravel.com/) package which allows the app to create a custom storage schema and save it to a local database.
 - The app uses the font ["Nunito"](https://fonts.google.com/specimen/Nunito) as its main font, and the design of the app adheres to the material design guidelines.
 
