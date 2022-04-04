@@ -42,6 +42,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | -----------------| -----|-----|
 | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/signuppage.png) |
 
+#
 | Home  | Pharmacies  |Profile  |
 | ---------| -----|-----|
 | ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/patienthome.png) | ![Pharmacies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userpharmacies.png) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userprofile.png) |
@@ -64,6 +65,18 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
+| Landing  | Home/Search  |
+| -----------------| -----|
+| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Landing  | Home/Search  |
+| -----------------| -----|
+| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Landing  | Home/Search  |
+| -----------------| -----|
+| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| Landing  | Home/Search  |
+| -----------------| -----|
+| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
 | Landing  | Home/Search  |
 | -----------------| -----|
 | ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
