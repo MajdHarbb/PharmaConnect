@@ -41,7 +41,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
 
     setState(() {
       _loadedPhotos = data;
-      print(_loadedPhotos[1]["district"]);
+      // print(_loadedPhotos[1]["district"]);
     });
   }
 

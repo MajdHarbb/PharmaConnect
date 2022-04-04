@@ -205,11 +205,13 @@ class _PatientProfileState extends State<PatientProfile> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "@: $user_email",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 12.0,
+                            Flexible(
+                              child: Text(
+                                "@: $user_email",
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize: 12.0,
+                                ),
                               ),
                             ),
                             
