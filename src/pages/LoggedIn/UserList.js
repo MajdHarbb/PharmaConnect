@@ -4,7 +4,6 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useState ,useEffect } from "react";
 import axios from "axios";
-//import {access_token, AuthStr} from "../../constants/token"
 
 export default function UserList() {
 
@@ -19,13 +18,14 @@ export default function UserList() {
     },
   };
 
-
+  //on page load fetch patients api
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/admin/get-all-patients", { headers: { Authorization: AuthStr } })
    .then(response => {
        // If request is good...
        patients = JSON.stringify(response.data);
        patients = JSON.parse(patients)
+       //set parsed json into patients array 
        setData(patients);
        console.log(response.data)
       
