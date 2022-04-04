@@ -79,6 +79,8 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|-----|
 | ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-11-384_com.example.pharmaconnectflutter.jpg) |![Pharmacies List](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
 
+| Home  | Replies  | Pharmacies List |
+| -----------------| -----|-----|
 | ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-43-908_com.example.pharmaconnectflutter.jpg) | ![Replies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-40-11-384_com.example.pharmaconnectflutter.jpg) |![Pharmacies List](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-39-47-453_com.example.pharmaconnectflutter.jpg) |
 
 | Activity History  | Settings  | Edit Info |
