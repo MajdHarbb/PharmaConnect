@@ -32,7 +32,7 @@
 - As a pharmacy owner, I want to edit my personal information, so that I can have more control over my profile.
 <br><br>
 
-<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/wireframes.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/wireframes1.svg"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
