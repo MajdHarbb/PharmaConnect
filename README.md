@@ -38,13 +38,13 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing  | Home/Search  |Home/Search  |
+| Welcome  | welcome  |Sign Up  |
 | -----------------| -----|-----|
 | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/signuppage.png) |
 
-| Artists results  | Artist's Albums  |
-| -----------------| -----|
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+| Home  | Pharmacies  |Profile  |
+| -----------------| -----|-----|
+| ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/patienthome.png) | ![Pharmacies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userpharmacies.png) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userprofile.png) |
 
 
 <br><br>
