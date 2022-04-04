@@ -5,7 +5,9 @@ import "../js/index.js";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
+  //useState to get user input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
