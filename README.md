@@ -14,9 +14,9 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> PharmaConnect is an app to combat medicine shortages in Lebanon. PharmaConnect is more than an app or a practice of code; this app serves a good cause, reduces the impact of the disastrous medicine shortages, and maybe even, saves a soul. 
 > 
-> There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
+> PharmaConnect connects medicine seekers with pharmacy owners. For example, instead of driving across the entire country to find your medicine, you can simply register, create a post detailing the medicine that you're looking for ie. with a caption and a picture and you'll get a reply from all the pharmacies that have your requested medicine. 
 
 ### User Stories
 - As a patient, I want to sign up, so that I can use PharmaConnect to find my medicine.
@@ -66,9 +66,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Welcome  | Welcome  |
-| -----------------| -----|
-| ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-02-231_com.example.pharmaconnectflutter.jpg) | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-06-626_com.example.pharmaconnectflutter.jpg) |
+| Welcome  | welcome  |Welcome  |
+| -----------------| -----|-----|
+| ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-02-231_com.example.pharmaconnectflutter.jpg) | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-06-626_com.example.pharmaconnectflutter.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg) |
 | Landing  | Home/Search  |
 | -----------------| -----|
 | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-13-862_com.example.pharmaconnectflutter.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/implementation/Screenshot_2022-04-04-09-37-10-320_com.example.pharmaconnectflutter.jpg) |
