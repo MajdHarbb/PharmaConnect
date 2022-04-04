@@ -1,6 +1,10 @@
 <h2>Majd Harb</h2>
 <h1>PharmaConnect</h1>
 
+
+[![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)](https://github.com/)
+
+[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30"/>](https://github.com/)
 <div align="center">
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available. 
