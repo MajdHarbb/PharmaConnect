@@ -61,6 +61,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
         const SliverAppBar(
           title: Text('Pharmacies'),
           floating: true,
+          leading: Icon(Icons.storefront_outlined,),
         ),
         SliverList(
           

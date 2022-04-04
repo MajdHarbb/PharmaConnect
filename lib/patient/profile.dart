@@ -134,6 +134,7 @@ class _PatientProfileState extends State<PatientProfile> {
       
         appBar: AppBar(
           title: const Text('Profile'),
+          leading: Icon(Icons.person,),
         ),
         body: Container(
           margin: const EdgeInsets.all(15),
@@ -351,8 +352,18 @@ class _PatientProfileState extends State<PatientProfile> {
                   onPressed: () async {
                     SharedPreferences preferences = await SharedPreferences.getInstance();
                     await preferences.clear();
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
+                    // Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
+                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
+                    
+
+                    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                            builder: (BuildContext context) {
+                            return SignInUser();
+                            },
+                            ),
+                            (_) => false,
+                            );
 
                   },
                 )

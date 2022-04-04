@@ -203,7 +203,6 @@ class _SolvedPostState extends State<SolvedPost> {
 
     setState(() {
       _loadedPhotos = data;
-      print(_loadedPhotos[1]["district"]);
     });
   }
 

@@ -78,8 +78,10 @@ class _NotificationsState extends State<Notifications> {
         // ),
         const SliverAppBar(
           //backgroundColor: Colors.green,
-          title: Text('Pharmacies'),
+          title: Text('Notifications'),
           floating: true,
+          leading: Icon(Icons.notifications_rounded,
+    ),
         ),
         
         SliverList(

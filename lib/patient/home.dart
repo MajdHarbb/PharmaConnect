@@ -243,6 +243,7 @@ class _PatientHomeState extends State<PatientHome> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello $user_name!'),
+        leading: Icon(Icons.home_rounded,),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -417,7 +418,7 @@ class _PatientHomeState extends State<PatientHome> {
                                                         );
                                                         
                                                       },
-                                                      child:  const Text("pharmacies")),
+                                                      child:  const Text("pharmacy replies")),
                                                       const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
                                                 ],
                                               ),
@@ -540,20 +541,10 @@ class _PatientHomeState extends State<PatientHome> {
                             scrollDirection: Axis.vertical,
                           )
                         : Column(
-                            children: [
-                              const Text(
-                                  "You don't have any posts yet, create a post"),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: const [
-                                  Text(
-                                    "Get Statred ",
-                                    style: TextStyle(fontSize: 50.0),
-                                  ),
-                                  //Image.asset("assets/images/Demo.gif")
-                                ],
-                              )
+                            children: const [
+                              Text(
+                                  ""),
+                              
                             ],
                           ),
                   ]),

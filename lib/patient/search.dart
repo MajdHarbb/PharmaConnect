@@ -41,6 +41,7 @@ class _PatientSearchState extends State<PatientSearch> {
         const SliverAppBar(
           title: Text('My Posts'),
           floating: true,
+          leading: Icon(Icons.bar_chart_rounded,),
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
