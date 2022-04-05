@@ -36,207 +36,210 @@ class _PatientSearchState extends State<PatientSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
+        body: RefreshIndicator(
+          onRefresh: getStringValuesSF,
+          child: CustomScrollView(
       slivers: [
-        const SliverAppBar(
-          title: Text('My Posts'),
-          floating: true,
-          leading: Icon(Icons.bar_chart_rounded,),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, int index) {
-              _controllers.add(new TextEditingController());
-              return count != 0
-                  ? Container(
-                      margin: const EdgeInsets.all(15),
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 30.0,
-                                backgroundColor: Colors.grey[200],
-                                backgroundImage: 
-                                    NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-                              ),
-                              const SizedBox(width: 8.0),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          user_name,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          _loadedPhotos[index]["updated_at"]
-                                              .substring(
-                                                  0,
-                                                  _loadedPhotos[index]
-                                                          ["updated_at"]
-                                                      .indexOf('T')),
-                                          style: TextStyle(
+          const SliverAppBar(
+            title: Text('My Posts'),
+            floating: true,
+            leading: Icon(Icons.bar_chart_rounded,),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, int index) {
+                _controllers.add(new TextEditingController());
+                return count != 0
+                    ? Container(
+                        margin: const EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 30.0,
+                                  backgroundColor: Colors.grey[200],
+                                  backgroundImage: 
+                                      NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                                ),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            user_name,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            _loadedPhotos[index]["updated_at"]
+                                                .substring(
+                                                    0,
+                                                    _loadedPhotos[index]
+                                                            ["updated_at"]
+                                                        .indexOf('T')),
+                                            style: TextStyle(
+                                              color: Colors.grey[600],
+                                              fontSize: 12.0,
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.public,
                                             color: Colors.grey[600],
-                                            fontSize: 12.0,
+                                            size: 12.0,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4.0),
+                            TextFormField(
+                              controller: _controllers[index],
+                              decoration: InputDecoration.collapsed(
+                                  hintText: _loadedPhotos[index]["post_text"]),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  pickImage();
+                                }, // Image tapped
+                                child: 
+                                Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
+                                width: 600.0,
+                                  height: 240.0,
+                                  fit: BoxFit.cover,),
+                                  
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                image != null
+                                    ? GestureDetector(
+                                      onTap: () {
+                                          pickImage();
+                                        },
+                                      child: ClipOval(
+                                          child: Image.file(
+                                            image!,
+                                            height: 50,
+                                            width: 50,
                                           ),
                                         ),
-                                        Icon(
-                                          Icons.public,
-                                          color: Colors.grey[600],
-                                          size: 12.0,
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4.0),
-                          TextFormField(
-                            controller: _controllers[index],
-                            decoration: InputDecoration.collapsed(
-                                hintText: _loadedPhotos[index]["post_text"]),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                pickImage();
-                              }, // Image tapped
-                              child: 
-                              Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
-                              width: 600.0,
-                                height: 240.0,
-                                fit: BoxFit.cover,),
-                                
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              image != null
-                                  ? GestureDetector(
-                                    onTap: () {
-                                        pickImage();
-                                      },
-                                    child: ClipOval(
-                                        child: Image.file(
-                                          image!,
-                                          height: 50,
-                                          width: 50,
-                                        ),
+                                    )
+                                    : GestureDetector(
+                                        onTap: () {
+                                          pickImage();
+                                        },
+                                        child: const Text("Edit Image"),
                                       ),
-                                  )
-                                  : GestureDetector(
-                                      onTap: () {
-                                        pickImage();
-                                      },
-                                      child: const Text("Edit Image"),
-                                    ),
-                              ElevatedButton.icon(
-                                icon: const Icon(
-                                  Icons.delete_rounded,
-                                  color: Colors.red,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(10, 40),
-                                  primary: Colors.white,
-                                ),
+                                ElevatedButton.icon(
+                                  icon: const Icon(
+                                    Icons.delete_rounded,
+                                    color: Colors.red,
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: const Size(10, 40),
+                                    primary: Colors.white,
+                                  ),
 
-                                onPressed: () {
-                                  deletePost(_loadedPhotos[index]["id"]);
-                                },
-                                label: const Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.black),
+                                  onPressed: () {
+                                    deletePost(_loadedPhotos[index]["id"]);
+                                  },
+                                  label: const Text(
+                                    'Delete',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  //controller: streetController,
                                 ),
-                                //controller: streetController,
-                              ),
-                              ElevatedButton.icon(
-                                icon: const Icon(
-                                  Icons.save,
-                                  color: Colors.blue,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(10, 40),
-                                  primary: Colors.white,
-                                ),
+                                ElevatedButton.icon(
+                                  icon: const Icon(
+                                    Icons.save,
+                                    color: Colors.blue,
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: const Size(10, 40),
+                                    primary: Colors.white,
+                                  ),
 
-                                onPressed: () {
-                                  updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
-                                },
-                                label: const Text(
-                                  'Save',
-                                  style: TextStyle(color: Colors.black),
+                                  onPressed: () {
+                                    updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
+                                  },
+                                  label: const Text(
+                                    'Save',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  //controller: streetController,
                                 ),
-                                //controller: streetController,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      margin: const EdgeInsets.all(15),
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Text("You don't have any posts yet"),
-                    );
-            },
-            childCount: _loadedPhotos.length, // 1000 list items
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        margin: const EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Text("You don't have any posts yet"),
+                      );
+              },
+              childCount: _loadedPhotos.length, // 1000 list items
+            ),
           ),
-        ),
       ],
-    ));
+    ),
+        ));
   }
 
-  getStringValuesSF() async {
+  Future <void> getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String? stringValue = prefs.getString('accesToken');
