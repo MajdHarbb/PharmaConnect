@@ -37,8 +37,8 @@ export default function PharmacyList() {
   const columns = [
     { field: "id", headerName: "ID", width: 20 },
     {
-      field: "name",
-      headerName: "Name",
+      field: "pharmacy name",
+      headerName: "Pharmacy Name",
       width: 200,
       renderCell: (params) => {
         return (
