@@ -17,6 +17,8 @@ class _AboutUsState extends State<AboutUs> {
   List _loadedPhotos = [];
   String access_Token = "";
   String pharmacy_profile_pic = "";
+  List<Marker> allMarkers = [];
+  List<Marker> _markers = [];
 
   // The function that fetches data from the API
   Future<void> _fetchData() async {
@@ -37,14 +39,20 @@ class _AboutUsState extends State<AboutUs> {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = json.decode(response.body);
-      // print("aa3333$data");
-      Map responseBody = json.decode(response.body);
-      
-      List results = responseBody["result"];
-      print("aa3333${results[0]["building"]}");
+      print("aa3333$data");
+      for (int i = 0; i < data.length; i++) {
+        LatLng latlng = new LatLng(double.parse(data[i]["latitude"]),double.parse(data[i]["longitude"]));
+        this._markers.add(Marker(
+              markerId: MarkerId(data[i]["id"]),
+              position: latlng,
+            ));
+        print("hes${data[i]["longitude"]}");
+      }
+      print("amjds");
       setState(() {
         _loadedPhotos = data;
-        // print("a3333333333333${results[0]}");
+        allMarkers=_markers;
+        print("a3333333333333${_loadedPhotos[0]["building"]}");
       });
     }
   }
@@ -53,29 +61,20 @@ class _AboutUsState extends State<AboutUs> {
     -33.8670522,
     151.1957362,
   );
-  Iterable markers = [];
   @override
-  Set<Marker> _markers = {};
-  Marker marker1 = Marker(
-    markerId: MarkerId('Marker1'),
-    position: const LatLng(32.195476, 74.2023563),
-    infoWindow: InfoWindow(title: 'Business 1'),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-  );
-  Marker marker2 = Marker(
-    markerId: MarkerId('Marker2'),
-    position: LatLng(31.110484, 72.384598),
-    infoWindow: InfoWindow(title: 'Business 2'),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-  );
-  List<Marker> list = [];
+  //List<Marker> list = [];
 
   @override
   void initState() {
-    list = [marker1, marker2];
-    // _markers.addAll(list);
     super.initState();
     _fetchData();
+    LatLng latlng = new LatLng(double.parse("38.123"), double.parse("35.123"));
+    _markers.add(Marker(
+        markerId: MarkerId('SomeId'),
+        position: latlng,
+        infoWindow: InfoWindow(title: 'The title of the marker')));
+
+    setState(() {});
   }
 
   Widget build(BuildContext context) {
@@ -84,13 +83,14 @@ class _AboutUsState extends State<AboutUs> {
         title: const Text('About Us'),
       ),
       body: GoogleMap(
-        markers: Set<Marker>.of(list),
+        // myLocationEnabled: false,
+        markers: Set<Marker>.of(allMarkers),
         // onMapCreated: (GoogleMapController controller) {
         //   _controller.complete(controller);
         // },
         initialCameraPosition: const CameraPosition(
           target: LatLng(32.1749132, 74.1779387),
-          zoom: 11.0,
+          zoom: 5.0,
         ),
       ),
     );

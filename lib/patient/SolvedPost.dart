@@ -61,7 +61,7 @@ class _SolvedPostState extends State<SolvedPost> {
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
                           backgroundImage: 
-                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}'),
+                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}',),
 
                         ),
                         const SizedBox(width: 8.0),

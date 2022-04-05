@@ -125,7 +125,7 @@ class WelcomePagetwo extends StatelessWidget {
                 Image.network('http://192.168.0.117:8000/images/logo.png'),
 
                 const Text(
-                  'Post about any medicine and know it’s location',
+                  'Post about any medicine and know its location',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 30,
