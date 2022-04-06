@@ -115,6 +115,7 @@ export default function UserList() {
 
   return (
     <div className="userList">
+      <h2>All Users</h2>
       <DataGrid
         rows={data}
         disableSelectionOnClick

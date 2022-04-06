@@ -119,6 +119,7 @@ export default function PharmacyList() {
 
   return (
     <div className="productList">
+      <h2>Pharmacies:</h2>
       <DataGrid
         rows={data}
         disableSelectionOnClick

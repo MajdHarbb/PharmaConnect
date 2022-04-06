@@ -49,6 +49,7 @@ const AllPosts = () => {
   if (isLoading) {
     return (
       <div>
+        <h2>All Posts:</h2>
         <div className="main__body">
           <div className="feed">
             {/* loop through posts list and displlay data */}

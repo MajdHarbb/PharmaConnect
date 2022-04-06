@@ -33,6 +33,7 @@ const Posts = () => {
   if (isLoading) {
     return (
       <div>
+        <h2>Solved Posts:</h2>
         <div className="main__body">
           <div className="feed">
             {posts.map((singlePost) => {

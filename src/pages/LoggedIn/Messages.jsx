@@ -73,6 +73,7 @@ const Messages = () => {
 
   return (
     <div className="userList">
+      <h2>Messages</h2>
       <DataGrid
         rows={data}
         disableSelectionOnClick
