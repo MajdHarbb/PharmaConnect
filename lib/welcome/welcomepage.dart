@@ -30,7 +30,7 @@ class WelcomePage extends StatelessWidget {
                           
                         },
                         child: const Text("Skip")),
-                        const Icon(Icons.skip_next_sharp, color: Colors.blue),
+                        const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
                   ],
                 ),
                 const Text(
@@ -71,7 +71,7 @@ class WelcomePage extends StatelessWidget {
                           
                         },
                         child: const Text("Next")),
-                        const Icon(Icons.skip_next_sharp, color: Colors.blue),
+                        const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
                   ],
                 ),
                 
@@ -111,7 +111,7 @@ class WelcomePagetwo extends StatelessWidget {
                           
                         },
                         child: const Text("Skip")),
-                        const Icon(Icons.skip_next_sharp, color: Colors.blue),
+                        const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
                   ],
                 ),
                 const Text(
@@ -152,7 +152,7 @@ class WelcomePagetwo extends StatelessWidget {
                           
                         },
                         child: const Text("Next")),
-                        const Icon(Icons.skip_next_sharp, color: Colors.blue),
+                        const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blue),
                   ],
                 ),
                 
