@@ -61,6 +61,7 @@ img {
 }
 .card_image img{
   height: 300px;
+  min-width: 367px;
   max-width: 100%;
   vertical-align: middle;
 }

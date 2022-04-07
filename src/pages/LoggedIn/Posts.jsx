@@ -61,9 +61,6 @@ const Posts = () => {
                       }?v=${Math.round(Date.now() / 1000)}`}
                     />
                   </div>
-                  {/* <div className="card_content">
-                    <button className="btn card_btn">Read More</button>
-                  </div> */}
                 </div>
               </li>
             );
@@ -73,7 +70,7 @@ const Posts = () => {
       </div>
     );
   } else {
-    //display Loading while api is being fetched
+    //display "Loading" while api is being fetched
     return (
       <div>
         <h1>Loading</h1>

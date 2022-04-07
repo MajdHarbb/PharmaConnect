@@ -48,14 +48,13 @@ const AllPosts = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <h2>All Posts:</h2>
-        <div className="main__body">
-          <div className="feed">
-            {/* loop through posts list and displlay data */}
-            {posts.map((singlePost) => {
-              return (
-                <div className="post">
+      <div className="main">
+        <h1>All Posts</h1>
+        <ul className="cards">
+          {posts.map((singlePost) => {
+            return (
+              <li className="cards_item">
+                <div className="card">
                   <div className="post__top">
                     <img
                       className="user__avatar post__avatar"
@@ -68,10 +67,10 @@ const AllPosts = () => {
                       <p>{singlePost.updated_at.split("T")[0]}</p>
                     </div>
                   </div>
-                  <div className="post__bottom">
-                    <p>{singlePost.post_text}</p>
+                  <div className="card_content">
+                    <p className="card_text">{singlePost.post_text}</p>
                   </div>
-                  <div className="post__image">
+                  <div className="card_image">
                     <img
                       src={`http://127.0.0.1:8000/posts/${
                         singlePost.post_pic
@@ -79,11 +78,11 @@ const AllPosts = () => {
                     />
                   </div>
                 </div>
-              );
-            })}
-            ;
-          </div>
-        </div>
+              </li>
+            );
+          })}
+          ;
+        </ul>
       </div>
     );
   } else {
