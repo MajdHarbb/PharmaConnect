@@ -32,13 +32,13 @@ const Posts = () => {
   //if api is fetched display posts
   if (isLoading) {
     return (
-      <div>
-        <h2>Solved Posts:</h2>
-        <div className="main__body">
-          <div className="feed">
-            {posts.map((singlePost) => {
-              return (
-                <div className="post">
+      <div className="main">
+        <h1>Solved Posts</h1>
+        <ul className="cards">
+          {posts.map((singlePost) => {
+            return (
+              <li className="cards_item">
+                <div className="card">
                   <div className="post__top">
                     <img
                       className="user__avatar post__avatar"
@@ -51,23 +51,25 @@ const Posts = () => {
                       <p>{singlePost.updated_at.split("T")[0]}</p>
                     </div>
                   </div>
-                  <div className="post__bottom">
-                    <p>{singlePost.post_text}</p>
+                  <div className="card_content">
+                    <p className="card_text">{singlePost.post_text}</p>
                   </div>
-                  <div className="post__image">
+                  <div className="card_image">
                     <img
                       src={`http://127.0.0.1:8000/posts/${
                         singlePost.post_pic
                       }?v=${Math.round(Date.now() / 1000)}`}
                     />
                   </div>
+                  {/* <div className="card_content">
+                    <button className="btn card_btn">Read More</button>
+                  </div> */}
                 </div>
-              );
-            })}
-            ;
-          </div>
-          {/* feed ends */}
-        </div>
+              </li>
+            );
+          })}
+          ;
+        </ul>
       </div>
     );
   } else {
