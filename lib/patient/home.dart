@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/map/Map.dart';
 import 'package:pharmaconnectflutter/patient/SolvedPost.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -244,6 +245,16 @@ class _PatientHomeState extends State<PatientHome> {
       appBar: AppBar(
         title: Text('Hello $user_name!'),
         leading: Icon(Icons.home_rounded,),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PharmaciesMap()),
+              );
+        },
+        tooltip: 'Go To Map',
+        child: const Icon(Icons.map),
       ),
       body: SingleChildScrollView(
         child: Center(
