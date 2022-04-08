@@ -74,17 +74,16 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('About Us'),
-      ),
-      body: GoogleMap(
-        myLocationEnabled: false,
-        markers: Set<Marker>.of(_markers),
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(32.1749132, 74.1779387),
-          zoom: 5.0,
-        ),
+    return SizedBox(
+      width: 400,
+      height: 500,
+      child: GoogleMap(
+          myLocationEnabled: false,
+          markers: Set<Marker>.of(_markers),
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(33.888630, 35.495480),
+            zoom: 9.0,
+          ),
       ),
     );
   }

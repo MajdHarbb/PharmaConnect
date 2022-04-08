@@ -19,6 +19,8 @@ class PatientSearch extends StatefulWidget {
 
 class _PatientSearchState extends State<PatientSearch> {
   List<TextEditingController> _controllers = [];
+  TextEditingController postTextController = TextEditingController();
+
   List _loadedPhotos = [];
   String test = '';
   String user_id = "";
@@ -36,210 +38,323 @@ class _PatientSearchState extends State<PatientSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: RefreshIndicator(
-          onRefresh: getStringValuesSF,
-          child: CustomScrollView(
-      slivers: [
-          const SliverAppBar(
-            title: Text('My Posts'),
-            floating: true,
-            leading: Icon(Icons.bar_chart_rounded,),
+        appBar: AppBar(
+          title: const Text('My Activity'),
+          leading: const Icon(
+            Icons.bar_chart_rounded,
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, int index) {
-                _controllers.add(new TextEditingController());
-                return count != 0
-                    ? Container(
-                        margin: const EdgeInsets.all(15),
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundColor: Colors.grey[200],
-                                  backgroundImage: 
-                                      NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-                                ),
-                                const SizedBox(width: 8.0),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            user_name,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            _loadedPhotos[index]["updated_at"]
-                                                .substring(
-                                                    0,
-                                                    _loadedPhotos[index]
-                                                            ["updated_at"]
-                                                        .indexOf('T')),
-                                            style: TextStyle(
-                                              color: Colors.grey[600],
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          Icon(
-                                            Icons.public,
-                                            color: Colors.grey[600],
-                                            size: 12.0,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4.0),
-                            TextFormField(
-                              controller: _controllers[index],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 0.0),
+                child: Column(
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            radius: 30.0,
+                            backgroundColor: Colors.grey[200],
+                            backgroundImage: NetworkImage(
+                                'http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                            //  AssetImage('assets/profiles/$user_profile_picture'),
+                          ),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: TextFormField(
+                              controller: postTextController,
                               decoration: InputDecoration.collapsed(
-                                  hintText: _loadedPhotos[index]["post_text"]),
+                                  hintText: "Find your medicine, $user_name"),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  pickImage();
-                                }, // Image tapped
-                                child: 
-                                Image.network('http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
-                                width: 600.0,
-                                  height: 240.0,
-                                  fit: BoxFit.cover,),
-                                  
+                          ),
+                        ]),
+                    const Divider(height: 10.0, thickness: 0.1),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: image != null
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        image!,
+                                        height: 50,
+                                        width: 50,
+                                      ),
+                                    )
+                                  : const Text(
+                                      'No image selected yet',
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: TextButton.icon(
+                                onPressed: pickImage,
+                                label: const Text('Add Image'),
+                                icon: const Icon(
+                                  Icons.photo,
+                                  color: Colors.green,
+                                ),
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                image != null
-                                    ? GestureDetector(
-                                      onTap: () {
-                                          pickImage();
-                                        },
-                                      child: ClipOval(
-                                          child: Image.file(
-                                            image!,
-                                            height: 50,
-                                            width: 50,
+                          ),
+                          TextButton(
+                            onPressed: AddPost,
+                            child: const Text('Post'),
+                          ),
+                          const Icon(
+                            Icons.send_rounded,
+                            color: Colors.blue,
+                          ),
+                        ]),
+                  ],
+                ),
+              ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    count != 0
+                        ? ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (BuildContext, index) {
+                              _controllers.add(new TextEditingController());
+                              return Container(
+                                margin: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        CircleAvatar(
+                                          radius: 30.0,
+                                          backgroundColor: Colors.grey[200],
+                                          backgroundImage: NetworkImage(
+                                              'http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    user_name,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    _loadedPhotos[index]
+                                                            ["updated_at"]
+                                                        .substring(
+                                                            0,
+                                                            _loadedPhotos[index]
+                                                                    [
+                                                                    "updated_at"]
+                                                                .indexOf('T')),
+                                                    style: TextStyle(
+                                                      color: Colors.grey[600],
+                                                      fontSize: 12.0,
+                                                    ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.public,
+                                                    color: Colors.grey[600],
+                                                    size: 12.0,
+                                                  )
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                    )
-                                    : GestureDetector(
+                                      ],
+                                    ),
+                                    const SizedBox(height: 4.0),
+                                    TextFormField(
+                                      controller: _controllers[index],
+                                      decoration: InputDecoration.collapsed(
+                                          hintText: _loadedPhotos[index]
+                                              ["post_text"]),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child: GestureDetector(
                                         onTap: () {
                                           pickImage();
-                                        },
-                                        child: const Text("Edit Image"),
+                                        }, // Image tapped
+                                        child: Image.network(
+                                          'http://192.168.0.117:8000/posts/${_loadedPhotos[index]["post_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
+                                          width: 600.0,
+                                          height: 240.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                ElevatedButton.icon(
-                                  icon: const Icon(
-                                    Icons.delete_rounded,
-                                    color: Colors.red,
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: const Size(10, 40),
-                                    primary: Colors.white,
-                                  ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        image != null
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  pickImage();
+                                                },
+                                                child: ClipOval(
+                                                  child: Image.file(
+                                                    image!,
+                                                    height: 50,
+                                                    width: 50,
+                                                  ),
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  pickImage();
+                                                },
+                                                child: const Text("Edit Image"),
+                                              ),
+                                        ElevatedButton.icon(
+                                          icon: const Icon(
+                                            Icons.delete_rounded,
+                                            color: Colors.red,
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                            minimumSize: const Size(10, 40),
+                                            primary: Colors.white,
+                                          ),
 
-                                  onPressed: () {
-                                    deletePost(_loadedPhotos[index]["id"]);
-                                  },
-                                  label: const Text(
-                                    'Delete',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  //controller: streetController,
+                                          onPressed: () {
+                                            deletePost(
+                                                _loadedPhotos[index]["id"]);
+                                          },
+                                          label: const Text(
+                                            'Delete',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                          //controller: streetController,
+                                        ),
+                                        ElevatedButton.icon(
+                                          icon: const Icon(
+                                            Icons.save,
+                                            color: Colors.blue,
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                            minimumSize: const Size(10, 40),
+                                            primary: Colors.white,
+                                          ),
+
+                                          onPressed: () {
+                                            updatePost(
+                                                _loadedPhotos[index]["id"],
+                                                _controllers[index].text);
+                                          },
+                                          label: const Text(
+                                            'Save',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                          //controller: streetController,
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
-                                ElevatedButton.icon(
-                                  icon: const Icon(
-                                    Icons.save,
-                                    color: Colors.blue,
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: const Size(10, 40),
-                                    primary: Colors.white,
-                                  ),
-
-                                  onPressed: () {
-                                    updatePost(_loadedPhotos[index]["id"],_controllers[index].text);
-                                  },
-                                  label: const Text(
-                                    'Save',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  //controller: streetController,
+                              );
+                            },
+                            itemCount: _loadedPhotos.length,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.all(5),
+                            scrollDirection: Axis.vertical,
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8),
+                                  bottomRight: Radius.circular(8)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(
+                                      0, 3), // changes position of shadow
                                 ),
                               ],
-                            )
-                          ],
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
                             ),
-                          ],
-                        ),
-                        margin: const EdgeInsets.all(15),
-                        padding: const EdgeInsets.all(8.0),
-                        child: const Text("You don't have any posts yet"),
-                      );
-              },
-              childCount: _loadedPhotos.length, // 1000 list items
-            ),
+                            margin: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(8.0),
+                            child: const Text(
+                                "You don't have any notifications yet, please wait for a reply"),
+                          ),
+                  ]),
+            ],
           ),
-      ],
-    ),
         ));
   }
 
-  Future <void> getStringValuesSF() async {
+  Future<void> getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String? stringValue = prefs.getString('accesToken');
@@ -334,7 +449,7 @@ class _PatientSearchState extends State<PatientSearch> {
     }
   }
 
-  Future<void> updatePost(id,post_text) async {
+  Future<void> updatePost(id, post_text) async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-post'),
       headers: {
@@ -353,7 +468,7 @@ class _PatientSearchState extends State<PatientSearch> {
       getStringValuesSF();
       setState(() {});
       _controllers.length = 0;
-      image =null;
+      image = null;
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
@@ -370,7 +485,50 @@ class _PatientSearchState extends State<PatientSearch> {
 
       print(response.body);
       print("===========> done");
-      
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      print(response.body);
+    }
+  }
+
+    Future<void> AddPost() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+      body: {
+        'user_id': user_id,
+        'post_text': postTextController.text,
+        'post_pic': "data:image/$extension;base64,$base64_img",
+      },
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+
+      print(response.body);
+      print("===========> done");
+      image = null;
+      postTextController = TextEditingController();
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title:
+              const Text('Posted! You will get a reply soon from a pharmacy.'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      getStringValuesSF();
+      setState(() {});
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.

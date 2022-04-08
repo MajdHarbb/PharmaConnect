@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pharmaconnectflutter/patient/PateintNotifications.dart';
 import 'package:pharmaconnectflutter/patient/patient_main.dart';
-import 'package:pharmaconnectflutter/patient/notifications.dart';
+import 'package:pharmaconnectflutter/pharmacy/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
@@ -34,6 +35,8 @@ class TabNavigator extends StatelessWidget {
       child = const Notifications();
     } else if(tabItem == "PatientProfile") {
       child = const PatientProfile();
+    }else if(tabItem == "PateintNotifications") {
+      child = const PateintNotifications();
     }
     
     return Navigator(

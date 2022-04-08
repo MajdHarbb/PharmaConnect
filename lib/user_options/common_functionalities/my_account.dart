@@ -15,9 +15,7 @@ class _MyAccountState extends State<MyAccount> {
       appBar: AppBar(
         title: const Text('My Account'),
       ),
-      body: Container(
-        child: Expansiontile(),
-      ),
+      body: const Expansiontile(),
       
     );
   }
