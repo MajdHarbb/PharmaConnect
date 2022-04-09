@@ -199,6 +199,7 @@ class _PatientHomeState extends State<PatientHome> {
       });
     }
   }
+
   @override
   initState() {
     super.initState();
@@ -220,23 +221,24 @@ class _PatientHomeState extends State<PatientHome> {
     print(_loadedPhotos);
     print(user_profile_picture);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hello $user_name!'),
-        leading: Icon(Icons.home_rounded,),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PharmaciesMap()),
-              );
-        },
-        tooltip: 'Go To Map',
-        child: const Icon(Icons.map),
-      ),
-      body: const Center(
-        child: PharmaciesMap(),
-      )
-    );
+        appBar: AppBar(
+          title: Text('Hello $user_name!'),
+          leading: Icon(
+            Icons.home_rounded,
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PharmaciesMap()),
+            );
+          },
+          tooltip: 'Go To Map',
+          child: const Icon(Icons.map),
+        ),
+        body: const Center(
+          child: PharmaciesMap(),
+        ));
   }
 }

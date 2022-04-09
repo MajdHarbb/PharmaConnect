@@ -56,9 +56,11 @@ class _PatientMainState extends State<PatientMain> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      //building widgets for each index 
       onWillPop: () async {
         final isFirstRouteInCurrentTab =
             !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
+            //setting patient home page(the one with the name PatientHome to the defualt page of the stack with index =0) 
         if (isFirstRouteInCurrentTab) {
           if (_currentPage != "PatientHome") {
             _selectTab("PatientHome", 0);
@@ -70,6 +72,8 @@ class _PatientMainState extends State<PatientMain> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
+        //creating a stack to maintain state of the pages 
+        //by this we are preventing the page from dying and reloading every time the user jump to an another page
         body: Stack(children: <Widget>[
           _buildOffstageNavigator("PatientHome"),
           _buildOffstageNavigator("PatientPharmacies"),
@@ -77,6 +81,7 @@ class _PatientMainState extends State<PatientMain> {
           _buildOffstageNavigator("PateintNotifications"),
           _buildOffstageNavigator("PatientProfile"),
         ]),
+        //building a bottom navbar with Icons and names
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blueAccent,
           onTap: (int index) {
@@ -110,7 +115,7 @@ class _PatientMainState extends State<PatientMain> {
       ),
     );
   }
-
+  //method to build the widget according to the selected index
   Widget _buildOffstageNavigator(String tabItem) {
     return Offstage(
       offstage: _currentPage != tabItem,
