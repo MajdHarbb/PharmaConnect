@@ -54,7 +54,7 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
             infoWindow: InfoWindow(title: data[i]["name"].toString(),),
             icon: await MarkerIcon.downloadResizePictureCircle(
                   'http://192.168.0.117:8000/profiles/${data[i]["profile_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
-                  size: 150,
+                  size: 130,
                   addBorder: true,
                   borderColor: Colors.white,
                   borderSize: 15),

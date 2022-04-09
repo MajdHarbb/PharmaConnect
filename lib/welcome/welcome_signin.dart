@@ -8,14 +8,11 @@ class WelcomeSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 80),
           child: Center(
-            
             child: Column(
-              
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 const Text(
@@ -26,35 +23,36 @@ class WelcomeSignIn extends StatelessWidget {
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold),
                 ),
-                Image.network('http://192.168.0.117:8000/images/caringedit2.png'),
+                Image.network(
+                    'http://192.168.0.117:8000/images/caringedit2.png'),
                 ElevatedButton(
-                  onPressed: (){
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PatientOrPharmacy()),
-                  
-                );
-
-                }, child:  const Text('Sign Up'),
-                autofocus: true,
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(240, 40),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PatientOrPharmacy()),
+                    );
+                  },
+                  child: const Text('Sign Up'),
+                  autofocus: true,
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(240, 40),
+                  ),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInUser()),
+                    );
+                  },
+                  child: const Text('Sign In'),
+                  autofocus: true,
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(240, 40),
+                  ),
                 ),
-
-                ElevatedButton(onPressed: (){
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SignInUser()),
-                );
-
-                }, child:  const Text('Sign In'),
-                autofocus: true,
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(240, 40),
-                ),),
-
-                
               ],
             ),
           ),
