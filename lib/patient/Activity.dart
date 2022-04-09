@@ -10,14 +10,14 @@ import 'package:path/path.dart' as p;
 import 'dart:async';
 import 'dart:convert';
 
-class PatientSearch extends StatefulWidget {
-  const PatientSearch({Key? key}) : super(key: key);
+class PatientActivity extends StatefulWidget {
+  const PatientActivity({Key? key}) : super(key: key);
 
   @override
-  State<PatientSearch> createState() => _PatientSearchState();
+  State<PatientActivity> createState() => _PatientActivityState();
 }
 
-class _PatientSearchState extends State<PatientSearch> {
+class _PatientActivityState extends State<PatientActivity> {
   List<TextEditingController> _controllers = [];
   TextEditingController postTextController = TextEditingController();
 

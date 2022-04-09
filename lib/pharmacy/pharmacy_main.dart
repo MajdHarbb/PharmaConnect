@@ -3,7 +3,7 @@ import 'package:pharmaconnectflutter/pharmacy/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
-import 'package:pharmaconnectflutter/patient/search.dart';
+import 'package:pharmaconnectflutter/patient/Activity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pharmaconnectflutter/patient/tab_navigator.dart';
 import 'package:pharmaconnectflutter/pharmacy/home.dart';
@@ -43,7 +43,7 @@ class _PharmacyMainState extends State<PharmacyMain> {
   final screens = [
     const PharmacyHome(),
     const PatientPharmacies(),
-    const PatientSearch(),
+    const PatientActivity(),
     const Notifications(),
     const PatientProfile(),
   ];

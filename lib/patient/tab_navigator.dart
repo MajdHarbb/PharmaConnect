@@ -5,7 +5,7 @@ import 'package:pharmaconnectflutter/pharmacy/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
-import 'package:pharmaconnectflutter/patient/search.dart';
+import 'package:pharmaconnectflutter/patient/Activity.dart';
 import 'package:pharmaconnectflutter/pharmacy/home.dart';
 
 class TabNavigatorRoutes {
@@ -20,7 +20,7 @@ class TabNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    //create separate routes in order to keep the bottom navbar outside its main pages
     late Widget child ;
     if(tabItem == "PatientHome") {
       child = const PatientHome();
@@ -29,8 +29,8 @@ class TabNavigator extends StatelessWidget {
     }
     else if(tabItem == "PatientPharmacies") {
       child = const PatientPharmacies();
-    } else if(tabItem == "PatientSearch") {
-      child = const PatientSearch();
+    } else if(tabItem == "PatientActivity") {
+      child = const PatientActivity();
     } else if(tabItem == "Notifications") {
       child = const Notifications();
     } else if(tabItem == "PatientProfile") {

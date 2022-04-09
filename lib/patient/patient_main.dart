@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pharmaconnectflutter/patient/PateintNotifications.dart';
-import 'package:pharmaconnectflutter/pharmacy/notifications.dart';
 import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/pharmacies.dart';
 import 'package:pharmaconnectflutter/patient/profile.dart';
-import 'package:pharmaconnectflutter/patient/search.dart';
+import 'package:pharmaconnectflutter/patient/Activity.dart';
 import 'package:pharmaconnectflutter/patient/tab_navigator.dart';
 
 class PatientMain extends StatefulWidget {
@@ -16,22 +15,24 @@ class PatientMain extends StatefulWidget {
 
 class _PatientMainState extends State<PatientMain> {
   String _currentPage = "PatientHome";
+  //list of pages for the patient user type
   List<String> pageKeys = [
     "PatientHome",
     "PatientPharmacies",
-    "PatientSearch",
+    "PatientActivity",
     "PateintNotifications",
     "PatientProfile"
   ];
+  //Global keys with pages names
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "PatientHome": GlobalKey<NavigatorState>(),
     "PatientPharmacies": GlobalKey<NavigatorState>(),
-    "PatientSearch": GlobalKey<NavigatorState>(),
+    "PatientActivity": GlobalKey<NavigatorState>(),
     "PateintNotifications": GlobalKey<NavigatorState>(),
     "PatientProfile": GlobalKey<NavigatorState>(),
   };
   int _selectedIndex = 0;
-
+  //routing each page name to an index
   void _selectTab(String tabItem, int index) {
     if (tabItem == _currentPage) {
       _navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
@@ -48,7 +49,7 @@ class _PatientMainState extends State<PatientMain> {
   final screens = [
     const PatientHome(),
     const PatientPharmacies(),
-    const PatientSearch(),
+    const PatientActivity(),
     const PateintNotifications(),
     const PatientProfile(),
   ];
@@ -72,7 +73,7 @@ class _PatientMainState extends State<PatientMain> {
         body: Stack(children: <Widget>[
           _buildOffstageNavigator("PatientHome"),
           _buildOffstageNavigator("PatientPharmacies"),
-          _buildOffstageNavigator("PatientSearch"),
+          _buildOffstageNavigator("PatientActivity"),
           _buildOffstageNavigator("PateintNotifications"),
           _buildOffstageNavigator("PatientProfile"),
         ]),
