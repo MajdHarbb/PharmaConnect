@@ -16,6 +16,7 @@ class PharmacySignUp extends StatefulWidget {
 }
 
 class _PharmacySignUpState extends State<PharmacySignUp> {
+  //controllers to get user input
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -25,11 +26,12 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   final TextEditingController streetController = TextEditingController();
   final TextEditingController localityController = TextEditingController();
   final TextEditingController districtController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  
+  final _formKey = GlobalKey<FormState>();//formstate to validate user input
 
   String extension = "";
   File? image;
-  late String base64_img;
+  late String base64img;
   String imagePath = '';
   late double lat;
   late double long;
@@ -37,56 +39,26 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
   late String district = "Beirut";
   late int _user = 2;
   late int _districtIndex = 0;
-  var governates = <String>[
-    'Akkar',
-    'Baalbek',
-    'Beirut',
-    'Beqaa',
-    'Mount Lebanon',
-    'Nabatieh',
-    'North Governate',
-    'South Governate',
-  ];
-
+  //list of Lebanese Governates
+  var governates = <String>['Akkar','Baalbek','Beirut','Beqaa','Mount Lebanon','Nabatieh','North Governate','South Governate',];
+  //list of Lebanese districts according to governates
   var districts = <String>["Beirut"];
   var Akkar = <String>["Akkar Halba"];
   var Baalbek = <String>["Baalbek", "Hermel"];
   var Beirut = <String>["Beirut"];
   var Beqaa = <String>["Rashaya", "Western Beqaa", "Zahle"];
   var Nabatieh = <String>["Bint Jbeil", "Hasbaya", "Marjeyoun", "Nabatieh"];
-  var MountLebanon = <String>[
-    "Byblos",
-    "Keserwan",
-    "Aley",
-    "Baabda",
-    "Chouf",
-    "Matn"
-  ];
-  var NorthGovernate = <String>[
-    "Batroun",
-    "Bsharri",
-    "Koura",
-    "Miniyeh",
-    "Tripoli",
-    "Zgharta"
-  ];
+  var MountLebanon = <String>["Byblos","Keserwan","Aley","Baabda","Chouf","Matn"];
+  var NorthGovernate = <String>["Batroun","Bsharri", "Koura","Miniyeh","Tripoli","Zgharta"];
   var SouthGovernate = <String>["Sidon", "Jezzine", "Tyre"];
 
-  static const _initialCameraPoition = CameraPosition(
-    target: LatLng(33.833797, 35.544144),
-    zoom: 11.5,
-    tilt: 50.0,
-  );
+  //inital position of google maps is set to the city of Beirut
+  static const _initialCameraPoition = CameraPosition(target: LatLng(33.833797, 35.544144),zoom: 11.5,tilt: 50.0,);
+  //defualt marker (the value will be overriden whem the user sets his location on the map)
   late Marker _origin = const Marker(
       markerId: MarkerId('SomeId'),
       position: LatLng(33.833797, 35.544144),
       infoWindow: InfoWindow(title: 'My Current Location'));
-  final List<Marker> _markers = <Marker>[
-    const Marker(
-        markerId: MarkerId('SomeId'),
-        position: LatLng(33.833797, 35.544144),
-        infoWindow: InfoWindow(title: 'The title of the marker'))
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -291,6 +263,7 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                                 }).toList(),
                                 onChanged: (value) {
                                   setState(() {
+                                    //change districts according to governates
                                     _user = governates.indexOf(value!);
                                     if (_user == 0) {
                                       districts = Akkar;
@@ -309,7 +282,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                                     } else if (_user == 7) {
                                       districts = SouthGovernate;
                                     }
-                                    print(governates[_user]);
                                     governate = governates[_user];
                                   });
                                 },
@@ -336,8 +308,6 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                                 onChanged: (value) {
                                   setState(() {
                                     _districtIndex = districts.indexOf(value!);
-
-                                    print(districts[_districtIndex]);
                                     district = districts[_districtIndex];
                                   });
                                 },
@@ -437,7 +407,9 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
+                        //if form is validated (email, name,phone regex etc.)
                         if (_formKey.currentState!.validate()) {
+                          //fetch register api
                           final response = await http.post(
                             Uri.parse(
                                 'http://192.168.0.117:8000/api/auth/register'),
@@ -445,11 +417,9 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               'name': nameController.text,
                               'email': emailController.text,
                               'password': passController.text,
-                              'password_confirmation':
-                                  passConfirmController.text,
+                              'password_confirmation':passConfirmController.text,
                               'phone': phoneController.text,
-                              'profile_pic':
-                                  'defualt_profile_picture_pharmaConnect.png',
+                              'profile_pic':'defualt_profile_picture_pharmaConnect.png',
                               'user_type': 'pharmacy',
                               'building': buildingController.text,
                               'street': streetController.text,
@@ -457,23 +427,20 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
                               'district': governate,
                               'latitude': lat.toString(),
                               'longitude': long.toString(),
-                              'license':
-                                  "data:image/$extension;base64,$base64_img",
+                              'license': "data:image/$extension;base64,$base64img",
                             },
                           );
 
                           if (response.statusCode == 201) {
                             // If the server did return a 201 CREATED response,
-                            // then parse the JSON.
+                            // navigate to sign in page
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const SignInUser()),
                             );
-                            print(response.body);
                           } else {
-                            // If the server did not return a 201 CREATED response,
-                            // then throw an exception.
+        
                             print(response.body);
                           }
                         }
@@ -489,46 +456,36 @@ class _PharmacySignUpState extends State<PharmacySignUp> {
       ),
     );
   }
-
+  //method to add marker to the map
   void _addMarker(LatLng pos) {
     setState(() {
       lat = pos.latitude;
       long = pos.longitude;
-
-      String x = lat.toString();
       _origin = Marker(
         markerId: const MarkerId("origin"),
         infoWindow: const InfoWindow(title: "My New Location"),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
         position: pos,
       );
-      print(pos);
-      print(x);
     });
   }
-
+  //method to pick image from gallery
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
-
+      //encode to base64 and store it in a temp
       final imageTemporary = File(image.path);
       imagePath = image.path;
-      print("---------------------->>>>>>>>-------------------");
-      print(image.path);
-      print("------------------------>>>>>>>>>>>>>>>>>");
-      base64_img = base64Encode(await image.readAsBytes());
+      base64img = base64Encode(await image.readAsBytes());
       String imageName = image.path.split("/").last;
       extension = p.extension(imageName).substring(1);
-      print("extension : $extension");
-      print('image name $imageName');
-      print("baseeeeee $base64_img");
       setState(() {
+        //set global variable image equals to temp created above
         this.image = imageTemporary;
-        print("picked $imageTemporary");
       });
     } on Exception catch (e) {
-      print('Failed to capture image: $e');
+      print('Failed to capture image: $e');//catch and print error
     }
   }
 }

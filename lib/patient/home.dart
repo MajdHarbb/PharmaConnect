@@ -152,7 +152,7 @@ class _PatientHomeState extends State<PatientHome> {
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to create album.');
+      throw Exception('Failed to fetch data.');
     }
   }
 
@@ -200,32 +200,14 @@ class _PatientHomeState extends State<PatientHome> {
     }
   }
 
-  @override
-  initState() {
-    super.initState();
-    print(
-        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
-    getStringValuesSF();
-    getUserInfo();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
-    //myPosts();
-    //initState();
-    // _fetchData();
-    print(user_name);
-    print(user_id);
-    print(user_email);
-    print(user_phone);
-    print(_loadedPhotos);
-    print(user_profile_picture);
     return Scaffold(
         appBar: AppBar(
           title: Text('Hello $user_name!'),
-          leading: Icon(
-            Icons.home_rounded,
-          ),
+          leading: const Icon(Icons.home_rounded,),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -241,4 +223,12 @@ class _PatientHomeState extends State<PatientHome> {
           child: PharmaciesMap(),
         ));
   }
+
+  @override
+  initState() {
+    super.initState();
+    getStringValuesSF();
+    getUserInfo();
+  }
+
 }

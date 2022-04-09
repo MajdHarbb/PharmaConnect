@@ -101,7 +101,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final TextEditingController _controller = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   Future<Album>? _futureAlbum;
@@ -134,13 +133,13 @@ class _SignInState extends State<SignIn> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               border: OutlineInputBorder(), hintText: 'Enter Email here'),
           controller: emailController,
         ),
         const SizedBox(height: 10),
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               border: OutlineInputBorder(), hintText: 'Enter password here'),
           controller: passController,
         ),
