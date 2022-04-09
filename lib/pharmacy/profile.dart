@@ -12,8 +12,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:image_picker/image_picker.dart';
+
 class PharmacyProfile extends StatefulWidget {
-  const PharmacyProfile({ Key? key }) : super(key: key);
+  const PharmacyProfile({Key? key}) : super(key: key);
 
   @override
   State<PharmacyProfile> createState() => _PharmacyProfileState();
@@ -21,20 +22,20 @@ class PharmacyProfile extends StatefulWidget {
 
 class _PharmacyProfileState extends State<PharmacyProfile> {
   @override
-    late String user_id = "";
-    String user_type = "";
-    String access_Token = "";
-    String extension = "";
-    String user_name = "";
-    String user_email = "";
-    String user_phone = "";
-    String user_profile_picture = "";
+  late String user_id = "";
+  String user_type = "";
+  String access_Token = "";
+  String extension = "";
+  String user_name = "";
+  String user_email = "";
+  String user_phone = "";
+  String user_profile_picture = "";
 
-    File? image;
+  File? image;
   late String base64_img;
   String imagePath = '';
 
-    getStringValuesSF() async {
+  getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String? stringValue = prefs.getString('accesToken');
@@ -46,18 +47,16 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
       user_phone = prefs.getString('phone')!;
       user_profile_picture = prefs.getString('profile_pic')!;
       access_Token = prefs.getString('accesToken')!;
-      
     });
-
-
   }
+
   @override
   initState() {
     super.initState();
     getStringValuesSF();
   }
 
-    Future pickImage() async {
+  Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
@@ -81,7 +80,8 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
       print('Failed to capture image: $e');
     }
   }
-    Future<void> updateProfilePicture() async {
+
+  Future<void> updateProfilePicture() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-profile-picture'),
       headers: {
@@ -97,20 +97,19 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Profile Picture Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Profile Picture Updated!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
       print(response.body);
       print("===========> done");
     } else {
@@ -119,6 +118,7 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
       print(response.body);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     print(user_profile_picture);
@@ -134,67 +134,65 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
           padding: const EdgeInsets.all(8.0),
           //color: Colors.blue,
           child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch,
-            
-            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Stack(
-                      alignment: Alignment.bottomRight,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundColor: Colors.grey[200],
-                          backgroundImage:
-                                    NetworkImage('http://192.168.0.117:8000/profiles/$user_profile_picture'),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
+                    alignment: Alignment.bottomRight,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 50.0,
+                        backgroundColor: Colors.grey[200],
+                        backgroundImage: NetworkImage(
+                            'http://192.168.0.117:8000/profiles/$user_profile_picture'),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
                             color: Colors.blue,
-                            borderRadius:BorderRadius.circular(100)
-                          ),
-                          child: image != null
-                                ? ClipOval(
-                                    child: Image.file(
-                                      image!,
-                                      height: 50,
-                                      width: 50,
-                                    ),
-                                  ) : IconButton(
-                              iconSize: 30,
-                              icon: const Icon(Icons.camera_alt_rounded),
-                              onPressed: () {
-                                pickImage();
-                              },
-                            ),
-                        )
-                      ],
+                            borderRadius: BorderRadius.circular(100)),
+                        child: image != null
+                            ? ClipOval(
+                                child: Image.file(
+                                  image!,
+                                  height: 50,
+                                  width: 50,
+                                ),
+                              )
+                            : IconButton(
+                                iconSize: 30,
+                                icon: const Icon(Icons.camera_alt_rounded),
+                                onPressed: () {
+                                  pickImage();
+                                },
+                              ),
+                      )
+                    ],
                   ),
-                  
                   const SizedBox(width: 8.0),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(user_name,
+                        Text(
+                          user_name,
                           style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                         Row(
@@ -206,53 +204,53 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                                 fontSize: 12.0,
                               ),
                             ),
-                            
                           ],
                         ),
                       ],
                     ),
                   ),
-                  TextButton.icon(onPressed: (){
-                    if (image == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text('Please select an image first!'),
-                          action: SnackBarAction(
-                            label: 'OK',
-                            onPressed: () {
-                              // Code to execute.
-                            },
-                          ),
-                        ),
-                      );
-                    } else {
-                      updateProfilePicture();
-                      
-                    }
-                    
-                  }, icon: const Icon(Icons.upload),label: const Text("Upload")),
-                  
+                  TextButton.icon(
+                      onPressed: () {
+                        if (image == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  const Text('Please select an image first!'),
+                              action: SnackBarAction(
+                                label: 'OK',
+                                onPressed: () {
+                                  // Code to execute.
+                                },
+                              ),
+                            ),
+                          );
+                        } else {
+                          updateProfilePicture();
+                        }
+                      },
+                      icon: const Icon(Icons.upload),
+                      label: const Text("Upload")),
                 ],
               ),
             ),
             const SizedBox(height: 8.0),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               padding: const EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
@@ -288,7 +286,8 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                   onPressed: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const MyAccount()));
+                        MaterialPageRoute(
+                            builder: (context) => const MyAccount()));
                   },
                 )
               ]),
@@ -296,21 +295,21 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
             const SizedBox(height: 8.0),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               padding: const EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
@@ -344,11 +343,17 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                 IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
                   onPressed: () async {
-                    SharedPreferences preferences = await SharedPreferences.getInstance();
+                    SharedPreferences preferences =
+                        await SharedPreferences.getInstance();
                     await preferences.clear();
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => const SignInUser()));
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const SignInUser()), (route) => false);
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInUser()));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SignInUser()),
+                        (route) => false);
                   },
                 )
               ]),
@@ -356,21 +361,21 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
             const SizedBox(height: 8.0),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               padding: const EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
@@ -406,7 +411,8 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                   onPressed: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const AboutUs()));
+                        MaterialPageRoute(
+                            builder: (context) => const AboutUs()));
                   },
                 )
               ]),
@@ -414,21 +420,21 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
             const SizedBox(height: 8.0),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               padding: const EdgeInsets.all(8.0),
               child: Row(children: [
                 Icon(
@@ -464,7 +470,8 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                   onPressed: () {
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const ContactUs()));
+                        MaterialPageRoute(
+                            builder: (context) => const ContactUs()));
                   },
                 )
               ]),
@@ -479,9 +486,5 @@ class _PharmacyProfileState extends State<PharmacyProfile> {
                   // ),
                   ),
         ));
-
-
-  
   }
-    
 }

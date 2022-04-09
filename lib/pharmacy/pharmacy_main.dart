@@ -16,8 +16,8 @@ class PharmacyMain extends StatefulWidget {
 }
 
 class _PharmacyMainState extends State<PharmacyMain> {
-  String _currentPage = "PharmacyHome";
-  List<String> pageKeys = ["PharmacyHome", "Notifications", "PatientProfile"];
+  String _currentPage = "PharmacyHome";//by defualt current page is home
+  List<String> pageKeys = ["PharmacyHome", "Notifications", "PatientProfile"];//pages names list
   final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     "PharmacyHome": GlobalKey<NavigatorState>(),
     "Notifications": GlobalKey<NavigatorState>(),
@@ -25,6 +25,7 @@ class _PharmacyMainState extends State<PharmacyMain> {
   };
   int _selectedIndex = 0;
 
+  //create separate stack for pages 
   void _selectTab(String tabItem, int index) {
     if (tabItem == _currentPage) {
       _navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
@@ -64,6 +65,7 @@ class _PharmacyMainState extends State<PharmacyMain> {
         return isFirstRouteInCurrentTab;
       },
           child: Scaffold(
+            //stack to preserve pages states
         body: Stack(
           children:<Widget>[
             _buildOffstageNavigator("PharmacyHome"),
