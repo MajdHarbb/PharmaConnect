@@ -1,6 +1,8 @@
 import 'dart:convert';
-
+import 'dart:typed_data';
+import 'package:custom_marker/marker_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -40,31 +42,49 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
       print("aa3333$data");
 
       print("amjds");
-      setState(() {
-        _loadedPhotos = data;
-        // allMarkers=_markers;
-        print("a3333333333333${_loadedPhotos[0]["building"]}");
-        for (int i = 0; i < data.length; i++) {
+
+      _loadedPhotos = data;
+      for (int i = 0; i < data.length; i++) {
+          
           LatLng latlng = LatLng(double.parse(data[i]["latitude"].toString()),
-              double.parse(data[i]["longitude"].toString()));
+          double.parse(data[i]["longitude"].toString()));
           _list.add(Marker(
             markerId: MarkerId(data[i]["id"].toString()),
             position: latlng,
+            infoWindow: InfoWindow(title: data[i]["name"].toString(),),
+            icon: await MarkerIcon.downloadResizePictureCircle(
+                  'http://192.168.0.117:8000/profiles/${data[i]["profile_pic"]}?v=${DateTime.now().millisecondsSinceEpoch}',
+                  size: 150,
+                  addBorder: true,
+                  borderColor: Colors.white,
+                  borderSize: 15),
           ));
           print("hes${data[i]["latitude"]}");
           print("hes${data[i]["longitude"]}");
           print("hes$_list");
         }
+      setState(() {
+        _loadedPhotos = data;
+        // allMarkers=_markers;
+
+        print("a3333333333333${_loadedPhotos[0]["building"]}");
+        // for (int i = 0; i < data.length; i++) {
+          
+        //   LatLng latlng = LatLng(double.parse(data[i]["latitude"].toString()),
+        //   double.parse(data[i]["longitude"].toString()));
+        //   _list.add(Marker(
+        //     markerId: MarkerId(data[i]["id"].toString()),
+        //     position: latlng,
+        //     infoWindow: InfoWindow(title: data[i]["name"].toString(),),
+        //   ));
+        //   print("hes${data[i]["latitude"]}");
+        //   print("hes${data[i]["longitude"]}");
+        //   print("hes$_list");
+        // }
         _markers.addAll(_list);
       });
     }
   }
-
-  LatLng latlng = LatLng(
-    -33.8670522,
-    151.1957362,
-  );
-
   @override
   void initState() {
     super.initState();
@@ -74,17 +94,13 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 400,
-      height: 500,
-      child: GoogleMap(
+    return GoogleMap(
           myLocationEnabled: false,
           markers: Set<Marker>.of(_markers),
           initialCameraPosition: const CameraPosition(
             target: LatLng(33.888630, 35.495480),
             zoom: 9.0,
           ),
-      ),
     );
   }
 }

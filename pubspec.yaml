@@ -43,6 +43,7 @@ dependencies:
   flutter_polyline_points: ^0.2.6
   google_maps_flutter: ^2.0.2
   google_fonts: ^2.1.0
+  custom_marker: ^1.0.0
 
 dev_dependencies:
   flutter_test:

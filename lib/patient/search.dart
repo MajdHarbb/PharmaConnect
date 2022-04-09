@@ -48,7 +48,7 @@ class _PatientSearchState extends State<PatientSearch> {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.all(7),
+                margin: const EdgeInsets.all(11),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.only(
@@ -118,7 +118,7 @@ class _PatientSearchState extends State<PatientSearch> {
                                   horizontal: 8, vertical: 8),
                               child: TextButton.icon(
                                 onPressed: pickImage,
-                                label: const Text('Add Image'),
+                                label: const Text('Image'),
                                 icon: const Icon(
                                   Icons.photo,
                                   color: Colors.green,
@@ -148,7 +148,7 @@ class _PatientSearchState extends State<PatientSearch> {
                             itemBuilder: (BuildContext, index) {
                               _controllers.add(new TextEditingController());
                               return Container(
-                                margin: const EdgeInsets.all(15),
+                                margin: const EdgeInsets.all(8),
                                 padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -449,7 +449,7 @@ class _PatientSearchState extends State<PatientSearch> {
     }
   }
 
-  Future<void> updatePost(id, post_text) async {
+  Future<void> updatePost(id, postText) async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-post'),
       headers: {
@@ -457,7 +457,7 @@ class _PatientSearchState extends State<PatientSearch> {
       },
       body: {
         'post_id': id.toString(),
-        'post_text': post_text,
+        'post_text': postText,
         'post_pic': "data:image/$extension;base64,$base64_img",
       },
     );
@@ -492,7 +492,7 @@ class _PatientSearchState extends State<PatientSearch> {
     }
   }
 
-    Future<void> AddPost() async {
+  Future<void> AddPost() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/addPost'),
       headers: {
