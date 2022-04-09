@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pharmaconnectflutter/patient/home.dart';
 import 'package:pharmaconnectflutter/patient/patient_main.dart';
 import 'package:pharmaconnectflutter/pharmacy/pharmacy_main.dart';
 import 'package:pharmaconnectflutter/signIn_signup/patient_signup.dart';
@@ -18,7 +16,7 @@ class SignInUser extends StatefulWidget {
 }
 
 class _SignInUserState extends State<SignInUser> {
-  final TextEditingController _controller = TextEditingController();
+  //controllers to get user data
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
 
@@ -39,6 +37,7 @@ class _SignInUserState extends State<SignInUser> {
   }
 
   Column buildColumn() {
+    //form key to validate form
     final _formKey = GlobalKey<FormState>();
     return Column(
       children: [
@@ -61,6 +60,7 @@ class _SignInUserState extends State<SignInUser> {
               TextFormField(
                 controller: emailController,
                 validator: (value) {
+                  //email regex
               if (RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!) == false) {
                 return 'Please enter a valid email example: ex@ex.com';
               }
@@ -96,7 +96,7 @@ class _SignInUserState extends State<SignInUser> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                  
+                  //if form is valid fetch login api
                   final prefs = await SharedPreferences.getInstance();
                   final response = await http.post(
                     Uri.parse('http://192.168.0.117:8000/api/auth/login'),
@@ -107,34 +107,21 @@ class _SignInUserState extends State<SignInUser> {
                   );
 
                   if (response.statusCode == 200) {
-                    // If the server did return a 201 CREATED response,
-                    // then parse the JSON.
-                    var response_jsondata = json.decode(response.body);
-                    print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                    print(response_jsondata["user"]["id"]);
-                    //var user_json_id = json.decode(response_jsondata);
-                    final String userJsonId =
-                        (response_jsondata["user"]["id"]).toString();
-                    final String user_type =
-                        (response_jsondata["user"]["user_type"]).toString();
-                    print(
-                        "user iddddddddddddddddddddd ===================>>>>>>>>>>");
-                    print(userJsonId);
-                    print(user_type);
-                    print("======================>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                    print(response.body);
-
-                    await prefs.setString(
-                        'accesToken', response_jsondata["access_token"]);
+                    // If the server did return a 200 OK response,
+                    // then parse the JSON and set user token in shared prefs
+                    var responseJsondata = json.decode(response.body);
+                    final String userJsonId =(responseJsondata["user"]["id"]).toString();
+                    final String userType =(responseJsondata["user"]["user_type"]).toString();
+                    await prefs.setString('accesToken', responseJsondata["access_token"]);
                     await prefs.setString('id', userJsonId);
-                    await prefs.setString('user_type', user_type);
+                    await prefs.setString('user_type', userType);
                     final String? action = prefs.getString('accesToken');
                     final String? action2 = prefs.getString('id');
                     final String? action3 = prefs.getString('user_type');
                     print('hiii $action');
                     print('iddddddddddddd from storage $action2');
                     print("user type $action3");
-                    if (user_type == "patient") {
+                    if (userType == "patient") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
