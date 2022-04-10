@@ -14,44 +14,10 @@ class PatientPharmacies extends StatefulWidget {
 
 class _PatientPharmaciesState extends State<PatientPharmacies> {
   @override
-  // The list that contains information about photos
-  List _loadedPhotos = [];
+  // The list that contains list of pharmacies
+  List _pharmaciesList = [];
   String access_Token = "";
   String pharmacy_profile_pic = "";
-
-  // The function that fetches data from the API
-  Future<void> _fetchData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
-    String? stringValue = prefs.getString('accesToken');
-
-    setState(() {
-      access_Token = prefs.getString('accesToken')!;
-    });
-    const API_URL = 'http://192.168.0.117:8000/api/user/get-pharmacies';
-
-    final response = await http.get(
-      Uri.parse(API_URL),
-      headers: {
-        'Authorization': 'Bearer $access_Token',
-      },
-    );
-    final data = json.decode(response.body);
-    print(data);
-
-    setState(() {
-      _loadedPhotos = data;
-      // print(_loadedPhotos[1]["district"]);
-    });
-  }
-
-  @override
-  initState() {
-    super.initState();
-    print(
-        "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
-    _fetchData();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +27,11 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
         const SliverAppBar(
           title: Text('Pharmacies'),
           floating: true,
-          leading: Icon(Icons.storefront_outlined,),
+          leading: Icon(
+            Icons.storefront_outlined,
+          ),
         ),
         SliverList(
-          
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
               return Container(
@@ -95,9 +62,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage: 
-                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}'),
-
+                          backgroundImage: NetworkImage(
+                              'http://192.168.0.117:8000/profiles/${_pharmaciesList[index]["profile_pic"]}'),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -105,14 +71,14 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _loadedPhotos[index]["name"],
+                                _pharmaciesList[index]["name"],
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
                                   Text(
-                                    'member since ${_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))}',
+                                    'member since ${_pharmaciesList[index]["updated_at"].substring(0, _pharmaciesList[index]["updated_at"].indexOf('T'))}',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 12.0,
@@ -132,9 +98,9 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                     ),
                     const SizedBox(height: 4.0),
                     Text(
-                        '${_loadedPhotos[index]["building"]}, ${_loadedPhotos[index]["street"]}'),
-                    Text('${_loadedPhotos[index]["district"]}'),
-                    Text('${_loadedPhotos[index]["locality"]}'),
+                        '${_pharmaciesList[index]["building"]}, ${_pharmaciesList[index]["street"]}'),
+                    Text('${_pharmaciesList[index]["district"]}'),
+                    Text('${_pharmaciesList[index]["locality"]}'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -149,8 +115,8 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMap(_loadedPhotos[index]["latitude"],
-                                _loadedPhotos[index]["longitude"]);
+                            MapUtils.openMap(_pharmaciesList[index]["latitude"],
+                                _pharmaciesList[index]["longitude"]);
                           },
                           label: const Text(
                             'Maps',
@@ -170,7 +136,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
 
                           onPressed: () {
                             MapUtils.openDialer(
-                                '${_loadedPhotos[index]["phone"]}');
+                                '${_pharmaciesList[index]["phone"]}');
                           },
                           label: const Text(
                             'Call',
@@ -190,7 +156,7 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
 
                           onPressed: () {
                             MapUtils.openMail(
-                                '${_loadedPhotos[index]["email"]}');
+                                '${_pharmaciesList[index]["email"]}');
                           },
                           label: const Text(
                             'Email',
@@ -204,11 +170,40 @@ class _PatientPharmaciesState extends State<PatientPharmacies> {
                 ),
               );
             },
-            childCount: _loadedPhotos.length,
+            childCount: _pharmaciesList.length,
             // 1000 list items
           ),
         ),
       ],
     ));
+  }
+
+  // The function that fetches data from the API
+  Future<void> _fetchPharmaciesList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+
+    setState(() {
+      access_Token = prefs.getString('accesToken')!;
+    });
+    const API_URL = 'http://192.168.0.117:8000/api/user/get-pharmacies';
+
+    final response = await http.get(
+      Uri.parse(API_URL),
+      headers: {
+        'Authorization': 'Bearer $access_Token',
+      },
+    );
+    final data = json.decode(response.body);
+
+    setState(() {
+      _pharmaciesList = data;
+    });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    _fetchPharmaciesList();
   }
 }
