@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:custom_marker/marker_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -16,16 +14,27 @@ class PharmaciesMap extends StatefulWidget {
 }
 
 class _PharmaciesMapState extends State<PharmaciesMap> {
-  List _loadedPhotos = [];
+  List _pharmaciesList = [];//list to store pharmacies
   String access_Token = "";
   String pharmacy_profile_pic = "";
-  List<Marker> _markers = [];
-  List<Marker> _list = [];
-  Future<void> _fetchData() async {
+  List<Marker> _markers = [];//list to store markers
+  List<Marker> _list = [];//list to store markers
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleMap(
+          myLocationEnabled: false,
+          markers: Set<Marker>.of(_markers),
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(33.888630, 35.495480),
+            zoom: 9.0,
+          ),
+    );
+  }
+    //fetch pharmacies list api
+    Future<void> _fetchData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    String? stringValue = prefs.getString('accesToken');
-
     setState(() {
       access_Token = prefs.getString('accesToken')!;
     });
@@ -39,11 +48,9 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       final data = json.decode(response.body);
-      print("aa3333$data");
 
-      print("amjds");
-
-      _loadedPhotos = data;
+      _pharmaciesList = data;
+      //create a custom marker for each pharmacy in the fetched json array
       for (int i = 0; i < data.length; i++) {
           
           LatLng latlng = LatLng(double.parse(data[i]["latitude"].toString()),
@@ -59,28 +66,9 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
                   borderColor: Colors.white,
                   borderSize: 15),
           ));
-          print("hes${data[i]["latitude"]}");
-          print("hes${data[i]["longitude"]}");
-          print("hes$_list");
         }
       setState(() {
-        _loadedPhotos = data;
-        // allMarkers=_markers;
-
-        print("a3333333333333${_loadedPhotos[0]["building"]}");
-        // for (int i = 0; i < data.length; i++) {
-          
-        //   LatLng latlng = LatLng(double.parse(data[i]["latitude"].toString()),
-        //   double.parse(data[i]["longitude"].toString()));
-        //   _list.add(Marker(
-        //     markerId: MarkerId(data[i]["id"].toString()),
-        //     position: latlng,
-        //     infoWindow: InfoWindow(title: data[i]["name"].toString(),),
-        //   ));
-        //   print("hes${data[i]["latitude"]}");
-        //   print("hes${data[i]["longitude"]}");
-        //   print("hes$_list");
-        // }
+        _pharmaciesList = data;
         _markers.addAll(_list);
       });
     }
@@ -90,17 +78,5 @@ class _PharmaciesMapState extends State<PharmaciesMap> {
     super.initState();
     _fetchData();
     _markers.addAll(_list);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GoogleMap(
-          myLocationEnabled: false,
-          markers: Set<Marker>.of(_markers),
-          initialCameraPosition: const CameraPosition(
-            target: LatLng(33.888630, 35.495480),
-            zoom: 9.0,
-          ),
-    );
   }
 }
