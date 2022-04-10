@@ -110,10 +110,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 <h2>Pharmacy UI</h2>
 <br/>
-
-| Home  | Notifications  |Profile  |
-| -----------------| -----|-----|
-| ![Home](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacyhome.jpg) | ![Reply](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacynot.jpg) | ![Profile](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacyprofile.jpg) |
+<table>
+  <tr>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacyhome.jpg" /></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacynot.jpg"/></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacyprofile.jpg"/></td>
+  </tr>
+</table>
 
 <h2>React Admin Panel</h2>
 <br/>
