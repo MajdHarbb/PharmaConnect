@@ -62,7 +62,8 @@ class PostfindsController extends Controller
         if($notifications){
             $pharmacies = Postfind::join('posts','posts.id','=','postfinds.post_id')
             ->join('infos','infos.user_id','=','postfinds.pharmacy_id')
-            ->select('infos.*','postfinds.post_id')
+            ->join('pharmacies','pharmacies.pharmacy_id','=','postfinds.pharmacy_id')
+            ->select('infos.*','postfinds.post_id','pharmacies.*')
             ->where('post_id', '=', $post_id)
             ->distinct()
             ->get();

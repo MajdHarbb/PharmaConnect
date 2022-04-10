@@ -53,21 +53,13 @@ class PostsController extends Controller
     }
 
     public function getAllPosts(Request $request) {
-        // $pharmacy_id=$request->pharmacy_id;
-        // $posts = Post::join('infos', 'posts.user_id', '=', 'infos.user_id')
-        //     ->join('postfinds', 'infos.user_id', '=', 'postfinds.pharmacy_id')
-        //     ->select('posts.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic','postfinds.pharmacy_id')
-        //     ->where('postfinds.pharmacy_id', '!=', $pharmacy_id)
-        //     ->distinct()->get();
+
         $pharmacy_id=$request->pharmacy_id;
-        $posts = Post::join('infos', 'posts.user_id', '=', 'infos.user_id')
-            ->join('postfinds', 'infos.user_id', '!=', 'postfinds.pharmacy_id')
-            ->select('posts.*', 'infos.name', 'infos.email','infos.phone','infos.profile_pic','postfinds.pharmacy_id')
-            ->where('postfinds.pharmacy_id', '!=', $pharmacy_id)
-            ->distinct()->get();
-        // $posts = Postfind::join('posts', 'posts.id', '=', 'postfinds.post_id')
-        //         ->select('posts.*')
-        //         ->where('postfinds.pharmacy_id', '=', $pharmacy_id)->get;
+
+        $posts = Postfind::join('posts', 'posts.id', '=', 'postfinds.post_id')
+        ->join('infos', 'posts.user_id', '=', 'infos.user_id')
+        ->where('pharmacy_id','!=',$pharmacy_id)->get();
+
         return response()->json(
             $posts,
         );
