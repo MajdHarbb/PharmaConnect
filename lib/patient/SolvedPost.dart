@@ -4,20 +4,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'dart:io';
 
 class SolvedPost extends StatefulWidget {
+  //get post id from activity page
   final String postid;
-  const SolvedPost({ Key? key, required this.postid }) : super(key: key);
-  
-  
+  const SolvedPost({Key? key, required this.postid}) : super(key: key);
 
   @override
   State<SolvedPost> createState() => _SolvedPostState();
 }
 
 class _SolvedPostState extends State<SolvedPost> {
-  List _loadedPhotos = [];
+  List _pharmaciesList = [];
   late String access_Token;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,6 @@ class _SolvedPostState extends State<SolvedPost> {
           floating: true,
         ),
         SliverList(
-          
           delegate: SliverChildBuilderDelegate(
             (context, int index) {
               return Container(
@@ -60,9 +57,9 @@ class _SolvedPostState extends State<SolvedPost> {
                         CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.grey[200],
-                          backgroundImage: 
-                              NetworkImage('http://192.168.0.117:8000/profiles/${_loadedPhotos[index]["profile_pic"]}',),
-
+                          backgroundImage: NetworkImage(
+                            'http://192.168.0.117:8000/profiles/${_pharmaciesList[index]["profile_pic"]}',
+                          ),
                         ),
                         const SizedBox(width: 8.0),
                         Expanded(
@@ -70,14 +67,14 @@ class _SolvedPostState extends State<SolvedPost> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                _loadedPhotos[index]["name"],
+                                _pharmaciesList[index]["name"],
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
                                   Text(
-                                    'member since ${_loadedPhotos[index]["updated_at"].substring(0, _loadedPhotos[index]["updated_at"].indexOf('T'))}',
+                                    'member since ${_pharmaciesList[index]["updated_at"].substring(0, _pharmaciesList[index]["updated_at"].indexOf('T'))}',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 12.0,
@@ -97,9 +94,9 @@ class _SolvedPostState extends State<SolvedPost> {
                     ),
                     const SizedBox(height: 4.0),
                     Text(
-                        '${_loadedPhotos[index]["building"]}, ${_loadedPhotos[index]["street"]}'),
-                    Text('${_loadedPhotos[index]["district"]}'),
-                    Text('${_loadedPhotos[index]["locality"]}'),
+                        '${_pharmaciesList[index]["building"]}, ${_pharmaciesList[index]["street"]}'),
+                    Text('${_pharmaciesList[index]["district"]}'),
+                    Text('${_pharmaciesList[index]["locality"]}'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -114,8 +111,8 @@ class _SolvedPostState extends State<SolvedPost> {
                           ),
 
                           onPressed: () {
-                            MapUtils.openMap(_loadedPhotos[index]["latitude"],
-                                _loadedPhotos[index]["longitude"]);
+                            MapUtils.openMap(_pharmaciesList[index]["latitude"],
+                                _pharmaciesList[index]["longitude"]);
                           },
                           label: const Text(
                             'Maps',
@@ -135,7 +132,7 @@ class _SolvedPostState extends State<SolvedPost> {
 
                           onPressed: () {
                             MapUtils.openDialer(
-                                '${_loadedPhotos[index]["phone"]}');
+                                '${_pharmaciesList[index]["phone"]}');
                           },
                           label: const Text(
                             'Call',
@@ -155,7 +152,7 @@ class _SolvedPostState extends State<SolvedPost> {
 
                           onPressed: () {
                             MapUtils.openMail(
-                                '${_loadedPhotos[index]["email"]}');
+                                '${_pharmaciesList[index]["email"]}');
                           },
                           label: const Text(
                             'Email',
@@ -169,7 +166,7 @@ class _SolvedPostState extends State<SolvedPost> {
                 ),
               );
             },
-            childCount: _loadedPhotos.length,
+            childCount: _pharmaciesList.length,
             // 1000 list items
           ),
         ),
@@ -177,37 +174,31 @@ class _SolvedPostState extends State<SolvedPost> {
     ));
   }
 
-
-
-
-
-   // The function that fetches data from the API
+  // The function that fetches data from the API
   Future<void> fetchPharmacies() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
-    String? stringValue = prefs.getString('accesToken');
-
     setState(() {
       access_Token = prefs.getString('accesToken')!;
     });
-    final API_URL = 'http://192.168.0.117:8000/api/user/pharmacy-by-post?post_id=${widget.postid}';
+    //fetch pharmacies that replied to the specific post id got from activity page (line 10)
+    final APIURL =
+        'http://192.168.0.117:8000/api/user/pharmacy-by-post?post_id=${widget.postid}';
 
     final response = await http.get(
-      Uri.parse(API_URL),
+      Uri.parse(APIURL),
       headers: {
         'Authorization': 'Bearer $access_Token',
       },
     );
     final data = json.decode(response.body);
-    print(data);
-
+    //set json in pharmacy list
     setState(() {
-      _loadedPhotos = data;
+      _pharmaciesList = data;
     });
   }
 
   @override
-  initState(){
+  initState() {
     super.initState();
     fetchPharmacies();
   }
