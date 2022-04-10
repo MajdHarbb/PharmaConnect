@@ -49,14 +49,14 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 <h2>Figma Wireframes</h2>
 <table>
   <tr>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome.png" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome2.png" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/signuppage.png" /></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome.png" /></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome2.png" /></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/signuppage.png" /></td>
   </tr>
   <tr>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/patienthome.png" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userpharmacies.png"/></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userprofile.png"/></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/patienthome.png" /></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userpharmacies.png"/></td>
+    <td><img width="300" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userprofile.png"/></td>
   </tr>
 </table>
 
