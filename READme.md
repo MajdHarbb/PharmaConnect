@@ -120,19 +120,19 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Patients  | Edit Patient  |
 | -----------------| -----|
-| ![Patients](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/login.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/home.png) |
+| ![Patients](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/login.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/home.png) |
 
 | Patients  | Edit Patient  |
 | -----------------| -----|
-| ![Patients](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/users.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/edit%20user.png) |
+| ![Patients](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/users.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/edit%20user.png) |
 
 | Create User  | Pharmacies  |
 | -----------------| -----|
-| ![Patients](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/create%20user.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/pharmacies.png) |
+| ![Patients](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/create%20user.png) | ![Edit](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/pharmacies.png) |
 
 | Posts  | Messages  |
 | -----------------| -----|
-| ![Posts](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/posts.png) | ![Messages](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/react/messages.png) |
+| ![Posts](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/posts.png) | ![Messages](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/react/messages.png) |
 
 
 
