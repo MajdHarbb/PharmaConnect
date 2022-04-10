@@ -35,16 +35,6 @@ class _PatientHomeState extends State<PatientHome> {
           title: Text('Hello $user_name!'),
           leading: const Icon(Icons.home_rounded,),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PharmaciesMap()),
-            );
-          },
-          tooltip: 'Go To Map',
-          child: const Icon(Icons.map),
-        ),
         body: const Center(
           child: PharmaciesMap(),
         ));

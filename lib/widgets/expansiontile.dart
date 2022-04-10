@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-
 class Expansiontile extends StatefulWidget {
   const Expansiontile({Key? key}) : super(key: key);
 
@@ -41,6 +40,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       access_Token = prefs.getString('accesToken')!;
     });
   }
+
   @override
   initState() {
     super.initState();
@@ -48,6 +48,7 @@ class _ExpansiontileState extends State<Expansiontile> {
         "hello =========================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>;d");
     getStringValuesSF();
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -105,7 +106,8 @@ class _ExpansiontileState extends State<Expansiontile> {
                                 child: TextFormField(
                                   controller: nameController,
                                   decoration: const InputDecoration(
-                                      prefixIcon:Icon(Icons.text_fields_rounded),
+                                      prefixIcon:
+                                          Icon(Icons.text_fields_rounded),
                                       border: OutlineInputBorder(),
                                       hintText: "Enter your new name"),
                                 ),
@@ -149,38 +151,44 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                      if(nameController.text == "" || passController.text == "" || passConfirmController.text == ""){
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('You are entering empty values!'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                      }else{
-                                        if(passController.text!=passConfirmController.text){
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Passwords did not match!'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                            );
-                                            
-                                        }
-                                        else{
-                                          updateName();
-                                        }
+                                    if (nameController.text == "" ||
+                                        passController.text == "" ||
+                                        passConfirmController.text == "") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                              'You are entering empty values!'),
+                                          action: SnackBarAction(
+                                            label: 'OK',
+                                            onPressed: () {
+                                              // Code to execute.
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      if (passController.text !=
+                                          passConfirmController.text) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Passwords did not match!'),
+                                            action: SnackBarAction(
+                                              label: 'OK',
+                                              onPressed: () {
+                                                // Code to execute.
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        updateName();
                                       }
-                                  }, child: Text('save')),
+                                    }
+                                  },
+                                  child: Text('save')),
                             ],
                           ),
                         ],
@@ -239,11 +247,11 @@ class _ExpansiontileState extends State<Expansiontile> {
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
                                   ],
                                   controller: phoneController,
                                   decoration: const InputDecoration(
-                                    
                                       prefixIcon:
                                           Icon(Icons.phone_android_rounded),
                                       border: OutlineInputBorder(),
@@ -289,51 +297,59 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                      if(phoneController.text == "" || passController.text == "" || passConfirmController.text == ""){
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Enter your phone number and password'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                      }else{
-                                        if(phoneController.text.length != 8){
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Phone number must be 8 digits only '),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                        }
-                                        if(passController.text!=passConfirmController.text){
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Passwords did not match!'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                            );
-                                            
-                                        }
-                                        else{
-                                          updatePhone();
-                                        }
+                                    if (phoneController.text == "" ||
+                                        passController.text == "" ||
+                                        passConfirmController.text == "") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: const Text(
+                                              'Enter your phone number and password'),
+                                          action: SnackBarAction(
+                                            label: 'OK',
+                                            onPressed: () {
+                                              // Code to execute.
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      if (phoneController.text.length != 8) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Phone number must be 8 digits only '),
+                                            action: SnackBarAction(
+                                              label: 'OK',
+                                              onPressed: () {
+                                                // Code to execute.
+                                              },
+                                            ),
+                                          ),
+                                        );
                                       }
-                                  }, child: const Text('save')),
+                                      if (passController.text !=
+                                          passConfirmController.text) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Passwords did not match!'),
+                                            action: SnackBarAction(
+                                              label: 'OK',
+                                              onPressed: () {
+                                                // Code to execute.
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        updatePhone();
+                                      }
+                                    }
+                                  },
+                                  child: const Text('save')),
                             ],
                           ),
                         ],
@@ -438,51 +454,59 @@ class _ExpansiontileState extends State<Expansiontile> {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                      if(newpassContoller.text == "" || passController.text == "" || passConfirmController.text == ""){
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Enter your password'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                      }else{
-                                        if(newpassContoller.text.length <= 8){
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Password must be at least 6 characters and include a number'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                                  );
-                                        }
-                                        if(passController.text!=passConfirmController.text){
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                                      SnackBar(
-                                                      content: const Text('Passwords did not match!'),
-                                                      action: SnackBarAction(
-                                                        label: 'OK',
-                                                        onPressed: () {
-                                                          // Code to execute.
-                                                        },
-                                                      ),
-                                                    ),
-                                            );
-                                            
-                                        }
-                                        else{
-                                          updatePassword();
-                                        }
+                                    if (newpassContoller.text == "" ||
+                                        passController.text == "" ||
+                                        passConfirmController.text == "") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content:
+                                              const Text('Enter your password'),
+                                          action: SnackBarAction(
+                                            label: 'OK',
+                                            onPressed: () {
+                                              // Code to execute.
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      if (newpassContoller.text.length <= 8) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Password must be at least 6 characters and include a number'),
+                                            action: SnackBarAction(
+                                              label: 'OK',
+                                              onPressed: () {
+                                                // Code to execute.
+                                              },
+                                            ),
+                                          ),
+                                        );
                                       }
-                                  }, child: Text('save')),
+                                      if (passController.text !=
+                                          passConfirmController.text) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: const Text(
+                                                'Passwords did not match!'),
+                                            action: SnackBarAction(
+                                              label: 'OK',
+                                              onPressed: () {
+                                                // Code to execute.
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        updatePassword();
+                                      }
+                                    }
+                                  },
+                                  child: Text('save')),
                             ],
                           ),
                         ],
@@ -497,6 +521,7 @@ class _ExpansiontileState extends State<Expansiontile> {
       ),
     );
   }
+
   Future<void> updateName() async {
     final response = await http.post(
       Uri.parse('http://192.168.0.117:8000/api/user/update-name'),
@@ -515,41 +540,38 @@ class _ExpansiontileState extends State<Expansiontile> {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Name Successfully Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Name Successfully Updated!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
       print(response.body);
       print("===========> done");
     } else {
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Wrong Password!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Wrong Password!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
       print(response.body);
     }
   }
-
 
   Future<void> updatePhone() async {
     final response = await http.post(
@@ -569,39 +591,35 @@ class _ExpansiontileState extends State<Expansiontile> {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Phone Successfully Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Phone Successfully Updated!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
       print(response.body);
       print("===========> done");
-    } 
-    else {
-      
+    } else {
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title:  Text(response.body),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(response.body),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
       print(response.body);
     }
   }
@@ -614,7 +632,6 @@ class _ExpansiontileState extends State<Expansiontile> {
       },
       body: {
         'user_id': user_id,
-        
         'password': passController.text,
         'password_confirmation': passConfirmController.text,
         'new_password': newpassContoller.text,
@@ -625,39 +642,35 @@ class _ExpansiontileState extends State<Expansiontile> {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Password Successfully Updated!'),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
-      
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Password Successfully Updated!'),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
       print(response.body);
       print("===========> done");
-    } 
-    else {
-      
+    } else {
       showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title:  Text(response.body),
-                        content: const Text('Press okay to return to your screen'),
-                        actions: <Widget>[
-                         
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(response.body),
+          content: const Text('Press okay to return to your screen'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
       print(response.body);
     }
   }

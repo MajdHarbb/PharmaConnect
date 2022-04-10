@@ -19,7 +19,7 @@ class _PateintNotificationsState extends State<PateintNotifications> {
   String user_name = "";
   String user_profile_picture = "";
 
-  List _notifications = [];//list to store api notifications
+  List _notifications = []; //list to store api notifications
 
   int currentIndex = 0;
 
@@ -113,12 +113,11 @@ class _PateintNotificationsState extends State<PateintNotifications> {
                                                                           )),
                                                             );
                                                           },
-                                                          child: const Text(
-                                                              "pharmacy replies")),
+                                                          child: const Text("Pharmacy Replies"),),
                                                       const Icon(
                                                           Icons
                                                               .arrow_forward_ios_rounded,
-                                                          color: Colors.blue),
+                                                          color: Colors.blue, size: 15,),
                                                     ],
                                                   ),
                                                 ],
