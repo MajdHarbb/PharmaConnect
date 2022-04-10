@@ -146,25 +146,42 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* Install laravel
   ```sh
-  npm install npm@latest -g
+  https://laravel.com/docs/9.x/installation
+  ```
+* Install Flutter
+  ```sh
+  https://docs.flutter.dev/get-started/install
+  ```
+* Install React
+  ```sh
+  https://reactjs.org/docs/create-a-new-react-app.html
   ```
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/MajdHarbb/PharmaConnect.git
    ```
-3. Install NPM packages
+2. Start the laravel server
    ```sh
-   npm install
+   cd PharmaConnect/Laravel PharmaConnect
+   php artisan migrate
+   php artisan serve --host 0.0.0.0
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. To run the flutter app on your phone
+   ```sh
+   cd PharmaConnect/Flutter PharmaConnect
+   flutter pub get 
+   flutter run lib/main.dart
    ```
+4. To run the Admin Panel on your desktop
+   ```sh
+   cd PharmaConnect/React PharmaConnect
+   npm start
+   ```
+
