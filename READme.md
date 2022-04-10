@@ -73,6 +73,19 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
+<table>
+  <tr>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome2.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg"/></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg"/></td>
+  </tr>
+</table>
+
 | Welcome  | welcome  |Welcome  |
 | -----------------| -----|-----|
 | ![Welcome](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg) | ![Welcome](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome2.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg) |
