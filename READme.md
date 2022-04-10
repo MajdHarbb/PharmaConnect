@@ -72,7 +72,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/implementation.svg"/>
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
-
+<h2>Welocme & Sign Up</h2>
 <table>
   <tr>
     <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg" /></td>
@@ -86,16 +86,22 @@ Here's a brief high-level overview of the tech stack the Well app uses:
   </tr>
 </table>
 
-| Welcome  | welcome  |Welcome  |
-| -----------------| -----|-----|
-| ![Welcome](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg) | ![Welcome](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome2.jpg) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg) |
-
-| Pharmacy or Patient?  | Pharmacy Sign Up  |Patient Sign Up  |
-| -----------------| -----|-----|
-| ![Pharmacy or Patient?](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg) | ![Pharmacy](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg) | ![Patient Up](https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg) |
 <br/>
 <h2>Patient UI</h2>
-
+<table>
+  <tr>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/maphome.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacies.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/post.gif" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/edit.gif" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/delete.gif" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/notifications.gif"/></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pic.gif"/></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/name.gif" /></td>
+  </tr>
+</table>
 
 | Home  | Replies  | Pharmacies List |
 | -----------------| -----|-----|
