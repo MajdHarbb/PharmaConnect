@@ -1,0 +1,16 @@
+.home{
+    flex: 4;
+}
+
+.homeWidgets{
+    display: flex;
+    margin: 20px;
+}
+.containerLanding{
+    display: flex;
+    margin-top: 10px;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+}
