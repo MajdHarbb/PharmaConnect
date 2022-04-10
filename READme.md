@@ -85,9 +85,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
     <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg" /></td>
   </tr>
   <tr>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg"/></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg"/></td>
+    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg" /></td>
+    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg"/></td>
+    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg"/></td>
   </tr>
 </table>
 
