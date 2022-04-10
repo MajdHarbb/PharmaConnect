@@ -49,14 +49,14 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 <h2>Figma Wireframes</h2>
 <table>
   <tr>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome.png" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome2.png" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/signuppage.png" /></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome.png" /></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/welcome2.png" /></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/signuppage.png" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/patienthome.png" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userpharmacies.png"/></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userprofile.png"/></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/patienthome.png" /></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userpharmacies.png"/></td>
+    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/figma/userprofile.png"/></td>
   </tr>
 </table>
 
@@ -80,14 +80,14 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <h2>Welocme & Sign Up</h2>
 <table>
   <tr>
-    <td><img width="300" height="400"  src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome2.jpg" /></td>
-    <td><img width="300" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg" /></td>
+    <td><img  src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome1.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome2.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/welcome3.jpg" /></td>
   </tr>
   <tr>
-    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg" /></td>
-    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg"/></td>
-    <td><img width="400" height="500" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg"/></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientOrPharmacy.jpg" /></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacySignup.jpg"/></td>
+    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/patientSignup.jpg"/></td>
   </tr>
 </table>
 
