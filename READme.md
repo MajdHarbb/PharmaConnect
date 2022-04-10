@@ -50,7 +50,6 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | -----------------| -----|-----|
 | ![Welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome.png) | ![welcome](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/welcome2.png) | ![Sign Up](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/signuppage.png) |
 
-#
 | Home  | Pharmacies  |Profile  |
 | ---------| -----|-----|
 | ![Home](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/patienthome.png) | ![Pharmacies](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userpharmacies.png) | ![Profile](https://github.com/MajdHarbb/PharmaConnect-Flutter/blob/master/readme/figma/userprofile.png) |
