@@ -1,16 +1,16 @@
 <img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/title.svg"/>
 
 <div align="center">
-> Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available. 
+> PhamraConnect is an app that combats medicine shortages in Lebanon by connecting medicine seekers with pharmacy owners.
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](#philosophy) • [WIREFRAMES](#wireframes) • [TECH STACK](#tech) • [IMPLEMENTATION](#implementation) • [HOW TO RUN?](#install)**
 
 </div>
 
 <br><br>
 
 
-<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/projectphilosophy.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/projectphilosophy.svg" id="philosophy"/>
 
 > PharmaConnect is an app to combat medicine shortages in Lebanon. PharmaConnect is more than an app or a practice of code; this app serves a good cause, reduces the impact of the disastrous medicine shortages, and maybe even, saves a soul. 
 > 
@@ -41,7 +41,7 @@ Admin stories:
 - As an admin, I want to see all posts, so I remove unwanted ones.
 <br><br>
 
-<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/wireframes.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/wireframes.svg" id="wireframes"/>
 
 > This design was planned before on paper, then moved to Figma app for the fine details.
 Note that i didn't use any styling library or theme, all from scratch and using pure css modules
@@ -62,7 +62,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 <br><br>
 
-<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/tech.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/tech.svg" id="tech"/>
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
@@ -74,7 +74,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/implementation.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/implementation.svg" id="implementation"/>
 
 > Uing the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 <h2>Welocme & Sign Up</h2>
@@ -137,7 +137,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <br><br>
-<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/run.svg"/>
+<img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/titles/run.svg" id="install"/>
 
 
 > This is an example of how you may give instructions on setting up your project locally.
