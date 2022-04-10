@@ -90,16 +90,16 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <h2>Patient UI</h2>
 <table>
   <tr>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/maphome.jpg" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacies.jpg" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/post.gif" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/edit.gif" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/maphome.jpg" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pharmacies.jpg" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/post.gif" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/edit.gif" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/delete.gif" /></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/notifications.gif"/></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pic.gif"/></td>
-    <td><img src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/name.gif" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/delete.gif" /></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/notifications.gif"/></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/pic.gif"/></td>
+    <td><img width="200" height="400" src="https://github.com/MajdHarbb/PharmaConnect/blob/master/README/screenshots/App/name.gif" /></td>
   </tr>
 </table>
 
